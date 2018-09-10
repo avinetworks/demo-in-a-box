@@ -1,0 +1,65 @@
+---
+- name: Build the Scaleout Clients
+  hosts: demo_clients
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/startup.py"
+          - "{{ playbook_dir }}/scaleout/"
+        dest: "{{ playbook_dir }}/scaleoutclient.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/scaleoutclient.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: scaleoutclient.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the scaleoutclient base image
+      docker_image:
+        path: .
+        name: scaleoutclient
+        tag: latest
+        state: present
+
+    - name: start scaleoutclient1
+      docker_container:
+        name: scaleoutclient1
+        hostname: scaleoutclient1
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.63.10"
+        purge_networks: yes
+        etc_hosts:
+            scaleout.demovip.avi.local: 169.254.10.2
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: scaleoutclient:latest
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./scaleoutclient.tgz
+          - ./dockerfile
+          - ./startup.py
+          - ./scaleout/
+      when: (inventory_hostname != "localhost")

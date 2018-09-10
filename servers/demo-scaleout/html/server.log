@@ -1,0 +1,92 @@
+
+DEBUG: Running node-supervisor with
+DEBUG:   program 'server.js'
+DEBUG:   --watch '.'
+DEBUG:   --ignore 'undefined'
+DEBUG:   --extensions 'node|js'
+DEBUG:   --exec 'node'
+
+DEBUG: Starting child process with 'node server.js'
+DEBUG: Watching directory '/home/aviuser/nodeserver' for changes.
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999
+DEBUG: crashing child
+DEBUG: Starting child process with 'node server.js'
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+Starting node on: 9999

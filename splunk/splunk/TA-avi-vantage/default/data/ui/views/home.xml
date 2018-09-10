@@ -1,0 +1,181 @@
+<form hideFilters="true">
+  <label>Events Summary</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Cluster</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <fieldForLabel>controller</fieldForLabel>
+      <fieldForValue>controller</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event  | eval temp1=split(_raw," Avi-Controller") | eval temp2=mvindex(temp1,0) | eval temp3=split(temp2, " [") | eval temp4=mvindex(temp3,0) | eval temp5=split(temp4, " ") | eval controller=mvindex(temp5,-1) | stats count by controller</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <delimiter> OR </delimiter>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ event INFO | stats count as INFO</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">all</option>
+        <option name="height">117</option>
+        <option name="rangeColors">["0x65a637","0x65a637"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">INFO</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ event WARNING | stats count as WARNING</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">all</option>
+        <option name="height">117</option>
+        <option name="rangeColors">["0x65a637","0xf58f39"]</option>
+        <option name="rangeValues">[-1]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-1h</option>
+        <option name="underLabel">WARNING</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ event CRITICAL | stats count as CRITICAL</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">all</option>
+        <option name="height">118</option>
+        <option name="rangeColors">["0x65a637","0xd93f3c"]</option>
+        <option name="rangeValues">[-1]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">CRITICAL</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Event Severity</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event $controller$ | eval temp_baseline = replace(_raw, "Avi-Controller: ", "splitpoint") | eval temp2_baseline = replace(temp_baseline, "Avi-Controller - - - ", "splitpoint") | eval baseline = replace(temp2_baseline, ":", " ") |eval temp1=split(baseline,"splitpoint") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2, " ") | eval severity= mvindex(temp3,0) | stats count by severity</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event $controller$ | eval temp_baseline = replace(_raw, "Avi-Controller: ", "splitpoint") | eval temp2_baseline = replace(temp_baseline, "Avi-Controller - - - ", "splitpoint") | eval baseline = replace(temp2_baseline, ":", " ") |eval temp1=split(baseline,"splitpoint") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2, " ") | eval severity= mvindex(temp3,0) | timechart count by severity usenull=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Most Common Events - Top 10</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$  Avi-Controller event | eval temp=split(_raw,"event ") | eval temp2=mvindex(temp,1) | eval temp3=split(temp2," ") | eval event=mvindex(temp3,0) | stats count by event  | sort -count | head 10</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ event Avi-Controller | eval temp=split(_raw,"event ") | eval temp2=mvindex(temp,1) | eval temp3=split(temp2," ") | eval event=mvindex(temp3,0) | timechart useother=f count by event limit=10</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Recent Events</title>
+      <input type="text" token="filter" searchWhenChanged="true">
+        <label>query filter</label>
+        <default>*</default>
+        <initialValue>*</initialValue>
+      </input>
+      <event>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$  event $filter$</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+</form>

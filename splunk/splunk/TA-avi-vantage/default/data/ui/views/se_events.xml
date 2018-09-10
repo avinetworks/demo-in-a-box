@@ -1,0 +1,157 @@
+<form hideFilters="true">
+  <label>Service Engine Events</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller">
+      <label>Avi Controller Cluster</label>
+      <choice value="*">ALL</choice>
+      <initialValue>*</initialValue>
+      <fieldForLabel>controller</fieldForLabel>
+      <fieldForValue>controller</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event  | eval temp1=split(_raw," Avi-Controller") | eval temp2=mvindex(temp1,0) | eval temp3=split(temp2, " [") | eval temp4=mvindex(temp3,0) | eval temp5=split(temp4, " ") | eval controller=mvindex(temp5,-1) | stats count by controller</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <default>*</default>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="multiselect" token="se" searchWhenChanged="true">
+      <label>service engine</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <delimiter> OR </delimiter>
+      <fieldForLabel>se</fieldForLabel>
+      <fieldForValue>se</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller "SE_CPU_HIGH" event | eval temp1=split(_raw,"on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval se=mvindex(temp3,0) | top se limit=1000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>High CPU% Events Per SE</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ "SE_CPU_HIGH" event $se$ | eval temp1=split(_raw,"on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval se=mvindex(temp3,0) | stats count by se</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller "SE_CPU_HIGH" event $se$ | eval temp1=split(_raw,"on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval se=mvindex(temp3,0) | timechart useother=f count by se limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>High CPU% Events - Total</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ "SE_CPU_HIGH" event $se$ | timechart count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Service Engine Events</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ "-se" event $se$ | eval temp1=split(_raw,"event ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval event=mvindex(temp3,0) | timechart useother=f  count by event limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top 10 Events</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ "-se" event $se$ | eval temp1=split(_raw,"event ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval event=mvindex(temp3,0) | stats count by event | sort -count | head 10</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Recent Events</title>
+      <input type="text" token="filter" searchWhenChanged="true">
+        <label>event filter</label>
+        <default>*</default>
+        <initialValue>*</initialValue>
+      </input>
+      <event>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "se-" event $filter$ $se$</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+</form>

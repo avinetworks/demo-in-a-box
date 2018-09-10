@@ -1,0 +1,24 @@
+---
+- name: Delete the Avi Demo Clients
+  hosts: demo_clients
+  become: True
+
+  tasks:
+
+    - name: delete the democlient1 container
+      docker_container:
+        name: democlient1
+        state: absent
+
+
+    - name: delete the democlient2 container
+      docker_container:
+        name: democlient2
+        state: absent
+
+
+    - name: delete the democlient base image
+      docker_image:
+        name: democlient
+        tag: latest
+        state: absent

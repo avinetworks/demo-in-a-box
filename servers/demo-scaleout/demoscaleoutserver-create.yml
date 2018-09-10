@@ -1,0 +1,102 @@
+---
+- name: Build the Demo Web Servers
+  hosts: demo_servers
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/html/"
+        dest: "{{ playbook_dir }}/demoscaleout.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/demoscaleout.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: demoscaleout.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the demoserver base image
+      docker_image:
+        path: .
+        name: demoserver
+        tag: latest
+        state: present
+
+    - name: start the demoserver1 container
+      docker_container:
+        name: demoserver1
+        hostname: demoserver1
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.127.200"
+        purge_networks: yes
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        privileged: yes
+        restart_policy: always
+        state: started
+        image: demoserver:latest
+
+
+    - name: start the demoserver2 container
+      docker_container:
+        name: demoserver2
+        hostname: demoserver2
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.127.201"
+        purge_networks: yes
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        privileged: yes
+        restart_policy: always
+        state: started
+        image: demoserver:latest
+
+    - name: remove file from demoserver2 for 404 tests
+      command: docker exec -i demoserver2 rm -rf /usr/share/nginx/html/imgs/logo.png
+
+
+    - name: start the demoserver3 container
+      docker_container:
+        name: demoserver3
+        hostname: demoserver3
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.127.202"
+        purge_networks: yes
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        privileged: yes
+        restart_policy: always
+        state: started
+        image: demoserver:latest
+
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./demoscaleout.tgz
+          - ./dockerfile
+          - ./html/
+      when: (inventory_hostname != "localhost")

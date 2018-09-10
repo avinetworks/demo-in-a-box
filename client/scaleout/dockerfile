@@ -1,0 +1,37 @@
+############################################################
+# Dockerfile to build avi demo client
+# Based on ubuntu:latest
+############################################################
+
+# Set the base image to ubuntu:latest
+FROM ubuntu:16.04
+
+WORKDIR /opt/avi/client
+
+
+
+################## BEGIN INSTALLATION ######################
+
+# Install client script requirements
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y net-tools curl openssl apache2-utils python-minimal git python-requests python-requests-toolbelt iputils-ping
+
+# Copy Traffic Generation Script and dependencies
+COPY "./startup.py" "/opt/avi/client/startup.py"
+COPY "./scaleout/traffic-ecc.py" "/opt/avi/client/scaleout/traffic-ecc.py"
+COPY "./scaleout/traffic-rsa.py" "/opt/avi/client/scaleout/traffic-rsa.py"
+
+
+# Modify Permissions
+RUN chmod a+x /opt/avi/client/scaleout/traffic-ecc.py
+RUN chmod a+x /opt/avi/client/scaleout/traffic-rsa.py
+RUN chmod a+x /opt/avi/client/startup.py
+
+
+
+
+
+# Execute script
+#----NEED TO CREATE A START SCRIPT
+CMD ["/usr/bin/python", "/opt/avi/client/startup.py"]

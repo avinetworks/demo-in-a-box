@@ -1,0 +1,14 @@
+[controllers]
+localhost              ansible_connection=local
+
+[service_engines]
+localhost              ansible_connection=local
+
+[demo_servers]
+localhost              ansible_connection=local
+
+[demo_clients]
+localhost              ansible_connection=local
+
+[kubernetes]
+localhost              ansible_connection=local

@@ -1,0 +1,48 @@
+avi_config:
+  pool:
+    - name: WAF-pool
+      lb_algorithm: LB_ALGORITHM_ROUND_ROBIN
+      health_monitor_refs:
+        - "/api/healthmonitor?name=System-HTTP"
+      servers:
+        - hostname: "wafserver1.avinet"
+          #resolve_server_by_dns: true
+          ip:
+             addr: "169.254.127.100"
+             type: 'V4'
+        - hostname: "wafserver2.avinet"
+          #resolve_server_by_dns: true
+          ip:
+             addr: "169.254.127.101"
+             type: 'V4'
+
+  virtualservice:
+    - name: WAF-VS
+      vip:
+        - ip_address:
+            addr: "169.254.10.3"
+            type: 'V4'
+          vip_id: '1'
+      services:
+        - port: 80
+        #- port: 443
+        #  enable_ssl: true
+      application_profile_ref: "/api/applicationprofile?name=System-Secure-HTTP"
+      waf_policy_ref: "/api/wafpolicy?name=System-WAF-Policy"
+      #ssl_key_and_certificate_refs:
+      #  - "/api/sslkeyandcertificate?name=System-Default-Cert"
+      #  - "/api/sslkeyandcertificate?name=System-Default-Cert-EC"
+      pool_ref: '/api/pool?name=WAF-pool'
+      analytics_policy:
+        udf_log_throttle: 0
+        enabled: true
+        full_client_logs:
+          duration: 0
+          all_headers: false
+          throttle: 0
+          enabled: true
+        metrics_realtime_update:
+          duration: 0
+          enabled: true
+        significant_log_throttle: 0
+        client_insights: NO_INSIGHTS

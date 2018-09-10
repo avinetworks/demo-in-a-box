@@ -1,0 +1,29 @@
+{
+
+var google_ads = new Array();
+var google_ad;
+var google_radlinks = new Array();
+var google_radlink;
+var google_info = new Object();
+google_ad = {}; 
+google_ad.n = 1; 
+google_ad.type = "text"; 
+google_ad.bidtype = "CPC"; 
+google_ad.targeting_type = "site"; 
+google_ad.url = "http://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=Cwenw5amWUo6wL8uDlAKH3oHQCZm7r8oDmZXt8hjZ3o6yBBABIIjz-AFQgZSE1gFgyeb-hsijoBmgAfuI6vgDyAEBqAMBqgRuT9AE5t-IaIrMRI4zD1UbQk4hDbC6zVQPvhXhTSg2xdDys1SScWI5hyL7gwGqrv0RiuYu_06joBmZEOGLb_xJnYBM68tfrlFJEGPWUvo7Zbn4SDEXozla2pJ7OdHYbmtufZPop4A7dbpjiFCMk4mIBgGAB-32lQc&amp;num=1&amp;cid=5GiO8BqSmwGj0eRzq8aIvSOJ&amp;sig=AOD64_1dzGxr1z_sk-8pOTjvUO24BbOVTQ&amp;client=ca-nytimes_section_var&amp;adurl=http://www.lumosity.com/landing%3Frefer%3D827%26a%3DBTG-Designed_Text_Text%26Network%3DContent%26kw%3D%26ad%3D6596424641%26SiteTarget%3Dnytimes.com"; 
+google_ad.visible_url = "www.lumosity.com"; 
+google_ad.line1 = "Brain Training Games"; 
+google_ad.line2 = "Improve memory with scientifically"; 
+google_ad.line3 = "designed brain exercises."; 
+google_ad.regionname = ""; 
+google_ads[0] = google_ad; 
+google_info.feedback_url = "https://www.google.com/url?ct\x3dabg\x26q\x3dhttps://www.google.com/adsense/support/bin/request.py%3Fcontact%3Dabg_afc%26url%3Dhttp://www.nytimes.com/pages/technology/%26gl%3DUS%26hl%3Den%26client%3Dca-nytimes_section_var%26hideleadgen%3D1%26ai0%3DCwenw5amWUo6wL8uDlAKH3oHQCZm7r8oDmZXt8hjZ3o6yBBABIIjz-AFQgZSE1gFgyeb-hsijoBmgAfuI6vgDyAEBqAMBqgRuT9AE5t-IaIrMRI4zD1UbQk4hDbC6zVQPvhXhTSg2xdDys1SScWI5hyL7gwGqrv0RiuYu_06joBmZEOGLb_xJnYBM68tfrlFJEGPWUvo7Zbn4SDEXozla2pJ7OdHYbmtufZPop4A7dbpjiFCMk4mIBgGAB-32lQc\x26usg\x3dAFQjCNFwQZr2Q4aeyTsn7LoSULwcOsj8IQ";
+var google_attribution_text = "AdChoices";
+var google_is_rtl = false;
+if (window.google_ad_request_done) {
+google_ad_request_done(google_ads);
+}
+if (window.google_radlink_request_done) {
+google_radlink_request_done(google_radlinks);
+}
+}

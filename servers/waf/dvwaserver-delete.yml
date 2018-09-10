@@ -1,0 +1,25 @@
+---
+- name: Delete the WAF servers
+  hosts: demo_servers
+  become: True
+
+  tasks:
+    - name: delete wafserver1
+      docker_container:
+        name: wafserver1
+        state: absent
+
+
+
+    - name: delete wafserver2
+      docker_container:
+        name: wafserver2
+        state: absent
+
+
+
+    - name: delete the wafserver base image
+      docker_image:
+        name: wafserver
+        tag: latest
+        state: absent

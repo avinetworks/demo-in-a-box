@@ -1,0 +1,321 @@
+<form hideFilters="false">
+  <label>VS Metrics</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Clusters</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>avi_controller</fieldForLabel>
+      <fieldForValue>avi_controller</fieldForValue>
+      <search>
+        <query>sourcetype=avimetrics avi_controller | top avi_controller limit=1000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="vs" searchWhenChanged="true">
+      <label>Virtual Service</label>
+      <fieldForLabel>vs_name</fieldForLabel>
+      <fieldForValue>vs_name</fieldForValue>
+      <search>
+        <query>sourcetype="avimetrics" host="$controller$" metric_type="virtualservice_metrics"  | top vs_name limit=10000</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Healthscore</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_healthscore AND metric_name="healthscore" | stats latest(metric_value)</query>
+          <earliest>rt-5m</earliest>
+          <latest>rt</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="height">67</option>
+        <option name="rangeColors">["0xf58f39","0xf3ed00","0x65a637"]</option>
+        <option name="rangeValues">[65,80]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Bandwidth</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics metric_name="l4_client.avg_bandwidth" | eval tempbw=('metric_value'/1000000) | stats latest(tempbw)</query>
+          <earliest>rt-5m</earliest>
+          <latest>rt</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="height">64</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="unit">Mb/s</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Conns/sec</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics metric_name="l4_client.avg_new_established_conns" | stats latest(metric_value)</query>
+          <earliest>rt-5m</earliest>
+          <latest>rt</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="height">67</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Current Conns</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics metric_name="l4_client.avg_complete_conns" | stats latest(metric_value)</query>
+          <earliest>rt-5m</earliest>
+          <latest>rt</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="height">71</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <title>SSL TPS</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics metric_name="l7_client.avg_ssl_handshakes_new" | stats latest(metric_value)</query>
+          <earliest>rt-5m</earliest>
+          <latest>rt</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="height">73</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>End-to-End Timing (ms)</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  AND (metric_name="l7_server.avg_application_response_time" OR metric_name="l7_client.avg_client_data_transfer_time" OR metric_name="l4_client.avg_total_rtt" OR metric_name="l4_server.avg_total_rtt") | timechart span=5m first(metric_value) by metric_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Bandwidth - Mb/s</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l4_client.avg_bandwidth" | eval tempbw=('metric_value'/1000000) | timechart span=5m latest(tempbw) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Mb/s</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Connections/sec</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l4_client.avg_new_established_conns"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">cps</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Connections</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l4_client.avg_complete_conns"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">conns</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>SSL TPS</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l7_client.avg_ssl_handshakes_new"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>RX Packets Per Second</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l4_client.avg_rx_pkts"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>TX Packets Per Second</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l4_client.avg_tx_pkts"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>4xx 5xx Status Codes</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  AND (metric_name="l7_client.avg_resp_4xx_avi_errors" OR metric_name="l7_client.avg_resp_5xx_avi_errors" OR metric_name="l7_client.avg_resp_4xx" OR metric_name="l7_client.avg_resp_5xx" ) | timechart span=5m first(metric_value) by metric_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Average Server Side Latency (ms)</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  metric_name="l7_server.avg_resp_latency"  | timechart span=5m latest(metric_value) by vs_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>ApDex Values</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ vs_name="$vs$" metric_type=virtualservice_metrics  AND (metric_name="l4_server.apdexc" OR metric_name="l4_client.apdexc" OR metric_name="l7_server.apdexr" OR metric_name="l7_client.apdexr") | timechart span=5m first(metric_value) by metric_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>

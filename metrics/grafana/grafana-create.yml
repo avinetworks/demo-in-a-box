@@ -1,0 +1,88 @@
+---
+- name: Build the Grafana container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/01-summary.json"
+          - "{{ playbook_dir }}/02-serviceEnginesTotal.json"
+          - "{{ playbook_dir }}/03-serviceEnginesSpecific.json"
+          - "{{ playbook_dir }}/04-virtualServicesTotal.json"
+          - "{{ playbook_dir }}/05-virtualServicesSpecific.json"
+          - "{{ playbook_dir }}/Avi-dashboards.json"
+          - "{{ playbook_dir }}/dashboard.yml"
+          - "{{ playbook_dir }}/datasource.yml"
+          - "{{ playbook_dir }}/server.crt"
+          - "{{ playbook_dir }}/server.key"
+        dest: "{{ playbook_dir }}/grafana.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/grafana.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: grafana.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the grafana base image
+      docker_image:
+        path: .
+        name: grafana
+        tag: latest
+        state: present
+
+    - name: start grafana
+      docker_container:
+        name: grafana
+        hostname: grafana
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.100.101"
+        purge_networks: yes
+        published_ports: 0.0.0.0:3000:3000
+        env:
+            GF_SERVER_PROTOCOL: https
+            GF_SECURITY_ADMIN_PASSWORD: AviDemo1!
+            GF_SERVER_CERT_FILE: /server.crt
+            GF_SERVER_CERT_KEY: /server.key
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: grafana:latest
+
+
+
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./grafana.tgz
+          - ./dockerfile
+          - ./01-summary.json
+          - ./02-serviceEnginesTotal.json
+          - ./03-serviceEnginesSpecific.json
+          - ./04-virtualServicesTotal.json
+          - ./05-virtualServicesSpecific.json
+          - ./Avi-dashboards.json
+          - ./dashboard.yml
+          - ./datasource.yml
+          - ./server.crt
+          - ./server.key
+      when: (inventory_hostname != "localhost")

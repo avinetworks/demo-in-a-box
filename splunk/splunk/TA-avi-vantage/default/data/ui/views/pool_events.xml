@@ -1,0 +1,147 @@
+<form hideFilters="true">
+  <label>Pool Events</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Cluster</label>
+      <choice value="*">ALL</choice>
+      <initialValue>*</initialValue>
+      <fieldForLabel>controller</fieldForLabel>
+      <fieldForValue>controller</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event | eval temp1=split(_raw," Avi-Controller") | eval temp2=mvindex(temp1,0) | eval temp3=split(temp2, " [") | eval temp4=mvindex(temp3,0) | eval temp5=split(temp4, " ") | eval controller=mvindex(temp5,-1) | stats count by controller</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <delimiter> OR </delimiter>
+      <default>*</default>
+    </input>
+    <input type="multiselect" token="pool" searchWhenChanged="true">
+      <label>pool</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>pool</fieldForLabel>
+      <fieldForValue>pool</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller  $controller$ event (pool_down OR pool_up) | eval temp1=split(_raw, "on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval pool=mvindex(temp3,0) | top pool limit=10000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Pool Up/Down Events</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller  $controller$ event (pool_up OR pool_down) $pool$ | eval temp1=split(_raw, "event ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval status=mvindex(temp3,0) | timechart count by status</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller  $controller$ event (pool_down OR pool_up) $pool$ | eval temp1=split(_raw, "on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval pool=mvindex(temp3,0) | eval temp4=mvindex(temp1,0) | eval temp5=split(temp4,"event ")| eval temp6=mvindex(temp5,1) | eval temp7=split(temp6," ")| eval event=mvindex(temp7,0) | stats count by pool,event</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">collapsed</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">251</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.splitBy">event</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Individual Pool Server Down Events - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller  $controller$ "event Server_down" $pool$ | eval temp1=split(_raw,"on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2, " ") | eval pool=mvindex(temp3,0) | eval temp4=split(temp2,"(") | eval temp5=mvindex(temp4,1) | eval temp6=split(temp5,")") | eval server=mvindex(temp6,0) | eval ps = pool + " : "+server | timechart count by ps limit=50 useother=f usenull=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Pool Server Down Breakdown</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller  $controller$ event pool Server_down $pool$ | eval temp1=split(_raw,"on object ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2, " ") | eval pool=mvindex(temp3,0) | eval temp4=split(temp2,"(") | eval temp5=mvindex(temp4,1) | eval temp6=split(temp5,")") | eval server=mvindex(temp6,0) | eval temp7=mvindex(temp1,0) | eval temp8=split(temp7,"event ") | eval temp9=mvindex(temp8,1) | eval temp10=split(temp9," ") | eval status=mvindex(temp10,0) | stats count by pool,server</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">collapsed</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">251</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">small</option>
+        <option name="trellis.splitBy">pool</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Recent Events</title>
+      <input type="text" token="filter" searchWhenChanged="true">
+        <label>event filter</label>
+        <default>*</default>
+        <initialValue>*</initialValue>
+      </input>
+      <event>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller $controller$ POOL_DOWN OR POOL_UP OR SERVER_UP OR SERVER_DOWN event $filter$ $pool$</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+</form>

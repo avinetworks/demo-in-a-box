@@ -1,0 +1,34 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - "../vars/creds.yml"
+    - "vars/cloud.yml"
+    - "vars/se.yml"
+  roles:
+    - role: avinetworks.avisdk
+  tasks:
+    - name: Create SE host payload for cloud config
+      set_fact:
+        hosts: "{{ hosts|default([]) + [{'host_attr': [{'attr_key': 'CPU', 'attr_val': se_cpu}, {'attr_key': 'MEMORY', 'attr_val': se_mem}, {'attr_key': 'DPDK', 'attr_val': se_dpdk}, {'attr_key': 'SE_INBAND_MGMT', 'attr_val': se_inband}], 'host_ip': {'addr': item, 'type': 'V4'}}] }}"
+      with_items: "{{ hostvars[inventory_hostname]['groups']['service_engines'] }}"
+
+    - name: Configure LSC
+      avi_cloud:
+        controller: "{{ controller }}" 
+        username: "{{ username }}"
+        password: "{{ password }}"
+        api_version: "{{ version }}"
+        state: "{{ state }}"
+        apic_mode: "{{ apic_mode }}"
+        dhcp_enabled: "{{ dhcp_enabled }}"
+        enable_vip_static_routes: "{{ enable_vip_static_routes }}"
+        license_type: "{{ license_type }}"
+        mtu: "{{ mtu }}"
+        name: "{{ name }}"
+        prefer_static_routes: "{{ prefer_static_routes }}"
+        tenant_ref: "{{ tenant_ref }}"
+        vtype: "{{ vtype }}"
+        linuxserver_configuration:
+          ssh_user_ref: "/api/cloudconnectoruser?name=aviuser"
+          se_sys_disk_size_GB: "{{ se_disk }}"
+          hosts: "{{ hosts }}"

@@ -1,0 +1,33 @@
+---
+- name: Delete the Avi Graphite Container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+
+    - name: delete the graphite container
+      docker_container:
+        name: graphite
+        keep_volumes: no
+        state: absent
+
+
+    - name: cleanup the graphite volume
+      docker_volume:
+        name: graphite-data
+        state: absent
+
+
+
+    - name: delete the graphite demo image
+      docker_image:
+        name: graphite
+        tag: latest
+        state: absent
+
+
+    - name: delete the graphite base image
+      docker_image:
+        name: graphiteapp/graphite-statsd
+        tag: latest
+        state: absent

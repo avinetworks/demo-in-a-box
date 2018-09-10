@@ -1,0 +1,23 @@
+############################################################
+# Dockerfile to build python avi-monitor script container
+# Based on graphiteapp
+############################################################
+
+# Set the base image to graphite
+FROM  graphiteapp/graphite-statsd
+
+
+# Set the working directory
+
+# File Author / Maintainer
+MAINTAINER mkarnowski@avinetworks.com
+
+
+################## BEGIN INSTALLATION ######################
+
+
+# Copy script to directory
+COPY "storage-schemas.conf" "/opt/graphite/conf/"
+
+RUN chown root:root /opt/graphite/conf/storage-schemas.conf
+

@@ -1,0 +1,48 @@
+avi_config:
+  pool:
+    - name: Avi-Scaleout-pool
+      lb_algorithm: LB_ALGORITHM_LEAST_CONNECTIONS
+      health_monitor_refs:
+        - "/api/healthmonitor?name=System-HTTP"
+      servers:
+        - hostname: "demoserver1.avinet"
+          #resolve_server_by_dns: true
+          ip:
+             addr: "169.254.127.200"
+             type: 'V4'
+        - hostname: "demoserver1.avinet"
+          #resolve_server_by_dns: true
+          ip:
+             addr: "169.254.127.201"
+             type: 'V4'
+
+  virtualservice:
+    - name: Avi-Scaleout-VS
+      vip:
+        - ip_address:
+            addr: "169.254.10.2"
+            type: 'V4'
+          vip_id: '1'
+      services:
+        - port: 80
+        - port: 443
+          enable_ssl: true
+      application_profile_ref: "/api/applicationprofile?name=System-Secure-HTTP"
+      ssl_key_and_certificate_refs:
+        - "/api/sslkeyandcertificate?name=System-Default-Cert"
+        - "/api/sslkeyandcertificate?name=System-Default-Cert-EC"
+
+      pool_ref: '/api/pool?name=Avi-Scaleout-pool'
+      analytics_policy:
+        udf_log_throttle: 0
+        enabled: true
+        full_client_logs:
+          duration: 0
+          all_headers: false
+          throttle: 0
+          enabled: true
+        metrics_realtime_update:
+          duration: 0
+          enabled: true
+        significant_log_throttle: 0
+        client_insights: NO_INSIGHTS

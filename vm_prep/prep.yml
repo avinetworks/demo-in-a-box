@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Install Python
+      when: ansible_os_family == "Debian"
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+      changed_when: False
+
+    - name: Install epel-release
+      when: ansible_os_family == "RedHat"
+      action: yum pkg='epel-release' state=present
+
+    - name: Install pip
+      action: "{{ ansible_pkg_mgr }} pkg=python-pip state=present"
+
+
+    - name: Enable ipv4 forwarding
+      sysctl: name="net.ipv4.ip_forward" value=1 sysctl_set=yes state=present reload=yes
+
+  roles:
+    - role: avinetworks.docker
+      docker_edition: ce
+      docker_live_restore: true

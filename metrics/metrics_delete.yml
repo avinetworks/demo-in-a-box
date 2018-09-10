@@ -1,0 +1,4 @@
+---
+- import_playbook: metrics/graphite/graphite-delete.yml
+- import_playbook: metrics/avimetrics/avimetrics-delete.yml
+- import_playbook: metrics/grafana/grafana-delete.yml

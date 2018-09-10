@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - "../vars/creds.yml"
+  roles:
+    - role: avinetworks.avisdk
+  tasks:
+    - name: Create cloudconnectoruser named aviuser
+      avi_cloudconnectoruser:
+        controller: "{{ controller }}" 
+        username: "{{ username }}"
+        password: "{{ password }}"
+        name: aviuser
+        tenant_ref: admin
+        api_version: "{{ version }}"

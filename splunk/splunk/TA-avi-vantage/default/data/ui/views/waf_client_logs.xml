@@ -1,0 +1,204 @@
+<form hideFilters="true">
+  <label>WAF Client Logs</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="vs">
+      <label>Virtual Service</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <fieldForLabel>vs_name</fieldForLabel>
+      <fieldForValue>vs_name</fieldForValue>
+      <search>
+        <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) virtualservice "waf_log.status"!=NO_WAF client_insights | top vs_name limit=10000</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <initialValue>*</initialValue>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="radio" token="cidrfilter">
+      <label>Source IP</label>
+      <choice value="">all ip addresses</choice>
+      <choice value="| where NOT cidrmatch(&quot;10.0.0.0/8&quot;,client_ip) OR cidrmatch(&quot;172.16.0.0/12&quot;,client_ip) OR cidrmatch(&quot;192.168.0.0/16&quot;,client_ip)">exclude rfc1918</choice>
+      <choice value="| where cidrmatch(&quot;10.0.0.0/8&quot;,client_ip) OR cidrmatch(&quot;172.16.0.0/12&quot;,client_ip) OR cidrmatch(&quot;192.168.0.0/16&quot;,client_ip)">rfc1918 only</choice>
+      <default></default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>WAF Hits</title>
+      <single>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED  $cidrfilter$ | stats count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="height">224</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.size">large</option>
+      </single>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=FLAGGED OR REJECTED $cidrfilter$ | timechart count by waf_log.status</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="height">234</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top 50 Rule Groups Hit</title>
+      <chart>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED $cidrfilter$ | stats count by "waf_log.rule_logs{}.rule_group" | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Rule Group Hits</title>
+      <chart>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED "waf_log.rule_logs{}.rule_group"!=NULL $cidrfilter$ | timechart count useother=f  by "waf_log.rule_logs{}.rule_group" limit=100000</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top 50 Source IPs</title>
+      <input type="dropdown" token="rg">
+        <label>Rule Group</label>
+        <choice value="*">ALL</choice>
+        <default>*</default>
+        <fieldForLabel>waf_log.rule_logs{}.rule_group</fieldForLabel>
+        <fieldForValue>waf_log.rule_logs{}.rule_group</fieldForValue>
+        <search>
+          <query>$vs$ "waf_log.rule_logs{}.rule_group"!=NULL | dedup waf_log.rule_logs{}.rule_group | top 50000 waf_log.rule_logs{}.rule_group</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <initialValue>*</initialValue>
+      </input>
+      <chart>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED AND "waf_log.rule_logs{}.rule_group"=$rg$ $cidrfilter$ | chart count over client_ip by waf_log.rule_logs{}.rule_group | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>WAF Latency by Virtual Service - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`)  "waf_log.status"=REJECTED OR FLAGGED | eval latency_request_body_phase=('waf_log.latency_request_body_phase'/1000) | eval latency_request_header_phase=('waf_log.latency_request_header_phase'/1000) | eval latency_response_body_phase=('waf_log.latency_response_body_phase'/1000) | eval latency_response_header_phase=('waf_log.latency_response_header_phase'/1000) | stats avg(latency_re*) as lantency_re* by vs_name | sort top 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">ms</option>
+        <option name="charting.axisY.minimumNumber">0</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <map>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED AND "waf_log.rule_logs{}.rule_group"=$rg$ $cidrfilter$ | iplocation client_ip | geostats count by Country</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="mapping.type">marker</option>
+        <option name="refresh.display">progressbar</option>
+      </map>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <event>
+        <title>Recent Events</title>
+        <search>
+          <query>(index=`avi_client_index` AND sourcetype=`avi_client_sourcetype`) $vs$ "waf_log.status"=REJECTED OR FLAGGED $cidrfilter$</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="raw.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="type">raw</option>
+      </event>
+    </panel>
+  </row>
+</form>

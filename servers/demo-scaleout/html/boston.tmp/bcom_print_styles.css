@@ -1,0 +1,341 @@
+/* ========================== Updated 07/31/2013 ========================== */
+/* ============================ GENERAL STYLES ============================ */
+
+/* Hide all body elements
+ * to display only the necessary ones */
+* {
+  overflow: visible !important;
+}
+
+body * {
+  display: none;
+}
+
+body div#blogtools,
+#sociable_bar.rondavu_Welcome_container.rondavu_fb_disconnected,
+body div#articleEmbed,
+body div#articleGraphs span.continued,
+iframe,
+object,
+body img {
+  display: none !important;
+}
+
+/* Make sure all BG colors are white */
+body,
+body * {
+	background-color: transparent !important;
+}
+
+/* Align Col1 (and text) left */
+div#container,
+div#containerBorder,
+div#content,
+div#Col1 {
+  width: 99% !important;
+	background-image: none;
+	padding-left: 0px;
+}
+
+/* Styles for top and bottom lines,*/
+div#Col1 {
+	margin: 45px 15px 40px 0px !important;
+	padding: 20px 0px 20px 5px !important;
+	border-top: 1px solid black !important;
+	border-bottom: 1px solid black !important;
+}
+/* =========================== STYLES FOR BLOGS =========================== */
+
+/* Hide all body elements
+ * to display only the necessary ones */
+body * {
+  display: none;
+}
+body div#blogtools,
+body img,
+body div.locationInset {
+  display: none;
+}
+
+/* Display blog text and it's parent containers */
+body br,
+body div.blogText, 
+body div.blogText div,
+body div.blogText br,
+body div.blogText blockquote,
+body div.blogText blockquote *,
+body div.blogText p,
+body div.blogText p *,
+body div.blogText a *,
+div#catHeader,
+div#catHeader a,
+div#INDblogEntry,
+div#INDblogEntry h1,
+div#INDblogEntry h1 a,
+div#INDblogEntry div#blogheadTools,
+div#INDblogEntry div#blogheadTools span#byline,
+div#INDblogEntry div#blogheadTools span#byline span
+div#INDblogEntry div#blogheadTools span#dateline,
+div#INDblogEntry div#blogheadTools span#dateline span,
+div.firstGraph,
+div#blogEntry,
+div#blogEntry h1,
+div#blogEntry h1 a,
+div#blogEntry div#blogheadTools,
+div#blogEntry div#blogheadTools span#byline,
+div#blogEntry div#blogheadTools span#byline span,
+div#blogEntry div#blogheadTools span#dateline,
+div#blogEntry div#blogheadTools span#dateline span,
+div#Col1,
+div#content,
+div#contentHolder,
+div#containerBorder,
+div#container, 
+body.blog#community_blogger, 
+#MastheadAug2011 {
+  	display: block;
+  	font: 15px georgia, helvetica, serif;
+	text-align: left !important;
+	border: none;
+}
+
+/* Make sure HTML elems are displaying properly
+ * Overriding the body display:block */
+body div.blogText a,
+body div.blogText em,
+body div.blogText strong,
+body div.blogText b,
+body div.blogText i,
+body div#catHeader,
+body div#catHeader a,
+.disclaimer a,
+.disclaimer * {
+	color: black;
+  display: inline;
+}
+
+/* Blog title override styles */
+div#INDblogEntry h1,
+div#INDblogEntry h1 a,
+div#INDblogEntry h1 a:hover,
+div#INDblogEntry h1 a:active,
+div#INDblogEntry h1 a:visited,
+div#blogEntry h1,
+div#blogEntry h1 a,
+div#blogEntry h1 a:hover,
+div#blogEntry h1 a:active,
+div#blogEntry h1 a:visited {
+	font-size: 22px;
+	font-weight: bold;
+	color: black;
+	margin-bottom: 10px;
+}
+
+/* Blog data override styles */
+div#blogheadTools span#byline,
+div#blogheadTools span#byline span,
+div#blogheadTools span#dateline,
+div#blogheadTools span#dateline span {
+	color: black;
+	font-weight: bold !important;
+}
+
+div#blogheadTools span#dateline {
+	margin-top: 10px;
+}
+
+div.utility span.emailLinks { display: none !important; }
+
+/*  Additional components needing hiding */
+body p.credit,
+body p.caption {
+  display: none !important; 	
+}
+
+body p.byline {
+	color:black;
+	display:inline;
+}
+
+/* Exception made for MT blog inline images */
+
+img.mt-image-center, 
+img.mt-image-right,
+img.mt-image-left {
+	display: block !important;
+}
+
+/* ====================== STYLES FOR BUSINESS UPDATES ===================== */
+/* Hide specialty elements */
+
+/* Display blog text and it's parent containers */
+.firstGraph,
+#blogEntry,
+#blogEntry h1 { 
+	display: block !important;
+  	font: 15px georgia, helvetica, serif;
+	text-align: left !important;
+	border: none; 
+	}
+
+/* ================== STYLES FOR GALLERY/PICTURE ARTICLES ================= */
+
+body p,
+#Col1.wide-carousel,
+#pic-story.image-focused-gallery,
+.pic-story-header,
+.title-bar,
+h1.page-title,
+.progress-navigation,
+.progress-navigation ul,
+.progress-navigation ul li.pagination,
+.pic-story-main,
+.pic-story-item,
+.pic-story-item h2,
+.pic-story-image,
+p.byline,
+.pic-story-detail,
+p.tagline,
+.progress-navigation,
+.progress-navigationul li { display: block; }
+
+/* Article override to hide select content */
+ 
+.pic-story-nav, 
+.fancy-dropdown, 
+#sharetoolContainer,
+.image-focused-gallery .title-bar .progress-navigation ul li a {
+	display: none !important;
+}
+
+/* Make sure the leading image is visible in print view */
+
+.pic-story-image img {
+	display: block !important;
+	visibility: visible;
+	height: auto;
+	width: auto;
+}
+.pic-story-image img:after {
+	display: block !important;
+	visibility: visible;
+	content: attr(alt);
+}
+
+/* Append text to Image Pagination */
+.progress-navigation ul li.pagination:before {
+	content: "Slide: ";
+}
+
+/* ======================= STYLES FOR NEWS ARTICLES ======================= */
+
+/* Hide specialty elements */
+.article #Col1 #relatedContent { display: none !important; }
+div.relatedBox { border-top: 0px !important; display: none !important; }
+
+/* Display blog text and it's parent containers */
+
+body br,
+body div#articleGraphs div,
+body div#articleGraphs p,
+body div#articleGraphs p *,
+body div#articleGraphs a *,
+body div#fullArtTxt div,
+body div#fullArtTxt p,
+body div#fullArtTxt p *,
+body div#fullArtTxt a *,
+div#headTools h1,
+div#headTools h1 a,
+div#headTools div.utility,
+div#headTools div.utility span#byline,
+div#headTools div.utility div#byline.cf,
+div#headTools div.utility span#dateline,
+div#page1 *,
+div#headTools,
+div#fullArtTxt,
+div#articleGraphs,
+div#articleHeader,
+div#article,
+div#articleText,
+div#Col1,
+div#content,
+div#containerBorder,
+div#container {
+  display: block;
+  font: 15px georgia, helvetica, serif;
+  text-align: left !important;
+  border: none;
+}
+body div#articleGraphs div:not(#articleEmbed), div#dateline {
+	display: block !important;
+}
+a.globe-teaser, a.globe-teaser h5 { display: none !important; }
+
+/* Make sure HTML elems are displaying properly
+ * Overriding the body display:block */
+
+body div#articleGraphs a,
+body div#articleGraphs em,
+body div#articleGraphs strong,
+body div#articleGraphs td,
+body div#articleGraphs b,
+body div#articleGraphs i,
+body div#fullArtTxt a,
+body div#fullArtTxt em,
+body div#fullArtTxt strong,
+body div#fullArtTxt b,
+body div#fullArtTxt i,
+div.utility span#byline a,
+div.utility span#byline span,
+div.utility span#dateline a,
+div.utility span#dateline span,
+body div.firstGraph span,
+body div.firstGraph p span {
+  color: black;
+  display: inline !important;
+}
+/* override display of the header and boston.com logo */
+body div#Col1 { margin: 0px !important; padding: 0px !important; }
+body#wirestory { padding: 5px 15px !important;}
+
+/* Article title override styles */
+div#headTools h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px !important;
+}
+
+/* Article data override styles */
+div.utility span#byline,
+div.utility span#byline a,
+div.utility span#byline span,
+div.utility span#dateline,
+div.utility span#dateline a,
+div.utility span#dateline span {
+	float: none !important;
+	color: black;
+	font-weight: bold !important;
+}
+div.utility span#dateline {
+  margin-top: 10px;
+}
+img.storyend { display: none !important; }
+
+*:first-child+html div#page2, *:first-child+html div#page2 div,
+*:first-child+html div#page3, *:first-child+html div#page3 div,
+*:first-child+html div#page4, *:first-child+html div#page4 div,
+*:first-child+html div#page5, *:first-child+html div#page5 div,
+*:first-child+html div#page6, *:first-child+html div#page6 div,
+*:first-child+html div#page7, *:first-child+html div#page7 div,
+*:first-child+html div#page8, *:first-child+html div#page8 div,
+*:first-child+html div#page9, *:first-child+html div#page9 div,
+*:first-child+html div#page10, *:first-child+html div#page10 div,
+*:first-child+html div#page11, *:first-child+html div#page11 div,
+*:first-child+html div#page12, *:first-child+html div#page12 div,
+*:first-child+html div#page13, *:first-child+html div#page13 div,
+*:first-child+html div#page14, *:first-child+html div#page14 div,
+*:first-child+html div#page15, *:first-child+html div#page15 div,
+*:first-child+html div#page16, *:first-child+html div#page16 div {
+  display: block;
+}

@@ -1,0 +1,4475 @@
+/* GENERIC STYLES */
+.middleLeft .globeTrial a {color:#D2232A;}
+#introad, #billboardAd {position:absolute; width:959px; z-index:10;}
+#headAd .bannerAd {position:relative; z-index:1;}
+#bDc_flashOverlay {position:relative;z-index:999;}
+#introad #carID {width:100%; text-align:center; z-index:100000; position:absolute; left:0; top:30px; background-color:transparent;}
+#overlayDiv {position:absolute; z-index:10; text-align:center; width:959px;}
+#billboardAd {position:relative;}
+.wrapper {text-align:left;}
+.hideMe {display:none; visibility:hidden;}
+.render-error {display:none; height:0;}
+div#preview {text-align:left;}
+.bold {font-weight:bold;}
+body {background-color:#fff; margin:0 auto; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-align:center;}
+table, tbody, tr, td {font-size:12px; font-family: Arial, Helvetica, sans-serif;}
+img {border:0;}
+h1, h2, h3, h4, h5, h6 {padding:0; margin:0;}
+h1 {font-size:30px; line-height:33px;}
+h2 {font-size:20px; line-height:22px;}
+h3 {font-size:14px; line-height:16px; font-family: arial; color:#000;  font-weight:bold; text-transform:uppercase;}
+h3.titleCase,h3 .titleCase,h3.sectionHeader.titleCase,h3.titleCase.sectionHeader { font-size:16px; text-transform:none; }
+h4.smHeader, h4.lgHeader {font-weight:bold; text-transform: uppercase; color:#272727; font-family: arial;}
+h4.smHeader {font-size:19px; line-height:22px;}
+h4.lgHeader {font-size:22px; line-height:26px;}
+.advertisement {font-family:verdana, arial, sans-serif; font-size:9px; text-align:center; padding: 6px 0 2px 0; letter-spacing: 1px; text-transform:uppercase;}
+.spcrGif {height:1px; width:1px; border:0;}
+a.nounderline:hover {text-decoration:none;}
+
+/* New Breaking News - Red box */
+.breakingNews {border-bottom:1px solid #999999;margin:0 ;padding:5px 0;  display: block; height: 32px; width:auto; }
+.breakingNews h3 { display: block; padding:7px 0 0 0 ; }
+.breakingNews h3.sectionHeader.title {background-color:#D2232A;background-image:none;color:#FFFFFF;display:block;float:left; margin:1px 20px 0 0; font-size:14px; padding:6px 0 8px; text-align:center; width:135px;text-transform:none; }
+.breakingNews .overline { color:#272727; letter-spacing:0; text-transform:lowercase;}
+
+div.breakingNewsHedBold {font-weight:bold; font-family:Arial; line-height:14px; font-size:12px; color:#000;}
+#news h3.breakingNewsHed, #headlines h3.breakingNewsHed {margin-bottom:0;}
+h3.breakingNewsHed {font-weight:bold; line-height:16px; color:#000;margin:0; text-transform:none;}
+a:link, a:visited, span.fakeA {color: #2851a2; text-decoration:none; cursor: pointer;}
+a:visited {color: #45569C;}
+a:hover, a:active, a:focus {color: #002878; text-decoration: none; border-bottom: 1px dotted #002878;}
+span.fakeA:hover, span.fakeA:active, span.fakeA:focus {color: #002878;}
+a.imageLink:hover, a.imageLink:active, a.imageLink:focus {border:0;}
+a.imgStroke img {border: 1px solid #666;}
+a.bgcom {background: url('http://cache.boston.com/universal/site_graphics/bcom_bug.png') no-repeat top left; padding-left:20px;}
+h3 a {text-decoration:none; border:0;}
+h3.sectionHeader {text-transform:uppercase;}
+.subSectionHeader a, a.subSectionHeader , a.subSectionHeader:link , a.subSectionHeader:visited , a.subSectionHeader:hover , a.subSectionHeader:active , a.subSectionHeader:focus, h3.sectionHeader a, h3.sectionHeader a:link, h3.sectionHeader a:visited, h3.sectionHeader a:hover, h3.sectionHeader a:active, h3.sectionHeader a:focus {color:#000; text-decoration:none; border:0;}
+.nosearch #headL img {padding-top:25px;}
+.cf {clear:both;}
+.cl {clear:left;}
+.cr {clear:right;}
+.clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+.clearfix {display: inline-block;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+span.cf {height:0; width:0; clear:both;}
+.padTop4 {padding-top:4px;} .padTop6 {padding-top:6px;} .padTop10 {padding-top:10px;} .padTop16 {padding-top:16px;} .padBottom10 {padding-bottom:10px;}
+.padBottom16 { padding-bottom: 16px; }
+.padTop20 {padding-top:20px;} .padTop24 {padding-top:24px;}
+.padBottom20 {padding-bottom:20px;}
+.padAll10 {padding:10px;}
+.grey4 {border-top:4px solid #999;}
+.ytred4 {border-top:4px solid #D41212;}
+.ltblue4 {border-top:4px solid #ebf4fb;}
+.dkblue4 {border-top:4px solid #203C73;}
+.listPipe {font-size:10px; position:relative; top:-2px; list-style-type:none; display:inline;padding:0 2px 0 2px;}
+.leadOut {text-align:right; padding-top:10px; text-transform:uppercase; font-size:10px; line-height: 12px; font-family: Arial, Helvetica, Verdana, sans-serif;}
+.leadOut a {padding-right:7px; background-image: url(http://cache.boston.com/universal/site_graphics/blue_arrow.gif); background-repeat:no-repeat; background-position:center right;}
+.leadOut a:hover {border:none;}
+.breadcrumb, .breadcrumb a, .overline, .place {font-size:10px; line-height:11px; margin-bottom:2px; color:#272727; letter-spacing:.07em; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;}
+.breadcrumb a {color:#464646;}
+.breadcrumb a:hover {text-decoration:underline; border-bottom: none;}
+.leadIn, .subSectionHeader, .z-heading .z-date {font-family: Arial, Helvetica, Verdana, sans-serif; font-weight:bold; text-transform:uppercase; color:#666666; font-size:11px; line-height:18px;}
+.subSectionHeader {color:#000; border:0; display:block;}
+.subSectionHeaderTitle {font-family: Arial, Helvetica, Verdana, sans-serif; font-size:11px; font-weight:bold; color: #000; line-height: 14px;}
+.caption {font-family: Arial, Helvetica, Verdana, sans-serif; font-weight:normal; font-size: 11px; color: #464646; line-height:14px;}
+.byline {font:normal 11px Arial,Helvetica,Verdana,sans-serif; color: #272727; }
+.uc {text-transform: uppercase;}
+
+.politicoTeases {margin:5px 0 0 0; padding:0 0 0px 15px; line-height:20px; font-size:10px;}
+.politicoTeases li {color:#999;}
+.politicoTeases li a {font-size:12px;}
+.partnerFeed {margin:5px 0 0 0; padding:0 0 0px 15px; line-height:20px; font-size:10px;}
+.partnerFeed li {color:#999;}
+.partnerFeed li a {font-size:12px;}
+.linklistNoBullets, .linklist {margin:5px 0 0 0; padding:0 0 0px 15px; line-height:14px; font-size:10px;}
+.linklistNoBullets li, .linklist li {color:#999; margin-bottom:0px;}
+.linklistNoBullets li a, .linklist li a {font-size:12px;font-family:Arial, Helvetica, sans-serif;}
+.linklistNoBullets li h2, .linklistNoBullets li h2 a, .linklist li h2, .linklist li h2 a {font-size:20px; line-height:22px;}
+.linklistNoBullets div, .linklist div {margin:0; padding:0; position:relative; left:-15px;}
+ul.linklistNoBullets li div {position:static;}
+.linklistNoBullets div {left:0;}
+.linklistNoBullets {padding:0;}
+.linklistNoBullets li {list-style-type:none;}
+ol.linklist {padding:0 0 0 25px}
+ol.linklist li {color:#464646;padding-bottom:4px;}
+ul.sectionLinks {margin:3px 0px 10px 0; padding:0 0 0 2px; background-color:#ebf4fb; border-left:none; border-right:none;}
+ul.sectionLinks li {list-style-type:none; display:inline; line-height:15px;}
+ul.sectionLinks a {border:0;}
+ul#bankrate a {font-weight:bold;}
+
+table.secondaryNav {background-color:#E5E5E5; height:27px; margin:0pt; text-align:left; width:959px;}
+#globalNav .secNavLinks a:hover {color: #000;}
+
+
+
+.linklistInline {margin:0; padding:0;}
+.linklistInline li {list-style-type:none; display:inline;}
+.linklistInline * {display:inline;}
+.linklistInline li a {font-size: 12px;}
+
+
+
+
+
+#container {width:981px; margin:0 auto; text-align:left; position:relative;}
+#marginAd {position:absolute; right:-100px; z-index:100;}
+#containerBorder {border: 1px dotted #3F5F9C; border-top:none; padding:0 10px; border-bottom:0;}
+#content {width:959px; position:relative; padding-bottom:10px; background-color:#fff;}
+body.sports #content.section {position:static;}
+#Col1, #Col2 {margin:0 10px; overflow:hidden; float:left;}
+#Col2 .right1 {right:1px; }
+#Col1 .no-margin { margin:0 0 0 0; }
+.section #Col3 {margin:0 10px; overflow:visible; float:right;}
+#Col1, #Col2, #Col3 {overflow:hidden;}
+#Col1, #Col2, #Col3 {padding-top:10px;}
+.section #Col1 {width:188px; margin-left:0;}
+.section #Col2 {width:329px;}
+.section #Col3 {width:398px; margin-right:0;}
+.section #Col2 .fixedAds {text-align:center;}
+#Col3 .fixedAds {text-align:center;}
+.sponLinks {width:139px; float:left; margin:0 5px; overflow:hidden;}
+.sponLinks a:hover, .sponLinks a:active, .sponLinks a:focus  {border-bottom:0;}
+.section365 #Col1 {width:189px; margin-left:0;}
+.section365 #Col2 {width:399px;}
+.section365 #Col3 {width:329px;}
+.leftScraper, .sliderAd {text-align:center; padding-bottom:10px; border-bottom: 1px dotted #3F5F9C;}
+.sliderAd a, .leftScraper a, .fixedAds a, .adContainer a {border:0;}
+.adContainer {text-align:center;}
+#Col1 .adContainer, #Col2 .adContainer {padding-bottom:5px;padding-top:10px;}
+#Col2 .adContainer {text-align:left;}
+
+.section356 #Col2 {width:329px;}
+.section356 #Col3 {width:399px;}
+
+ul.linklist {line-height:20px;}
+ul.linklist li, ul.linklistNoBullets li {line-height:14px; padding-bottom:4px;}
+ul.linklist .leadIn, ul.linklistNoBullets .leadIn {line-height:12px;}
+
+.ltBlueBox {background-color:#ebf4fb;}
+
+.padLeft10 {padding-left:10px;}
+.padRight10 {padding-right:10px;}
+div.split50 div.aSide {width:50%; overflow:hidden; float:left;}
+div.split50 div.bSide {width:50%; overflow:hidden; float:right;}
+div.split6040 div.aSide {width:60%; overflow:hidden; float:left;}
+div.split6040 div.bSide {width:40%; overflow:hidden; float:right;}
+div.split4060 div.aSide {width:40%; overflow:hidden; float:left;}
+div.split4060 div.bSide {width:60%; overflow:hidden; float:right;}
+
+div.splitThirds div.aSide, div.splitThirds div.bSide, div.splitThirds div.cSide {width:33%; overflow:hidden; float:left;}
+div.splitThirds .aSide .thirdsPad {padding-right:3px}
+div.splitThirds .bSide .thirdsPad {padding:0 2px 0 2px;}
+div.splitThirds .cSide .thirdsPad {padding-left:3px;}
+
+div.splitOpen .splitOpenLeft, div.splitOpen .splitOpenRight {float:left; display:inline;}
+div.splitOpen .splitOpenRight {padding-left:10px;}
+
+table.splitOpenTable {border:0px; border-collapse:collapse;}
+table.splitOpenTable td {padding:0;}
+table.splitOpenTable td.bSide {padding-left:5px;}
+
+
+
+/* GENERIC HEADER SETUP */
+#header #signIn {width:725px; height:33px; overflow:hidden;border:1px dotted #3f5f9c;border-top:none;}
+#header #login, #bostoncom_header #bc_login {float:left;height:23px;margin:8px;}
+#header #login #mc, #header #login #si,  #bostoncom_header #bc_login #mc, #bostoncom_header #bc_login #si {margin-right:3px;position:relative;top:1px;}
+#header #login #lo, #header #login #rn,  #bostoncom_header #bc_login #lo, #bostoncom_header #bc_login #rn {margin-left:3px;position:relative;top:1px;}
+#header .backHome {font-size:11px;left:8px;position:relative;top:11px;}
+
+
+
+#bostoncom_header #bc_signIn {width: 573px;overflow:hidden;border:1px dotted #3f5f9c;border-top:none; }
+
+#header #globeLogo, #bostoncom_header #globeLogo {float:right;height:33px;width:173px;position:relative;top:0; display:none;}
+#header #globeLogo img, #bostoncom_header #globeLogo img {height:31px;width:173px;position:relative;top:0;margin:0;padding:0;}
+#globeLogo #gLogoSub {padding-top:11px;float:left;}
+#header #headAd {width:728px;height:90px;margin-top:9px;padding:0; z-index: 10000;}
+
+
+
+#header #headAd img {margin:0;padding:0;}
+#container #headAd {width:728px;height:90px;position:relative;padding:0;}
+#header #globeLogo, #bostoncom_header #globeLogo {width:260px;}
+
+
+
+/* Masthead */
+#header   {position:relative; width:959px; height:143px; border-top:3px solid #006;}
+#headL, #headR {top:0; position:absolute; padding:0px;}
+#headL {width:231px; margin-left:0;}
+#headR {width:728px; margin-left:232px;}
+#headM {display:none;}
+
+#container #mastHead {margin:25px 0 0 10px;}
+/* Cars specific header override */
+/* Removed: body.cars #header {height:128px;}*/
+
+/* Masthead  for Monster.com pages */
+#bostoncom_header {position:relative; width:970px; height:88px; border-top:3px solid #006; }
+#bostoncom_header  #headL {width:384px; margin-left:0;}
+#bostoncom_header  #headR {width:574px; margin-left:384px;}
+#bostoncom_header #globeLogo { text-align:right;}
+
+/* SEARCH FORM STYLES */
+#searchForm {text-align:left;padding-top:9px;}
+#searchForm form {width:225px; margin:0; padding:0;}
+#searchForm input#textField, #globeSearch input#globeText {width:160px; height:15px; border: 1px solid #999999; float:left; padding:3px; font:12px normal Arial,Helvetica,Verdana,sans-serif;}
+
+#goButton {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif); height:21px; display:block; color:#fff; font-weight:bold; width:37px; border:0;float:left;}
+#goButton:hover {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch_hover.gif); background-repeat:repeat-x;}
+
+#searchForm .form-button, #searchForm .form-button:hover, #globeSearch .form-button, #globeSearch .form-button:hover {background-color:#2851A2; height:23px; display:block; color:#fff; width:37px; border:0;float:left;padding:2px 0 3px 0; font:bold 11px Arial, Helvetica, sans-serif; cursor:pointer; background-image:none;}
+#searchForm .form-button:link, #globeSearch .form-button:link {color: #fff;}
+#searchForm .form-button:hover, #globeSearch .form-button:hover {background-color:#002878}
+
+div#searchForm div {line-height:16px;}
+
+div#searchForm span {border:0;cursor:pointer;font-size:11px;}
+div#searchForm span.searchOn {background-image: url(http://cache.boston.com/universal/site_graphics/gray_downarrow.gif); padding-left:9px; background-repeat:no-repeat; background-position:left center; font-weight:bold; text-decoration:none;font-size:11px;}
+#searchSite {margin-left:10px;font-size:11px;}
+#searchLocal {font-size:11px;}
+
+
+
+/* GENERIC HEADER SETUP  NEW BCOM MASTHEAD STYLES */
+#MastheadAug2011 {}
+#MastheadAug2011 #header #signIn {width:725px; height:33px; overflow:hidden;border:1px dotted #3f5f9c;border-top:none;float:left;}
+#MastheadAug2011 #header #login, #bostoncom_header #bc_login {float:left;height:23px;margin:8px;}
+#MastheadAug2011 #header #login #mc, #header #login #si,  #bostoncom_header #bc_login #mc, #bostoncom_header #bc_login #si {margin-right:3px;position:relative;top:1px;font-size:12px;}
+#header #login #lo, #header #login #rn,  #bostoncom_header #bc_login #lo, #bostoncom_header #bc_login #rn {margin-left:3px;position:relative;top:1px;}
+#MastheadAug2011 #header .backHome {font-size:11px;left:8px;position:relative;top:11px;}
+#MastheadAug2011 #bostoncom_header #bc_signIn {width: 573px;overflow:hidden;border:1px dotted #3f5f9c;border-top:none; }
+#MastheadAug2011 #header #globeLogo, #bostoncom_header #globeLogo {float:right;height:33px;width:173px;position:relative;top:0;}
+#MastheadAug2011 #header #globeLogo img, #bostoncom_header #globeLogo img {height:31px;width:173px;position:relative;top:0;margin:0;padding:0;}
+#MastheadAug2011 #globeLogo #gLogoSub {padding-top:11px;float:left;}
+#MastheadAug2011 #header #headAd {width:728px;height:90px;margin-top:9px;padding:0; z-index: 10000;}
+#MastheadAug2011 #header   {position:relative; width:959px; height:143px; border-top:2px solid #006;}
+#MastheadAug2011 {width:943px;}
+#container #MastheadAug2011 #mastHead {position:relative; width:951px; height:143px; border-top:2px solid #006;}
+#MastheadAug2011 #mastHead #mastHeadTop {position:relative;width:990px;height:30px;padding:8px 0 5px 0;float: left;}
+#MastheadAug2011 #mastHeadTop #signIn {position:relative;float:left; padding:0 18px 0 0;}
+
+#MastheadAug2011 #mastHeadTop #bostonDeals .bostonDealsHeader {display:block;float:left;background:URL(http://cache.boston.com/universal/site_graphics/boston_deals_internal.png) no-repeat;height:20px;width:109px;margin-right:6px;}
+#MastheadAug2011 #bostonDeals .bostonDealsHeader a {text-decoration:none;}										  
+#MastheadAug2011 #mastHeadTop #bostonDeals {float:right;display:block;position:relative;font-family:Georgia, Times, Serif;color:#000;font-size:12px;line-height:21px; padding: 0 45px 0 0;}
+#MastheadAug2011  #bdeals {max-width:650px; color: #535353; font-family: Georgia, Times, Serif; margin:0; text-align: center;}																					    
+#MastheadAug2011  #bdeals .getdeal {margin-left:5px;}										    
+#MastheadAug2011 #mastHeadTop #bostonDeals a {display:inline;font-family:Arial, Helvetica, sans-serif;font-size:12px;}
+#MastheadAug2011 #mastHead #middleLeft {position:relative;float:left;width:217px; padding-top:25px;}
+#MastheadAug2011 #middleLeft #homeDelivery{margin:0 0 10px 0; display:none;}
+#MastheadAug2011 #homeDelivery .bglobeIcon{float:left;background:url(http://cache.boston.com/universal/site_graphics/globe_B_hp.png) no-repeat; height:15px; width:15px;margin-right:4px;margin-top:-1px;}
+#MastheadAug2011 .bglobeIcon .bgicontext {float:left;font-size: 12px;}
+#MastheadAug2011 .bgicontext a {color: #2851A2;}
+#MastheadAug2011 .bgicontext a span{color:#474747;text-transform:none;margin-right:6px;}
+#MastheadAug2011 #middleLeft #mastBcomLogo {background:url(http://cache.boston.com/universal/site_graphics/bcom_logo_internal.png) no-repeat;height:38px; width:165px;margin:0 0 4px 0;}
+#MastheadAug2011 #middleLeft input#mastSearch{border:1px #ccc solid;height:21px;width:177px;margin:0;padding:0;padding-left:10px;float:left;color:#aaa;}
+#MastheadAug2011 #middleLeft a#mastBcomLogo {display:block;background:url(http://cache.boston.com/universal/site_graphics/bcom_logo_internal.png) no-repeat;height:36px; width:201px;margin:0 0 4px 0;text-indent:-9999999px} 
+#MastheadAug2011 #middleLeft a#mastBcomLogo:hover {text-decoration:none;} 
+#MastheadAug2011 #middleLeft input.mastSearch{height:23px;width:27px;float:left;text-indent:-9999999px;background:#ededed url(http://cache.boston.com/universal/site_graphics/search_icon_hp.png) no-repeat center;border:1px #ccc solid;border-left:none;}
+#MastheadAug2011 #mastHead #middleRight {position:relative;float:right;}
+body.jobs #MastheadAug2011 #middleLeft a#mastBcomLogo {background: url("http://cache.boston.com/universal/site_graphics/j3logo.gif") no-repeat scroll 0 0 transparent; height:93px;}
+body.jobs #MastheadAug2011 #middleLeft #mastSearch {display:none;}
+body.jobs #MastheadAug2011 #middleLeft #homeDelivery {display:none}
+.headerLeft input#mastSearch:focus {color:#272727;}
+#MastheadAug2011 #middleLeft input#mastSearch:focus {color:#272727;}
+
+
+
+/* Global nav */
+#globalNav .gnavContainer li, #bostoncom_globalNav .gnavContainer li {float:left; list-style-type:none; padding: 8px 6px; border-right:1px dotted #fff;position:relative; height:29px; font-size:12px;}
+#globalNav #search, #bostoncom_globalNav #search {border:0; padding-right:0;}
+#globalNav .gnavContainer, #bostoncom_globalNav .gnavContainer {width: 959px; margin:0; padding:0; border-bottom:1px solid #203c73; font-size:11px; font-weight:bold; text-transform:uppercase; height:28px; position:relative; overflow:hidden;z-index:3;}
+#globalNav .gnavContainer a, #bostoncom_globalNav .gnavContainer a {padding:0 3px;}
+#globalNav a, #bostoncom_globalNav a {text-decoration:none; color:#203c73;}
+#globalNav li a, #bostoncom_globalNav li a {display:block; position:relative; top:2px; line-height:20px;}
+#globalNav #sNav, #bostoncom_globalNav #sNav {margin:0; padding:0; background-color:#e5e5e5; height:27px; overflow:hidden;}
+#globalNav #sNav li, #bostoncom_globalNav #sNav li {list-style-type:none; display:inline; float:left; padding:0 10px; top:5px;}
+#globalNav #sNav li a, #bostoncom_globalNav #sNav li a {top:4px;}
+#globalNav #sNav a, #bostoncom_globalNav #sNav a {color:#464646;}
+#globalNav #sNav a:hover, #bostoncom_globalNav #sNav a:hover {color:#000;}
+#globalNav #sNav li.active a, #bostoncom_globalNav #sNav li.active a {color:#000;font-weight:bold;}
+#globalNav  #sNav a:focus, #bostoncom_globalNav  #sNav a:focus {color:#000;}
+#globalNav .gnavContainer li, #bostoncom_globalNav .gnavContainer li {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_off.gif); background-repeat: repeat-x;}
+#globalNav .gnavContainer li.active, #bostoncom_globalNav .gnavContainer li.active {color:#fff;background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif); background-repeat: repeat-x;}
+#globalNav .gnavContainer li.active a, #bostoncom_globalNav .gnavContainer li.active a{color:#fff;}
+#globalNav .gnavContainer li:hover, #bostoncom_globalNav .gnavContainer li:hover {color:#fff;background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif); background-repeat: repeat-x;}
+#globalNav .gnavContainer li:hover a, #bostoncom_globalNav .gnavContainer li:hover a {color:#fff; border-bottom:none;}
+#globalNav #gjobs, #globalNav #gre, #globalNav #gsearch, #globalNav #gcars, #globalNav #gjobs_on, #globalNav #gre_on, #globalNav #gsearch_on, #globalNav #gcars_on,
+#bostoncom_globalNav #bostoncom_gjobs, #bostoncom_globalNav #gre, #bostoncom_globalNav #gsearch, #bostoncom_globalNav #gcars, #bostoncom_globalNav #gjobs_on, #bostoncom_globalNav #gre_on, #bostoncom_globalNav #gsearch_on, #bostoncom_globalNav #gcars_on  {padding-left:7px;}
+#globalNav #gcars, #globalNav #gcars_on, #globalNav #gcars, #globalNav #gcars_on,
+#bostoncom_globalNav #gcars, #bostoncom_globalNav #gcars_on, #bostoncom_globalNav #gcars, #bostoncom_globalNav #gcars_on {padding-left:9px;}
+#globalNav a:hover, #bostoncom_globalNav a:focus, #globalNav a:active,
+#bostoncom_globalNav a:hover, #bostoncom_globalNav a:focus, #bostoncom_globalNav a:active {border-bottom:none;}
+#headL img, #headR img {padding:5px 0 10px 0 ;}
+#header #globeIcon {padding:0;}
+
+/* Classifieds hover styles */
+#globalNav .gnavContainer li.cfied_on a:hover, #globalNav li#gcars a:hover, #globalNav li#gjobs a:hover, #globalNav li#gre a:hover, #globalNav li#gsearch a:hover {color:#fff;}
+#hp #globalNav .gnavContainer li.cfied_on a:hover {color:#203C73;}
+#globalNav li#gcars, #globalNav li#gjobs, #globalNav li#gre, #globalNav li#gsearch, #globalNav .gnavContainer li.cfied {background-image:url(http://cache.boston.com/universal/site_graphics/nav_classifieds_off.gif);color:#fff;}
+#globalNav li#gcars:hover, #globalNav li#gjobs:hover, #globalNav li#gre:hover, #globalNav li#gsearch:hover, #globalNav .gnavContainer li.cfied:hover {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif);color:#fff;}
+#globalNav .gnavContainer li.active {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif);color:#fff;}
+#globalNav .gnavContainer li#gsearch {border-right:none;}
+#globalNav .gnavContainer li#gsearch_on {border-right:none;}
+
+
+
+/* GENERIC FOOTER SETUP */
+#bottomLinks ul { margin:0; padding:0;}
+#bottomLinks ul li {display:inline; list-style-type:none;}
+#bottomLinks ul li span {color:#464646;}
+#bottomLinks ul li.listPipe {color:#666666;}
+#footer {clear:both; padding-top:30px;}
+#bottomBanner {margin:30px; text-align:center;}
+#bottomLinks {padding-top:30px;}
+#bottomLinks .gnavContainer {text-align:center; border-top:1px dotted #3e5f9d; padding:2px 0;}
+#bottomLinks .gnavContainer li {padding: 0 2px;}
+#bottomLinks #bcomLinks, #bottomLinks #bglobeLinks {background-color:#e5e5e5;padding-top:5px; text-align:center;}
+#bottomLinks #bcomLinks {border-top:1px dotted #3e5f9d;}
+#bottomLinks #bglobeLinks {padding-bottom:5px; border-bottom:1px dotted #3e5f9d;color:#464646;}
+#bottomLinks .first {text-transform: uppercase; font-size:11px;}
+#bcomLinks a, #bglobeLinks a {color:#464646;}
+
+#sponsoredLinks {padding:10px 0;}
+
+/* Tease View Styles */
+.imgRight img, .imgLeft img {width:80px; height:80px;margin-top:3px;}
+.imgRight80 img, .imgLeft80 img {margin-top:3px;}
+.imgRight100 img, .imgLeft100 img {width:100px; height:100px;margin-top:3px;}
+.imgRight179 img, .imgLeft179 img  {width:178px; height:105px;margin-top:3px;}
+.imgRight179Free img, .imgLeft179Free img  {border:0; display:block;}
+.imgRight80 h2, .imgLeft80 h2, .imgRight100 h2, .imgLeft100 h2, .imgRight179 h2, .imgLeft179 h2, .imgRight179Free h2, .imgLeft179Free h2 {line-height:16px; font-size:14px;}
+
+.imgRight329 img, .imgLeft329 img  {width:329px; height:210px;margin-top:3px;}
+.imgRight396 img, .imgLeft396 img  {width:396px; height:220px;margin-top:3px;}
+.imgRightWide img, .imgLeftWide img {width:178px; height:105px;margin-top:3px;}
+.imgRight img, .imgRightWide img, .imgRight80 img, .imgRight179 img, .imgRight100 img, .imgRight179Free img, .imgRight329 img, .imgRight396 img {float:right; margin-left:7px; margin-bottom:2px; border:0; display:block;margin-top:3px;}
+.imgLeft img, .imgLeftWide img, .imgLeft80 img, .imgLeft179 img, .imgLeft100 img, .imgLeft179Free img, .imgLeft329 img, .imgLeft396 img  {float:left; margin-right:7px; margin-bottom:0px; border:0; display:block;margin-top:3px;}
+.imgLeft .imgCont, .imgLeftWide .imgCont, .imgLeft80 .imgCont, .imgLeft179 .imgCont, .imgLeft179Free .imgCont,.imgLeft100 .imgCont,.imgLeft329 .imgCont, .imgLeft396 .imgCont {float:left; margin-right:10px; margin-bottom:0px; overflow:hidden;}
+.imgRight .imgCont, .imgRightWide .imgCont, .imgRight80 .imgCont, .imgRight179 .imgCont, .imgRight100 .imgCont, .imgRight329 .imgCont, .imgRight396 .imgCont, .imgLeft179Free .imgCont {float:right; margin-right:10px; margin-bottom:0px; overflow:hidden;}
+.imgLeft, .imgRight, .imgLeftWide, .imgRightWide, .imgLeft80, .imgRight80, .imgLeft179, .imgRight179, .imgLeft100, .imgRight100 {padding-bottom:10px;}
+span.small, span.attr, .source, .credit {font-size:10px; font-family:Arial, Helvetica; font-weight:normal; color:#666;padding-left:0px;position:relative;bottom:1px;}
+span.attr span.small {padding-left:0; position:relative; bottom:0;}
+.regTZ {margin-top:0px; padding-bottom:10px;}
+.overTZimgLeft {margin-bottom:10px;}
+.overTZimgLeft img {float:left; width:80px; height:80px; margin-right:7px;margin-top:4px;}
+.overTZimgLeft a, .imgLeft a, .imgLeftWide a, .overlineHed a, .regTZ a, .leadInLink a {font-size:14px; font-weight:bold; line-height:16px;}
+.tt {font-family:"Georgia", "Times New Roman", Times, serif; font-size:12px; line-height:16px; color:#272727;}
+.tt .articleText, .tt.articleText {font-size:15px; line-height:21px;}
+
+.at {font-family:"Arial", Arial, Helvetica, sans-serif; font-size:12px; line-height:16px; color:#464646;}
+.source {text-align:right;}
+.ledeTZ h2 {padding-bottom:2px;}
+.ledeTZ img {border:0;}
+
+.imgHeadlineBoldCentered img, .imgHeadlineCentered img {display:inline; padding-right:4px; display:block}
+.img100headlineBoldLeft a, .imgHeadlineBoldCentered a {font-weight:bold;}
+ul .imgHeadlineBoldCentered img, ul .imgHeadlineCentered img {display:inline;}
+
+.img80headlineLeftBold img, .img80headlineLeft img, .img80h3Left img {float:left; margin-right:7px; width:80px; height:80px;margin-top:3px;}
+
+.img40h3Left img {float:left; margin-right:7px; width:40px; height:40px;margin-top:3px;}
+
+.img40h3Left h3, .img80h3Left h3, .img100h3Left h3, .img178h3above h3, .img178h3left h3, .img178h3leftbold h3 .img259h3above h3, .img259h3below h3 {text-transform:none;}
+#news .img80h3Left h3, #news .img100h3Left h3, #news .img178h3above h3, #news .img178h3left h3, #news .img259h3above h3, #news .img259h3below h3 {margin-bottom:0;
+position:relative;}
+.img80headlineLeft a {font-size:12px; line-height:14px; margin-bottom:4px;}
+.img80headlineLeftBold img {font-size:12px; line-height:14px; margin-bottom:4px;}
+.img80headlineLeftBold a, .img178h3leftbold h3, .img178h3leftbold a {font-weight:bold;}
+.img100headlineBoldLeft img, .img100h2Left img, .img100h3Left img {float:left; margin-right:7px; width:100px; height:100px;margin-top:3px;}
+
+.imgHeadlineBoldCentered {width:100px;}
+.img100headlineBoldLeft {text-align:left;}
+
+.img80h2above img, .img80h2left img, .img80h3above img, .img80h3left img {float:left; margin:3px 7px 5px 0; width:80px; height: 80px; }
+.img178h2above img, .img178h2left img, .img178h3above img, .img178h3left img {float:left; margin:3px 7px 5px 0; width:178px;}
+.img259h3above img, .img259h3below img, .img259headlineabove img, .img259headlineabove img  {width:259px;margin-top:3px;}
+.img329h2above img, .img329h2below img, .img329h6below img, .img329h3above img, .img329h3below img {width:329px;margin-top:3px;}
+.img329h3below h2, .img399h2below h2 {font-size: 17px; line-height: 19px;}
+.img399h2above img, .img399h2below img, .img399h6below img, .img399h3above img, .img399h3below img {width:399px;margin-top:3px;}
+.img396h6above img, .img396h2above img, .img396h2below img {width:396px;margin-top:3px;}
+.img329h6below h1, .img396h6above h1 {font-size:30px; line-height:30px; margin-bottom:4px;}
+
+.h3TG h3 {text-transform:none;}
+
+
+
+/* BLOG TEASE STYLES */
+.blogTease .comments {font-size:10px;text-transform:uppercase;}
+.blogTease .regTZ a {font-size:14px;}
+.blogTease .regTZ {margin-top:0;}
+.blogTease .regTZ h1, .blogTease .regTZ h2, .blogTease .regTZ h3, .blogTease .regTZ h4, .blogTease .regTZ h5 {font-size:14px;line-height:normal;}
+body.travel #Col1 .regTZ a {display:block;}
+
+img.starRating {width:53px; height:12px;}
+
+/* INSIDE BOSTON.COM STYLES */
+body#hp #insideBcom h3 {margin-top:8px; border-bottom: 4px solid #3f5f9c; background-color:#fff;}
+body#hp .insideBcomList {margin:0; padding:0; height: 180px; overflow:hidden; background-color:#ebf4fb;}
+body#hp .insideContent a:hover {border-bottom:none;}
+body#hp li.plusLI {list-style-type:none; padding:10px 0 0 10px;}
+body#hp .plusLinks li {list-style-type:disc; margin-bottom: 2px;}
+body#hp .insideBcomList .insideContent a {display:block; height:180px;}
+body#hp .insideBcomList .insideContent:hover {background-color:#b7dcff;}
+body#hp li.plusLI li.listPipe {display:none;}
+body#hp .plusLI .plusLinks {padding:2px 0 0 15px; margin:0; color:#999;}
+body#hp .insideBcomList {border: 1px solid #b7dcff; border-top:0;}
+
+#insideBcom .insideContent {margin:0; padding: 10px 0;}
+#Col2 #insideBcom, #Col3 #insideBcom {width:205px;}
+#insideBcom {margin:10px 0; background-color:#ebf4fb;}
+ul.insideBcomList {margin:0; padding:0;list-style-type:none;background-color:#ebf4fb; overflow:hidden; z-index:100;}
+.insideBcomList li:hover {background-color:#b7dcff;}
+.insideBcomList li.plusLI:hover {background-color:#ebf4fb;}
+.insideBcomList li.plusLI * {background-color:#ebf4fb;}
+.insideContent a {display:block;  padding:0 12px 0 12px;}
+.insideContent a:hover {border-bottom:none; color:#2851A2;}
+.insideBcomList img {width:179px; height:100px; padding-bottom:0px;border:0;margin-bottom: 4px;}
+#insideBcom .caption {color: #3E5F9D; font-size:12px; font-weight:bold;}
+#insideBcom a:hover .caption { color: #002878; }
+#insideBcom a:hover .leadIn,
+#insideBcom a:hover .subSectionHeader { color: #333; }
+ul.plusLinks {overflow:hidden; margin:0; padding:0;}
+
+ul.plusLinks a {border:0; font-weight:bold;}
+#insideBcom #ic5 {display:none;}
+
+
+
+.dotted1px {height:1px; width:auto; border-top:1px dotted #3E5F9D; margin:6px 0;}
+.dotted4px, .dotted4pxnopad {height:7px; width:auto; border-bottom: 4px solid #3F5F9C;  margin:6px 0 16px 0;}
+.dotted4pxnopad {margin:0;}
+.darkBlue3pxnopad {height:3px; width:auto; border-top:3px solid #203C73; margin:0;}
+.teaseSpacer {padding-top:16px;}
+
+/* COL2 STYLES */
+#galleriesContainer {margin:0; padding:0; text-align:center;}
+#galleriesContainer li {display:block; list-style-type:none; width:80px; float:left;}
+#galleriesContainer .dos {padding:0 42px 0 43px;}
+
+ul.sectionLinks {margin:3px 0 10px 0; padding:3px 0 3px 2px; background-color:#ebf4fb; border:1px solid #B7CDFF; border-left:none; border-right:none;}
+
+#headlines, #headlineAds, #sports, #re, #jobs, #autos, #lifestyles {width:259px; overflow:hidden;}
+
+
+
+#headlines {width:188px; border-bottom: 1px dotted #3e5f9d; }
+#headlines ul.linklist {padding-bottom:5px;}
+
+
+
+.photoHeader,  .blogHeader,  .chatsHeader,  .msgbrdHeader,  .videoHeader {font-weight:bold; text-transform:uppercase; font-size: 11px; padding-left:20px; background-position:left center; background-repeat:no-repeat; border-bottom:1px dotted #464646; padding-bottom:3px;}
+.photoHeader {background-image: url(http://cache.boston.com/universal/site_graphics/19x15_photos.gif);padding-left: 25px;}
+.blogHeader {background-image: url(http://cache.boston.com/universal/site_graphics/18x17_blogs.gif);padding-left: 24px;padding-top:3px;}
+.chatsHeader {background-image: url(http://cache.boston.com/universal/site_graphics/21x17_chats-1.gif);padding-left:27px;padding-top:3px;}
+.videoHeader {background-image: url(http://cache.boston.com/universal/site_graphics/19x13_video.gif);}
+.msgbrdHeader {background-image: url(http://cache.boston.com/universal/site_graphics/11x18_messageBoards.gif);padding-top:4px;}
+.commsecHeader {background-image: url(http://cache.boston.com/universal/site_graphics/32x28_communityHeader.gif);}
+
+/* Tease Composite Styles */
+.tc35 {width:539px;}
+.tc36 {background-image:url(http://cache.boston.com/universal/site_graphics/3_6_5.gif); background-repeat:repeat-y;}
+.tc45 {background-image:url(http://cache.boston.com/universal/site_graphics/4_5.gif); background-repeat:repeat-y;}
+.tc36, .tc45 {width:609px; overflow:hidden;}
+.tc35 .cols3 {float:left; margin-right:10px; width:189px;}
+.tc35 .cols5 {float:left; margin-left:11px; width:329px;}
+.tc36 .cols3 {float:left; margin-right:10px; width:189px; overflow:hidden;}
+.tc36 .cols6 {float:left; margin-left:11px;width:399px; overflow:hidden;}
+.tc45 .cols4 {float:left; margin-right:10px; width:259px;}
+.tc45 .cols5 {float:left; margin-left:11px;width:329px;}
+.tc38 {width:749px; background-image:url(http://cache.boston.com/universal/site_graphics/3_8.gif);}
+.tc38 .cols3 {width:189px; float:left; margin:0 11px 0 0px;}
+.tc38 .cols8 {width:539px; float:left; margin: 0 0 0 10px;}
+.tc53 {width:539px; background-image:url(http://cache.boston.com/universal/site_graphics/5_3.gif);}
+.tc53 .cols5 {float:left; margin-right:11px; width:329px;}
+.tc53 .cols3 {float:right; margin-left:0; overflow:hidden; width:189px;}
+.tc38 .tc53 {width:539px; background-image:url(http://cache.boston.com/universal/site_graphics/5_3.gif);}
+.tc38 .tc53 .cols5 {float:left; margin-right:11px; width:329px;}
+.tc38 .tc53 .cols3 {float:left; margin: 0 0 0 10px; width:189px;}
+.tc38 .tc35 .cols5 {float:left; margin-left:10px; width:329px;}
+.tc63 {width:609px; background-image:url(http://cache.boston.com/universal/site_graphics/5_3.gif); background-position:right;}
+.tc63 .cols6 {width:399px; float:left; margin-right:10px; overflow:hidden;}
+.tc63 .cols3 {width:179px; float:left; margin-left:11px; overflow:hidden;}
+
+.tcCentered {text-align:center;}
+.tcCenter {text-align:center;}
+
+.tc95 { background-image: url('http://cache.boston.com/universal/site_graphics/9_5.gif'); background-repeat: repeat-y;}
+.tc95 .cols9 { width: 609px; float: left; margin-right: 11px; }
+.tc95 .cols5 { width: 329px; float: left; margin-left: 10px; }
+
+
+
+/* Column Measures
+================================== */
+
+.col.fourteen		{ width: 959px; }
+.col.thirteen		{ width: 889px; }
+.col.twelve			{ width: 819px; }
+.col.eleven			{ width: 749px; }
+.col.ten			{ width: 679px; }
+.col.nine			{ width: 609px; }
+.col.eight			{ width: 539px; }
+.col.seven			{ width: 469px; }
+.col.six			{ width: 399px; }
+.col.five			{ width: 329px; }
+.col.four			{ width: 259px; }
+.col.three			{ width: 189px; }
+.col.twoHalf		{ width: 154px; }
+.col.two			{ width: 119px; }
+.col.one			{ width: 49px;	}
+.col				{ margin-right: 10px; }
+
+
+
+/* MOBILE usefulness Please Keep*/
+iframe#lsnFrame {width:370px; border:0; height:650px; background-color:#EBF4FB; border: 1px dotted #3E5F9D; border-left:0; border-right:0;}
+
+/* Breaking News */
+#Col1n2holder {width:auto;float:left;}
+
+.breakingNews .overline {color: #AE222B;}
+.breakingNews h3.breaking, h3.breaking {color: #AE222B; font-size:14px; line-height: 16px; font-family:arial; font-weight:bold;margin-bottom:0;}
+.solidred4px {height: 1px; border-top:4px solid #AE222B; margin:0 0 3px 0;}
+.breakingNews * {font-family:arial;}
+h3.breaking {text-transform:uppercase;}
+.breakingNews h3.breakingNewsHed {margin-bottom:0;}
+.breakingTease .tt {font-family:arial, helvetica, sans-serif;}
+
+/* ZVENT TAB STYLES - Homepage */
+#zventsWidget {width:329px;padding:0;margin:0;}
+#zventsWidgetNav {width:329px;background:#fff url("http://cache.boston.com/universal/site_graphics/search_tab_underline_4px2.gif") repeat-x bottom;font:bold 11px arial;text-transform:uppercase;padding:0;margin:0;height:auto;}
+#zventsWidgetNav .sponsor {float:right;}
+#zventsWidgetNav .sponsor a:hover {border-bottom:none;text-decoration:none;}
+#zventsWidgetNav h3 {float:left;position:relative;top:11px;}
+#zventsTab {float:left;}
+#zventsTab ul {margin:0;padding:5px 0 0 0;list-style:none;}
+#zventsTab li {list-style-type:none; display:inline;}
+#zventsTab a {float:left;display:block;background:url("http://cache.boston.com/universal/site_graphics/left_both.gif") no-repeat left top;margin:0 2px 3px 0;padding:0 0 0 9px;border-bottom:1px solid #3f5f9c;text-decoration:none;font-weight:bold;cursor:pointer;}
+#zventsTab a span {float:left;display:block;background:url("http://cache.boston.com/universal/site_graphics/right_both.gif") no-repeat right top;padding:5px 15px 4px 6px;font-weight:bold;color:#3f5f9c;}
+
+/* ZVENT TAB STYLES - Commented Backslash Hack hides rule from IE5-Mac \*/
+#zventsTab a span {float:none;}
+/* End IE5-Mac hack */
+
+#zventsTab a:hover span {color:#fff;text-decoration:none;}
+#zventsTab a.active {background-position:0 -150px; border-width:0;}
+#zventsTab a.active span {background-position:100% -150px;padding-bottom:5px;color:#fff;}
+#zventsTab a:hover {background-position:0% -150px;}
+#zventsTab a:hover span {background-position:100% -150px;}
+
+#indexA, #indexB, #indexC {width:329px;background:#fff;padding:0;margin:0;border:none;text-align:left;}
+#indexA a:hover, #indexB a:hover, #indexC a:hover {text-decoration:none;border-bottom:none;}
+#indexC .leadIn {color:#000;padding:5px 0 0 0;margin:0;}
+#indexC #swhere {width:115px;height:13px;border:3px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;margin:0;margin-right:5px;color:#999;font:11px arial;}
+#indexC #searchForm {padding-top:0;text-align:left;}
+#indexC .form-button {cursor:pointer;}
+
+#zventsFooter ul.sectionLinks {text-align:left;margin:0;padding:3px 2px; background-color:#ebf4fb; border-bottom:1px dotted #3e5f9d; border-top:none; border-left:none; border-right:none;}
+#zventsFooter ul.sectionLinks li {list-style-type:none; display:inline; line-height:15px;}
+
+/* ZVENT TAB STYLES - Features referenced in bcom_zvents.js */
+.ZventsLoading {text-align:center;padding:10px 0;}
+.ZventsLoading .tt {position:relative;top:-3px;left:5px;}
+.ZventsEvent {border-bottom:1px dotted #3f5f9c;padding:3px 7px;}
+.ZventsEvent a:hover {text-decoration:none;border-bottom:none;}
+.ZventsEventTime {margin-right:5px;}
+.ZventsEventName {font-weight:bold;}
+
+/* */
+#zventsWidgetLg {width:auto;padding:0;margin:0;}
+#zventsWidgetLgNav {width:auto;background:#fff url("http://cache.boston.com/universal/site_graphics/search_tab_underline.gif") repeat-x bottom;font:bold 11px arial;text-transform:uppercase;padding:0;margin:0;height:auto;}
+#indexLgA, #indexLgB, #indexLgC {width:auto;background:#fff;padding:0;margin:0;border:none;text-align:left;}
+
+/* ZVENT TAB STYLES - Things To Do Main  */
+#zventsWidgetSm {width:179px;padding:0;margin:0;}
+#zventsWidgetSmNav {width:179px;background:#fff url("http://cache.boston.com/universal/site_graphics/search_tab_underline_4px2.gif") repeat-x bottom;font:bold 11px arial;text-transform:uppercase;padding:0;margin:0;height:auto;}
+#indexSmA, #indexSmB, #indexSmC {width:179px;background:#fff;padding:0;margin:0;border:none;text-align:left;}
+
+/* Family/Holiday Main */
+.section #zventsWidgetSmNav {padding-bottom:0px;}
+.section #zventsWidgetSm .ZventsEventDate {font-weight:bold; text-transform:uppercase; color:#000; font-size:11px; line-height:18px;}
+#halloweenZvents .ZventsEventDate {font-family: Arial, Helvetica, Verdana, sans-serif; font-weight:bold; text-transform:uppercase; color:#666666; font-size:11px; line-height:18px;
+		 		  float:left; margin-right:10px;}
+
+/* ZVENT TAB STYLES - AE Section Main */
+#zventsWidgetWd {width:939px;padding:3px 10px;margin:0;border-top:3px solid #3f5f9c;background:#ebf4fb;height:62px;overflow:hidden;}
+#zventsWidgetWd #divA, #zventsWidgetWd #divD {width:154px;float:left;}
+#zventsWidgetWd #divB, #zventsWidgetWd #divC {width:275px;float:left;}
+#zventsWidgetWd #divB, #zventsWidgetWd #divC {background:#fff;padding:5px;margin:3px 0;height:25px;}
+#zventsWidgetWd #divB {border-right:1px solid #999;height:44px;overflow:hidden;}
+#zventsWidgetWd #divC {text-align:left;height:44px;}
+#zventsWidgetWd #divC .linklist {margin:5px 0 0 12px;}
+#zventsWidgetWd #divA {font:bold 11px arial;text-transform:uppercase;padding:0;margin:7px 0 0 10px;height:auto;}
+#zventsWidgetWd #divA h3 {float:left;padding-bottom:10px;margin:0;}
+#zventsWidgetWd #divD {padding-left:10px;text-align:left;margin:5px 0 0 3px;}
+
+#zventsWidgetWd .ZventsEvent {border-bottom:1px dotted #3f5f9c;padding:3px 7px;}
+#zventsWidgetWd .zvTabLinks {float:left;text-transform:none;padding:0;margin:0;}
+#zventsWidgetWd .zvTabLinks .listPipe {position:relative;top:0px;padding:0 4px;}
+#zventsWidgetWd .zvTabLinks li {list-style-type:none;float:left;cursor:pointer;color:#3E5F9D;}
+
+#zventsWidgetWd #divD .leadIn {color:#000;padding:0 0 5px 0;margin:0;}
+#zventsWidgetWd #divD #swhere {width:115px;height:13px;border:3px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;margin:0;margin-right:5px;color:#999;font:11px arial;}
+#zventsWidgetWd #divD #searchForm {padding-top:0;}
+#zventsWidgetWd #divD .form-button {cursor:pointer;}
+
+/* ZVENT TAB STYLES - TTD Section Main - Local Search widget (larger) */
+#zventsWidgetLS {width:398px;padding:0;margin:0;font-family:arial,helvetica, sans-serif;}
+#zventsWidgetLSNav {width:398px;background:#fff url("http://cache.boston.com/universal/site_graphics/search_tab_underline_4px2.gif") repeat-x bottom;font:bold 11px arial;text-transform:uppercase;padding:0;margin:0;height:auto;}
+#zventsWidgetLSNav .sponsor {float:right;}
+#zventsWidgetLSNav .sponsor a:hover {border-bottom:none;text-decoration:none;}
+#zventsWidgetLSNav h3 {float:left;position:relative;top:11px;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab {float:left;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab ul {margin:0;padding:10px 0 0 0;list-style:none;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab li {list-style-type:none; display:inline;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a {float:left;display:block;background:url("http://cache.boston.com/universal/site_graphics/left_both.gif") no-repeat left top;margin:0 2px 3px 0;padding:0 0 0 9px;border-bottom:1px solid #3f5f9c;text-decoration:none;font-weight:bold;cursor:pointer;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a span {float:left;display:block;background:url("http://cache.boston.com/universal/site_graphics/right_both.gif") no-repeat right top;padding:5px 15px 4px 6px;font-weight:bold;color:#3f5f9c;}
+
+/* ZVENT TAB STYLES - Commented Backslash Hack hides rule from IE5-Mac \*/
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a span {float:none;}
+/* End IE5-Mac hack */
+
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a:hover span {color:#fff;text-decoration:none;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a.active {background-position:0 -150px; border-width:0;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a.active span {background-position:100% -150px;padding-bottom:5px;color:#fff;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a:hover {background-position:0% -150px;}
+#zventsWidgetLS #zventsWidgetLSNav #zventsTab a:hover span {background-position:100% -150px;}
+
+#zventsWidgetLS #divls1 #indexA, #zventsWidgetLS #divls2 #indexB, #zventsWidgetLS #divls3 #indexC {width:376px;background-color:#ebf4fb;padding:5px 10px;margin:0;border:none;text-align:left;}
+#zventsWidgetLS #divls1 #indexA a:hover, #zventsWidgetLS #divls2 #indexB a:hover, #zventsWidgetLS #divls3 #indexC a:hover {text-decoration:none;border-bottom:none;}
+#zventsWidgetLS #divls1 #indexA .leadIn, #zventsWidgetLS #divls2 #indexB .leadIn, #zventsWidgetLS #divls3 #indexC .leadIn {color:#000;}
+#zventsWidgetLS #divls1 #indexA #swhat  {width:170px;height:15px;border:2px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;margin:0;color:#999;font:11px arial;clear:left;}
+#zventsWidgetLS #divls2 #indexB #swhat, #zventsWidgetLS #divls3 #indexC #swhat {width:303px;height:15px;border:2px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;margin:0; margin-right:10px;color:#999;font:11px arial;}
+#zventsWidgetLS #divls1 #indexA #swhen {width:115px;height:15px;border:2px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;margin:0;margin-right:10px;color:#999;font:11px arial;}
+#zventsWidgetLS #divls1 #indexA #searchForm, #zventsWidgetLS #divls2 #indexB #searchForm, #zventsWidgetLS #divls3 #indexC #searchForm {float:left;padding:0 0 5px 0;margin:0;}
+#zventsWidgetLS #divls1 #indexA #searchForm {padding-bottom:10px;}
+#zventsWidgetLS #divls1 #indexA #searchForm form, #zventsWidgetLS #divls2 #indexB #searchForm form, #zventsWidgetLS #divls3 #indexC #searchForm form {width:376px;}
+#zventsWidgetLS #divls1 #indexA	.leftWhat {float:left;padding-right:10px;margin:0;}
+#zventsWidgetLS #divls1 #indexA .rightWhen {float:left;padding:0;margin:0;}
+
+#zventsWidgetLS #divls1 #indexA #swhen {clear:left;}
+#zventsWidgetLS .form-button {cursor:pointer;}
+#zventsWidgetLS #divls1 #indexA .form-button {float:left;}
+
+#zventsWidgetLS #zventsFooter {background-color:#ebf4fb;margin:0 0;padding-top:10px;}
+#zventsWidgetLS #browseBy, #zventsWidgetLS #browseByRate {padding:5px 0 10px 0;border-bottom:1px dotted #3f5f9c;}
+#zventsWidgetLS #browseByForm {padding:5px 0;border-bottom:1px dotted #3f5f9c;}
+#zventsWidgetLS #browseByLast {padding:5px 0 10px 0;}
+#zventsWidgetLS #zventsFooter {margin:0;padding:0;line-height:0px;}
+#zventsWidgetLS .dotted1px {margin:0;padding:0;}
+
+#zventsWidgetLS #divls3 #indexC #browseByRate .linklist {list-style-type:none;padding-left:0;margin-left:0;}
+#zventsWidgetLS .starL {padding-right:5px;}
+#zventsWidgetLS .dollarYes, #zventsWidgetLS .dollarNo {padding:0 1px 0 0;}
+#zventsWidgetLS .dollarLast {padding-right:4px;}
+#zventsWidgetLS .at {float:left;padding-right:5px;}
+#zventsWidgetLS #divls2 #indexB .at {position:relative;top:13px;}
+#zventsWidgetLS #divls3 #indexC .at {position:relative;top:3px;}
+#zventsWidgetLS #divls1 #indexA #searchForm .leadIn {float:left;padding-bottom:5px;}
+#zventsWidgetLS #divls3 #indexC .leadIn {padding:0 0 0 0;margin:0;}
+
+/* ZVENTS - BoMoms Search Include */
+#zventsSearchBO {width:336px;border:0;padding:0;margin:0;}
+#zventsSearchBO .header {border:0;padding:25px 0 10px 2px;margin:0;}
+#zventsSearchBO .main {border-left:3px solid #EB310D;border-right:3px solid #EB310D;padding:3px 15px;margin:0;}
+#zventsSearchBO .main #searchForm .leadIn {color:#58595B;font-size:9px;font-weight:normal;text-transform:uppercase;}
+#zventsSearchBO .main #searchForm #swhat {width:220px;margin:0 0 10px 0;}
+#zventsSearchBO .main #searchForm #swhen {width:177px;margin:0px 4px 15px 0;}
+#zventsSearchBO .main #searchForm #swhat, #zventsSearchBO .main #searchForm #swhen {height:15px;border:1px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;color:#8A8C8E; font:11px arial;}
+#zventsSearchBO .footer {border:0;padding:0;margin:0;}
+#zventsSearchBO #searchForm .form-button:hover {background-image:url(http://cache.boston.com/universal/site_graphics/zventsgobutton.gif);background-repeat:no-repeat;}
+#zventsSearchBO #searchForm .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/zventsgobutton.gif);border:0pt none;color:#FFFFFF;display:block;float:left;height:19px;padding:0pt 0px 3px;width:37px;}
+
+#zventsSearchBO .main .leadIn, #zventsSearchBO .main .subSectionHeader {color:#58595B;font-size:10px;font-weight:bold;line-height:10px;text-transform:uppercase;}
+#zventsSearchBO .linklistNoBullets li a, #zventsSearchBO .linklist li a {font-size:11px;line-height:15px;color:#3D8C9E;}
+#zventsSearchBO a:hover, #zventsSearchBO a:active, #zventsSearchBO a:focus {border-bottom:none;color:#3D8C9E;text-decoration:none;}
+#zventsSearchBO .grey1 {border-top:1px solid #999;padding:0 0 15px 0;}
+#zventsSearchBO .boMore {font-size:11px;color:#292929;text-align:center;}
+#zventsSearchBO .boMore a {color:#3D8C9E;}
+
+/* ZVENTS - BoMoms MiniCal Widgets  */
+#zventsWidgetBoMo {width:336px;padding:0;margin:0;}
+#zventsWidgetBoMo #zventsWidgetSmNav {width:336px;background:#fff;border-bottom:3px solid #EB310D;font:bold 11px arial;text-transform:uppercase;padding:0;margin:0;height:auto;}
+#zventsWidgetBoMo #zventsWidgetSmNav h3 {color:#3B4A4A;font-size:11px;font-weight:bold;}
+#zventsWidgetBoMo #indexSmA, #zventsWidgetBoMo #indexSmB {width:336px;background:#fff;padding:0;margin:0;border:none;text-align:left;}
+#zventsWidgetBoMo .leadOut a {color:#3D8C9E;}
+
+#zventsWidgetBoMo .ZventsEventName {color:#3D8C9E;}
+#zventsWidgetBoMo .ZventsEventTime {font-weight:bold; text-transform:uppercase; color:#58595B; font-size:11px; line-height:18px;}
+
+/* BoMoms Google Search Include */
+#googleSearchBO {width:336px;border:0;padding:0;margin:0;}
+#googleSearchBO .header {border:0;padding:25px 0 10px 2px;margin:0;}
+#googleSearchBO .main {border-left:3px solid #EB310D;border-right:3px solid #EB310D;padding:3px 15px;margin:0;}
+#googleSearchBO .main #searchForm .leadIn {color:#58595B;font-size:9px;font-weight:normal;text-transform:uppercase;}
+#googleSearchBO .main #searchForm #what {width:220px;margin:0 0 10px 0;}
+#googleSearchBO .main #searchForm #loc {width:148px;margin:0px 4px 15px 0;}
+#googleSearchBO .main #searchForm #what, #googleSearchBO .main #searchForm #loc {height:15px;border:1px solid #3f5f9c;float:left;padding:1px 1px 1px 3px;color:#8A8C8E; font:11px arial;}
+#googleSearchBO .footer {border:0;padding:0;margin:0;}
+#googleSearchBO #searchForm .form-button:hover {background-image:url(http://cache.boston.com/universal/site_graphics/zventsgobutton.gif);background-repeat:no-repeat;}
+#googleSearchBO #searchForm .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/zventsgobutton.gif);border:0pt none;color:#FFFFFF;display:block;float:left;height:19px;padding:0pt 0px 3px;width:37px;}
+
+#googleSearchBO .main .leadIn, #googleSearchBO .main .subSectionHeader {color:#58595B;font-size:10px;font-weight:bold;line-height:10px;text-transform:uppercase;}
+#googleSearchBO .linklistNoBullets li a, #googleSearchBO .linklist li a {font-size:11px;line-height:15px;color:#3D8C9E;}
+#googleSearchBO a:hover, #googleSearchBO a:active, #googleSearchBO a:focus {border-bottom:none;color:#3D8C9E;text-decoration:none;}
+#googleSearchBO .grey1 {border-top:1px solid #999;padding:0 0 15px 0;}
+#googleSearchBO .boMore {font-size:11px;color:#292929;text-align:center;}
+#googleSearchBO .boMore a {color:#3D8C9E;}
+
+/* Tastes-like-Bright Cove styles */
+
+#bcHomepage {position: relative;width: 396px;}
+#bcHomepage #bcTitleHeadline {font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;}
+#bcHomepage div#bcThumbContainer {position: relative; height: 100px;}
+
+#bcArticlePage {position: relative;width: 539px;}
+#bcArticlePage #bcPlayer  {border-top: 1px dotted #464646;border-bottom: 1px dotted #464646;padding: 10px 0;}
+#bcArticlePage p#bcVideoHeader {margin: 0; padding: 0; padding-bottom: 3px; font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 11px; visibility: hidden;}
+#bcArticlePage .bcTitleInfo {position: absolute; width: 189px; right: 5px; top: 12px;}
+#bcArticlePage .bcTitleInfo #bcTitleHeadline {display: block; font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14px; color: #464646;}
+#bcArticlePage .bcTitleInfo #bcDescription {display: block; font-family: "Georgia", "Times New Roman", Times, serif; font-size: 12px; color: #464646;}
+
+#bcCategoryPage {position: relative; width: 539px;}
+#bcCategoryPage .bcTitleInfo {padding: 5px;}
+#bcCategoryPage .bcTitleInfo #bcTitleHeadline {	display: block; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: bold;}
+#bcCategoryPage .bcTitleInfo #bcDescription {display: block;font-family: Arial, Helvetica, sans-serif;font-size: 12px;color: #464646;}
+#bcCategoryPage p#bcRelatedVideos {position: relative; top: -10px; color: #FFF; margin: 0; padding: 0; margin-top: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;}
+#bcCategoryPage #bcThumbContainer {position: relative; top: -5px;}
+
+.emailProduct {text-align:left;}
+#emailBox {padding:10px 10px 0 10px; border-bottom: 1px dotted #3F5F9C;}
+#emailBox iframe {width:100%; height:100px;}
+.signUp {font-size:10px; line-height:11px; color:#464646; letter-spacing:.07em; text-transform:uppercase;font-family:arial;text-align:left;}
+.signHead {font-size:14px; line-height:16px; font-family: arial; color:#000;  text-transform:uppercase; font-weight:bold;text-align:left;}
+div#regiLite {padding-top:5px;text-align:left;}
+div#regiLite img {float:left;width:50px;height:60px;padding:3px 7px 3px 3px;}
+div.signForm {padding:0;margin:0;vertical-align:top;}
+div.signForm form {margin:0;}
+p#signupmessage {color:#272727;font-family:"Georgia", "Times New Roman", Times, serif;font-size:12px;line-height:16px;margin:0;padding-bottom:5px;}
+p#signupmessage a {}
+div#pp {font-family:arial;font-size:10px;}
+div#pp a {color:#3f5f9c;text-decoration:none;}
+input.regiTextInput {border: solid 1px #3E5F9D;color:#272727;}
+input#regiSubmit {background:#fff;border: solid 1px #3E5F9D;color:#464646;font-size:10px;height:20px}
+
+#rAdClassy {float:left;width:280px;overflow:visible;padding-top:5px;}
+#rAdClassy a, #lAdClassy a {border-bottom:0;}
+#mainLogoClassy {float:left;position:relative;width:395px;overflow:hidden;text-align:center;padding-top:15px;}
+#lAdClassy {float:right;width:280px;text-align:right;overflow:visible;padding-top:5px;}
+
+/* Stars and Dollars for Frommers/Search */
+
+.starYes {text-align:left; background-image: url(http://cache.boston.com/universal/site_graphics/star_yellow.gif); background-repeat:no-repeat; background-position:center right; padding:5px 6px; text-transform:uppercase; font-size:12px;}
+.starNo {text-align:left; background-image: url(http://cache.boston.com/universal/site_graphics/star_gray.gif); background-repeat:no-repeat; background-position:center right; padding:5px 6px; text-transform:uppercase; font-size:12px;}
+.rateDown .leadIn a {background-image: url(http://cache.boston.com/universal/site_graphics/gray_downarrow.gif); padding-left:13px; background-repeat:no-repeat; background-position:left center; font-weight:bold; color:#000; text-transform:uppercase; border-bottom:none;}
+.rateUp .leadIn a {background-image: url(http://cache.boston.com/universal/site_graphics/up_arrow_dkgray.gif); padding-left:13px; background-repeat:no-repeat; background-position:left center; font-weight:bold; color:#000; text-transform:uppercase;border-bottom:none;}
+.rate .leadIn a {font-weight:bold; color:#464646; text-transform:uppercase;border-bottom:none;}
+.dollarYes {padding:0; text-transform:uppercase; font: 11px arial bold;color:#f90;}
+.dollarNo {padding:0; text-transform:uppercase; font: 11px arial bold;color:#999;}
+.search #Col1 .regTZ img.rate, .search #Col1 .regTZIndent img.rate {float:none; margin:0 2px 0 0;position:relative;top:1px; padding-bottom:0;}
+
+/* Search Destination widget */
+
+#searchDest {background:#EBF4FB none repeat scroll 0%;border-bottom:0px dotted #3F5F9C;border-top:0px dotted #3F5F9C;margin:0;padding:0;width:100%;text-align:left;}
+#searchDest h3 {padding-bottom:10px;}
+#searchDest div.row {clear:both;}
+#searchDest div.row span.at {float:left;font-size:9pt;padding-right:10px;text-align:right;width:43px;padding-top:5px;}
+#searchDest div.row span.searchForm {float:left;text-align:left;width:250px;}
+#searchDest div.row span.browseForm {float:left;text-align:left;width:250px;}
+#searchDest .searchForm .form-button:hover {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch_hover.gif);background-repeat:repeat-x;}
+#searchDest .searchForm .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif);border:0pt none;color:#FFFFFF;display:inline;float:none;font-weight:bold;height:21px;margin-left:0px;padding:1px 7px 3px;text-align:center;text-transform:uppercase;width:70px;height:19px;font-size:11px;}
+input#textField2 {width:155px;display:inline;margin-right:10px;font-size:11px;height:14px;}
+
+#searchDest form {margin-bottom:8px;}
+select#destinations {width:100%;height:19px;font-size:11px;}
+#stayGuide399 select#destinations {width:60%;}
+#stayGuide178 p, #stayGuide399 p {color:#3F5F9C;margin-bottom:16px;margin-top:0pt;}
+#stayGuide178 form, #stayGuide399 form {padding:0;margin:0;}
+#searchDest form {margin-bottom:8px;}
+
+
+
+#reWidgetNav {background:#FFFFFF url(http://cache.boston.com/universal/site_graphics/search_tab_underline_4px2.gif) repeat-x scroll center bottom;font-family:arial;font-size:11px;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:bold;height:auto;line-height:normal;margin:0pt;padding:0pt;text-transform:uppercase;width:410px;}
+#reWidgetTab ul{list-style-image:none;list-style-position:outside;list-style-type:none;margin:0pt;padding:7px 0pt 0pt;}
+#reWidgetTab li{display:inline;list-style-type:none;}
+#reWidgetTab a:hover span {background-position:100% -150px;color:#fff;}
+#reWidgetTab a:hover {background-position:0% -150px;}
+#reWidgetTab a.active {background-position:0pt -150px;border-width:0pt;}
+#reWidgetTab a {background:transparent url(http://cache.boston.com/universal/site_graphics/left_both.gif) no-repeat scroll left top;border-bottom:1px solid #3F5F9C;cursor:pointer;display:block;float:left;font-weight:bold;margin:0pt 2px 3px 0pt;padding:0pt 0pt 0pt 9px;text-decoration:none;}
+#reWidgetTab a.active span {background-position:100% -150px;color:#FFFFFF;padding-bottom:5px;}
+#reWidgetTab a span {float:none;}
+#reWidgetTab a span {background:transparent url(http://cache.boston.com/universal/site_graphics/right_both.gif) no-repeat scroll right top;color:#3F5F9C;display:block;float:left;font-weight:bold;padding:5px 15px 4px 6px;}
+#reWidget #indexA, #reWidget #indexB, #reWidget #indexC {padding:7px;width:400px;}
+
+#reWidget h3 {font-size:11px;display:inline;}
+#reWidget #indexA input#txt1, #reWidget #indexB input#txt1, #reWidget #indexC input#txt1 {width:200px;height:21px;font-size:11px;color:#999;}
+#reWidget #indexA select, #reWidget #indexB select, #reWidget #indexC select {height:19px;font-size:11px;color:#464646;}
+#reWidget #indexA form, #reWidget #indexB form, #reWidget #indexC form {margin:0;}
+#reWidget #indexA ul.buySectionlist, #reWidget #indexB ul.buySectionlist, #reWidget #indexC ul.buySectionlist  {padding:0;margin:0;}
+#reWidget #indexA .buySectionlist li, #reWidget #indexB .buySectionlist li, #reWidget #indexC .buySectionlist li {display:inline;list-style-type:none;}
+#reWidget #indexA .reBuy, #reWidget #indexA .buyPrice, #reWidget #indexC .ohouseSearch  {padding-bottom:7px;}
+#reWidget #indexA .leadOut, #reWidget #indexB .leadOut, #reWidget #indexC .leadOut  {padding-top:0;float:right;padding-right:10px;}
+#reWidget #indexA .reHeader, #reWidget #indexB .reHeader, #reWidget #indexC .reHeader {margin-bottom:7px;height:12px;}
+#reWidget #indexA .form-button, #reWidget #indexB .form-button, #reWidget #indexC .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif);border:0pt none;color:#FFFFFF;display:inline;float:none;font-size:11px;font-weight:bold;height:21px;margin-left:0px;padding:1px 7px 3px;text-align:center;text-transform:uppercase;width:62px;}
+#reWidget #indexA span, #reWidget #indexC span, #reWidget #indexB span {padding-right:10px;}
+#reWidget #indexB #rentRooms {padding-top:10px;padding-bottom:7px;}
+#reWidget #indexB #rentPrice, #reWidget #indexC #openPrice{padding-bottom:7px;}
+#reWidget #indexA .reTitle, #reWidget #indexB .reTitle, #reWidget #indexC .reTitle {font-size:11px;display:inline;text-transform:uppercase;font-weight:bold;float:left;}
+
+#mEmailed #mEmailedFooter, #mEmailed #adHolder, #mEmailed h3 {display:none;}
+#hpHotSearches #hpHotSearchesHeader, #hpHotSearches ul span {display:none;}
+
+
+
+/* globe widget */
+
+#globeSearch {width:auto;background:#EBF4FE;padding:7px 7px 10px;margin-bottom:10px;text-align:left;border-bottom:1px dotted #3F5F9C;border-top:1px dotted #3F5F9C;}
+#globeSearch h3 {padding-bottom:7px;}
+#globeSearchhead {border:0pt none;cursor:pointer;font-size:11px;text-align:left;padding-bottom:4px;}
+#globeSearchhead span {border:0pt none;cursor:pointer;font-size:11px;}
+#globeSearchhead span.searchOn {background-image:url(http://cache.boston.com/universal/site_graphics/gray_downarrow.gif);background-position:left center;background-repeat:no-repeat;font-size:11px;font-weight:bold;padding-left:9px;text-decoration:none;}
+#globeSearchhead span#globeArchive {margin-left:10px;text-decoration:underline;}
+.globeSearchform {position:relative;width:100%;float:left;}
+.globePopular {position:relative;float:left;width:40%;}
+.globePopular ul.gpopList {margin:0;padding:0 0 2px 0;}
+.globePopular ul.gpopList li {display:inline;}
+#globeSearch form {margin:0;}
+#globeSearch input#globeText {width:85%;}
+
+
+
+/* travel zip thing */
+div#travelCity {background:#EBF4FB none repeat scroll 0% 50%;border-bottom:1px dotted #3F5F9C;border-top:1px dotted #3F5F9C;margin:0pt;padding:7px;text-align:left;width:340px;}
+div#travelCity h3 {padding-bottom:7px;}
+div#travelCityform input.text {border:3px solid #3F5F9C;color:#999999;float:left;font-family:arial;font-size:11px;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;
+font-weight:normal;height:21px;line-height:normal;margin:0;padding:1px 1px 1px 3px;width:115px;}
+div#travelCityform form {margin-top:7px;margin-bottom:7px;}
+div#travelCity ul.linkList {padding:0;margin:0;}
+div#travelCity ul.linkList li {display:inline;list-style-type:none;}
+div#travelCityform .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif);border:0pt none;color:#FFFFFF;display:inline;float:none;font-size:12px;font-weight:bold;height:21px;margin-left:0px;padding:1px 0px 3px;text-align:center;text-transform:uppercase;width:37px;}
+
+/* bankrate button */
+.bankrate-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif);border:0pt none;color:#FFFFFF;display:inline;float:none;font-size:12px;font-weight:bold;height:21px;margin-left:0px;padding:1px 0px 3px;text-align:center;text-transform:uppercase;width:37px;color:#fff;}
+
+/* movie search */
+div#movieSearch {background:#EBF4FB none repeat scroll 0% 50%;border-bottom:1px dotted #3F5F9C;border-top:1px dotted #3F5F9C;margin:0pt;padding:7px;text-align:left;position:relative;}
+div#movieSearch h3 {padding-bottom:7px;}
+div#movieSearch div#searchForm {width:62%;float:left;}
+div#movieSearch form {margin:0;position:relative;float:left;margin-right:30px;}
+div#movieSearch input.movieName {display:inline;border:2px solid #3F5F9C;position:relative;}
+div#movieSearch input.form-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif);border:0pt none;color:#FFFFFF;display:inline;float:none;font-size:12px;font-weight:bold;height:22px;margin-left:0px;padding:1px 0px 3px;text-align:center;text-transform:uppercase;width:37px;position:relative;left:0px;top:1px;}
+
+/* most pop */
+
+#mostpopWidgetLg {margin:0pt;padding:0pt;width:auto;}
+#mostpopWidgetLgNav {border-bottom:4px solid #3F5F9C;font-family:arial;font-size:11px;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:bold;height:auto;line-height:normal;margin:0pt;padding:0pt;text-transform:uppercase;width:auto;}
+#mostpopTab {float:none;list-style-image:none;list-style-position:outside;list-style-type:none;margin:0pt;padding:0px 0pt 0pt;}
+#mostpopTab ul {list-style-image:none;list-style-position:outside;list-style-type:none;margin:0pt;padding:5px 0pt 0pt;}
+#mostpopTab li {display:inline;list-style-type:none;}
+#mostpopTab a.active {background-position:0pt -150px;border-width:0pt;}
+#mostpopTab a {background:transparent url(http://cache.boston.com/universal/site_graphics/left_both.gif) no-repeat scroll left top;border-bottom:1px solid #3F5F9C;cursor:pointer;display:block;float:left;font-weight:bold;margin:0pt 2px -1px 0pt;padding:0pt 0pt 0pt 9px;text-decoration:none;}
+#mostpopTab a.active span {background-position:100% -150px;color:#FFFFFF;padding-bottom:5px;}
+#mostpopTab a:hover span {background-position:100% -150px;color:#FFFFFF;text-decoration:none;}
+#mostpopTab a:hover {background-position:0% -150px;}
+#mostpopTab a span {float:none;}
+#mostpopTab a span {background:transparent url(http://cache.boston.com/universal/site_graphics/right_both.gif) no-repeat scroll right top;color:#3F5F9C;display:block;float:left;font-weight:bold;padding:5px 15px 4px 6px;}
+#mEmailed #mEmailedCont ol{padding-left:25px;}
+#mEmailed #mEmailedCont a {font-weight:bold;}
+#hpHotSearches a {font-weight:bold;}
+#hpHotSearches ul {padding-left:25px;padding-bottom:0px;}
+
+
+
+/* For Sports Stats*/
+.padRight10 #shsBody {width: 100%;}
+
+/* For Sports Scoreboard*/
+#sportsScoreboardCont {width:399px;background-image: url(http://cache.boston.com/universal/site_graphics/bg_white_border.gif);background-repeat:repeat-y;background-position: top center;padding:5px 0pt 10px;}
+#sportsScoreboardCont .scoreTime {background:#fff;text-align:center;text-transform:uppercase;color:#666666;font-family:arial;font-size:11px;font-weight:bold;width:100%;margin-bottom:5px;}
+#sportsScoreboardCont .scoreA, .scoreB {font-size:23px;color:#000;font-weight:bold;letter-spacing: -1px;}
+#sportsScoreboardCont .aScore {float:left;overflow:hidden;width:48%;padding-bottom:5px;}
+#sportsScoreboardCont .bScore {float:right;overflow:hidden;width:48%;padding-bottom:5px;}
+#sportsScoreboardCont .aScore img {float:left;}
+#sportsScoreboardCont .aScore .overline {text-align:center;}
+#sportsScoreboardCont .aScore .scoreA {text-align:center;}
+#sportsScoreboardCont .bScore img {float:right;clear:right;}
+#sportsScoreboardCont .bScore .overline {text-align:center;clear:left;}
+#sportsScoreboardCont .bScore .scoreB {float:none;clear:left;padding-left:4px;text-align:center;}
+#sportsScoreboardCont div.split50 div.aSide {float:left;overflow:hidden;width:47%;padding-left:4px;}
+#sportsScoreboardCont div.split50 div.bSide {float:right;overflow:hidden;width:47%;padding-right:5px;text-align:left;}
+#sportsScoreboardCont .teamCallout, #sportsScoreboardCont .media  {font-size:11px;line-height:15px;}
+#sportsScoreboardCont .matchup {font-weight:bold;line-height:15px;}
+#sportsScoreboardCont .split50 {padding:2px;}
+#sportsScoreboardCont .linklistInline {text-align:center;}
+
+#relatedBox #sportsScoreboardCont {width:180px;}
+#relatedBox #sportsScoreboardCont .aSide {width:100%;}
+#relatedBox #sportsScoreboardCont ul.linklistInline {font-size:12px;}
+
+
+
+/* Tease overrides */
+.img178h2above .imgCapCred img, .img178h2left .imgCapCred img, .img178h3above .imgCapCred img, .img178h3left .imgCapCred img, .imgLeft179 .imgCapCred img, .imgRight179 .imgCapCred img {float:none;}
+.img178h2above .imgCapCred, .img178h2left .imgCapCred, .img178h3above .imgCapCred, .img178h3left .imgCapCred, .imgLeft179 .imgCapCred {float:left; width:178px;}
+.imgRight179 .imgCapCred {float:right; width:178px;}
+.img178h3leftbold .imgCapCred img {width:178px;}
+.img178h3leftbold .imgCapCred {width:178px;}
+.imgRight179 .imgCapCred img, .imgLeft179 .imgCapCred img {width:178px; height:105px;}
+.imgRight179 img, .imgLeft179 img {width:auto; height:auto; float:none;}
+.img259h3above .imgCapCred, .img259h3below .imgCapCred, .img259headlineabove .imgCapCred, .img259headlinebelow .imgCapCred {width:259px;}
+.img329h2above .imgCapCred img, .img329h2below .imgCapCred img, .img329h6below .imgCapCred img, .img329h6above .imgCapCred img {width:329px; margin-top:0;}
+.img329h2above .imgCapCred, .img329h2below .imgCapCred, .img329h6above .imgCapCred, .img329h6below .imgCapCred {margin-top:3px; width:329px;}
+.img396h6above .imgCapCred img, .img396h2above .imgCapCred img, .img396h2below .imgCapCred img {margin-top:0; width:396px;}
+.img396h6above .imgCapCred, .img396h2above .imgCapCred, .img396h2below .imgCapCred {width:396px; margin-top:3px;}
+.imgCapCred .attr {float:right;}
+.imgCapCred .caption {clear:right; display:block;}
+.imgCapCred {margin-right:5px;}
+
+/* For Full Width */
+.fullC #Col1 {width:959px; margin:0;float:left;padding:10px 0 0 0;}
+.fullC #Col3 {display:none;}
+
+/* Gabriels needed */
+.textBlack11 {font-size: 11px; color: #272727;}
+
+/* new globe subscribe */
+
+.gsHolder {margin-left:8px;}
+.gsHolder .gsBody {background-color:#cfdcee;padding:10px 10px 10px 0;width:209px;}
+.gsHolder .topSlice {background-image:url(http://cache.boston.com/universal/site_graphics/top_globe_store.gif);background-repeat:no-repeat;height:10px;font-size:0;}
+.gsHolder .bottomSlice {background-image:url(http://cache.boston.com/universal/site_graphics/bottom_globe_store.gif);background-repeat:no-repeat;}
+.gsHolder .gsDivide {border-top:1px solid #A4B7D7;height:1px;margin:15px 0 15px 10px;}
+.gsHolder .globeImg {float:left;}
+div.split4060 div.aSide {float:left;overflow:hidden;width:40%;}
+div.split4060 div.bSide {float:left;overflow:hidden;width:60%;}
+.gsHolder .gsubIcon {float:left;}
+.gsHolder .gsubText {float:left;width:65%}
+
+
+
+/* CHANGES FOR GLOBAL NAV DIV SWITCH START HERE */
+#globalNavRedux .gnavContainer li {padding-right: 7px;padding-left: 8px;}
+#globalNavRedux #gjobs {padding-left: 8px;padding-right: 8px;}
+#globalNavRedux #gre {padding-left: 9px;padding-right: 9px;}
+#globalNavRedux #gsearch {padding-left: 7px;padding-right: 4px;}
+#globalNavRedux #gcars {padding-left: 9px;padding-right: 8px;}
+#globalNavRedux #gjobs_on {padding-left: 8px;padding-right: 8px;}
+#globalNavRedux #gre_on {padding-left: 9px;padding-right: 9px;}
+#globalNavRedux #gsearch_on {padding-left: 7px;padding-right: 4px;}
+#globalNavRedux #gcars_on {padding-left: 9px;padding-right: 8px;}
+
+
+
+#globalNavRedux .gnavContainer li {float:left; list-style-type:none; padding-top: 8px; padding-bottom: 8px; border-right:1px dotted #fff;position:relative; height:29px; font-size:12px;}
+#globalNavRedux #search {border:0; padding-right:0;}
+#globalNavRedux .gnavContainer {width: 958px; margin:0; padding:0; border-bottom:1px solid #203c73; font-size:11px; font-weight:bold; text-transform:uppercase; height:28px; position:relative; overflow:hidden;z-index:3;}
+#globalNavRedux .gnavContainer a {padding:0 3px;}
+#globalNavRedux a {text-decoration:none; color:#203c73;}
+#globalNavRedux li a {display:block; position:relative; top:0px; line-height:20px;}
+#globalNavRedux #sNav {margin:0; padding:0; background-color:#e5e5e5; height:27px; overflow:hidden;width:958px;}
+#globalNavRedux #sNav li {list-style-type:none; display:inline; float:left; padding:0 10px; top:5px;}
+#globalNavRedux #sNav li a {top:4px;}
+#globalNavRedux #sNav a {color:#464646;}
+#globalNavRedux #sNav a:hover {color:#000;}
+#globalNavRedux #sNav li.active a {color:#000;font-weight:bold;}
+#globalNavRedux #globalNav #sNav a:focus {color:#000;}
+#globalNavRedux .gnavContainer li {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_off.gif); background-repeat: repeat-x;}
+#globalNavRedux .gnavContainer li.active {color:#fff;background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif); background-repeat: repeat-x;}
+#globalNavRedux .gnavContainer li.active a{color:#fff;}
+#globalNavRedux .gnavContainer li:hover {color:#fff;background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif); background-repeat: repeat-x;}
+#globalNavRedux .gnavContainer li:hover a {color:#fff; border-bottom:none;}
+#globalNavRedux a:hover, #globalNavRedux a:focus, #globalNav a:active {border-bottom:none;}
+#headL img, #headR img {padding:5px 0 10px 0 }
+#header #globeIcon {padding:0;}
+
+#globalNavRedux .gnavContainer li.cfied_on a:hover, #globalNavRedux li#gcars a:hover, #globalNavRedux li#gjobs a:hover, #globalNavRedux li#gre a:hover, #globalNavRedux li#gsearch a:hover {color:#fff;}
+#hp #globalNavRedux .gnavContainer li.cfied_on a:hover {color:#203C73;}
+#globalNavRedux li#gcars, #globalNavRedux li#gjobs, #globalNavRedux li#gre, #globalNavRedux li#gsearch, #globalNavRedux .gnavContainer li.cfied {background-image:url(http://cache.boston.com/universal/site_graphics/nav_classifieds_off.gif);color:#fff;}
+#globalNavRedux li#gcars:hover, #globalNavRedux li#gjobs:hover, #globalNavRedux li#gre:hover, #globalNavRedux li#gsearch:hover, #globalNavRedux .gnavContainer li.cfied:hover {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif);color:#fff;}
+#globalNavRedux .gnavContainer li.active {background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif);color:#fff;}
+#globalNavRedux .gnavContainer li#gsearch {border-right:none;}
+#globalNavRedux .gnavContainer li#gsearch_on {border-right:none;}
+
+#secnav_ot {display:none;}
+/* AND NOW THEY STOP*/
+
+
+
+/* quote */
+ul.quoteTease {background-image:url(http://cache.boston.com/universal/site_graphics/quote_left.gif);background-repeat:no-repeat;background-position:0 5px;padding-left:23px;list-style-type:none;margin-top:5px;margin-bottom:10px;}
+.quotation .quoteTease .quote {font:italic 17px georgia, times, Times New Roman, serif;line-height:23px;text-decoration:none;color:#272727;}
+.quotation .quoteTease .quote a {font:italic 17px georgia, times, Times New Roman, serif;line-height:23px;text-decoration:none;color:#272727;}
+.quotation .quoteTease .quote a:hover {text-decoration:underline;border:none;}
+.quoteTease li.leftQuote, .quoteTease li.quote, .quoteTease li.rightQuote {display:inline;}
+.quoteTease li.annotation {font: 11px arial, helvetica, sans-serif;font-weight:bold;color:#666;line-height:8px;padding-top:8px;}
+.quoteTease li.rightQuote {height:16px;width:23px;margin-left:7px;}
+
+/* For DoGood shenanigans */
+#g2g {display:none;}
+.gallery #Col2 #g2g {display:block; background-color:#EBF4FB; width:189px; text-align:left;}
+#g2gMargins {padding:10px 5px;}
+#g2g form {margin:10px 0 0 0; padding:0;}
+#g2g form .form-button {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif); height:21px; display:block; color:#fff; font-weight:bold; width:37px; border:0;float:left;padding:0 0 3px 0; font-family: Arial, Helvetica, sans-serif; float:right;}
+#g2g form .form-button:link {color: #fff;}
+#g2g form .form-button:hover {background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch_hover.gif); background-repeat:repeat-x;}
+#g2g select, #g2g .search_box {margin-bottom:5px; width:179px;}
+#g2g .search_box {color:#999; width:175px;}
+#g2g .active {color:#000;}
+/* End DoGood shenanigans */
+
+.graphicIntro { color:#272727; font-family:"Georgia","Times New Roman",Times,serif; font-size:14px; line-height:20px; }
+
+/* Things to do Changes v1 */
+
+#ttdRedux {margin:0px;overflow:hidden;padding:0;}
+#ttdRedux .ttdContent {border-right: solid 2px #0995e4;border-left: solid 2px #0995e4;zoom:1;height:125px;}
+#ttdRedux .ttdTitleAd {height:20px;}
+#ttdRedux .ttdTitleAd h3 {display:inline;font-size:14px;color:#000;}
+#ttdRedux .ttdTitleAd span.title {float:left;padding:0 0 0 10px;}
+#ttdRedux .ttdTitleAd span.ad {float:right;margin-right:10px;height:25px;width:105px;position:relative;top:-8px;}
+#ttdRedux .ttdCalendar {background:#d9ecfa;padding:6px 10px 8px 10px;border-top:1px dotted #88bde9;text-align:center;}
+#ttdRedux .ttdCalendar a:hover {border:none;}
+#ttdRedux .ttdCalendar a img.day {border-style:solid;border-width:1px 1px 0 1px;border-color:#0995e4; width:34px;height:11px;}
+#ttdRedux .ttdCalendar a img.date {border-style:solid;border-width:0px 1px 1px 1px;border-color:#0995e4;width:34px;height:16px;}
+#ttdRedux .ttdCalendar a:hover img.day {border-style:solid;border-width:1px 1px 0 1px;border-color:#e95d08;}
+#ttdRedux .ttdCalendar a:hover img.date {border-style:solid;border-width:0px 1px 1px 1px;border-color:#e95d08;}
+#ttdRedux .ttdTeases {background:#d9ecfa;text-align:left;border-bottom:1px dotted #88bde9;}
+#ttdRedux .ttdTeases ul {margin:0;list-style-type:none;}
+#ttdRedux .ttdTeases ul li {line-height:12px;}
+#ttdRedux .moreLinks {top: 2px;position:relative;}
+#ttdRedux .moreLinks ul {list-style-type:none;text-align:center;margin:0;padding: 0px;}
+#ttdRedux .moreLinks ul.linklist li {margin:0;padding:0;}
+#ttdRedux .topCorners {background-image: url(http://cache.boston.com/universal/site_graphics/ttd_calimages/top.gif);background-repeat:no-repeat;line-height:12px;}
+#ttdRedux .bottomCorners {background-image: url(http://cache.boston.com/universal/site_graphics/ttd_calimages/bottom.gif);background-repeat:no-repeat;line-height:12px;}
+#ttdRedux td.calCell {padding-right:10px;}
+
+/* Generic Tabbed Widget Styles */
+.search {background:#fff;}
+.tabbed .tabs {margin:0 0 0 10px; padding:0; font-family:arial; font-size:11px; font-weight:bold; text-transform:uppercase;}
+.tabbed .tabs a {background:transparent url(http://cache.boston.com/universal/site_graphics/re_comm_left_yellow.gif) no-repeat scroll 0 0; cursor:pointer; display:block; float:left; margin:0pt 10px 0pt 0pt; padding:0pt 0pt 0pt 9px; text-decoration:none; border:0;}
+.tabbed .tabs li {display:inline; list-style-type:none;}
+.tabbed .tabs {list-style-image:none; list-style-position:outside; list-style-type:none;}
+.tabbed .tabs a.active, .tabbed .tabs a:hover, .tabbed .tabs a:active, .tabbed .tabs a:focus {background-position:0% -150px; border-bottom:0px none; border-width:0pt 0pt 0px;}
+.tabbed .tabs a span {background:transparent url(http://cache.boston.com/universal/site_graphics/re_comm_right_yellow.gif) no-repeat scroll right top; color:#000000; display:block; font-weight:bold; padding:5px 15px 4px 6px;}
+.tabbed .tabContent {background:#F7EC97 none repeat scroll 0%; padding:15px 10px}
+.tabbed .tabs a:hover span, .tabbed .tabs a:active span, .tabbed .tabs a:focus span, .tabbed .tabs a.active span {background-position:100% -150px;}
+
+/* Generic Tabbed Box Form styles */
+.tabbed form {margin:0; padding:0; border:0;}
+.tabbed fieldset {border:0; margin:0; padding:0; display:inline;}
+.tabbed form p {padding:0; margin:0; display:inline;}
+.tabbed form legend {display:none;}
+.tabbed form ol {margin:0; padding:0;}
+.tabbed form ol li {float:left; list-style-type:none;}
+.tabbed form label {display:block; color:#000; font-family:Arial,Helvetica,sans-serif; font-size:10px; letter-spacing:0.07em; line-height:11px; text-transform:uppercase; padding-bottom:3px;}
+.tabbed input.submit {margin-bottom:9px; height:22px; width:36px; padding:0; position:relative; font-size:11px; font-weight:bold; background:#fff; border:1px solid #999; cursor:pointer; background-image:url(http://cache.boston.com/universal/site_graphics/lightGrayGradient.gif); background-repeat:repeat-x; font-size:12px; background-position:bottom center;}
+.tabbed .input {color: #999; font-family:Helvatica, Arial, sans-serif; font-size:13px; padding: 4px 5px 3px 5px;}
+
+/* Specific Tabbed Box Form styles */
+.tabbed form li {padding:0 5px;}
+
+a.globePop {display:block;}
+
+/* Bomoms Featured Content box */
+.payload {margin-bottom:10px; position:relative; margin-left:12px; padding:0 10px;}
+.bottomBorder {background-image:url(http://bomoms.boston.com/custom/bomoms/images/shadow_btm.gif); position:relative; height:10px;}
+.bottomBorder #bottomRight {position:absolute; right:-1px;}
+#topLeft {position:absolute; top:0; left:0;}
+#featuredContent {width:615px; background-image:url(http://bomoms.boston.com/custom/bomoms/images/shadow_lft.gif); background-repeat:repeat-y; position:relative; margin-top:10px;}
+.twoCell50 .payload, .threeCell .payload {background-image:url(http://cache.boston.com/universal/site_graphics/bomoms_581_bg_bdbdbd.gif); background-repeat: repeat-y; position:relative; background-position:10px 0;}
+.twoCell50 .cellC {display:none;}
+.twoCell50 .cellA, .twoCell50 .cellB {width:280px;}
+.twoCell50 .cellA {float:left;}
+.twoCell50 .cellB {float:right;}
+
+.twoCell50h .cellC {display:none;}
+.twoCell50h .cellA, .twoCell50h .cellB {width:581px; margin:0 10px;}
+.twoCell50h .cellA {margin-bottom:10px; padding-bottom:10px; border-bottom:1px dotted #bdbdbd;}
+
+.threeCell .cellA {float:left; width:280px;}
+.threeCell .cellB, .threeCell .cellC {float:right; width:280px; }
+.threeCell .cellB {margin-bottom:10px; padding-bottom:10px; border-bottom:1px dotted #bdbdbd;}
+
+
+
+/* redesign pop up styles */
+body#popUp {min-width: 565px}
+body#popUp #container {width:77%;}
+body#popUp #headContain {padding-left:110px;padding-right:110px;}
+body#popUp #headContain .column {position:relative;float:left;}
+body#popUp #center {width:100%;text-align:center;overflow:hidden;}
+body#popUp #left { width:100px;right:100px;margin-left:-100%;}
+body#popUp #right {width:100px;margin-right:-100%;right:-10px;}
+body#popUp #popHeader {border-top:3px solid #000066;height:24px;position:relative;width:100%;padding-top:10px;border-bottom: 1px dotted #3E5F9D;padding-bottom:15px;margin-bottom:15px;}
+body#popUp #right a {font:11px arial;color:#666;background-image: url(http://cache.boston.com/universal/site_graphics/graphic_closeWindow.gif);backgrou\
+nd-repeat:no-repeat;background-position:right center;padding-right:20px;margin-right:10px;}
+body#popUp #right a:hover {background-image: url(http://cache.boston.com/universal/site_graphics/graphic_closeWindow_hover.gif);color:#002878;border:none;}
+body#popUp .popUp {width:100%;}
+body#popUp .popGoogleAds {margin-bottom:10px;}
+body#popUp .popDisc {width:50%;margin-left:25%;}
+
+/* cars search form */
+select {font-size:12px;overflow:hidden;}
+#carsFormHolder h3 {font:bold 18px Arial;color:#fff;margin-bottom:8px;line-height:18px;}
+#carsFormHolder .subSectionHeader {font:bold 14px Arial;color:#fff;margin-bottom:8px;line-height:16px;}
+#carsFormHolder {height:135px;width:729px;background-image:url(http://cache.boston.com/cars/search/cars_blue_gradient.gif);background-repeat:repeat-x;padding:10px;margin-bottom:10px;}
+#carsFormHolder #buyUsed {position:relative;float:left;width:348px;margin-right:10px;text-align:left;border-right:dotted 1px #8EBBFF;padding-right:10px;}
+#carsFormHolder #buyNew {position:relative;float:left;text-align:left;width:25%;margin-right:10px;border-right:dotted 1px #8EBBFF;}
+#carsFormHolder #carDeals {position:relative;float:left;width:20%;font-size:11px;color:#fff;text-align:left;}
+#carDeals .cLogo a{display:block;height:50px;width:158px;}
+#carsFormBG {background-image: url(http://cache.boston.com/cars/search/cars_powered_by_logo.gif);background-position:bottom right;height:152px;background-repeat:no-repeat;}
+
+#buyUsed .make {position:relative;float:left;margin-right:10px;}
+#buyUsed .model {position:relative;float:left;margin-right:10px;}
+#buyUsed .max {position:relative;float:left;}
+#buyUsed .within {position:relative;float:left;margin:10px 25px 0 0;color:#fff;font-size:10px;text-transform:uppercase;}
+#buyUsed .within select {margin-right:5px;}
+#buyUsed .zip {position:relative;float:left;margin:10px 0 0 0;}
+#buyUsed .zip input.zip {margin-right:10px;}
+#buyUsed span {display:block;color:#fff;font-size:10px;margin-bottom:3px;text-transform:uppercase;}
+#buyUsed .button {position:relative;float:left;top:26px;left:8px;}
+.extraLinks {margin-top:10px;font-size:10px;color:#fff;}
+.extraLinks a {color:#fff;font-size:10px;}
+#buyUsed .searchUsed {background-image:url(http://cache.boston.com/cars/search/search_stretch.gif);background-repeat:repeat-x;padding:1px 0;border:0;text-transform:uppercase;font-size:10px;color:#fff;font-weight:bold;border:solid 1px #1B1B1B;cursor:pointer;width:99px;}
+input.zipForm {font-size:12px;border:0;}
+
+#buyNew span {display:block;color:#fff;font-size:10px;margin-bottom:3px;text-transform:uppercase;}
+#buyNew .yourZip {margin-top:10px;position:relative;float:left;}
+#buyNew .newButton {position:relative;float:left;top:26px;left:10px;}
+#buyNew .searchNew {background-image:url(http://cache.boston.com/cars/search/search_stretch.gif);background-repeat:repeat-x;padding:1px 0;border:0;text-transform:uppercase;font-size:10px;color:#fff;font-weight:bold;border:solid 1px #1B1B1B;cursor:pointer;width:96px;}
+input.yourZipCode {font-size:12px;border:0;}
+
+#carDeals a.usedSpecials {background-image:url(http://cache.boston.com/cars/search/used_car_OFF.gif);background-repeat:no-repeat;width:148px;height:23px;display:block;}
+#carDeals a.usedSpecials:hover {background-image:url(http://cache.boston.com/cars/search/used_car_ON.gif);background-repeat:no-repeat;border:none;}
+#carDeals a.newSpecials {background-image:url(http://cache.boston.com/cars/search/new_car_OFF.gif);background-repeat:no-repeat;width:148px;height:23px;display:block;}
+#carDeals a.newSpecials:hover {background-image:url(http://cache.boston.com/cars/search/new_car_ON.gif);background-repeat:no-repeat;border:none;}
+
+/* Cars Gas Search */
+#cheapGas {background-color:#fff; text-align:left; width:329px;}
+#cheapGas legend {font-size:14px; line-height:16px; font-weight:bold; padding:0; margin:0; padding-bottom:5px;}
+#cheapGas img {float:left;}
+#cheapGas form {margin:0; padding:0;}
+#cheapGas fieldset {border:0; margin:0; padding:0;}
+#cheapGas ol {display:inline; margin:0; padding:0;}
+#cheapGas ol li {display:inline; list-style-type:none;}
+#cheapGas input, #cheapGas select {font-size:10px;}
+#cheapGas li label {font-weight:bold; display:none;}
+#cheapGas form .submit {position:relative; top:4px;}
+#cheapGas #location {width:120px;}
+
+/* Cars Ask Question Form */
+#askForm {padding: 10px; background:#d9ecfa; }
+#askForm p {display:block; line-height: 17px ; padding: 0; margin: 5px 0;  }
+#askForm form    {padding: 0 10px 10px 0 ; }
+#askForm form div   {padding: 0 0 5px 0 ; }
+#askForm textarea { height:100px; width:100%; }
+#askForm .form-button { background-image:url(http://cache.boston.com/universal/site_graphics/button_stretch.gif); border:0pt none; color:#FFFFFF; font-family:Arial,Helvetica,sans-serif; font-weight:bold; line-height: 21px; height:21px; padding:0px; text-transform:uppercase; width:auto; position: relative; }
+
+/* Tabbed Widget displaye */
+.tabWidget {padding-top:10px;}
+.tabWidget .tabs {background-color:#e5e5e5; margin:2px 0 0 0; padding:0; font-family:arial; font-size:12px; font-weight:bold; text-transform:uppercase;color:#333; height:19px; margin-top:4px; border-bottom:1px solid #333;}
+.tabWidget .tabs li {display:inline; list-style-type:none;}
+
+.tabWidget .tabs li a {display:block; float:left; position:relative; border-bottom:0; margin:0 4px; cursor:pointer; background-color:#e5e5e5; }
+.tabWidget .tabs span {cursor:pointer; display:block; padding:0 3px; position:relative; top:2px; float:left;}
+
+.tabWidget .tabs li a.active {border:1px solid #000; display:block; float:left; height:21px; position:relative; top:-3px; border-bottom:0; margin:0 3px; cursor:pointer; background-color:#fff; color:#000;}
+.tabWidget .tabs a.active span {cursor:pointer; display:block; height:20px; background-color:#fff; padding:0 3px; position:relative; top:4px;}
+
+.tabWidget .tabs li a:hover, .tabWidget .tabs li a:active, .tabWidget .tabs li a:focus {border:1px solid #333; border-bottom:0; height:21px; top:-3px; margin:0 3px; color:#333;}
+.tabWidget .tabs li a:hover span, .tabWidget .tabs li a:active span, .tabWidget .tabs li a:focus span {top:4px}
+
+
+
+ul.fiveTC {margin:10px 0; padding:0;}
+ul.fiveTC li {display:inline; list-style-type:none; margin:0 10px; padding:0; width:100px; float:left;}
+ul.fiveTC img {display:block; float:none;}
+ul.fiveTC .cf {visibility:hidden; height:0; width:0;}
+ul.fiveTC .img100h3Left .tt {display:none;}
+ul.fiveTC .img100h3Left .cf {clear:none;}
+ul.fiveTC .img100h3Left h3 {font-size:12px;}
+ul.fiveTC .tt .span {display:none;}
+ul.fiveTC .img100h3Left {width:100px; overflow:hidden;}
+
+.superLede img {width:609px;}
+.superLede h1 {font-size:42px; margin:10px 0 10px 0; text-align:center;}
+.superLede .tt {font-size:15px; line-height:21px;}
+.superLede .tt a {font-weight:bold; font-family:arial, helvetica, sans-serif; margin-left:5px;}
+
+/* START of new additions for design changes - 10/08 */
+h3 {font-size: 17px;line-height:19px;text-transform: none;}
+a.bold {font-size: 14px;}
+li a.bold {font-size: 12px;}
+.img80headlineLeftBold, .img100headlineLeftBold, .img100headlineBoldLeft {font-size: 14px;line-height: 16px;}
+ul.linklist li {line-height: 14px;padding-bottom: 4px;}
+h2 {font-size: 24px;line-height: 25px;font-weight: bold;}
+h3.sectionHeader {font-size: 15px;text-transform: uppercase;display: block;line-height: 17px;}
+#relatedBox .sectionHeader {font-size: 14px;}
+#insideBcom h3 {font-size: 14px;line-height: 16px;}
+ul.sectionLinks {margin-top: 3px;padding-top: 3px;padding-bottom: 3px;border-top:1px solid #b7cdff;border-bottom:1px solid #b7cdff; background-color: #EBF4FB;}
+#jobs ul.sectionLinks, #re ul.sectionLinks, #autos ul.sectionLinks {padding-left: 5px; margin-top:0;}
+#classyWidget ul.sectionLinks {margin-top: 0px;border-top: 0px;}
+ul.sectionLinks a {color: #333;}
+ul.sectionLinks a:hover {text-decoration: underline;border-bottom: none;  }
+#content.section .dotted4px, #hp .dotted4px, #hp .dotted4pxnopad {height:0px;margin:16px 0pt 4px;width:auto;border-bottom: 4px solid #3F5F9C;}
+.dotted4pxnopad {margin:0px;}
+#ae {padding-top: 0px;}
+.tt {padding-top: 2px;}
+.ltBlueBox {border: 1px solid #b7cdff;}
+.relatedBox { padding-top: 7px; border-top: 4px solid #B7DCFF; margin: 6px 20px 10px 0; }
+.relatedBox a{font-weight:bold;}
+
+
+
+/* Section header carets */
+h3.sectionHeader a {color:#000; background:transparent url(http://cache.boston.com/universal/site_graphics/caret_h3_trans.gif) no-repeat right 1px; padding-right:16px;}
+h3.sectionHeader a:hover {color:#000; background-position:right -35px;}
+a.subSectionHeader, .subSectionHeader a {color:#000;background:transparent url(http://cache.boston.com/universal/site_graphics/caret_leadout_trans.gif) no-repeat right 0;padding-right:13px;display:inline;}
+a.subSectionHeader:hover, .subSectionHeader a:hover {color:#000;background-position:right -26px;}
+
+
+
+/* HP if we want to get picky */
+.breakingNews h3.breaking, h3.breaking {font-size: 15px;text-transform: uppercase;}
+#jobs h3.sectionHeader a, #re h3.sectionHeader a, #autos h3.sectionHeader a {background-image:none;padding-right:0px;font-size:15px;}
+#jobs h3.sectionHeader a:hover, #re h3.sectionHeader a:hover, #autos h3.sectionHeader a:hover {background-image:none;padding-right:0px;color:#ee8822;}
+
+/*NEW SHARETOOLS*/
+
+#sharetoolContainer ul {height: 20px; list-style-type: none; margin: 16px auto 20px; padding: 0;}
+#sharetoolContainer ul li {border-top: medium none !important; display: block; float: left; list-style: none outside none; margin:0 4px 0 0; padding: 0px 0px 0;}
+#sharetoolContainer {border: 0 none; clear: both; display: block; font-size: 11px; height: auto; margin: 0 -10px 10px; padding: 0 15px; width: auto; }
+#sharetoolContainer .etaf {
+    background:url(http://cache.boston.com/universal/site_graphics/email_btn_text.png) top left no-repeat;
+    display:block;
+    font-size:0;
+    height:22px;
+    width:50px;
+}
+#sharetoolContainer .recommendbutton {border:none; overflow:hidden; width:102px; height:24px; display:block; background:url(http://cache.boston.com/universal/site_graphics/recommendbutton.png) top left no-repeat; text-indent:-9999px;}
+
+/* SHAREIFY COUNTER FOR SHARETOOLS */
+.share_button {float:left;display:block;text-align: center;margin:0;padding:0;position: relative;cursor: pointer;}
+.share_button a {text-decoration: none;}
+.shareify_div {float:left;margin:0;padding: 0;}
+.shareify_div img { border:0;padding:0;margin:0;width:60px;height:22px;}
+.shareify_count {background-image:url('http://cache.boston.com/universal/site_graphics/share_fbarrow.png');background-position:left center;background-repeat:no-repeat;display:inline-block;height:20px;margin: 0 0 0 5px;padding: 0 0 0 3px;width:30px;}
+.shareify_count_number {background: #ECEEF5;border: 1px solid #CAD4E7;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px;height:17px;padding-top:3px;position:relative;width: 25px;
+/* text */
+color:#000;font-family:sans-serif;font-size:11px;text-decoration:none;}
+
+/* END of new additions for design changes - 10/08 */
+
+/*Feedback form styles */
+#feedbackForm, #feedbackForm fieldset {border: 0; }
+#feedbackForm label, #feedbackForm input, #feedbackForm select {clear: both; float: left;    }
+#feedbackForm label {margin: 10px  0 0 0; width: auto; width: 100%;   display: block; float: left;  }
+#feedbackFormRequired, #feedbackFormRequired label {width: 240px;  display: block ; float: left;  }
+input#netform_sender { width:200px; border:1px #272727 solid; margin:0 20px 0 0  ; padding:1px; font-family:arial; font-size:9pt; float: left;  }
+select#netform_subject {width:204px; border:1px #272727 solid; margin:0px; padding:1px; font-family:arial; font-size:9pt;}
+.feedbackHeader {color:#000099; border-bottom:1px #000099 solid;}
+#registration {width:204px; border:1px #272727 solid; margin:0px; padding:1px; font-family:arial; font-size:9pt; }
+#send_reply { width:204px; border:1px #272727 solid; margin:0px; padding:1px; font-family:arial; font-size:9pt; }
+#netform_body { width:500px; border:1px #272727 solid; margin:0 0 10px; padding:1px; font-family:arial; font-size:9pt; }
+.feedbackHeader { color:#000099; border-bottom:1px #000099 solid;}
+
+#sender_name {width:200px; border:1px #272727 solid; margin:0px; padding:1px; font-family:arial; font-size:9pt; }
+#URL_concern { width:200px; border:1px #272727 solid; margin:0px; padding:1px; font-family:arial; font-size:9pt;  }
+.feedbackButtons {float: left; margin:20px 0 0; clear: both;   }
+#truste { padding: 0; margin:50px 0 0 30px; border: 0; float: left;  display: block; width: 157px; height: 47px; }
+
+/* ######################## NEW FEEDBACK FORM STYLES ####################### */
+
+.feedback-form-container {
+			 width: 100%;
+			 border-top: 5px solid #000080;
+			 border-bottom: 5px solid #000080;
+}
+
+.feedback-form-container input,
+.feedback-form-container select,
+.feedback-form-container textarea,
+.feedback-form-container label {
+			 font-family: Arial;
+  font-size: 12px;
+  color: #292929;
+}
+
+.feedback-form-header.first {
+  margin-top: 0px !important;
+}
+.feedback-form-header {
+		      padding: 10px 0px 10px 10px;
+		      background: #F0F8FF;
+		      border-top: 1px dotted #000080;
+		      border-bottom: 1px dotted #000080;
+		      margin-top: 15px;
+		      margin-bottom: 15px;
+}
+
+.feedback-form-container .feedback-fieldset {
+			 margin-top: 10px;
+			 margin-bottom: 10px;
+			 padding-left: 0px;
+			 list-style: none;
+			 height: 25px;
+}
+
+.feedback-form-container .feedback-legend,
+.feedback-form-container .feedback-field,
+.feedback-form-container .feedback-message-error {
+			 float: left;
+			 height: 25px;
+			 vertical-align: center;
+}
+
+.feedback-form-container .feedback-registration {
+  display: none;
+}
+
+.feedback-form-container .feedback-legend {
+  width: 25%;
+  margin-right: 10px;
+  padding-top: 6px;
+  text-transform: uppercase;
+  text-align: right;
+  font-size: 12px;
+}
+.feedback-form-container .feedback-getreply .feedback-legend,
+.feedback-form-container .feedback-location .feedback-legend {
+  padding-top: 0px;
+}
+.feedback-form-container .feedback-field {
+			 width: 45%;
+			 margin-right: 2%;
+}
+.feedback-form-container .feedback-optional .feedback-field {
+  width: 68%;
+}
+.feedback-form-container .feedback-message-error {
+  width: 23%;
+  padding-top: 6px;
+  font-size: 11px;
+}
+
+.feedback-form-container input.type-text {
+  border: 1px solid #292929 !important;
+  padding: 5px !important;
+  width: 95% !important;
+}
+.feedback-form-container select {
+  border: 1px solid #292929 !important;
+  padding: 3px 5px !important;
+  width: 100% !important;
+}
+.feedback-form-container input.type-radio {
+  margin-top: 7px;
+  margin-left: 15px;
+  border: none;
+}
+.feedback-form-container input.type-radio.first {
+  margin-left: 0px;
+}
+
+.feedback-form-container .feedback-comments {
+  height: 170px;
+  margin-top: 20px;
+}
+.feedback-form-container .feedback-fieldset-error.feedback-comments {
+			 height: 200px;
+}
+.feedback-form-container .feedback-comments-input {
+			 margin-left: 5px;
+  margin-right: 25px;
+}
+.feedback-form-container .feedback-comments-label {
+			 margin-bottom: 0px;
+			 text-transform: uppercase;
+			 font-size: 12px;
+}
+.feedback-form-container .feedback-comments textarea#feedback-comments {
+			 font-size: 13px;
+			 font-family: Arial;
+			 width: 100%;
+			 padding: 5px;
+			 margin-top: 2px;
+}
+
+/* For submit button */
+.submit-buttons {
+		width: 100%;
+		text-align: center;
+		margin-top: 25px;
+		margin-bottom: 15px;
+}
+.submit-buttons .form-button {
+		float: none;
+		display: inline;
+		font-family: Arial;
+		font-size: 13px;
+		border: 1px solid #000080;
+		background: #2851A2;
+		color: #FFFFFF;
+		width: 200px;
+		height: 25px;
+}
+
+/* For error displaying on form validation */
+.feedback-form-container .feedback-message-error {
+			 display: none;
+}
+.feedback-form-container .feedback-fieldset-error .feedback-message-error {
+  display: block !important;
+}
+.feedback-form-container .feedback-fieldset-error .feedback-field,
+.feedback-form-container .feedback-message-error {
+			 color: #DD3333;
+}
+.feedback-form-container .feedback-fieldset-error input,
+.feedback-form-container .feedback-fieldset-error select {
+			 border-color: #DD3333;
+}
+/* Comment error block */
+.feedback-form-container .feedback-comments-error {
+			 display: none;
+			 font-size: 13px;
+  border: 1px solid red;
+  color: white;
+  background: #DD3333;
+  padding-top: 4px;
+  margin: 0px 8px 5px 5px;
+  text-align: center;
+  height: 20px;
+}
+.feedback-form-container .feedback-fieldset-error .feedback-comments-error {
+  display: block;
+}
+
+
+
+/* YT well which may end up everywhere */
+#yourtownWell {margin-top:10px;}
+#yourtownWell .sectionHeader {border-left:4px solid #D41212; background-color:#666; padding:7px 10px 4px 4px; line-height:15px;}
+#yourtownWell .sectionHeader a {color:#fff; background-image:url(http://cache.boston.com/universal/site_graphics/big_caret_on_666.gif);}
+#yourtownWell .sectionHeader a:hover,   #yourtownWell .sectionHeader a:active {color:#D41212; background-image:url(http://cache.boston.com/universal/site_graphics/big_caret_off_666.gif);}
+#yourtownWell ul.linklistNoBullets .leadIn {font-weight:bold; text-transform:uppercase; width:79px; display:block; float:left; font-family: Arial, Helvetica, sans-serif; font-size:12px; line-height:30px; color:#2851A2;}
+#yourtownWell ul.linklistNoBullets {list-style-type:none; margin:0; padding:0;}
+#yourtownWell ul.linklistNoBullets li {clear:left; border: 1px solid #e5e5e5; border-top:none; padding-bottom:0;}
+#yourtownWell ul.linklistNoBullets a {text-decoration:none; border:none; display:block; padding: 9px 7px; height:30px; font-family: Georgia, Times, sans-serif; color: #000; font-size:12px;}
+#yourtownWell ul.linklistNoBullets a:hover, #yourtownWell ul.linklistNoBullets a:active {background-color:#ededed;}
+#yourtownWell ul.sectionLinks {padding:6px; margin:0; border:none; background-color:#e5e5e5; text-align:center; font-family:arial, helvetica, sans-serif; font-size: 11px; color:#000; overflow:hidden; line-height: 15px;}
+#yourtownWell ul.sectionLinks .leadIn {padding-right:4px;}
+#yourtownWell ul.sectionLinks a {font-weight:bold;}
+#yourtownWell ul.sectionLinks .listPipe {padding:0 4px 0 2px;}
+#yourtownWell ul.linklist {background-color:#E5E5E5; margin:0; padding: 9px 0 0 0;}
+#yourtownWell ul.linklist li {margin:0 7px 0 23px; line-height:13px; padding-bottom:3px; color:#666;}
+
+/* YT-style mini-cal (Zvents widget) for non-YT shelled pages */
+.ttdRedContent .ZventsEventDate, .ttdRedContent .ZventsEventTime {display:none;}
+.ttdRedContent .ZventsEvent {border-bottom:none; padding:0; line-height:13px; padding-bottom:3px;}
+.ttdRedContent .ZventsEventName {font-weight:normal;}
+.ttdRedContent .ZventsEventList {padding-top:2px;}
+.ttdRedContent .linklist a:hover, .ttdRedContent .linklist a:focus, .ttdRedContent .linklist a:active {text-decoration:none;border-bottom:none;}
+#ttdRed {margin:0 0 10px 0;padding:0;}
+#ttdRed .ttdRedContent {border:1px solid #292929; border-top:2px solid #D41212; zoom:1;padding:15px;background:#efefef;height:160px;}
+#ttdRed .ttdRedTitleAd {height:30px;}
+#ttdRed .ttdRedTitleAd h3 {display:inline;font-size:14px;color:#000;border-bottom:0;}
+#ttdRed .ttdRedTitleAd span.title {float:left;padding:0px;}
+#ttdRed .ttdRedTitleAd span.ad {float:right;margin:0;height:25px;width:105px;}
+#ttdRed .ttdRedTitleAd span.ad a:hover {border-bottom:none;text-decoration:none;}
+#ttdRed .ttdRedCalendar {background:#fff;padding:6px 10px 3px 10px;text-align:center;clear:both;}
+#ttdRed .ttdRedCalendar a:hover {border:none;}
+#ttdRed .ttdRedCalendar a img.day {margin: 0px; border-style:solid;border-width:0px 1px 1px 1px;border-color:#292929;}
+#ttdRed .ttdRedCalendar a img.date {margin: 0px; border-style:solid;border-width:1px 1px 0 1px;border-color:#292929;}
+#ttdRed .ttdRedCalendar a:hover img.day {border-style:solid;border-width:0px 1px 1px 1px;border-color:#0552EC;}
+#ttdRed .ttdRedCalendar a:hover img.date {border-style:solid;border-width:1px 1px 0 1px;border-color:#0552EC;}
+#ttdRed td.calCell {padding:10px 18px 0 0; height: 37px;}
+#ttdRed .leadIn {font-size:10px;color:#D41212;line-height:10px;}
+#ttdRed .linklist {padding:0 0 0 12px;}
+#ttdRed .linklist li {line-height:12px;padding-bottom:3px;}
+#ttdRed .ttdRedCalendar {background:#efefef;top:-1px;}
+
+
+
+/* Twitter Updates  */
+
+#twitter_div { }
+#twitter_div h3.sectionHeader { background: url(http://cache.boston.com/_webdesignready/redesign/common/twitter/widget/images/tweetLogo_blue.gif) no-repeat 0% 0%; height: 15px; padding: 5px 0 5px 35px; }
+ul#twitter_update_list { background: #fff; padding: 5px 5px; list-style: none; margin: 10px 0; height: 150px !important; overflow: auto !important; position: relative; /* added by Tito 05.27 to fix IE bug */ }
+ul#twitter_update_list li { display:block; font:normal 13px/17px Georgia, Times, Times New Roman, sans-serif; color: #272727; height:auto; min-height:1em; padding:6px 7px; border-bottom:1px dotted #999999; }
+ul#twitter_update_list li:hover { background: #ededed; }
+ul#twitter_update_list li a { font-family: Arial, Helvetica, Verdana, sans-serif; }
+#twitter_div .small { position: static; /* added by Tito 05.27 to fix IE bug */ }
+#twitter_div .leadOut { padding-top: 5px; }
+
+/* Twitter Aggregator (Section Fronts) */
+.query .tweet_list .tweet_avatar img { float:left; margin-right: 5px; }
+ul#twitter_update_list li.tweet_even,
+ul#twitter_update_list li.tweet_odd { clear: both; min-height: 32px; }
+#twitter_div .introText { margin-top: 5px; font: normal 11px/14px Arial, Helvetica, Verdana, sans-serif; }
+#twitter_div a:hover img { border-bottom: none; }
+#twitter_div .loading { position: relative; top: -125px; height: 20px; background-position: 16% 0%; }
+.loading { background: url(http://cache.boston.com/_webdesignready/redesign/common/icons/loading_graphic.gif) no-repeat 0% 0%; text-align: center; color:#666; font-size: 11px; }
+
+/* Twitter Aggregator - Full page */
+#twitter_div.nineCol .query ul.tweet_list { margin: 0 0 15px 0; padding: 0; list-style: none; border-bottom: 1px solid #999; width: 609px; }
+#twitter_div.nineCol .query .tweet_list li { clear: both;   padding: 9px 7px;   min-height: 40px;   }
+#twitter_div.nineCol .query .tweet_list .tweet_even {   background-color: #FFFFFF;    }
+#twitter_div.nineCol .query .tweet_list .tweet_odd {   background-color: #EBF4FB;    }
+#twitter_div.nineCol .tweet_text { font:normal 13px/17px Georgia, Times, Times New Roman, sans-serif; color: #272727; }
+#twitter_div.nineCol .loading { position: relative; height: 20px; background-position: 16% 0%; }
+
+/*Sortable table styles */
+.tHeader{ border-bottom: 1px dotted #464646; font-size: 12px; color:black; font-weight: bold; font-family: Arial, Helvetica, sans-serif;vertical-align: text-bottom; }
+table#bcomSortTable { border-top: 4px solid #3F5F9C; border-bottom: 1px dotted #464646; }
+table#bcomSortTable tr.theader td { border-bottom: 1px dotted #464646; padding: 5px; }
+.odd{ background-color: #ffffff; font-size: 12px; font-family: Arial,Helvetica, sans-serif; vertical-align: text-top; }
+.even{ background-color: #ebf4fb; color: #000000; font-size: 12px; font-family: Arial, Helvetica, sans-serif; vertical-align: text-top;}
+
+/* Graphics and Quizzes */
+#quizzer p.tt {
+	margin-top: 4px;
+	}
+
+#quizzer .tt .byline {
+	color:#000000;
+	}
+
+#quizzer .shareTools {
+	float: right;
+	margin: 11px 0 0 10px;
+	}
+
+/* Countdown Clock Styles */
+#countdown { margin: 12px auto; text-align: center; height: 60px; letter-spacing: 0.2em; text-transform: uppercase; color:#666; font-size: 11px; width: 275px; }
+#countdown .loading { text-align: center; letter-spacing: 0.2em; text-transform: uppercase; color:#666; font-size: 11px; position: relative; top: 18px; height: 20px; background: url(http://cache.boston.com/_webdesignready/redesign/common/icons/loading_graphic.gif) no-repeat 30% 0%; }
+.countdownBlock{ margin-right:10px;  float:left; }
+.countdownNumber{ font:bold 32px/34px Arial, Helvetica, Verdana, sans-serif; letter-spacing: -0.03em; color: #272727; border:1px solid #999999;  background-color:#fff;  text-align:center;  padding:4px 7px;  background: url(http://cache.boston.com/multimedia/templates/tools/countdown/images/bg_greyGradient.gif) no-repeat 0% 0%; margin-bottom: 3px;}
+#countdown .countdownBlock.day .countdownNumber { color: #af2227; }
+.countdownDescription{ text-transform:uppercase;  text-align:center; font-size: 10px; color: #666; letter-spacing: 0.05em; }
+
+/* Countdown Clock Styles - SIMPLE */
+#countdown.simple { margin: 0 auto; text-align: center; height: 30px; letter-spacing: 0.2em; text-transform: uppercase; color:#666; font-size: 11px; width: 280px; }
+#countdown.simple .loading { position: relative; top: 10px; }
+#countdown.simple .countdownBlock { margin-right:10px;  float:left; }
+#countdown.simple .countdownNumber{ font:24px/26px Georgia, Times, Times New Roman, serif; letter-spacing: -0.03em; color: #272727; border:none;  background-color: transparent; background-image: none;  text-align:left;  float: left; padding: 0 8px 0 0;}
+#countdown.simple .countdownBlock.sec .countdownNumber,
+#countdown.simple .countdownBlock.hr .countdownNumber,
+#countdown.simple .countdownBlock.min .countdownNumber { width: 25px; }
+#countdown.simple .countdownDescription { text-transform:uppercase;  text-align:left; letter-spacing: 0.05em; font-size: 10px; color: #666; position: relative; top: 11px; float: left; }
+
+/* Kwizzler */
+#quizzer .byline { font-family:Arial,Helvetica,Verdana,sans-serif; font-size:11px; }
+#quizzer p.tt {margin-top: 4px;}
+#quizzer .tt .byline {color:#000000;}
+#quizzer .shareTools {float: right;margin: 11px 0 0 10px;}
+
+/* SlugFest */
+.truFanLogo { float: right; width: 67px; height: 22px; position: relative; top: -3px; display: none; }  #truFan h3 { border-bottom:1px dotted #3E5F9D; font-size:11px; line-height:11px; margin-bottom:10px; padding-bottom:6px; }
+
+
+
+/* Email to a Friend */
+#bdc_emailWidget { width: auto; position:absolute; margin: 0 ;	  border: 0;	  padding: 24px 0  ; display: none;   height: auto;  overflow: visible; z-index: 1000000000; /*top: 18px;  left: 0px; */ 	 filter: alpha(opacity=97); /* internet explorer */ -khtml-opacity: 0.97;      /* khtml, old safari */ -moz-opacity: 0.97;       /* mozilla, netscape */ opacity: 0.97;           /* fx, safari, opera */ }
+#bdc_emailWidget .innerContainer { background: #ededed; height: auto; width: 346px;  border-width: 0 4px 4px 4px;   border-color: #272727;  border-style: solid;  }
+#bdc_emailWidget .titleBar { height: 20px; padding: 10px ; background:#272727; color: #fff; width:330px;  }
+#bdc_emailWidget .titleBar h3 { margin: 0; float: left; color: #fff;		 }
+#bdc_emailWidget .titleBar a#closeWindow_etaf { float: right; background: #fff url(http://cache.boston.com/universal/site_graphics/etaf/closeWindow.gif) no-repeat 100% 100%; height: 21px; width: 21px; display: block; }
+#bdc_emailWidget .titleBar a#closeWindow_etaf:hover { background: #fff url(http://cache.boston.com/universal/site_graphics/etaf/closeWindow.gif) no-repeat 100% 0%; border-bottom: none; cursor: pointer;}
+/* ETAF Form elements */
+#bdc_emailWidget form { padding: 10px; margin:0;  width: 325px;  height: auto; display:block; }
+#bdc_emailWidget label { display: block; margin-bottom: 3px; font: bold 11px/13px Arial, Helvetica, Verdana, sans-serif; float: left; }
+#bdc_emailWidget label em { line-height:13px; padding:0 0 0 5px; font-weight: normal; }
+#bdc_emailWidget input,
+#bdc_emailWidget textarea { padding: 5px; color: #000; font: normal 12px/15px Arial, Helvetica, Verdana, sans-serif; width: 97%; margin-bottom: 10px; border: 1px solid #666; clear: both; }
+#bdc_emailWidget textarea { margin-bottom: 25px; overflow:auto;	 }
+#bdc_emailWidget textarea#personalMessage { height: 60px; }
+#bdc_emailWidget input#recipient_email { color: #666; }
+#bdc_emailWidget input.form-button { width: 75px; float: right; color: #fff; font-weight: bold; border: 1px solid #2851A2; height: 26px; padding-top: 3px; background: transparent url(http://cache.boston.com/universal/site_graphics/button_stretch.gif) repeat scroll 0 0 ; }
+#bdc_emailWidget input.form-button:hover { cursor: pointer; }
+#bdc_emailWidget input.error { border: 2px solid #d2232a; padding: 4px; }
+#bdc_emailWidget input.noerr { border: 1px solid #666;  padding: 5px; }
+#bdc_emailWidget .errorMessage { font: bold 11px/13px Arial, Helvetica, Verdana, sans-serif; color: #d2232a;	 float: right; margin-bottom: 3px; visibility: hidden; }
+/* EMTOF Pointers */
+#headTools #tools #bdc_emailWidget #pointer_top,
+#headTools #tools #bdc_emailWidget #pointer_bottom,
+#pointer_top, #pointer_bottom{ position: absolute; height: 17px; width: 24px; float: left; display: block; border:0 none; z-index: 1000;  background-color: #fff;  overflow: visible;   }
+#bdc_emailWidget img#pointer_top {  top: 7px;  }
+
+/* Sending article */
+#bdc_emailWidget	.sendingArticle { width: 100%; margin:30% 0; text-align: center;   background-color: #EEEEEE;  display: none; }
+#bdc_emailWidget	.sendingArticle h4 { font: normal 18px/32px Georgia, Times, "Times New Roman", serif; }
+.blogarticle #Col1 #headTools #tools #bdc_emailWidget	.sendingArticle img { border: 0; height: 16px; width: 16px; }
+#bdc_EMTOF_sent {display: none; }
+
+/* Share Tools
+====================================== */
+
+/* Horizontal */
+
+.ETAF.horizontal {
+	height:20px;
+	list-style-type:none;
+	margin:16px auto 20px;
+	padding:0;
+	}
+
+.ETAF.horizontal li {
+	display:inline;
+	}
+
+.ETAF.horizontal li a {
+	float:left;
+	border-right:solid 1px #999;
+	margin-right:10px;
+	padding:3px 10px 2px 20px;
+	font-size:11px;
+	background:transparent url() no-repeat 0 0;
+	}
+
+.ETAF.horizontal li a:hover {
+	border-bottom:none;
+	text-decoration:underline;
+	}
+
+.ETAF.horizontal .etaf {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icon_blue_email.gif);
+	background-position: 0 4px;
+	}
+
+.ETAF.horizontal #ck_facebook {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icons/facebook.png);
+	background-position:0 3px;
+	}
+
+.ETAF.horizontal #ck_twitter {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icons/twitter.png);
+	background-position:0 2px;
+	}
+
+.ETAF.horizontal #ck_digg {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icons/digg.png);
+	background-position:0 3px;
+	padding-left:23px;
+	}
+
+.ETAF.horizontal #ck_ybuzz {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icons/yahoobuzz.png);
+	background-position:0 2px;
+	padding-bottom:1px;
+	padding-left:23px;
+	}
+
+.ETAF.horizontal #ck_sharethis {
+	background-image:url(http://cache.boston.com/universal/site_graphics/icons/sharethis.png);
+	background-position:0 2px;
+	padding-bottom:1px;
+	padding-left:23px;
+	border-right:none;
+	}
+
+
+
+/* Video section companion ads */
+#bdc_vcaIFrameSection {margin:auto; padding:0px; width:300px; height:250px; display:none}
+#bdc_bcSection {min-height:400px; }
+#bdc_videoCompanionAdSection {margin:20px 0 0 0px; background-color:#FFFFFF; border:0px solid #666; height:292px; display:none; padding: 0 ; text-align: center;  }
+
+
+
+/* Things To Do: Add an event link
+============================================= */
+a.thingsToDo_plusLink, a:visited.thingsToDo_plusLink{
+	font: bold 15px Arial, Helvetica, sans-serif;
+	display: block;
+	border-bottom: none;
+	color: #000000;
+	}
+a:hover.thingsToDo_plusLink{
+	color: #2851A2 ;
+	}
+a.thingsToDo_plusLink.small, a:visited.thingsToDo_plusLink.small{
+	background: url(http://cache.boston.com/_webdesignready/2009/ttd/thingsToDoButton/thingsToDoSmall.gif) no-repeat left top;
+	padding-left: 22px;
+	height: 16px;
+	line-height: 16px;
+	}
+a:hover.thingsToDo_plusLink.small{
+	background: url(http://cache.boston.com/_webdesignready/2009/ttd/thingsToDoButton/thingsToDoSmall.gif) no-repeat left center;
+	}
+/* thingstodo Restaurant widget */
+#cuisineShort .leadOut a, #locationShort .leadOut a {padding-right:7px; background-image: url(http://cache.boston.com/universal/site_graphics/blue-arrow-down.gif); background-repeat:no-repeat; background-position:center right;}
+#cuisineLong .leadOut a, #locationLong .leadOut a {padding-right:7px; background-image: url(http://cache.boston.com/universal/site_graphics/blue-arrow-up.gif); background-repeat:no-repeat; background-position:center right;}
+#locationLong .indentedUL {margin-left: 0px; padding-left: 10px;}
+
+/* zvents h1 fix to match #summary_fields style  */
+#restaurant_summary_fields h1 {line-height: 22px; }
+
+/* Newest styles for global navigation matching the new homepage */
+
+
+
+#globalNav .gnavContainer #ghome
+{
+  width:51px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gglobe
+{
+  width:111px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gnews
+{
+  width:51px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gbusiness
+{
+  width:77px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gsports
+{
+  width:65px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #glifestyle
+{
+  width:79px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gae
+{
+  width:42px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gthings
+{
+  width:99px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gtravel
+{
+  width:61px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gcars
+{
+  width:51px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gjobs
+{
+  width:51px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #ghomes
+{
+  width:100px;
+  padding:8px 0 0;
+}
+#globalNav .gnavContainer #gre
+{
+  width:100px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer #gsearch
+{
+  width:109px;
+  padding:8px 0 0;
+}
+
+#globalNav .gnavContainer li#gsearch
+{
+  border-right:none;
+}
+
+#globalNav .gnavContainer li#gsearch_on
+{
+  border-right:none;
+}
+
+#globalNav .gnavContainer
+{
+  z-index:0;
+  font-weight:bold;
+  text-transform:uppercase;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  position:relative;
+  width:959px;
+}
+
+#globalNav .gnavContainer li
+{
+  border-bottom:1px solid #203c73;
+  z-index:-1;
+  background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_off.gif);
+  background-repeat:repeat-x;
+  border-right:1px dotted #ffffff;
+  float:left;
+  list-style-type:none;
+  padding:8px 0 0;
+  color:#203c73;
+  text-align:center;
+  height:auto;
+}
+
+#globalNav .gnavContainer li a
+{
+  display:block;
+  line-height:20px;
+  top:0;
+  padding:0 3px;
+}
+
+#globalNav .gnavContainer li:hover
+{
+  background-image:url(http://cache.boston.com/universal/site_graphics/nav_main_on.gif);
+  background-repeat:repeat-x;
+  color:#ffffff;
+}
+
+#globalNav .gnavContainer li:hover a
+{
+  border-bottom:medium none;
+  color:#fff;
+}
+
+#globalNav .gnavContainer li.classSwitch:hover a
+{
+  color:#203C73;
+}
+
+
+
+/* This is for hiding Local Search & adding Your Town to global nav when we want to highlight that. */
+
+#globalNav .gnavContainer #gyourtown {width:95px; padding:8px 0 0;}
+#globalNav #nav.gnavContainer #gsearch a {display:none;width:0;}
+#globalNav #nav.gnavContainer #gsearch {width:95px; height:20px; border-left:1px dotted #fff;}
+#globalNav #nav.gnavContainer #gsearch:hover {background-image:url(http://cache.boston.com/universal/site_graphics/nav_classifieds_off.gif); background-repeat: repeat-x;}
+#globalNav .gnavContainer #ghome {width:53px;}
+#globalNav .gnavContainer #gglobe {width:112px;}
+#globalNav .gnavContainer #gnews {width:52px;}
+#globalNav .gnavContainer #gbusiness {width:78px;}
+#globalNav .gnavContainer #gsports {width:66px;}
+#globalNav .gnavContainer #glifestyle {width:80px;}
+#globalNav .gnavContainer #gae {width:43px;}
+#globalNav .gnavContainer #gthings {width:101px;}
+#globalNav .gnavContainer #gtravel {width:62px;}
+#globalNav .gnavContainer #gcars {width:52px;}
+#globalNav .gnavContainer #gjobs {width:52px;}
+#globalNav .gnavContainer #gre {width:101px;border-right:none;}
+#globalNav .currentBlogSection {background: #3F5F9C;}
+
+/** Globe Reader Slider **/
+.grHideFull { display: none; visibility: hidden; }
+.grShowFull { display: block; visibility: visible; }
+#grContainer { margin-top: 10px; width: 959px; border-bottom: 1px solid #A5A4A5; }
+#grContainer img { margin-bottom: 0px; }
+.grImgLeft { width: 176px; margin-left: 16px; padding-top: 5px;	float: left; }
+.grTitle { width: 315px; float: left; }
+.grLinkset { width: 254px; float: left;	}
+.grMoreClose { width: 183px; padding-top: 5px; float: right; text-align: right; }
+#globeHeader { width: 959px; overflow: hidden; }
+.ghLeftAd {  text-align: left; padding: 23px 25px 23px 0px; float: left; }
+.ghCenter { text-align: center; width: 445px; float: left; }
+.ghCenter img { margin: 6px 0px 8px; }
+.ghRightAd { text-align: right;	padding: 23px 0px 23px 25px; float: right; }
+.grBottomLine { border-bottom: 1px solid #A5A4A5; }
+
+/* Stay Connected (formerly known as On the Go )  ================================== */
+
+.bluePad .insideBP {
+	background-color:#fff;
+	border-top: 1px solid #b7cdff;
+	margin-top:7px;
+	padding:10px;
+	}
+
+ul#bdc_onTheGo {
+	margin:4px 0 1px 4px;
+	padding:0;
+	list-style:none;
+	min-height:53px;
+	}
+
+ul#bdc_onTheGo li {
+	display:inline;
+	}
+
+ul#bdc_onTheGo li a {
+	display:block;
+	float:left;
+	font:normal 11px/13px Arial, Helvetica, Verdana, sans-serif;
+	letter-spacing:-0.03em;
+	color:#272727;
+	margin-right:19px;
+	padding:40px 0 0 0;
+	text-align:center;
+	width:40px;
+	background:transparent url(http://cache.boston.com/universal/site_graphics/onTheGo_sprite.gif) no-repeat 0 0;
+	}
+
+ul#bdc_onTheGo.fourCount li a {
+	margin:0 14px;
+	}
+
+ul#bdc_onTheGo li a:hover {
+	border-bottom:none;
+	color:#002878;
+	}
+
+ul#bdc_onTheGo li a.email {
+	background-position:-257px -30px;
+	}
+
+ul#bdc_onTheGo li a.email:hover {
+	background-position:-257px -91px;
+	}
+
+ul#bdc_onTheGo li a.facebook {
+	background-position:-101px -30px;
+	}
+
+ul#bdc_onTheGo li a.facebook:hover {
+	background-position:-101px -91px;
+	}
+
+ul#bdc_onTheGo li a.twitter {
+	background-position:-182px -30px;
+	}
+
+ul#bdc_onTheGo li a.twitter:hover {
+	background-position:-182px -91px;
+	}
+
+
+
+ul#bdc_onTheGo li a.mobile {
+	background-position:-27px -30px;
+	}
+
+ul#bdc_onTheGo li a.mobile:hover {
+	background-position:-27px -91px;
+	}
+
+ul#bdc_onTheGo li a.widgets {
+	background-position:-331px -30px;
+	}
+
+ul#bdc_onTheGo li a.widgets:hover {
+	background-position:-331px -91px;
+	}
+
+
+
+ul#bdc_onTheGo li a.last {
+	border-right:none;
+	margin-right:0;
+	}
+
+.bluePad .sectionHeader span {
+	color:#272727;
+	font:normal italic 12px/16px Georgia, Times, Times New Roman, serif;
+	position:relative;
+	}
+
+/* Stay Connected - Globe front page version */
+.globe .stayConnected .ltBlueBox {   border-top: 0 ; margin: 10px 0 0 0 ; padding: 10px; }
+.globe .stayConnected .custService {margin-bottom: 15px; }
+.globe .stayConnected ul.linklist li, .globe .stayConnected ul.linklist li a  {line-height: 16px; }
+.globe .stayConnected a.subscribe {display: block; height: 119px; width: 399px; padding: 0;  margin: -10px 0 0 -11px; padding: -10px 0 0 -11px;  background: url(http://cache.boston.com/universal/site_graphics/globe_on_the_go_top.png) no-repeat top center ; }
+.globe .stayConnected h3.sectionHeader { font-size: 13px; font-weight: bold; text-transform: none; color: #000;  }
+.globe .stayConnected .more {display:block; height:auto;  margin:10px 0; padding:0; border-top:1px solid #B7CDFF; width: 376px ; background-color: #fff;  }
+.globe .stayConnected .split50.more .bSide {float: left!important; width: 50%!important; }
+.globe .stayConnected .more ul {display:block; margin: 0; padding:0 ; width: 188px ; background-color: #fff;   }
+.globe .stayConnected .more li {display:block; margin: 0;  padding:0 ; width:188px;   }
+/*.globe .stayConnected .more li a {background-position:10px center; background-repeat:no-repeat; display:block; font-size:12px; font-weight:bold; height:25px; margin:0 0 0 0; padding:7px 0 0 45px; vertical-align:middle; } */
+.globe .stayConnected .more li a  { background-position:10px 10px; background-repeat:no-repeat; background-color: #fff; display:block; font-size:12px; font-weight:bold;  line-height:14px; margin:0; padding:18px 0 0 50px;  border-bottom:1px solid #B7CDFF; height:35px; width: 139px ; }
+.globe .stayConnected .more li a:hover {background-color: #efefef; color: #002878; border: 0; border-bottom: 1px solid #B7CDFF ;  }
+.globe .stayConnected li a.mobile  {background-image: url(http://cache.boston.com/universal/site_graphics/mobile_30x30.png) ; }
+.globe .stayConnected li a.globeReader  {background-image: url(http://cache.boston.com/universal/site_graphics/reader_30x30.png); }
+.globe .stayConnected li a.dailyNews  {background-image: url(http://cache.boston.com/universal/site_graphics/daily_30x30.png) ; }
+.globe .stayConnected li a.iPhoneApp  {background-image: url(http://cache.boston.com/universal/site_graphics/iphone_30x30.png); }
+
+#holiday_tab_new_years_eve {display:none;}
+
+/* Survey overlay box */
+.surveyPromptWrapper { display: block; padding:0; margin: 0; text-align: left;  border: 3px solid #2d519c; font-family: Arial; width: 309px; }
+.surveyPromptTitleBar {display: block; background-color: #2d519c; margin: 0 ; padding:10px;}
+.surveyPromptTitleBar h1 {font-size: 17px; font-weight: bold; color: #fff ; padding: 0  ; margin: 0  ; display: inline; }
+a.surveyPromptClose {display: block; height: 21px ; width: 21px; background-image: url(http://cache.boston.com/universal/site_graphics/survey_buttons/close_window.png); background-repeat: none; float: right;  }
+.surveyPromptMain h2 {font-size: 18px ; font-weight: bold; color: #2750a2; line-height:20px; margin:0; padding:0; }
+.surveyPromptMain {font-size: 14px; font-weight: normal; color: #292929; padding:15px; margin: 0;  line-height:20px;}
+.surveyPromptMain a { display: block; float:left; width:auto; background-color: pink; color: #fff;  font-size: 11px; font-weight: bold; text-decoration: none; border: 0; padding: 0 15px ; height: 20px; text-transform:uppercase; }
+.surveyPromptMain a.surveyTake {background-image: url(http://cache.boston.com/universal/site_graphics/survey_buttons/accept_button_15px_left_right_pad.gif) ; background-repeat: repeat-x; margin: 0 10px 0 0 ; }
+.surveyPromptMain a.surveyNoTake {background-image: url(http://cache.boston.com/universal/site_graphics/survey_buttons/decline_button_15px_left_right_pad.gif); background-repeat: repeat-x; }
+.surveyPromptMain p {padding: 5px 0 10px 0; margin: 0; }
+
+/* "new" Breaking News (Red box)  */
+.breakingNews {border-bottom:1px solid #999;margin:0 ;padding:5px 0;  display: block; height: 32px; width:auto; }
+.breakingNews h3 { display: block; padding:7px 0 0 0 ; }
+.breakingNews h3.sectionHeader.title {background-color:#D2232A;background-image:none;color:#FFF;display:block;float:left; margin:1px 20px 0 0; font-size:14px; padding:6px 0 8px; text-align:center; width:135px;text-transform:none; }
+.breakingNews .overline { color:#272727; letter-spacing:0; text-transform:lowercase;}
+
+/* YT Homepage */
+.yourtown #content.ytHome #pageHeader {position:relative;}
+.yourtown #content.ytHome #pageHeader a {position:absolute; right:16px; top:9px;}
+.yourtown #content.ytHome {margin-top:-1px;}
+#content.ytHome #pageHeader {width: 959px; background-color:#464646; font-family: Arial, sans-serif; color:#fff; background-image:url(http://cache.boston.com/universal/site_graphics/yourtown/entering_yourtown.gif); background-repeat:no-repeat; padding:10px 0 10px 0; background-position:10px 10px;}
+#content.ytHome #pageHeader h1, #content.ytHome #pageHeader h2 {margin-left:125px;}
+#content.ytHome #pageHeader h1 {font-size:55px; line-height:55px;font-weight:bold;}
+#content.ytHome #pageHeader h2 {font-size:15px; margin-top:-2px; font-weight:normal;}
+#content.ytHome #pageHeader em {font-style:normal; font-weight:bold;}
+#content.ytHome #topSpan {width:955px; margin-bottom:21px; background-color:#fff; border-bottom:solid 8px #8c8c8c; background-image:url(http://cache.boston.com/universal/site_graphics/yourtown/yourtown_blue_gradient.gif); background-repeat:repeat-x; padding-top: 0; border-right: 2px solid #8c8c8c; border-left: 2px solid #8c8c8c; }
+#content.ytHome #topSpan #flashMap {float:left; width:259px; margin-right:10px; overflow:hidden; height:100%;}
+#content.ytHome #topSpan #townList .splitThirds ul li  {color:#666; font-size:13px; margin-bottom: 5px; }
+#content.ytHome #topSpan #townList .splitThirds ul li a { font-size:13px;}
+#content.ytHome #topSpan #townList .splitThirds ul li ul li {display: inline; }
+#content.ytHome #topSpan #townList .splitThirds ul .leadIn {color: #f00; font-size: 11px; font-weight: normal;  text-transform: uppercase; }
+
+#content.ytHome #topSpan #townList {display: none;  float:left; width:351px; margin-right:5px; height:100%; }
+#content.ytHome #topSpan #townList .subSectionHeader {font-size: 12px; color: #272727; text-transform: none; font-weight: normal ;  }
+#content.ytHome #topSpan .townToggle { border-bottom: 1px dotted #838383; list-style-type: none; overflow: hidden; margin: 0 0 5px; padding: 0 0 10px 0; }
+#content.ytHome #topSpan .townToggle a { font-weight: bold; font-size: 12px; font-family: Arial,Helvetica,sans-serif; color: #2851a2; padding-right: 15px; }
+#content.ytHome #topSpan .townToggle a:hover { border: none; }
+#content.ytHome #topSpan .townToggle a:active { border: none; }
+#content.ytHome #topSpan .townToggle a.active { font-weight: bold; font-size: 18px; color: #000; font-family: Arial,Helvetica,sans-serif; }
+#content.ytHome #topSpan .splitThirds .leadIn { background: url('http://cache.boston.com/universal/site_graphics/yourtown/new_yourtown.png') no-repeat; width: 31px; height: 12px; padding-left: 31px; margin-left: 3px; }
+#content.ytHome #topSpan #neighborhoodList { display: inline; visibility: visible; float: left; height: 100%; width: 351px; margin-right: 5px; }
+#content.ytHome #topSpan #neighborhoodList .splitThirds ul li { color: #666666; font-size: 13px; margin-bottom: 6px; }
+#content.ytHome #topSpan #neighborhoodList .splitThirds ul li a { font-size: 13px; }
+.ytHideTowns { visibility: hidden; display: none; }
+
+#content.ytHome #topSpan .adContainer {float:left; width:329px; padding-top:10px; margin-top: 43px; }
+#content.ytHome {background-image:none;}
+#content.ytHome #Col1 {margin: 0  ; border-right: 1px dotted #272727 ; }
+#content.ytHome #Col1, #content.ytHome #Col2, #content.ytHome #Col3 {padding-top:0;}
+#content.ytHome #Col1 .adContainer {margin-left:15px; margin-top:0px; }
+#content.ytHome #Col2 {width:424px; margin:0;}
+#content.ytHome #Col3 {margin:0; width:329px; margin-left:10px;}
+
+#content.ytHome #Col2 #mtHeds .headlineRow .left, #content.ytHome #Col2 #mtHeds .headlineRow .right {float:left; width:189px; margin: 0 0 21px 21px; padding-bottom:15px; border: 1px solid #999; background-color:#fff; height:auto; overflow:hidden; position:relative;}
+#content.ytHome #Col2 #mtHeds .headlineRow .hedContainer {padding:10px 10px 15px 10px; margin:0 0 10px; height: 137px;  overflow: hidden;  }
+#content.ytHome #Col2 #mtHeds .headlineRow .hedContainer .tt {font-size:12px; font-family:arial; color: #272727; line-height: 16px; height:48px; overflow:hidden;}
+#content.ytHome #Col2 #mtHeds .headlineRow .leadOut {position:absolute; bottom:15px; left:10px; text-transform:none; background-image:none;}
+#content.ytHome #Col2 #mtHeds .headlineRow .leadOut a {background-image:none; font-size:12px; font-weight:bold;}
+/*#content.ytHome #Col2 .headlineRow .left, #content.ytHome #Col2 .headlineRow .right {float:left; width:189px; margin-left:21px; margin-bottom:21px; background-color:#fff; position:relative;} */
+#content.ytHome #Col2 .subSectionHeader {text-transform:none; font-size: 14px ; display:inline; padding-right:15px; background:url("http://cache.boston.com/universal/site_graphics/caret_h3_trans.gif") no-repeat scroll right 1px transparent; }
+#content.ytHome #Col2 .hedContainer h4 {font-size: 14px ; margin-top:4px;}
+
+#content.ytHome #Col2 h3.sectionHeader {border-top: 8px solid #e5e5e5; font-size: 17px; margin: 10px 0 20px 0; padding:10px 0 0; }
+
+#content.ytHome #Col2 #mtHeds h3.sectionHeader {margin:0; font-size:14px; margin: 0; padding:0; border-top:none; text-transform: none;}
+
+#content.ytHome #reGabrielsSearch {position:relative; width:309px;}
+#content.ytHome #reGabrielsSearch #response1 {background-color:#fff;}
+#content.ytHome #reGabrielsSearch #response1 {position:relative; background-color:#fff;}
+#content.ytHome #reGabrielsSearch #GTSREResponseContainer_Search1 {border:1px solid #999; border-top:none; display:none; position:absolute; z-index:99; background:#eee;text-transform:uppercase;width:256px;font-size:12px; line-height: 20px;}
+#content.ytHome #reGabrielsSearch #GTSREResponseContainer_Search1 .hot {background:#2851A2;color:#fff;padding-left:6px;}
+#content.ytHome #reGabrielsSearch #GTSREResponseContainer_Search1 .non {padding-left:6px;}
+#content.ytHome #reGabrielsSearch form {border:0; margin:0; padding:0;}
+#content.ytHome #reGabrielsSearch .SuggestTextBox {border:0}
+#content.ytHome #reGabrielsSearch #suggest1 input {height:20px; width:235px; border:solid 1px #999;  padding:5px; font:15px arial,sans-serif; color: #666;}
+#content.ytHome #reGabrielsSearch .reSearch, #reGabrielsSearch .reLimiters {float:left; padding-bottom:8px;margin-right:10px;}
+#content.ytHome #reGabrielsSearch .SuggestTextBox {background-color:#fff; width:228px;}
+#content.ytHome #reGabrielsSearch .searchHigh select, #reGabrielsSearch .searchLow select {width:111px;}
+#content.ytHome #reGabrielsSearch .reLimiters label {padding-right:5px;z-index:-1; display:block;}
+#content.ytHome #reGabrielsSearch .reLimiters {width:297px;}
+#content.ytHome #reGabrielsSearch .searchLow, #reGabrielsSearch .searchBeds, #reGabrielsSearch .searchBaths {float: left; padding-right:10px;}
+#content.ytHome #reGabrielsSearch .searchBeds #beds select, #reGabrielsSearch .searchBaths #baths select {width:65px;}
+#content.ytHome #reGabrielsSearch .searchLow label, #reGabrielsSearch .searchBeds label, #reGabrielsSearch .searchBaths label {font-size:10px;}
+#content.ytHome #reGabrielsSearch .form-button {padding:5px; background-position:0 100%; height:30px; background-repeat:none; text-transform:uppercase; background-color:#2851A2; background-image:none;}
+#content.ytHome #reGabrielsSearch .form-button:hover {background-color:#2851A2; background-image:none;}
+#content.ytHome #Col3 .insideBP table .aSide {width: 58px;}
+#content.ytHome #Col3 .insideBP table .bSide {width:241px;}
+
+#sportsSchoolsDrop form select {float:left;}
+#sportsSchoolsDrop form .form-button {float:left; margin-left:5px; text-transform:uppercase; background-color:#2851A2; background-image:none;}
+#sportsSchoolsDrop form .form-button:hover {background-color:#2851A2; background-image:none;}
+
+.bluePad {background-color:#ebf4fb;border: 1px solid #b7cdff;padding:13px 10px;margin-bottom:20px;}
+.bluePad .insideBP {background-color:#fff;border-top: 1px solid #b7cdff;margin-top:7px;padding:10px;}
+.bluePad h3.sectionHeader {text-transform:none;font-size:16px;}
+
+.ytHome .ltBlueBox {position:relative}
+.ytHome .ltBlueBox #AP_C_adC673401413e0111CE0gHW4380815 {position:relative; left:-8px;}
+
+
+
+/* Community ESI widgets -- base
+================================== */
+
+#bdc_communityESI {
+	border:5px solid #ccc;
+	background-color:#fff;
+	height:95px;
+	padding:0 0 0 82px;
+	margin:10px 5px;
+	background-repeat:no-repeat;
+	}
+
+#bdc_communityESI h3 {
+	margin:15px 0 8px -3px;
+	letter-spacing:-0.03em;
+	}
+
+#bdc_communityESI h3 a {
+	color:#000;
+	padding:1px 3px;
+	}
+
+#bdc_communityESI h3 a:hover {
+	border-bottom:none;
+	}
+
+#bdc_communityESI p {
+	font:normal 11px Arial, Helvetica, Verdana, sans-serif;
+	margin:0px;
+	letter-spacing:-0.01em;
+	display: inline;
+	}
+
+#bdc_communityESI p strong {
+	color:#000;
+	font-weight:bold;
+	}
+
+#bdc_communityESI ul.linklist {
+	margin-right:10px;
+	}
+
+#bdc_communityESI .byline {
+	color:#000;
+	font-size:11px;
+	margin:-5px 0 8px 2px;
+	font-weight:normal;
+	}
+
+
+
+/* ESI widgets -- variations
+================================== */
+/* 24-Hour Workday */
+#bdc_communityESI.hour_workday {
+	background-position: -15px -5px;
+	background-image: url(http://cache.boston.com/stuff/2011/10/05/KaraBaskin-100x100.jpg)
+	}
+#bdc_communityESI.hour_workday h3 a {
+	color:#683683;
+	}
+#bdc_communityESI.hour_workday h3 a:hover {
+	background-color:#683683; color:#fff;
+	}
+#bdc_communityESI.hour_workday p {
+	display:inline;color: #000; font-size: 11px; margin: -5px 0 8px 2px;
+	}
+
+/* Ask the Pilot */
+#bdc_communityESI.ask_the_pilot {
+	background-position: 5px 0px;
+	background-image: url(http://cache.boston.com/community/blogs/images/ask_the_pilot/mug_65x100.jpg)
+	}
+#bdc_communityESI.ask_the_pilot h3 a {
+	color:#235eac;
+	}
+#bdc_communityESI.ask_the_pilot h3 a:hover {
+	background-color:#235eac; color:#fff;
+	}
+#bdc_communityESI.ask_the_pilot p {
+	display:inline;color: #000; font-size: 11px; margin: -5px 0 8px 2px;
+	}
+
+/* After The Storm */
+#bdc_communityESI.after_the_storm {
+	background-position: -10px -5px;
+	background-image: url(http://cache.boston.com/community/blogs/images/after_the_storm2/tornado100x100.jpeg)
+	}
+#bdc_communityESI.after_the_storm h3 a {
+	color:#4054A5;
+	}
+#bdc_communityESI.after_the_storm h3 a:hover {
+	background-color:#4054A5;color:#fff;
+	}
+	
+/* Apptitude Test */
+#bdc_communityESI.apptitude_test {
+	background-position: -10px -5px;
+	background-image: url(http://cache.boston.com/community/blogs/images/apptitude_test/mug_esi.jpeg)
+	}
+#bdc_communityESI.apptitude_test h3 a {
+	color:#235eac;
+	}
+#bdc_communityESI.apptitude_test h3 a:hover {
+	background-color:#235eac;color:#fff;
+	}
+	
+/* Blissfully Inspired */
+#bdc_communityESI.blissfully_inspired {
+	background-position: +10px -20px;
+	background-image: url(http://cache.boston.com/community/blogs/images/blissfully_inspired/mug_esi.jpg)
+	}
+#bdc_communityESI.blissfully_inspired h3 a {
+	color:#235eac;
+	}
+#bdc_communityESI.blissfully_inspired h3 a:hover {
+	background-color:#235eac;color:#fff;
+	}
+
+/* BostoNite */
+#bdc_communityESI.bostonite {
+	background-image:url('http://cache.boston.com/community/blogs/images/bostonite/mug_directory.png');
+	background-position:-20px -5px;
+	}
+#bdc_communityESI.bostonite h3 a {
+	color:#dc2448;
+	}
+#bdc_communityESI.bostonite h3 a:hover {
+	background-color:#dc2448;
+	color:#fff;
+	}
+
+/* Boston by Beat */
+#bdc_communityESI.boston_by_beat {
+	background-image:url('http://cache.boston.com/community/blogs/images/boston_by_beat/mug_100x100.jpg');
+	background-position:-11px -0px;
+	background-size: 95px 95px;
+	}
+#bdc_communityESI.boston_by_beat h3 a {
+	color:#dc2448;
+	}
+#bdc_communityESI.boston_by_beat h3 a:hover {
+	background-color:#dc2448;
+	color:#fff;
+	}
+
+/* Boston Medical Mysteries */
+#bdc_communityESI.boston_medical_mysteries {
+	background-image:url('http://cache.boston.com/community/blogs/images/boston_medical_mysteries/mug_esi.png');
+	background-position:-20px -5px;
+	}
+#bdc_communityESI.boston_medical_mysteries h3 a {
+	color:#dc2448;
+	}
+#bdc_communityESI.boston_medical_mysteries h3 a:hover {
+	background-color:#dc2448;
+	color:#fff;
+	}
+
+/* Boston Real Estate Now */
+#bdc_communityESI.boston_real_estate_now {
+	background-image:url('http://cache.boston.com/images/blog/redesign/business/re_75x75.jpg');
+	background-position:5px 10px;
+	}
+#bdc_communityESI.boston_real_estate_now h3 a {
+	color:#5687c2;
+	}
+#bdc_communityESI.boston_real_estate_now h3 a:hover {
+	background-color:#5687c2;
+	color:#fff;
+	}
+
+/* Boston Spirit Magazine */
+#bdc_communityESI.boston_spirit {
+	background-position: 3px 7px;
+	background-image: url('http://cache.boston.com/community/blogs/images/boston_spirit/blog_BostonSpirit_75x75.gif');
+	}
+#bdc_communityESI.boston_spirit h3 a {
+	color:#ec008b;
+	}
+#bdc_communityESI.boston_spirit h3 a:hover {
+	color:#fff; background-color:#ec008b;
+	}
+
+ /* Bruins Daily */
+#bdc_communityESI.bruins_daily {
+	background-position:5px 0px;
+	background-image:url(http://cache.boston.com/community/blogs/images/bruins_daily/mug_65x100.jpg);
+	}
+#bdc_communityESI.bruins_daily h3 a {
+	color:#1A3F70;
+	}
+#bdc_communityESI.bruins_daily h3 a:hover {
+	background-color:#1A3F70;color:#fff;
+	}  
+	
+/* Cabin In Maine */
+#bdc_communityESI.cabin_in_maine {
+	background-position:-30px -20px;
+	background-image:url(http://cache.boston.com/community/blogs/images/cabin_in_maine/mug_esi.png);
+	}
+#bdc_communityESI.cabin_in_maine h3 a {
+	color:#365f2d;
+	}
+#bdc_communityESI.cabin_in_maine h3 a:hover {
+	background-color:#365f2d;color:#fff;
+	}
+
+/* Chart Girl */
+#bdc_communityESI.chartgirl {
+	background-position:-18px -5px;
+	background-image:url('http://cache.boston.com/community/blogs/images/chartgirl/mug-100x100.png');
+	}
+#bdc_communityESI.chartgirl h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.chartgirl h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+
+/* Child Caring */
+#bdc_communityESI.child_caring{
+	background-position:-35px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/child_caring/mug_125x118.png);
+	}
+#bdc_communityESI.child_caring h3 a {
+	color:#D9294B;
+	}
+#bdc_communityESI.child_caring h3 a:hover {
+	background-color:#D9294B;color:#fff;
+	}
+
+/* Child in Mind */
+#bdc_communityESI.child_in_mind {
+	background-position:-25px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/child_in_mind/mug_directory.png);
+	}
+#bdc_communityESI.child_in_mind h3 a {
+	color:#5452a0;
+	}
+#bdc_communityESI.child_in_mind h3 a:hover {
+	background-color:#5452a0;color:#fff;
+	}
+
+/* Chow Down Beantown */
+#bdc_communityESI.chow_down_beantown {
+	background-image:url('http://cache.boston.com/community/blogs/images/chow_down/mug_75x75.jpg');
+	background-position:0px 8px;
+	}
+#bdc_communityESI.chow_down_beantown h3 a {
+	color:#39812f;
+	}
+#bdc_communityESI.chow_down_beantown h3 a:hover {
+	background-color:#39812f;color:#fff;
+	}
+
+/* College Bound */
+#bdc_communityESI.college_bound {
+	background-position:-18px -5px;
+	background-image:url(http://cache.boston.com/community/blogs/images/college_bound/mug_esi.png);
+	}
+#bdc_communityESI.college_bound h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.college_bound h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+
+/* Consumer Alert */
+#bdc_communityESI.consumer_alert {
+	background-position:-36px -11px;
+	background-image:url(http://cache.boston.com/community/blogs/images/consumer_alert/mug_esi.png)
+	}
+#bdc_communityESI.consumer_alert h3 a {
+	color:#E63E2B;
+	}
+#bdc_communityESI.consumer_alert h3 a:hover {
+	background-color:#E63E2B;color:#fff;
+	}
+	
+	
+/* Corner Kicks*/
+#bdc_communityESI.corner_kicks {
+	background-position:-16px -16px;
+	background-image:url(http://cache.boston.com/community/blogs/images/corner_kicks/mug_esi.png);
+	}
+#bdc_communityESI.corner_kicks h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.corner_kicks h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+
+/* Creative Type */
+#bdc_communityESI.creative_type {
+	background-position:-26px -11px;
+	background-image:url(http://cache.boston.com/community/blogs/images/creative_type/mug_esi.png)
+	}
+#bdc_communityESI.creative_type h3 a {
+	color:rgb(143,100,176);
+	}
+#bdc_communityESI.creative_type h3 a:hover {
+	background-color:rgb(143,100,176);color:#fff;
+	}
+
+/* Crime & Punishment */
+#bdc_communityESI.crime_punishment {
+	background-position:-15px -18px;
+	background-image:url(http://cache.boston.com/community/blogs/images/crime_punishment/mug_esi.png);
+	}
+#bdc_communityESI.crime_punishment h3 a {
+	color:#666;
+	}
+#bdc_communityESI.crime_punishment h3 a:hover {
+	background-color:#666;color:#fff;
+	}
+
+/* Culture Club */
+#bdc_communityESI.culture_club {
+	background-position:-40px -12px;
+	background-image:url(http://cache.boston.com/community/blogs/images/culture_club/mug_esi.png);
+	}
+#bdc_communityESI.culture_club h3 a {
+	color:#ec008c;
+	}
+#bdc_communityESI.culture_club h3 a:hover {
+	background-color:#ec008c;color:#fff;
+	}
+    
+/* Dirty Old Boston */
+#bdc_communityESI.dirty_old_boston {
+	background-position:-30px -10px;
+	background-image:url(http://cache.boston.com/community/blogs/images/dirty_old_boston/mug_esi.png);
+	}
+#bdc_communityESI.dirty_old_boston h3 a {
+	color:#517191;
+	}
+#bdc_communityESI.dirty_old_boston h3 a:hover {
+	background-color:#517191; color:#fff;
+	}
+	
+/* DIY Boston */
+#bdc_communityESI.diy_boston {
+	background-position: -0px +6px;
+	background-image:url(http://cache.boston.com/community/blogs/images/diy_boston/mug_75x75.jpg);
+	}
+#bdc_communityESI.diy_boston h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.diy_boston h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+
+/* Dollar for Dollar */
+#bdc_communityESI.dollar_for_dollar {
+	background-position:-20px -12px;
+	background-image:url(http://cache.boston.com/community/blogs/images/dollar_for_dollar/mug_directory.png);
+	}
+#bdc_communityESI.dollar_for_dollar h3 a {
+	color:#265DAB;
+	}
+#bdc_communityESI.dollar_for_dollar h3 a:hover {
+	background-color:#265DAB;color:#fff;
+	}
+
+/* Economy and Equity*/
+#bdc_communityESI.economy_equity {
+	background-position:-10px -2px;
+	background-image:url(http://cache.boston.com/stuff/2012/03/13/bluestone_100_no_border.jpg);
+	}
+#bdc_communityESI.economy_equity h3 a {
+	color:#365F2D;
+	}
+#bdc_communityESI.economy_equity h3 a:hover {
+	background-color:#365F2D;color:#fff;
+	}
+
+/* The E Word*/
+#bdc_communityESI.the_e-word {
+	background-position:-10px -2px;
+	background-image:url(http://cache.boston.com/stuff/2012/03/13/peter_post_100_no_border.jpg);
+	}
+#bdc_communityESI.the_e-word h3 a {
+	color:#517191;
+	}
+#bdc_communityESI.the_e-word h3 a:hover {
+	background-color:#517191; color:#fff;
+	}
+
+ /* Expertly Engaged */
+#bdc_communityESI.expertly_engaged {
+	background-position:-18px -0px;
+	background-image:url(http://cache.boston.com/community/blogs/images/expertly_engaged/mug_100x100.jpg);
+	}
+#bdc_communityESI.expertly_engaged h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.expertly_engaged h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	}
+
+/* Extra Innings */
+#bdc_communityESI.extra_innings {
+	background-position:-15px -7px;
+	background-image:url(http://cache.boston.com/community/blogs/images/extra_innings/mug_esi.png);
+	}
+#bdc_communityESI.extra_innings h3 a {
+	color:#D9294B;
+	}
+#bdc_communityESI.extra_innings h3 a:hover {
+	background-color:#D9294B;color:#fff;
+	}
+
+/* Fantasy Fools */
+#bdc_communityESI.fantasy_fools {
+	background-position:-15px 1px;
+	background-image:url(http://cache.boston.com/images/blog/fantasyfools/mug_directory.png);
+	}
+#bdc_communityESI.fantasy_fools h3 a {
+	color:#1B3E71;
+	}
+#bdc_communityESI.fantasy_fools h3 a:hover {
+	background-color:#1B3E71;color:#fff;
+	}
+
+/* FiftyShift */
+#bdc_communityESI.fiftyshift {
+	background-position:-26px -11px;
+	background-image:url(http://cache.boston.com/community/blogs/images/fiftyshift/mug_esi.png)
+	}
+#bdc_communityESI.fiftyshift h3 a {
+	color:#5350a3;
+	}
+#bdc_communityESI.fiftyshift h3 a:hover {
+	background-color:#5350a3;color:#fff;
+	}
+
+/* Gatekeeper */
+#bdc_communityESI.gatekeeper {
+	background-position:-12px -15px;
+	background-image:url(http://cache.boston.com/community/blogs/images/gatekeeper/mug_esi.png);
+	}
+#bdc_communityESI.gatekeeper h3 a {
+	color:#f15922;
+	}
+#bdc_communityESI.gatekeeper h3 a:hover {
+	background-color:#f15922;color:#fff;
+	}
+    
+/* Global Business Hub */
+#bdc_communityESI.global_business_hub {
+	background-position:-10px -3px;
+	background-image:url(http://cache.boston.com/community/blogs/images/global_business_hub/mug_esi.gif);
+	}
+#bdc_communityESI.global_business_hub h3 a {
+	color:#93b23d;
+	}
+#bdc_communityESI.global_business-hub h3 a:hover {
+	background-color:#93b23d;color:#fff;
+	}  
+ 
+ /* Going Deep */
+#bdc_communityESI.goingdeep {
+	background-position:-19px -2px;
+	background-image:url(http://cache.boston.com/community/blogs/images/goingdeep/mug_100x100.jpg);
+	}
+#bdc_communityESI.goingdeep h3 a {
+	color:#1A3F70;
+	}
+#bdc_communityESI.goingdeep h3 a:hover {
+	background-color:#1A3F70;color:#fff;
+	}   
+    
+/* Health Stew */
+#bdc_communityESI.health_stew {
+	background-image:url('http://cache.boston.com/community/blogs/images/health_stew/mug_125x118.png');
+	background-position:-20px 0px;
+	}
+#bdc_communityESI.health_stew h3 a {
+        color:#1A3F70;
+	}
+#bdc_communityESI.health_stew h3 a:hover {
+        background-color:#1A3F70;color:#fff;
+	}
+
+/* Hub Arts */
+#bdc_communityESI.hub_arts {
+        background-position:-10px -3px;
+        background-image:url(http://cache.boston.com/community/blogs/images/hub_arts/mug_esi.gif);
+        }
+#bdc_communityESI.hub_arts h3 a {
+        color:#714526;
+        }
+#bdc_communityESI.hub_arts h3 a:hover {
+        background-color:#714526;color:#fff;
+        }
+		
+/*Hyphenated Life */
+#bdc_communityESI.the_hyphenated_life {
+	background-position:-20px -15px;; background-image:url(http://cache.boston.com/stuff/2011/07/14/mug_esi_hyphenated.jpg)
+	}
+#bdc_communityESI.the_hyphenated_life h3 a {
+	color:#d89f28;
+	}
+#bdc_communityESI.the_hyphenated_life h3 a:hover {
+	background-color:#d89f28; color:#fff;
+	}
+
+/* Inbound Sounds*/
+#bdc_communityESI.inbound_sounds {
+	background-image:url('http://cache.boston.com/community/blogs/images/inbound_sounds/mug_esi.png');
+	background-position: -25px -10px;
+	}
+#bdc_communityESI.inbound_sounds h3 a {
+	color:#1A3F70;
+	}
+#bdc_communityESI.inbound_sounds h3 a:hover {
+	background-color:#1A3F70;color:#fff;
+	}
+    
+/* Innovation Economy */
+#bdc_communityESI.innovation_economy {
+    background-position:-10px -3px;
+	background-image:url(http://cache.boston.com/community/blogs/images/innovation_economy/mug_esi.jpg);
+	}
+#bdc_communityESI.innovation_economy h3 a {
+	color:#93b23d;
+	}
+#bdc_communityESI.innovation_economy h3 a:hover {
+	background-color:#93b23d;color:#fff;
+	}
+    
+/* In Practice */
+#bdc_communityESI.in_practice {
+	background-position:-30px -10px;padding-left:82px !important;text-align:left;
+	background-image:url(http://cache.boston.com/community/blogs/images/in_practice/mug_directory.png);
+	}
+#bdc_communityESI.in_practice h3 a {
+	color:#1dbaa7;
+	}
+#bdc_communityESI.in_practice h3 a:hover {
+	background-color:#1dbaa7;color:#fff;
+	}
+
+    /* Job Doc Blog */
+#bdc_communityESI.the_job_doc_blog {
+	background-position:-27px -21px;
+	background-image:url(http://cache.boston.com/community/blogs/images/job_doc/mug_esi.png);
+    }
+#bdc_communityESI.the_job_doc_blog h3 a {
+	color:#93b23d;
+	}
+#bdc_communityESI.the_job_doc_blog h3 a:hover {
+	background-color:#93b23d;color:#fff;
+	}
+
+/* Joyschtick */
+#bdc_communityESI.joyschtick {
+	background-image:url('http://cache.boston.com/community/blogs/images/joyschtick/mug_esi.png');
+	background-position:-20px 0px;
+	}
+#bdc_communityESI.joyschtick h3 a {
+        color:#1371B7;
+	}
+#bdc_communityESI.joyschtick h3 a:hover {
+        background-color:#1371B7;color:#fff;
+	}
+
+/* Less Is More */
+#bdc_communityESI.less_is_more {
+	background-position:-42px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/less_is_more/mug_esi.png);
+	}
+#bdc_communityESI.less_is_more h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.less_is_more h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	}
+    
+ /* Let's Go Out */
+#bdc_communityESI.lets_go_out {
+	background-position:-42px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/lets_go_out/mug_esi.png);
+	}
+#bdc_communityESI.lets_go_out h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.lets_go_out h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	} 
+    
+    /* Managing Your Money */
+#bdc_communityESI.managing_your_money {
+	background-position:-10px -3px;
+	background-image:url(http://cache.boston.com/community/blogs/images/managing_your_money/mug_esi.gif);
+	}
+#bdc_communityESI.managing_your_money h3 a {
+	color:#93b23d;
+	}
+#bdc_communityESI.managing_your_money h3 a:hover {
+	background-color:#93b23d;color:#fff;
+	}
+    
+
+/* MD Mama */
+#bdc_communityESI.md_mama {
+	background-position:-10px -8px;
+	background-image:url('http://cache.boston.com/community/blogs/images/md_mama/mug_125x118.png');
+	}
+#bdc_communityESI.md_mama h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.md_mama h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+    
+/* Media Remix */
+#bdc_communityESI.media_remix {
+	background-position:0px -5px;
+	background-image:url(http://cache.boston.com/community/blogs/images/media_remix/mug_65x100.jpg);
+	}
+#bdc_communityESI.media_remix h3 a {
+	color:#1371B7;
+	}
+#bdc_communityESI.media_remix h3 a:hover {
+	background-color:#1371B7;	color:#fff;
+	}
+
+    
+/* Mortal Matters*/
+#bdc_communityESI.mortal_matters {
+	background-position:-16px -16px;
+	background-image:url(http://cache.boston.com/community/blogs/images/mortal_matters/mug_esi.png);
+	}
+#bdc_communityESI.mortal_matters h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.mortal_matters h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+    
+
+/* Nutrition and You */
+#bdc_communityESI.nutrition_and_you {
+        background-position:-30px -15px; 
+        background-image:url(http://cache.boston.com/images/blog/nutrition_and_you/joan-salge-blake.png)
+	}
+#bdc_communityESI.nutrition_and_you h3 a {
+	color:#93b23d;
+	}
+#bdc_communityESI.nutrition_and_you h3 a:hover {
+	background-color:#93b23d;color:#fff;
+	}
+
+/*Obnoxious boston fan */ 
+#bdc_communityESI.obnoxious_boston_fan { 
+	background-position:-22px -5px; 
+	background-image:url(http://cache.boston.com/images/blog/obnoxiousbostonfan/Boston-Fan.png); 
+	} 
+#bdc_communityESI.obnoxious_boston_fan h3 a {
+	Color:#9b0016;
+	}
+#bdc_communityESI.obnoxious_boston_fan h3 a:hover {
+	background-cOLor:#9b0016; color:#fff;
+	}
+
+/* Off The Field*/
+#bdc_communityESI.off_the_field {
+	background-position:-16px -24px;
+	background-image:url(http://cache.boston.com/community/blogs/images/off_the_field/mug_esi.png);
+	}
+#bdc_communityESI.off_the_field h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.off_the_field h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+    
+/* On Deck */
+#bdc_communityESI.on_deck {
+	background-position:-25px -5px;
+	background-image:url(http://cache.boston.com/community/blogs/images/on_deck/mug_esi.png);
+	}
+#bdc_communityESI.on_deck h3 a {
+	color:#16498D;
+	}
+#bdc_communityESI.on_deck h3 a:hover {
+	background-color:#16498D;color:#fff;
+	}
+
+/* On Liberty */
+#bdc_communityESI.on_liberty {
+	background-position:-25px -18px;
+	background-image:url(http://cache.boston.com/community/blogs/images/on_liberty/mug_esi.png);
+	}
+#bdc_communityESI.on_liberty h3 a {
+	color:#ffc501;
+	}
+#bdc_communityESI.on_liberty h3 a:hover {
+	background-color:#ffc501;color:#fff;
+	}
+
+/* Pack Up */
+#bdc_communityESI.pack_up {
+   background-position:-25px -10px;
+   background-image:url('http://cache.boston.com/community/blogs/images/pack_up/mug_esi.png');
+   }
+#bdc_communityESI.pack_up h3 a {
+	color:#4c9e46;
+	}
+#bdc_communityESI.pack_up h3 a:hover {
+	background-color:#4c9e46;color:#fff;
+	}
+
+/* Paul Pierce */
+#bdc_communityESI.paul_pierce {
+	background-position:-10px -12px;
+	background-image:url(http://cache.boston.com/community/blogs/images/paul_pierce/mug_esi.png);
+	}
+#bdc_communityESI.paul_pierce h3 a {
+	color:#4b9e45;
+	}
+#bdc_communityESI.paul_pierce h3 a:hover {
+	background-color:#4b9e45;color:#fff;
+	}
+
+/* Pet Chatter */
+#bdc_communityESI.pet_chatter {
+	background-position:-42px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/pet_chatter/mug_esi.png);
+	}
+#bdc_communityESI.pet_chatter h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.pet_chatter h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	}
+
+ /* Plan B Nation */
+#bdc_communityESI.plan_b_nation {
+	background-position:-42px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/plan_b_nation/mug_esi.png);
+	}
+#bdc_communityESI.plan_b_nation h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.plan_b_nation h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	}
+
+/* Reflections from Residency*/
+#bdc_communityESI.reflections_from_residency {
+	background-position:-16px -18px;
+	background-image:url(http://cache.boston.com/community/blogs/images/reflections_from_residency/mug_esi.png);
+	}
+#bdc_communityESI.reflections_from_residency h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.reflections_from_residency h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+
+/* the Restaurant Hub */
+#bdc_communityESI.the_restaurant_hub {
+	background-position:5px -15px;
+	background-image:url('http://cache.boston.com/community/blogs/images/the-restaurant-hub/mug_65x100.jpg');
+	}
+#bdc_communityESI.the_restaurant_hub h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.the_restaurant_hub h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+
+/* Roads and Rails */
+#bdc_communityESI.roads_and_rails {
+	background-position:-10px 0px;
+	background-image:url(http://cache.boston.com/community/blogs/images/roads_and_rails/mug_esi.jpg);
+	}
+#bdc_communityESI.roads_and_rails h3 a {
+	color:#e7412b;
+	}
+#bdc_communityESI.roads_and_rails h3 a:hover {
+	background-color:#e7412b;color:#fff;
+	}
+
+/* Rock the Schoolhouse */
+#bdc_communityESI.rock_the_schoolhouse {
+	background-position:-21px -12px;
+	background-image:url(http://cache.boston.com/community/blogs/images/rock_the_schoolhouse/mug_esi.png)
+	}
+#bdc_communityESI.rock_the_schoolhouse h3 a {
+	color:rgb(0,176,189);
+	}
+#bdc_communityESI.rock_the_schoolhouse h3 a:hover {
+	background-color:rgb(0,176,189);color:#fff;
+	}
+
+/* Run Along */
+#bdc_communityESI.runalong {
+	background-position:-20px -8px;
+	background-image:url('http://cache.boston.com/community/blogs/images/runalong/mug_esi.png');
+	}
+#bdc_communityESI.runalong h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.runalong h3 a:hover {
+	background-color:#1B3F70;	color:#fff;
+	}
+
+/* She's Game Sports */
+#bdc_communityESI.shes_game_sports {
+        background-position:-16px -10px;
+        background-image:url(http://cache.boston.com/community/blogs/images/shes_game_sports/mug_esi.png);
+        }
+#bdc_communityESI.shes_game_sports h3 a {
+        color:#c03936;
+        }
+#bdc_communityESI.shes_game_sports h3 a:hover {
+        background-color:#c03936; color:#fff;
+        }
+    
+/* Short White Coat */
+#bdc_communityESI.short_white_coat {
+	background-position:-25px -20px;
+	background-image:url(http://cache.boston.com/community/blogs/images/short_white_coat/mug_directory.png)
+}
+#bdc_communityESI.short_white_coat h3 a {
+	color:#8f6eb0;
+}
+#bdc_communityESI.short_white_coat h3 a:hover {
+	background-color:#8f6eb0;color:#fff;
+}
+
+/* The Small Business Blog*/
+#bdc_communityESI.the_small_business_blog {
+	background-position:-23px -4px;
+	background-image:url(http://cache.boston.com/community/blogs/images/the_small_business_blog/mug_esi2.png);
+	}
+#bdc_communityESI.the_small_business_blog h3 a {
+	color:#4E4E4E;
+	}
+#bdc_communityESI.the_small_business_blog h3 a:hover {
+	background-color:#4E4E4E; color:#fff;
+	}
+
+/* Sports Talk */
+#bdc_communityESI.sports_talk {
+	background-position:-30px -10px;
+	background-image:url(http://cache.boston.com/community/blogs/images/sports_talk/mug_esi.png);
+	}
+#bdc_communityESI.sports_talk h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.sports_talk h3 a:hover {
+	background-color:#1B3F70; color:#fff;
+	}
+	
+/* State of Play */
+#bdc_communityESI.state_of_play {
+	background-position:+15px +5px;
+	background-image:url(http://cache.boston.com/community/blogs/images/state_of_play/mug_75x75.jpg);
+	}
+#bdc_communityESI.state_of_play h3 a {
+	color:#1B3F70;
+	}
+#bdc_communityESI.state_of_play h3 a:hover {
+	background-color:#1B3F70; color:#fff;
+	}
+
+/* Stats Driven */
+#bdc_communityESI.stats_driven {
+	background-position:-40px -10px;
+	background-image:url(http://cache.boston.com/community/blogs/images/stats_driven/mug_esi.png);
+	}
+#bdc_communityESI.stats_driven h3 a {
+	color:#4E4E4E;
+	}
+#bdc_communityESI.stats_driven h3 a:hover {
+	background-color:#4E4E4E; color:#fff;
+	}
+
+/* Straight Up*/
+#bdc_communityESI.straight_up {
+	background-position:-30px -4px;
+	background-image:url(http://cache.boston.com/community/blogs/images/straight_up/mug_esi.png);
+	}
+#bdc_communityESI.straight_up h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.straight_up h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+	
+ /* Ted x Beacon Street */
+#bdc_communityESI.tedx {
+	background-position: 5px -25px;
+	background-image:url(http://cache.boston.com/community/blogs/images/tedx_beacon_street/mug_65x100.jpg);
+	}
+#bdc_communityESI.tedx h3 a {
+	color:#1A3F70;
+	}
+#bdc_communityESI.tedx h3 a:hover {
+	background-color:#1A3F70;color:#fff;
+	}
+	
+/* The Next Great Generation */
+#bdc_communityESI.the_next_great_generation {
+    background-position: 3px 7px;
+    background-image: url('http://cache.boston.com/community/blogs/images/the_next_great_generation/blog_TNGG_75x75.gif');
+	}
+#bdc_communityESI.the_next_great_generation h3 a {
+    color:#b4d250;
+	}
+#bdc_communityESI.the_next_great_generation h3 a:hover {
+    color:#fff;background-color:#b4d250;
+	}
+
+/* Tubalub */
+#bdc_communityESI.tubalub {
+	background-position:-42px -8px;
+	background-image:url(http://cache.boston.com/community/blogs/images/tubalub/mug-esi.png);
+	}
+#bdc_communityESI.tubalub h3 a {
+	color:#d9274a;
+	}
+#bdc_communityESI.tubalub h3 a:hover {
+	background-color:#d9274a;color:#fff;
+	}
+
+/* Ultra Sound Pregnancy*/
+#bdc_communityESI.ultra_sound_pregnancy {
+	background-position:-22px -16px;
+	background-image:url(http://cache.boston.com/community/blogs/images/ultra_sound_pregnancy/mug_esi.png);
+	}
+#bdc_communityESI.ultra_sound_pregnancy h3 a {
+	color:#375f2d;
+	}
+#bdc_communityESI.ultra_sound_pregnancy h3 a:hover {
+	background-color:#375f2d; color:#fff;
+	}
+
+/* Weather Wisdom */
+#bdc_communityESI.weather_wisdom {
+	background-position:-23px -4px;
+	background-image:url(http://cache.boston.com/community/blogs/images/weather_wisdom/mug_esi.png);
+	}
+#bdc_communityESI.weather_wisdom h3 a {
+	color:#00aeef;
+	}
+#bdc_communityESI.weather_wisdom h3 a:hover {
+	background-color:#00aeef; color:#fff;
+	}
+
+
+
+/* CV ESI widgets on health index page */
+div.cv_esi_health {
+	width:110px;
+}
+
+.health_esi img{
+	border: 1px solid #999;
+}
+.health_esi_title{font-size:10px; line-height:11px; margin-bottom:2px; color:#272727; letter-spacing:.07em; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;text-align:left;}
+
+/* The Angle: Linklist tease */
+
+#angleTease_link {
+	background:url(http://cache.boston.com/_webdesignready/2010/opinion/the_angle/images/angle_minitease.gif) no-repeat scroll 0 1px transparent;
+	padding:1px 0 2px 20px;
+	margin-left:14px;
+	}
+
+#angleTease_link strong {
+	color:#272727;
+	font-size:12px;
+	font-weight:bold;
+	}
+
+
+
+
+
+/* ANTIQUATED */
+
+
+
+/* This Is Your Brain */
+#bdc_communityESI.this_is_your_brain {
+	background-position:-62px -17px;
+	background-image:url(http://cache.boston.com/community/blogs/images/this_is_your_brain/mug_esi.png)
+	}
+#bdc_communityESI.this_is_your_brain h3 a {
+	color:rgb(168,207,56);
+	}
+#bdc_communityESI.this_is_your_brain h3 a:hover {
+	background-color:rgb(168,207,56);color:#fff;
+	}
+
+/* Today's Soundtrack */
+#bdc_communityESI.todays_soundtrack {
+	background-position:-23px -4px;
+	background-image:url(http://cache.boston.com/community/blogs/images/todays_soundtrack/mug_esi.png);
+	}
+#bdc_communityESI.todays_soundtrack h3 a {
+	color:#00aeef;
+	}
+#bdc_communityESI.todays_soundtrack h3 a:hover {
+	background-color:#00aeef;color:#fff;
+	}
+
+/* Upon Reflection */
+#bdc_communityESI.upon_reflection {
+	background-position:-46px -12px;
+	background-image:url(http://cache.boston.com/community/blogs/images/upon_reflection/mug_esi.png)
+	}
+#bdc_communityESI.upon_reflection h3 a {
+	color:rgb(255,171,0);
+	}
+#bdc_communityESI.upon_reflection h3 a:hover {
+	background-color:rgb(255,171,0);color:#fff;
+	}
+
+/* This Land */
+#bdc_communityESI.this_land {
+	background-position:-10px -3px;
+	background-image:url(http://cache.boston.com/community/blogs/images/this_land/mug_esi.png);
+	}
+#bdc_communityESI.this_land h3 a {
+	color:#714526;
+	}
+#bdc_communityESI.this_land h3 a:hover {
+	background-color:#714526; color:#fff;
+	}
+
+/* Human Nature */
+#bdc_communityESI.human_nature {
+	background-position:-76px -10px;
+	background-image:url(http://cache.boston.com/community/blogs/images/human_nature/mug_esi.png)
+	}
+#bdc_communityESI.human_nature h3 a {
+	color:#3c4967;
+	}
+#bdc_communityESI.human_nature h3 a:hover {
+	background-color:#3c4967;color:#fff;
+	}
+
+/* Imaginary Friends */
+#bdc_communityESI.imaginary_friends {
+	background-position: 0 -5px;
+	background-image:
+	url(http://cache.boston.com/community/blogs/images/imaginary_friends/65x100.jpg);
+	}
+#bdc_communityESI.imaginary_friends h3 a {
+	color: #29abe2;
+	}
+#bdc_communityESI.imaginary_friends h3 a:hover {
+	background-color: #29abe2; color: #fff;
+	}
+
+
+
+
+/* Methode-y */
+
+/* White Coat Notes: Reflections from Residency*/
+
+#bdc_communityESI.white_coat_notes {
+    background-position: 3px 7px;
+    background-image: url('http://cache.boston.com/community/blogs/images/t     he_next_great_generation/blog_TNGG_75x75.gif');
+}
+#bdc_communityESI.the_next_great_generation h3 a {
+    color:#b4d250;
+    }
+#bdc_communityESI.the_next_great_generation h3 a:hover {
+    color:#fff;background-color:#b4d250;
+    }
+
+
+/* PollDaddy: Base styles
+====================================*/
+
+.pds-box {
+	background: #fff;
+	color: #4e4e4e;
+	font-family:Arial,Helvetica,Verdana,sans-serif;
+	margin:10px 0;
+	}
+
+.pds-box a:hover {
+	border-bottom:0;
+	}
+
+.pds-box A {
+	outline: none;
+	}
+
+.pds-clear {
+	display: block;
+	clear: both;
+	}
+
+.pds-box-outer {
+	}
+
+.pds-question-top {
+	font-size:14px;
+	line-height: 120%;
+	color: #000;
+	font-weight: bold;
+	padding: 5px 0px 15px 0px;
+	position:relative;
+	}
+
+
+
+/* Answers */
+
+.pds-answer {
+	padding: 0px 0px 10px 0px;
+	border-top: 1px solid #ccc;
+	}
+
+.pds-answer label {
+	color: #333;
+	font-size: 13px;
+	line-height: 150%;
+	position: relative;
+	}
+
+.pds-answer-group {
+	display: block;
+	padding: 8px 0px 8px 0px;
+	border-bottom:1px solid #ccc;
+	}
+
+.pds-answer-group:hover {
+	color:#000;
+	background-color:#efefef;
+	}
+
+.pds-answer-group BR {
+	display: none;
+	}
+
+.pds-answer-input {
+	display: block;
+	float:left;
+	width: 25px;
+	}
+
+.pds-input-label {
+	display: block;
+	cursor: pointer;
+	}
+
+.pds-answer-span {
+	display:table-cell;
+	}
+
+.pds-answer-other {
+	padding: 0px 0px 0px 10px;
+	}
+
+.pds-textfield {
+	background: #FFF;
+	border: 1px solid #d1d1d1;
+	font-size: 12px;
+	padding: 2px;
+	width: 150px;
+	}
+
+.pds-answer-other BR {
+	display: none;
+	}
+
+.pds-other-label {
+	display: block;
+	float:left;
+	cursor: pointer;
+	}
+
+.pds-feedback-group {
+	display: block;
+	padding: 8px 0px 8px 0px;
+	}
+
+.pds-feedback-label {
+	display: block;
+	padding: 0px 0px 5px 0px;
+	}
+
+.pds-feedback-label:after {
+	clear:both;
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	}
+
+.pds-feedback-label {
+	}
+
+* html .pds-feedback-label {
+	height:1%;
+	}
+
+.pds-feedback-per {
+	font-weight: bold;
+	float:left;
+	width:35px;
+	}
+
+.pds-answer-text {
+	float:right;
+	width:89%;
+	}
+
+#Col3L .pds-answer-text,
+.three .pds-answer-text,
+.cols3 .pds-answer-text,
+.relatedBox .pds-answer-text,
+#relatedContent .pds-answer-text,
+.section356 #Col1 .pds-answer-text,
+.section365 #Col1 .pds-answer-text,
+.section113 #Col2 .pds-answer-text {
+	width:72%;
+	}
+
+.cols4 .pds-answer-text {
+	width:86%;
+	}
+
+.pds-feedback-votes {
+	font-weight: normal;
+	font-size:11px;
+	display:none;
+	}
+
+.pds-answer-feedback {
+	height: 14px;
+	border: 1px solid #d1d1d1;
+	background-color: #f1f1f1;
+	position: relative;
+	}
+
+.pds-answer-feedback-bar {
+	font-size: 2px;
+	background: #3478e3;
+	height: 14px;
+	}
+
+/*
+#PDI_feedback2 .pds-answer-feedback-bar {
+	background-color:#d2232a;
+	}
+*/
+
+.pds-vote {
+	padding: 10px 0px;
+	}
+
+.pds-votebutton-outer {
+	text-align:center;
+	}
+
+.pds-vote BR{
+	display: none;
+	}
+
+
+
+/* Buttons */
+
+a.pds-vote-button,
+a.pds-vote-button-load,
+a.pds-vote-button-load:active,
+a.pds-vote-button-load:visited {
+	border:1px solid #2851a2;
+	background-color:#2851a2;
+	color:#ffffff;
+	padding:3px 0;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	margin:auto;
+	width:110px;
+	display:block;
+	}
+
+a.pds-vote-button:hover {
+	background-color: #002878;
+	border:1px solid #2851a2;
+	color:#fff;
+	}
+
+a.pds-vote-button-load {
+	color: #464646;
+	border-color:#fff;
+	white-space: nowrap;
+	cursor: pointer;
+	background:#fff url(http://cache.boston.com/universal/site_graphics/loader.gif) no-repeat scroll 50% 50%;
+	}
+
+a.pds-vote-button-load:hover {
+	border:1px solid #fff;
+	}
+
+.pds-vote-button-load SPAN{
+	visibility: hidden;
+	}
+
+
+
+/* Links */
+
+.pds-links {
+	padding: 10px 0px 0px 0px;
+	display: block;
+	text-align: center;
+	}
+
+.pds-links-back {
+	padding: 10px 0px 0px 0px;
+	display: block;
+	text-align: center;
+	}
+
+.pds-share {
+	border-left:1px solid #ccc;
+	}
+
+
+
+.pds-links A,
+.pds-links-back A  {
+	font-size:11px;
+	color: #2851A2;
+	text-decoration: none;
+	padding: 0px 8px;
+	line-height: 125%;
+	display: inline-block;
+	}
+
+.pds-links A:hover,
+.pds-links-back A:hover {
+	text-decoration: underline;
+	color:#002878;
+	}
+
+.pds-links-back a.pds-comments {
+	display:none;
+	}
+
+.pds-comments SPAN{
+	font-weight: normal;
+	}
+
+.pds-total-votes{
+	padding: 10px 0px 0px 0px;
+	position: relative;
+	font-size:12px;
+	}
+
+.pds-total-votes SPAN{
+	font-weight: bold;
+	}
+
+/* Outbrain */
+#outBrain {
+	clear:both;
+	padding:18px 0 0;
+	margin:16px 0 0 0;
+	}
+
+#article #outBrain {
+	border-top:1px dotted #3E5F9D;
+	}
+
+.article #Col1 #articleText #outBrain {
+	font-family:Arial,Helvetica,Verdana,sans-serif;
+	}
+
+#yourTown #outBrain h3.sectionHeader,
+#outBrain h3.sectionHeader {
+	border-top:none;
+	border-bottom:none;
+	text-transform:none;
+	margin:0 0 12px 0;
+	padding:0;
+	}
+
+#outBrain .outbrain_nm_reg_ul_class,
+#outBrain .outbrain_nm_ad_ul_class,
+#outBrain .outbrain_nm_ad_ul_class-ie,
+#outBrain .outbrain_nm_ad_ul_class-sc,
+#outBrain .outbrain_nm_no_ad_ul_class,
+#outBrain .outbrain_nm_ad_no_reg_ul_class {
+	font-size:10px;
+	line-height:14px;
+	margin:5px 0 0;
+	padding:0 0 0 15px;
+	border:0;
+	}
+
+#outBrain .outbrain_nm_reg_ul_class {
+	margin-top:12px !important;
+	}
+
+#outBrain .outbrain_ad_title_li,
+#outBrain .outbrain_reg_title_li,
+#outBrain .outbrain_ad_title_A:link,
+#outBrain .outbrain_ad_title_A:visited,
+#outBrain .outbrain_ad_title_li a:hover,
+#outBrain .outbrain_ad_title_li a:focus,
+#outBrain .outbrain_ad_title_li a:active {
+	font-size:10px;
+	letter-spacing:0.07em;
+	text-transform:uppercase;
+	list-style:none;
+	color:#666;
+	margin-bottom:2px;
+	border-bottom:none;
+	text-decoration:none;
+	}
+
+#outBrain .outbrain_reg_title_li {
+	background:transparent url(http://cache.boston.com/universal/site_graphics/bcom_logo_outbrain.gif) no-repeat 0 0 !important;
+	text-indent:-1000em;
+	height:17px;
+	width:79px;
+	margin-bottom:5px;
+	}
+
+#outBrain .outbrain_rec_li {
+	color:#999999;
+	padding:3px 0;
+	}
+
+#outBrain .outbrain_rec_li a {
+	font-size:14px;
+	font-weight:bold;
+	line-height:125%;
+	}
+
+#outBrain #recommendationsFieldset_0_bottom,
+#outBrain .outbrain-recommendationsFieldset,
+#outBrain .outbrain-recommendationsFieldset-sc,
+#outBrain .outbrain-recommendationsFieldset-ie {
+	border:0;
+	margin:0;
+	padding:0 !important;
+	position:relative;
+	}
+
+#outBrain .rec-src-link {
+	font-size:11px;
+	color:#999;
+	}
+
+#outBrain .grey4,
+#outBrain .padTop10,
+#outbrainTableRecommendation_0_bottom {
+	display:none;
+	}
+
+/* Classifieds widget for Your Town landing page */
+#ytClassified ul { list-style-type: none; margin: 0 auto; overflow: hidden; padding: 0; }
+#ytClassified ul li { float: left; list-style: none; position: relative; }
+.padRight25 { padding: 0 25px 0 0; }
+#ytClassified li a { background: url('http://cache.boston.com/universal/site_graphics/yourtown/classifieds_sprites_new.gif'); background-repeat: no-repeat; text-align: center; height: 50px; width: 36px; display: block; }
+#ytClassified a span { top: 36px; position: relative; }
+#ytClassified #ytClassJobs { background-position: -30px -30px; }
+#ytClassified #ytClassJobs:hover { background-position: -30px -91px; border-bottom: none; }
+#ytClassified #ytClassCars { background-position: -91px -30px; }
+#ytClassified #ytClassCars:hover { background-position: -91px -91px; border-bottom: none; }
+#ytClassified #ytClassHomes { background-position: -149px -30px; }
+#ytClassified #ytClassHomes:hover { background-position: -149px -91px; border-bottom: none; }
+#ytClassified #ytClassPets { background-position: -208px -30px; }
+#ytClassified #ytClassPets:hover { background-position: -208px -91px; border-bottom: none; }
+#ytClassified #ytClassStuff { background-position: -265px -30px; }
+#ytClassified #ytClassStuff:hover { background-position: -265px -91px; border-bottom: none; }
+
+/* UPDATED QUOTE SCROLLER STYLES START NOW
+   NOTE: These styles are duplicated in bcom_hp_styles_update.css
+========================================== */
+
+/* global ui styles */
+
+.button-triangle {
+    font-family: "Times New Roman", serif !important;
+}
+
+.button-hitarea {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    opacity: 0.01;
+    filter: alpha(opacity=1);
+    z-index: 9001;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+/* angle quote */
+
+.angle-quote blockquote,
+.angle-quote blockquote * {
+    color: #272727;
+    text-decoration: none;
+}
+
+.angle-quote blockquote {
+    font: italic normal normal 13px/13px Georgia, Times, 'Times New Roman', serif;
+    padding: 15px;
+    margin: 0;
+    position: relative;
+}
+
+.angle-quote em {
+    font: normal normal bold 14px/15px Arial, Helvetica, Verdana, sans-serif;
+    display: block;
+    position: relative;
+    height: 20px;
+    line-height: 20px;
+    left: 90px;
+    top: 5px;
+}
+
+.angle-quote-caret-outer,
+.angle-quote blockquote {
+    border: 7px solid #B1A47E;
+}
+
+.angle-quote-caret {
+    position: relative;
+    left: 50px;
+    top: -7px;
+}
+
+.angle-quote-caret div {
+    position: absolute;
+    font-size: 0;
+    line-height: 0;
+    z-index: 9000;
+    _border-left-color: pink !important;
+    _border-bottom-color: pink !important;
+    _filter: chroma(color=pink) !important;
+}
+
+.angle-quote-caret-outer {
+    border-width: 16px;
+    border-left-color: transparent !important;
+    border-bottom-color: transparent !important;
+}
+
+.angle-quote-caret-inner {
+    border: 10px solid #fff;
+    border-left-color: transparent !important;
+    border-bottom-color: transparent !important;
+    left: 7px;
+    top: -1px;
+}
+
+/* generic scroller */
+
+.generic-scroller-title {
+    text-align: center;
+}
+
+.generic-scroller-prev_next {
+    display: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.generic-scroller-js .generic-scroller-prev_next {
+    display: block;
+}
+
+.generic-scroller-prev_next .button-triangle {
+    font-size: 8px;
+    padding: 3px;
+    color: #fff;
+    background: #2851A2;
+    position: relative;
+    top: -2px;
+}
+
+.generic-scroller-prev_next-hover {
+    color: #002878;
+}
+
+.generic-scroller-prev_next-hover .button-triangle {
+    background: #002878;
+}
+
+.generic-scroller-prev {
+    float: left;
+}
+
+.generic-scroller-next {
+    float: right;
+}
+
+.generic-scroller-outer {
+    clear: both;
+    overflow: hidden;
+    position: relative;
+}
+
+.generic-scroller ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width:100%;
+}
+
+.generic-scroller li {
+    position: relative;
+    padding: 0;
+}
+
+.generic-scroller-horizontal ul {
+    width: 99999px;
+}
+
+.generic-scroller-horizontal li {
+    float: left;
+}
+
+/* quote scroller */
+
+.quote-scroller .generic-scroller-outer,
+.quote-scroller li {
+    height: 150px;
+}
+
+.quote-scroller li.clickable {
+    cursor: pointer;
+}
+
+.quote-scroller li.hover .angle-quote-caret-outer,
+.quote-scroller li.hover blockquote {
+    border-color: #8F7E54;
+}
+
+.quote-scroller .angle-quote blockquote {
+    top: 20px;
+}
+
+.quote-scroller .angle-quote a:hover {
+    text-decoration: none;
+}
+
+.quote-scroller .angle-quote-caret {
+    margin-top: 20px;
+}
+
+/* END QUOTE SCROLLER STYLES
+========================================== */
+
+/* SeeClickFix box */
+#scfBox form { margin: 0px; }
+#scfBox .form-button { float: none; background-image: none; background-color: #2851a2; display: inline; text-transform: uppercase; margin-left: 5px; }
+#scfBox label { font-weight: bold; margin-right: 10px; }
+
+#scfBox .icon { width: 25%; float: left; padding: 65px 0 0 0; text-align: center; font-weight: bold; }
+#scfBox #pothole { background: url('http://cache.boston.com/universal/site_graphics/yourtown/scf_cone.gif') top center no-repeat; }
+#scfBox #brokenLight { background: url('http://cache.boston.com/universal/site_graphics/yourtown/scf_lights.gif') top center no-repeat; }
+#scfBox #graffiti { background: url('http://cache.boston.com/universal/site_graphics/yourtown/scf_graffiti.gif') top center no-repeat; }
+#scfBox #intersection { background: url('http://cache.boston.com/universal/site_graphics/yourtown/scf_intersection.gif') top center no-repeat; }
+
+#scfSelector { font-size: 13px; width: 175px; }
+/* End SeeClickFix box */
+
+
+
+/* BrightCove video player "default content" (BCOM-1484) */
+/* NOTE: DUPLICATED IN bcom_hp_styles_update.css */
+
+.videoplayer-inner {
+    background: #ddd;
+    position: relative;
+    font-family: Arial;
+    font-size: 12px;
+    color: #333;
+    overflow: hidden;
+}
+
+.videoplayer-inner,
+.videoplayer-inner * {
+    text-align: center;
+}
+
+.videoplayer img.videoplayer-still {
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    width: 100%;
+}
+
+.videoplayer-loading,
+.videoplayer-loading div,
+.videoplayer-getflash {
+    position: absolute;
+    left: 0;
+    right: 0;
+    #width: 100%;
+}
+
+.videoplayer-loading {
+    top: 0;
+    bottom: 0;
+    #height: 100%;
+}
+
+.videoplayer-loading div {
+    top: 50%;
+    margin-top: -1em; /* approximate vertical centering */
+}
+
+.videoplayer-loading b {
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+}
+
+.videoplayer-getflash {
+    bottom: 10px;
+}
+
+.videoplayer-getflash a {
+    color: #333;
+}
+
+.videoplayer-title {
+	background-color: #000000;
+	color: #ffffff;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: left;
+}
+
+
+
+/* Player-specific tweaks */
+
+.videoplayer-blog .videoplayer-loading {
+
+}
+
+#Col2 #externalBanner {
+  text-align:center;
+	padding: 10px 0;
+	border-bottom: dotted 1px;
+	margin: 10px 0 10px 10px;
+}
+
+/* special subnav for RAW photo pages eg /community/photos/raw  */
+#raw_nav {display: block; width: 609px;  margin:0 0 0 10px; clear:both; background: #fff;  }
+#raw_nav a.raw_nav_header  {display:block; height:67px; width:589px;background: url(http://cache.boston.com/_webdesignready/2009/community/_raw/images/raw_navnologo.gif) no-repeat ; }
+#raw_nav a:hover { color:#CC0033; text-decoration:none; border-bottom:none; }
+#raw_nav img { margin:15px 0 -4px 0 ; }
+#raw_nav ul { height:auto; padding: 0 ; margin: 0; }
+#raw_nav li a { display:block; color:#555555;  height:19px; background-color:#e1e2e4; padding: 8px 11px 2px 7px; text-transform:uppercase; float:left; }
+#raw_nav li { list-style-type:none; font:bold 11px Helvetica, sans-serif; float:left; height:29px; }
+#raw_nav li#cornerleft, #raw_nav li#cornerright {display:block; height:29px; width:9px; list-style-type:none; background-repeat:no-repeat; }
+#raw_nav li#cornerleft {  background-image:url(http://cache.boston.com/_webdesignready/2009/community/_raw/images/corner_left.jpg); float:left; }
+#raw_nav li#cornerright {  background:url(http://cache.boston.com/_webdesignready/2009/community/_raw/images/corner_right.jpg) top right;  }
+#raw_nav #submitNav a { color:#FFFFFF; background-color:#d2232a; padding:8px 6px 2px 8px;}
+#raw_nav #submitNav a:hover { color:#ededed; }
+
+/* Template specific for RAW */
+.section365.raw  #raw_nav  {float: left;  }
+.section365.raw {margin-top: 10px; }
+.section.section365.raw #Col3 { margin-top: -105px; }
+.fullC #raw_nav {width: 959px; margin: 0;  }
+.fullC #raw_nav a.raw_nav_header {background: url(http://cache.boston.com/_webdesignready/2009/community/_raw/images/raw_nav_large.jpg) no-repeat ; }
+.fullC #raw_nav li {font-size: 12px; }
+.fullC #raw_nav li a {padding:8px 25px 2px 21px;}
+.article #raw_nav {width: 539px; margin: 0;  }
+.article #raw_nav a.raw_nav_header {width: auto; overflow: hidden; }
+.article #raw_nav li a {padding: 8px 7px 2px 8px; }
+.article.raw #Col1 #headTools img.providerlogo {margin:0 10px 0 0; }
+
+/* Adding two video styles */
+
+#blogVideoPlayer.left,
+.image.left, img.left {
+	     margin: 5px 15px 10px 0;
+	     }
+
+#blogVideoPlayer.right,
+.image.right, img.right {
+	      margin: 5px 0px 10px 15px;
+}
+
+.chatListContainer {border: 4px solid #9ED9D2; position:relative;}
+.chatListContainer .chatList {width:321px; margin:5px 10px;}
+.chatListContainer .chatArrow {width:22px; height:25px; position:absolute; background-image:url(http://cache.boston.com/universal/site_graphics/chatTRIANGLE.png); background-repeat:no-repeat; background-color:#fff; left:20px;}
+
+
+
+/* Regi style additions */
+body#regi_boston_deals {background-color: #eee;}
+
+.boston_deals_regi_wrap {
+	background-color: #fff;
+	border: 2px solid #003366;
+	margin: 80px auto;
+	width: 577px;
+}
+
+.boston_deals_regi_wrap .regi_wrap_header {
+  background: transparent url(http://cache.boston.com/universal/regi/images/regi_thanks_-_boston_deals_header.jpg) no-repeat;
+  height: 84px;
+  left: 20px;
+  position: relative;
+  top: -46px;
+  width: 248px;
+}
+	
+.regi_wrap_header span {
+  float: left;
+  text-indent: -9999px;
+}
+
+.boston_deals_regi_wrap .regi-footer-text h4 {
+	text-align:left;
+}
+
+body#regi_boston_deals .regi_boston_deals_content,
+body#regi_boston_deals #container .regi_boston_deals_content,
+body#regi_boston_deals_login #container .regi_boston_deals_content {
+  text-align: center;
+}
+	
+body#regi_boston_deals .regi_boston_deals_content h1 {
+  color: #003366;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 24px;
+}
+		
+body#regi_boston_deals .regi_boston_deals_content a.continue {
+	background: transparent url(http://cache.boston.com/universal/regi/images/regi_thanks_-_boston_deals_continue_btn.jpg) no-repeat 0 0;
+	display: inline-block;
+	height: 44px;
+	width: 162px;
+}
+		
+body#regi_boston_deals .regi_boston_deals_content a.continue:hover {
+	background: transparent url(http://cache.boston.com/universal/regi/images/regi_thanks_-_boston_deals_continue_btn.jpg) no-repeat 0 -44px;
+	border: none;
+	text-decoration: none;
+}
+		
+body#regi_boston_deals .regi_boston_deals_content a.continue span {
+	display: block;
+	text-indent: -9999px;
+}
+            
+#header .boston_deals_regi,
+body#regi_boston_deals_login .boston_deals_regi {
+  background: white url(http://cache.boston.com/universal/regi/images/regi_-_boston_deals_header.jpg) no-repeat 0 0;
+  height: 138px;
+}
+	
+.boston_deals_regi .regi-header-inner, 
+body#regi_boston_deals_login .boston_deals_regi .regi-header-inner {
+  left: 276px;
+  overflow: hidden;
+  position: relative;
+  top: 102px;
+}
+		
+#header .boston_deals_regi .regi-header-inner h1,
+body#regi_boston_deals_login .boston_deals_regi .regi-header-inner h1 {
+  color: #003366;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+}
+
+#regi_boston_deals_login #header #login, #regi_boston_deals_login #bostoncom_header #bc_login {
+	float: none;
+	height: 355px;
+	margin: 0;
+}
+
+#regi_boston_deals_login .fb-login-text {
+	margin: 10px 0px 0px 80px;
+	font-size: 12px;
+	color: #000;
+}
+
+/* ESI widget  */
+
+#bdc_communityESI.a_newbie_in_new_england h3 a { 
+color:#5350a3; 
+} 
+
+#bdc_communityESI.a_newbie_in_new_england h3 a:hover { 
+background-color:#000; 
+color:#fff; 
+} 
+
+
+
+/* tooltip styles */
+.tipText {
+        text-align: left;
+        background:#fff;
+        border: 1px solid #b0afaf;
+        padding: 5px 10px 10px 5px;
+}
+.tooltipBottom {
+        height:8px;
+        width:13px;
+        margin-left: 16px;
+        margin-top:-1px;
+        background-image:url('http://cache.boston.com/universal/site_graphics/triangle.png');
+}
+
+
+
+/* =-=-=-=-=-=-=-=-=- Daily Deal widget styles =--=-=--=-=-=-=-==-=-=- */
+
+.widget#dailyDeals {margin-top:15px;}
+
+/* ============== Content dynamic ============ */
+.content#todaysDeal {
+    font-family:georgia;
+    font-size:12px;
+    line-height:16px;
+    min-height:95px;
+}
+.content#todaysDeal p {
+    padding:5px 0 5px 0;
+    margin:0;
+}
+.content#todaysDeal p.ddwMerchant {
+    font-family:arial;
+    font-size:16px;
+    color:#0058b5;
+    font-weight:bold;
+    padding:0;
+    margin:0;
+}
+.content#todaysDeal img {
+    width:150px;
+    float:left;
+    margin-right:10px;
+}
+
+/* ============== Bottom static ============== */
+div#static a img {border:none;}
+div#static div#email {
+    height:20px;
+    width:230px;
+    float:left;
+}
+div#static p {
+    font-family:georgia;
+    font-size:12px;
+    line-height:16px;
+    padding:0 0 5px 0;
+    margin:0;
+}
+div#static div#email p.emph {
+    font-size:14px;
+    font-family:arial;
+    font-weight:bold;
+    float:left;
+    margin-top:2px;
+}
+div#static div#email #subscribeBtn {
+    display:block;
+    border:none;
+    width:95px;
+    height:20px;
+    margin-left:135px;
+    text-decoration:none;
+    text-align:center;
+}
+div#static div#powered {
+    width:150px;
+    padding:0;
+    margin:0;
+    float:right;
+}
+div#static div#powered p {
+    font-size:10px;
+    font-family:arial;
+    float:left;
+    margin-top:5px;
+}
+div#static div#powered #bostonDeals {
+    display:block;
+    width:90px;
+    border:none;
+    padding:0;
+    margin:0 0 0 57px;
+    text-align:center;
+}
+div#static div#ddwClear {clear:both;}
+.top_ad_widget {
+position: relative;
+top: -20px;
+left: 36px;
+}
+
+/*sched.it iframe style*/
+iframe#scheditIframe {width:329px; height:390px; border:none;}
+
+
+
+/*for the companionBanner ad*/
+.hideAd {
+	display:none;
+	z-index:500;
+	top:225px;
+}
+.displayAd {
+	display:inline;
+	z-index:500;
+	top:225px;
+}
+
+/*
+*	= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+*	CSS for Boston.com Tease Wells
+* 	= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+*/
+/* Tease Container */
+.tease h1,
+.tease h2,
+.tease h3,
+.tease p,
+.tease div,
+.tease span {
+       margin: 0;
+       padding: 0;
+       vertical-align: baseline;
+}
+.tease ol,
+.tease ul {
+       margin: 0;
+       padding: 0;
+       list-style: none;
+}
+
+.tease{
+	font-size:12px;
+	overflow:hidden;
+	padding:0 0 20px 0;
+}
+.tease .split{
+       width:50%;
+       float:left;
+}
+/* Tease Lists */
+.tease ul li{
+       margin:0 0 15px 0;
+}
+.tease ul.bulleted{
+       list-style:disc;
+       color:#999;
+       padding:0 0 0 15px;
+       line-height:16px;
+}
+.tease .split ul.bulleted{
+       padding:0 0 0 20px;
+}
+.tease ul.bulleted li{
+       margin:0 0 7px 0;
+}
+/* Tease Headers */
+.tease h1{
+       font-size:24px;
+       font-weight:bold;
+       line-height:25px;
+}
+.tease h2{
+       padding:0;
+       font-size:17px;
+       font-weight:bold;
+       line-height:19px;
+}
+.tease h3{
+       font-size:12px;
+       font-weight:bold;
+       line-height:16px;
+}
+.tease h3 .subject{
+       font-size:11px;
+       color:#666;
+       text-transform:uppercase;
+}
+/* Tease Content */
+.tease p{
+       font-family:"Georgia", "Times New Roman", Times, serif; 
+       margin:0;
+       padding:3px 0 0 0;
+       line-height:16px;
+}
+.tease ul.bulleted p{
+       color:#000;
+}
+.tease ul.bulleted.simple{
+	padding-top: 10px;
+}
+.tease .simple p{
+	font-family:arial;
+}
+.tease .source{
+       font-family:arial;
+       font-size:10px;
+       color:#464646;
+       font-weight:normal;
+       float:none;
+}
+/* Market well, business homepage styling */
+.business #Col2 .tease { padding:0px; }
+
+.business #Col2 .tease ul.bulleted { padding:0px; }
+
+/* SalemFive Expanding ad fix */
+body.news div#Col2 {
+overflow:visible;
+}
+
+body#blog div#Col2 {
+overflow:visible;
+z-index:1;
+}
+
+
+
+/* E-mail signup */
+
+.email-signup-widget-container{
+        width:329px;
+        margin:0 auto;
+        padding:0 0 20px 0;
+}
+.email-signup-widget{
+    background:#ebf4f9;
+    border:1px solid #bec8ff;
+    padding:10px 10px;
+    position: relative;
+}
+.email-signup-widget .sectionHeader{
+    padding-bottom:7px;
+    text-transform:none;
+}
+.email-signup-widget .widget-content{
+    padding:10px;
+    background:#fff;
+    border:1px solid #edf2f6;
+    border-top:1px solid #b5dbff;
+    overflow:hidden;
+}
+.email-signup-widget div.widget-image{
+    width:43px;
+    float:left;
+    margin:0 10px 10px 0;
+    padding:5px 0 0 0;
+}
+.email-signup-widget p.message{
+    margin:0;
+    font-family:Georgia, "Times New Roman", Times, serif;
+        font-size:12px;
+        line-height:16px;
+    background:transparent url(http://cache.boston.com/homepage_shell/includes/on_the_go/onTheGo_sprite_36x36.gif) no-repeat 0 532px;
+    background-position: 0px -528px;
+    padding:0 0 0 50px;
+}
+.email-signup-widget .signup{
+    clear:both;
+    padding:10px 0;
+    text-align:right;
+    font-weight:bold;
+}
+.email-signup-widget .widget-button-blue{
+        margin:0 0 0 7px;
+    background:#2654a2;
+    padding:4px 6px;
+    color:#fff;
+    text-transform:uppercase;
+}
+.email-signup-widget .widget-button-blue:hover{
+        border:none;
+}
+
+/* Start the RadioBDC Revolution */
+#headerRight.radioBDC {
+      float:right;
+      font-size:14px;
+      font-weight:bold;
+      padding-bottom:5px;
+      width:324px;
+      overflow:hidden;
+    }
+
+#now-playing-header {
+      overflow:hidden;
+      height:14px;
+      float:right;
+      width: 220px;
+      position: relative;
+      margin-top:5px;
+    }
+
+#now-playing-header .scrollMeAway {
+      position:absolute;
+      white-space:nowrap;
+      width:auto
+    }
+a.listen-live {
+      color:#c33;
+    }
+
+
+/*Social Saring Styles*/
+.share-tools-tease {position:relative;}
+.share-tools-tools {float:right; position:relative; top:-1px;}
+.share-tools-tools .leadIn {display:inline-block; position: relative; top:-5px;}
+#share-tools-comments-loading, #share-tools-comments-total {font-size: 12px; color:#000;}
+.share-tools-tools .leadIn {text-transform:none; color: #000; font-weight:normal; font-size: 12px;}
+.share-tools-tease img {width:16px; height:16px; float: none; margin:0; padding:0;}
+
+#share-tools-comments-total.linked {color:#2851A2; font-weight:bold;}
+#share-tools-comments-total.linked:hover {color:#002878;}
+
+
+
+/* finds header begin */
+
+.bd-logo {
+  background-image: url(https://d2x2whwtikbhn8.cloudfront.net/nimblebuy/b9bd40d763761ce0d6fef8573017a6c7);/** sprite-ref: bdCommonSprite*/
+  background-repeat: no-repeat;
+  width: 156px;
+  height: 50px;
+  margin-top: -20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.bd-social-block {
+  padding: 12px 0 0 42px;
+}
+
+.bd-social-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #656565;
+  padding: 5px 0 5px 0;
+}
+
+.bd-social-icon {
+  margin-right: 5px;
+  width: 21px;
+  height: 21px;
+  vertical-align: top;
+  background-repeat: no-repeat;
+}
+
+.show-icon-tw {
+  background-image: url(https://d2x2whwtikbhn8.cloudfront.net/nimblebuy/64c7ea1b16eab2fef3b02b954dedf3);/** sprite-ref: bdCommonSprite*/
+}
+
+.show-icon-fb {
+  background-image: url(https://d2x2whwtikbhn8.cloudfront.net/nimblebuy/41f0ce64548ed954250d2d8dd0a63c);/** sprite-ref: bdCommonSprite*/
+}
+
+.hide-text {
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  text-shadow: none;
+}
+
+.pull-left {
+  float: left;
+}
+
+.inline-block {
+  display: -moz-inline-stack;
+  display: inline-block;
+}
+
+.bd-social-icons {
+  margin: 0 0 0 2px;
+}
+
+.bd-tabs {
+  list-style-type: none;
+  padding: 5px 0 5px 0;
+  margin: 5px 0 -36px 0;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #d31145;
+  font-family: Arial,Helvetica,sans-serif;
+  cursor: default;
+  display: table;
+  width: 959px;
+}
+
+.bd-tab {
+  float: left;
+}
+
+.bd-tab-link {
+  display: block;
+  line-height: 34px;
+  padding: 0 19px 0 21px;
+  margin: 0 5px 0 5px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-radius: 4px;
+  -webkit-transition: background-color .3s linear;
+  -moz-transition: background-color .3s linear;
+  -o-transition: background-color .3s linear;
+  transition: background-color .3s linear;
+}
+
+a:link.bd-tab-link, 
+a:visited.bd-tab-link, 
+a:hover.bd-tab-link, 
+a:active.bd-tab-link  {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.bd-tab-link:hover, 
+.bd-tab-link_active {
+  background-color: #b80010;
+  border-bottom: 0px;
+}
+
+/* finds header end */

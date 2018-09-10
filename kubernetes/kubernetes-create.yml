@@ -1,0 +1,82 @@
+---
+- name: Install Kubernetes
+  hosts: kubernetes
+  become: True
+
+  tasks:
+    - name: Install Socat - debian
+      when: ansible_os_family == "Debian"
+      raw: test -e /usr/bin/socat || (apt -y update && apt install -y socat)
+      changed_when: False
+
+
+    - name: Install Socat - redhat
+      when: ansible_os_family == "RedHat"
+      action: yum pkg='socat' state=present
+
+
+    - name: check for minikube
+      stat:
+          path: /usr/bin/minikube
+      register: minikube_result
+
+
+    - name: check for kubectl
+      stat:
+          path: /usr/bin/kubectl
+      register: kubectl_result
+
+
+    - name: Download minikube
+      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
+      args:
+        warn: false
+      when: minikube_result.stat.exists == False
+
+
+    - name: Download kubectl
+      shell: curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/bin/ && rm -f  kubectl
+      args:
+        warn: false
+      when: kubectl_result.stat.exists == False
+
+
+    - name: Check if Kubernetes is running
+      shell: "minikube status | grep minikube: | awk '{print $2'}"
+      register: minikube_status
+
+
+    - debug:
+        msg: "{{ minikube_status }}"
+
+
+    - name: Start kubernetes
+      shell: minikube config set WantReportErrorPrompt false && minikube start --vm-driver=none
+      when: minikube_status.stdout != "Running"
+
+
+    - name: pause while kubernetes services start
+      pause: seconds=10
+      when: minikube_status.stdout != "Running"
+
+
+    - name: Enable Kubernetes dashboard
+      shell: minikube dashboard
+      when: minikube_status.stdout != "Running"
+
+
+    - name: Check for Service Account
+      shell: "kubectl describe serviceaccount -n default | grep Name:"
+      register: srvc_account_status
+
+
+    - name: Create Avi Service Account
+      shell: |
+          kubectl create serviceaccount avi -n default
+          kubectl create -f clusterrole.json
+          kubectl create -f clusterbinding.json
+      when: "'avi' not in srvc_account_status.stdout"
+
+
+    - pause: seconds=5
+      when: "'avi' not in srvc_account_status.stdout"

@@ -1,0 +1,7 @@
+body div#articleText, div#fullArtTxt, div.blogText, div#articleGraphs {
+	font-size:	17px;
+	line-height: 24px;
+	voice-family:	"\"}\"";
+	voice-family:	inherit;
+	
+}

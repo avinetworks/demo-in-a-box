@@ -1,0 +1,42 @@
+############################################################
+# Dockerfile to build avi demo client
+# Based on ubuntu:latest
+############################################################
+
+# Set the base image to ubuntu:latest
+FROM ubuntu:16.04
+
+WORKDIR /opt/avi/client
+
+
+
+################## BEGIN INSTALLATION ######################
+
+# Install client script requirements
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y net-tools ifupdown curl openssl apache2-utils python-minimal python-requests iproute2 python-requests-toolbelt iputils-ping
+
+# Copy Traffic Generation Script and dependencies
+COPY "./interfaces" "/etc/network/interfaces"
+COPY "./netem" "/opt/avi/client/netem"
+COPY "./startup.py" "/opt/avi/client/startup.py"
+COPY "./waf/waf_traffic.py" "/opt/avi/client/waf/waf_traffic.py"
+COPY "./vs_demo/brokenlink_vs.py" "/opt/avi/client/vs_demo/brokenlink_vs.py"
+COPY "./vs_demo/ssl_traffic.py" "/opt/avi/client/vs_demo/ssl_traffic.py"
+
+
+# Modify Permissions
+RUN chmod a+x /opt/avi/client/waf/waf_traffic.py
+RUN chmod a+x /opt/avi/client/startup.py
+RUN chmod a+x /opt/avi/client/vs_demo/ssl_traffic.py
+RUN chmod a+x /opt/avi/client/vs_demo/brokenlink_vs.py
+RUN chmod a+x /opt/avi/client/netem
+
+
+
+
+
+# Execute script
+#----NEED TO CREATE A START SCRIPT
+CMD ["/usr/bin/python", "/opt/avi/client/startup.py"]

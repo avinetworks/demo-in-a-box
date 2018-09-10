@@ -1,0 +1,7 @@
+#container #content div.dl ul li div {font-weight: bold; letter-spacing: -0.7px;}
+#container #content div.dl ul li div h4 {font-weight: bold;}
+
+#header_search_video .search-context label:before  {background-image: none;}
+#header_search_video .search-context label input { visibility: visible;}
+
+#navigation_mainB .spotlight_left_menu li { font-size: 0.9em; }

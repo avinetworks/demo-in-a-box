@@ -1,0 +1,32 @@
+---
+- name: Delete the Demo Web Servers
+  hosts: demo_servers
+  become: True
+
+  tasks:
+    - name: delete demoserver1 container
+      docker_container:
+        name: demoserver1
+        state: absent
+
+
+
+    - name: delete demoserver2 container
+      docker_container:
+        name: demoserver2
+        state: absent
+
+
+
+    - name: delete demoserver3 container
+      docker_container:
+        name: demoserver3
+        state: absent
+
+
+
+    - name: delete the demoserver base image
+      docker_image:
+        name: demoserver
+        tag: latest
+        state: present

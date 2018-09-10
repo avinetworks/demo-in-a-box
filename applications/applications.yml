@@ -1,0 +1,4 @@
+---
+- include: demo_avi/app.yml
+- include: scaleout/app.yml
+- include: waf/app.yml

@@ -1,0 +1,8 @@
+---
+- name: Install Kubernetes
+  hosts: kubernetes
+  become: True
+
+  tasks:
+    - name: Deploy Gallery App
+      shell: kubectl create -f gallery-app.yml

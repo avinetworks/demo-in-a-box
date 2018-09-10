@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0285)http://ads.cnn.com/html.ng/site=cnn&cnn_pagetype=main&cnn_position=300x100_bot3&cnn_rollup=homepage&page.allowcompete=no&params.styles=fs&Params.User.UserID=52913f7c0738560aa5147649d383a269&transactionID=13852506846462828164677632&tile=4434860525843&domId=8fec2567758ceef5&kxid=&kxseg= -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script>
+        function cnnad_getTld (hostname)
+        {
+               var data = hostname.split(".");
+               if (data.length >= 2)
+               {
+                       return (data[data.length-2] + "." + data[data.length-1]);
+               }
+               return(null);
+        }
+ 
+        var cnnDocDomain = cnnad_getTld(location.hostname);
+        if(cnnDocDomain) {document.domain = cnnDocDomain;}
+
+	function cnnGetId(query) {
+		var keyValPairs = query.split('&');
+		if(!keyValPairs) {
+			keyValPairs = new Array();
+			keyValPairs[keyValPairs.length]=query;
+		}
+		for(var counter=0; counter < keyValPairs.length;counter++) {
+			var keyVal = keyValPairs[counter].split('=');
+			if(keyVal[0]=='domId') {
+				//alert("returning id: " + keyVal[1]);
+				return keyVal[1];
+			}
+		}
+	}
+			
+	function cnnSendData2() {
+		var docId = cnnGetId(decodeURIComponent(location.pathname.substring(9)));
+		var height = 100;
+		var width = 300;
+		var targetWindow = top;
+		try
+		{
+			if(parent.cnnad_showAd)
+			{
+				targetWindow = parent;
+			}
+		} catch(err) {} 
+		targetWindow.cnnad_showAd(docId);
+		if ((height > 0)&&(width > 0))
+		{
+			targetWindow.cnnad_setAdSize(docId,height,width);
+		}
+	}
+</script> 
+</head>
+
+<body style="background-color:transparent" onload="cnnSendData2()" marginwidth="0" marginheight="0">
+<!--FlightID: 560772-->
+<iframe src="btkwwzg,bjjcpIKcKaRqz.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="100">
+&lt;script language="JavaScript" type="text/javascript"&gt;
+document.write('&lt;a href="http://ads.cnn.com/event.ng/Type=click&amp;FlightID=560772&amp;AdID=769254&amp;TargetID=82806&amp;Values=1588&amp;Redirect=http://clk.atdmt.com/WWW/go/467420063/direct/01/btkwwzg,bjjcpIKcKaRqz" target="_blank"&gt;&lt;img src="http://view.atdmt.com/WWW/view/467420063/direct/01/btkwwzg,bjjcpIKcKaRqz"/&gt;&lt;/a&gt;');
+&lt;/script&gt;</iframe><!-- 31094 -->
+<div style="position:absolute;visibility:hidden;"><img src="Type=count&ClientType=2&ASeg=&AMod=&AOpt=0&AdID=769254&FlightID=560772&TargetID=82806&SiteID=1588&EntityDefResetFlag=0&Segments=730,2247,3285,3430,4134,9496,9779,9781,9853,10381,16113,18517,18982,19419,21497,29793,3.UserID=52913f7c0738560aa5147649d383a269" width="1" height="1" border="0"></div>
+
+</body></html>

@@ -1,0 +1,17 @@
+---
+- name: Delete the Scaleout Clients
+  hosts: demo_clients
+  become: True
+
+  tasks:
+
+    - name: delete scaleoutclient1
+      docker_container:
+        name: scaleoutclient1
+        state: absent
+
+    - name: delete the scaleoutclient base image
+      docker_image:
+        name: scaleoutclient
+        tag: latest
+        state: absent

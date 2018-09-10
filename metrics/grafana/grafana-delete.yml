@@ -1,0 +1,24 @@
+---
+- name: Delete the Grafana container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+    - name: delete grafana container
+      docker_container:
+        name: grafana
+        state: absent
+
+
+    - name: delete the grafana demo image
+      docker_image:
+        name: grafana
+        tag: latest
+        state: absent
+
+
+    - name: delete the grafana base image
+      docker_image:
+        name: grafana/grafana
+        tag: latest
+        state: absent

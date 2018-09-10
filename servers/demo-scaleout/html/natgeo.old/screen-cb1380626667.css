@@ -1,0 +1,46 @@
+/* ============================================================
+Photography-specific CSS
+* Created by Jon Long on 11-09-2009, Modified by Grant Swertfeger 11-10-2009
+* Copyright (c) 2009 National Geographic. All rights reserved.
+============================================================ */
+
+/* ------------------------------------------------------------
++General
+------------------------------------------------------------ */
+
+#content_mainA .article_body .extended {border: none; margin-bottom: 10px; padding-left: 0; width: 202px;}
+#content_mainA .article_body .vertical {width: 152px;}
+#content_mainA .article_body .extended .credit {margin-top: 5px;}
+
+.promo_collection h2, .seven h2, h3.title {background: url(../i/presentation/photography_sprites.gif) no-repeat -8px -18px;}
+
+#page_head .geocore_head {background: url(../i/presentation/photo_header.gif) no-repeat top left; height: 57px; text-indent: -9999px; width: 259px;}
+.nirvana #page_head .geocore_head,
+.nirvana_home #page_head .geocore_head,
+.nirvana.article #page_head {
+	background: url(../i/presentation/ngpc2013-LOGO.png) no-repeat top left;
+	height: 80px;
+	text-indent: -9999px;
+	width: 562px;
+}
+
+#body_wrap {background: url(../i/presentation/photo_body.gif) repeat-x top center;}
+
+.general .nav li {font-weight: bold; padding-left: 40px; letter-spacing: .05em}
+
+
+/* ------------------------------------------------------------
++Footer Navigation
+------------------------------------------------------------ */
+
+#footer_breadcrumb {background-color: #313b47;}
+#footer_breadcrumb li.selected a {color: #9ccbff; font-weight: normal;}
+#footer_breadcrumb li a, #footer_breadcrumb p a {color: #fff;}
+#footer_global .nav_global_tierA .nav3 a {color: #333; font-weight: bold;}
+
+/* ------------------------------------------------------------
++Carousels
+------------------------------------------------------------ */
+
+.jcarousel-skin-geocore .jcarousel-container {background: #313b47;}
+.jcarousel-list li p a {color: #fff;}

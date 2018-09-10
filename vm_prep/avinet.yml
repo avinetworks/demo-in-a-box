@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install docker-py
+      pip:
+        name: docker-py
+
+    - name: Create a network with options
+      docker_network:
+        name: avinet
+        driver: bridge
+        ipam_options:
+          subnet: '169.254.0.0/17'
+          gateway: '169.254.0.1'
+        appends: yes

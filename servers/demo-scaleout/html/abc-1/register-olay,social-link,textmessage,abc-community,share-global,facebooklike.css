@@ -1,0 +1,907 @@
+
+
+/** 
+* @filepath: register-olay,social-link,textmessage,abc-community,share-global,facebooklike
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+
+
+/** 
+* @filepath: /register/olay.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+		.overContent{
+			min-width: 480px;
+			max-width: 775px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.mobile .overContent{
+			min-width: 320px;
+			max-width: 100%;
+			overflow: auto;
+		}	
+
+		.narrow .overContent,
+		.mobile .narrow .overContent{
+			max-width: 480px;
+		}	
+
+
+		.overContent iframe{
+			display: block;
+			width: 100%;
+			border: none;
+			overflow-x: hidden;
+			background: transparent;
+			max-width: 480px;
+			margin: 0 auto;
+		}
+		.mobile .overContent iframe{
+			max-width: 100%;
+		}
+
+		.Android .overContent iframe{
+			overflow-x: auto;
+		}
+
+		#ABCoverlayShadow,
+		#ABCoverlay{
+			position: absolute;
+			top: 0;
+			left: 0;
+			min-height: 100%;
+			min-width: 100%;
+			z-index: 9999;
+		}
+
+		@media (max-width:479px) {
+			#ABCoverlayShadow,
+			#ABCoverlay{
+				min-width: 480px;
+			}
+			.mobile #ABCoverlayShadow,
+			.mobile #ABCoverlay{
+				min-width: 100%;
+				max-width: 100%;
+			}
+			.mobile .narrow .overContent{
+				max-width: 100%;
+			}
+
+		} 
+
+		#ABCoverlayShadow{
+			opacity: .9;
+			background: black;
+			z-index: 9998;
+		}
+/*		.mobile #ABCoverlayShadow{
+			background: #fcc;
+		}
+*/
+		#ABCCoverlayClose{
+			display: block;
+			position: absolute;
+			color: #fff;
+			top: 7px;
+			left: 50%;
+			opacity: .8;
+			font-size: 30px;
+			line-height: 27px;
+		}
+		.mobile #ABCCoverlayClose{
+			text-align: right;
+			line-height: 23px;
+			right: 7px;
+		}
+
+		#ABCCoverlayClose.embedded{
+			left: auto;
+			right: 0;
+		}
+
+
+	
+		#ABCCoverlayClose span{
+			font-family: verdana, arial, helvetica, sans-serif;
+			font-size: 32px;
+			text-align: center;
+			display: inline-block;
+			cursor: pointer;
+			margin-left: 196px;
+			width: 32px;
+			height: 32px;
+			border-radius: 19px;
+			background: #888;
+			border: 3px #fff solid;
+			-webkit-box-shadow:  0px 0px 3px 3px rgba(44, 44, 44, .4);
+			box-shadow:  0px 0px 3px 3px rgba(44, 44, 44, .4);
+		}
+
+		.narrow #ABCCoverlayClose span{
+			margin-left: 195px;
+		}
+
+		.mobile #ABCCoverlayClose span{
+			font-size: 24px;
+			margin-left: 0;
+			width: 26px;
+			height: 26px;
+			border-radius: 15px;
+			border-width: 2px;
+		}
+		#ABCCoverlayClose.abcfamily span{
+			background: #9a1900;
+		}
+		#ABCCoverlayClose.oscars span{
+			background: #000;
+		}
+		
+		
+
+		@media (min-width:781px) {
+			.overContent iframe{
+				max-width: 100%;
+			}
+			html,
+			body.mobile .overContent iframe,
+			body.mobile .ui-page .overContent iframe{
+				margin: 0 auto;
+			}
+			#ABCCoverlayClose span {
+				margin-left: 342px;
+			}
+		}
+
+
+/** 
+* @filepath: /community/social-link/social-link.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+/* #abc-iframe  #socialLinkAuthUi {} */ 
+.signin-popup #socialLinkAuthUi {
+	float: none;
+	margin: 0;
+	padding: 0 0 12px 0;
+	height: 26px;
+}
+
+#socialLinkAuthUi {
+	float: right;
+	margin-left: 8px;
+	margin-top: -4px;
+}
+
+/* donate status */
+#donateStatusOverlay.overlaycontainer {
+	display: none;
+}
+
+#abc-iframe #donateStatusOverlay.overlaycontainer {
+	display: block;
+}
+
+#donateStatusOverlay.overlaycontainer .overlaycontents {
+	padding: 10px 15px;
+	border: 5px solid #B1B2B2;
+	color: #000;
+	background-color: #fff;
+}
+
+#donateStatusOverlay.overlaycontainer .overlaycontents h1 {
+	color: #000;
+	font-size: 20px;
+	font-weight: normal;
+	height: 38px;
+	padding: 6px 0 0 43px;
+}
+#donateStatusOverlay.facebook .overlaycontents h1 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_facebook.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+#donateStatusOverlay.myspace .overlaycontents h1 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_myspace.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+#donateStatusOverlay.twitter .overlaycontents h1 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_twitter.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+
+
+#donateStatusOverlay.overlaycontainer .overlaycontents p,
+#donateStatusOverlay.overlaycontainer .overlaycontents a {
+	font-size: 12px;
+}
+
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusDesc {
+	font-weight: bold;
+}
+
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons {
+	padding: 0 0 10px;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_ok.gif?cb=cb2525) no-repeat left bottom;
+	height: 35px;
+	width: 74px;
+	display: block;
+	text-indent: -9999px;
+	float: left;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn:hover {
+	background-position: left top;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusCancelBtn {
+	float: left;
+	margin: 8px 0 0 16px;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn.donateStatusPostingBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_posting.gif?cb=cb2525) no-repeat left top;	
+	height: 35px;
+	width: 147px;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn.donateStatusPostingBtn:hover {
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn.donateStatusCloseBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_close.gif?cb=cb2525) no-repeat left bottom;	
+	height: 35px;
+	width: 93px;
+}
+#donateStatusOverlay.overlaycontainer .overlaycontents #donateStatusButtons #donateStatusSubmitBtn.donateStatusCloseBtn:hover {
+	background-position: left top;
+}
+
+#donateStatusOverlay.overlaycontainer .overlaycontents textarea {
+	border: solid 1px #999;
+	width: 320px;
+	height: 70px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+
+/* syndicate overlay */
+
+#syndicateOverlay.overlaycontainer {
+	display: none;
+}
+
+#abc-iframe #syndicateOverlay.overlaycontainer {
+	display: block;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents {
+	padding: 10px 15px;
+	border: 5px solid #B1B2B2;
+	color: #000;
+	background-color: #fff;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents h2 {
+}
+
+#syndicateOverlay.facebook .overlaycontents h2 {
+}
+
+#syndicateOverlay.myspace .overlaycontents h2 {
+}
+
+#syndicateOverlay.twitter .overlaycontents h2 {
+}
+
+
+#syndicateOverlay.overlaycontainer .overlaycontents p,
+#syndicateOverlay.overlaycontainer .overlaycontents a {
+	font-size: 12px;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents p {
+	margin: 0 0 10px;
+}
+
+#syndicateOverlay.overlaycontainer #syndicateOverlaySyndicateMedia {
+	margin: 0 0 20px;
+}
+
+#syndicateOverlay.overlaycontainer #syndicateOverlaySyndicateMedia img {
+	float: left;
+	margin-right: 10px;
+}
+
+#syndicateOverlay.overlaycontainer #syndicateOverlaySyndicateMediaMp3 {
+	float: left;
+	margin-right: 10px;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons {
+	padding: 0 0 10px;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn:hover {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlayCancelBtn {
+	margin: 0 0 0 16px;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayPostingBtn {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayPostingBtn:hover {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayCloseBtn {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayCloseBtn:hover {
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents textarea {
+	width: 320px;
+	height: 70px;
+}
+
+/** 
+* @filepath: /textmessage/textmessage.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+div.overlaycontainer {
+	display :none;
+	color: #000;
+}
+
+#submitframe{
+	display: none;
+}
+div#abc-iframe div.overlaycontainer{
+	display: block;
+}
+div#abc-iframe div.overlaycover{
+	display: block;
+}
+
+div.overlaycontainer h1, div.overlaycontainer h3{
+	color: #FFF;
+	background: #555;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.overlaycontents{
+	border:5px solid #B1B2B2;
+	background: #fff;
+}
+
+.textmessageform fieldset{
+	border: 0;
+	margin: 0;
+	padding: 0 5px;
+}
+
+.textmessageform div{
+	margin-bottom: 8px;
+}
+.textmessageform .errorText{
+	color: #600;
+	font-weight: 800;
+	padding: 0 5px;
+}
+.textmessageform .erroractive{
+	background-color:#FFD1D1;
+	border: 1px solid #F00;
+	padding: 5px;
+	margin: 5px;
+}
+
+.signupText {
+	padding: 0 10px;
+}
+
+.textloading,
+.textfailure,
+.textsuccess{
+	background:#DBFFB7;
+	border:1px solid #87AC61;
+	margin: 10px;
+	padding:10px
+}
+input .inputfailure,
+.textfailure{
+	background-color:#FFD1D1;
+	border-color:#FF0000;
+}
+.textloading{
+	background-color:#FFFFC1;
+	border-color:#FFF000;
+	font-weight: 800;
+}
+
+.legalText {
+	padding: 0 10px;
+	font-size: 90%;
+	
+	
+}
+
+#signupPhone input{
+	margin-right:5px;
+	padding: 3px;
+	font-size: 18px;
+	font-weight: 800; 
+}
+.submitMobile input{
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_ok.gif?cb=cb2525) no-repeat left bottom;
+	height: 35px;
+	width: 74px;
+	margin-right: 30px;
+	float:left;
+}
+.submitMobile input:hover{
+	background-position: left top;
+}
+.submitMobile a {
+	float:left;
+	margin:10px 30px;
+	width:90px;
+}
+.signupText img.loader{
+	display: block;
+	margin: auto;
+}
+
+span.overlayloadingimg{
+	display: block;
+	height: 25px;
+	margin: auto;
+	background: url(http://cdn.media.abc.go.com/m/images/register/form_processing.gif?cb=cb2525) no-repeat;
+}
+
+.mobileInlineContainer,
+.erroractive{
+	display:none;
+}
+
+.textMessageAlertModule .textmessageform{
+	display: block;
+}
+
+.textMessageAlertModule .mobileInlineContainer{
+	min-height: 315px;
+	width: 264px;
+	overflow: hidden;
+	padding: 0 12px;
+}
+
+.textMessageAlertModule .textmessageform div{
+	margin-bottom: 18px;
+}
+
+.textMessageAlertModule p{
+	margin: 0 0 6px;
+
+}
+
+.textMessageAlertModule p,
+.textMessageAlertModule i{
+	font-size: 14px;
+}
+
+.textMessageAlertModule .signupText{
+	padding:0;
+}
+.textMessageAlertModule .textsuccess,
+.textMessageAlertModule .textloading{
+	padding:8px;
+}
+
+.textMessageAlertModule h3{
+	margin-bottom: 14px;	
+}
+
+.textMessageAlertModule .textmessageform fieldset{
+	padding: 0;
+}
+
+.textMessageAlertModule .textmessageform #signupPhone{
+	margin-bottom: 18px;
+	margin-top:24px;
+	text-align: center;
+	width: 100%;
+}
+
+.textMessageAlertModule .textmessageform #signupPhone input{
+	margin-right: 0;
+	font-size:30px;
+	text-align:center;
+	color: #777777;
+	padding: 0;
+	font-weight: normal;
+} 
+.textMessageAlertModule .textmessageform #signupPhone #p1,
+.textMessageAlertModule .textmessageform #signupPhone #p2{
+	width: 64px;
+}
+
+.textMessageAlertModule .textmessageform #signupPhone #p3{
+	width: 84px;
+}
+.textMessageAlertModule .textmessageform #signupPhone #p2{
+	margin: 0 6px;
+}
+
+.textMessageAlertModule #btnSubmitMobile,
+.textMessageAlertModule input{
+	outline:none;
+}
+
+.textMessageAlertModule .textmessageform .submitMobile{
+	text-align: center;
+}
+
+.textMessageAlertModule .textmessageform .submitMobile input{
+	float:none;
+	margin:0;
+	width: 150px;
+	height: 30px;
+}
+
+.textMessageAlertModule .signInPopup .erroractive{
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding 0;
+	font-weight: normal;
+	padding:0;
+	position: absolute;
+	font-size: 12px;
+	color: #cc0000;
+}
+
+.textMessageAlertModule .textmessageform .mobileInlineContents div{
+	margin-bottom: 0;
+}
+.textMessageAlertModule .legalText{
+	text-align: center;
+	padding:0;
+	font-size: 11px;
+}
+
+.textMessageAlertModule h3{
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.textMessageAlertModule .submitMobile input{
+	background: transparent url(http://cdn.media.abc.go.com/m/images/global/buttons/btn_signUpNow.png?cb=cb2525) no-repeat left bottom;
+}
+.textMessageAlertModule .submitMobile input:hover{
+	background-position: top;
+}
+
+.textMessageAlertModule {
+	width: 300px;
+}
+
+/* hacky hack hack */
+
+.textmessageoveride{
+	display: block;
+	position: relative;
+	margin-top: -70px;
+	background:  #DBFFB7;
+} 
+
+
+
+/** 
+* @filepath: /community/abc/community-overrides.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+#syndicateOverlay.overlaycontainer .overlaycontents h2 {
+	color: #000;
+	font-size: 20px;
+	font-weight: normal;
+	height: 30px;
+	padding: 6px 0 0 35px;
+}
+#syndicateOverlay.facebook .overlaycontents h2 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_facebook.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+#syndicateOverlay.myspace .overlaycontents h2 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_myspace.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+#syndicateOverlay.twitter .overlaycontents h2 {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/community/social-link/icon_twitter.gif?cb=cb2525) no-repeat scroll 0 0;	
+}
+#syndicateOverlay.email .overlaycontents h2 {
+	padding-left: 0;	
+}
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayDesc {
+	font-weight: bold;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayForm label {
+	color: #000 !important;
+	font-size: 12px;
+	font-weight: normal;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayForm li {
+	margin: 0 0 10px;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlaySubmitBtn,
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayPostingBtn,
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayCloseBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_ok.gif?cb=cb2525) no-repeat left bottom;
+	height: 35px;
+	width: 74px;
+	display: block;
+	text-indent: -9999px;
+	float: left;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlaySubmitBtn:hover {
+	background-position: left top;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayCancelBtn {
+	float: left;
+	margin: 8px 0 0 16px;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayPostingBtn,
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayPostingBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_posting.gif?cb=cb2525) no-repeat left top;	
+	height: 35px;
+	width: 147px;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayCloseBtn,
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayCloseBtn {
+	background: transparent url(http://cdn.media.abc.go.com/m/images/register/btn_close.gif?cb=cb2525) no-repeat left bottom;	
+	height: 35px;
+	width: 93px;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlaySubmitBtn.syndicateOverlayCloseBtn:hover,
+#syndicateOverlay.overlaycontainer .overlaycontents .syndicateOverlayButtons #syndicateOverlayCloseBtn:hover {
+		background-position: left top;
+}
+#syndicateOverlay.overlaycontainer .overlaycontents textarea {
+	border: solid 1px #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#syndicateOverlay.overlaycontainer input.syndicateOverlayerror {
+	border: solid 1px #f00;
+	background-color: #ffd1d1;
+}
+#syndicateOverlay.overlaycontainer p.syndicateOverlayerror {
+	color: #f00;
+	font-size: 11px;
+}
+
+/** 
+* @filepath: /share/global.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+.abcShareBar {
+	color: #000;
+	height:41px;
+	padding:18px 0 0;
+}
+
+.abcShareBarModule .abcShareBar {
+	background: none;
+	padding-top: 0;
+}
+
+.abcShareBar .abc-facebook-like {
+	width: 300px;
+	float: left;
+	height: 24px;
+}
+
+.abcShareBar .abcShareSyndicate {
+	float: right;
+}
+
+.abcShareBar dl, 
+.abcShareBar ul {
+	float: left;
+}
+
+.abcShareBar dl dt {
+	float: left;
+	height: 18px;
+	padding-right:8px;
+}
+
+.abcShareBar dl dt.counts {
+	background:url("http://cdn.media.abc.go.com/m/images/global/bg/img_countLeft.png") no-repeat scroll right top transparent;	
+}
+
+.abcShareBar dl dd {
+	float: left;
+}
+
+.abcShareBar dl dd.counts {
+	height:18px;
+	margin-right:8px;
+	padding-right:4px;
+	background:url("http://cdn.media.abc.go.com/m/images/global/bg/img_countRight.jpg") no-repeat scroll right top transparent;	
+}
+.abcShareBar dl dd span {
+	color: #000000;
+	font-size: 10px;
+	display:block;
+	background:url("http://cdn.media.abc.go.com/m/images/global/bg/img_countCenter.jpg") repeat-x scroll 0 0 transparent;	
+}
+
+.abcShareBar a {
+	display:block;
+	cursor:pointer;
+	float:left;
+	height:20px;
+	text-indent:-9999px;
+	width:20px;
+}
+
+.abcShareBar .share_facebook {
+	background:url("http://cdn.media.abc.go.com/m/images/global/buttons/btn_facebook.png") no-repeat scroll 0 0 transparent;
+	width: 57px;
+	height: 18px;
+}
+
+.abcShareBar .share_twitter {
+	background:url("http://cdn.media.abc.go.com/m/images/global/buttons/btn_retweet.jpg") no-repeat scroll 0 0 transparent;	
+	width: 61px;
+	height: 18px;
+}
+
+.abcShareBar .share_myspace {
+	background:url("http://cdn.media.abc.go.com/m/images/global/buttons/btn_mySpace.jpg") no-repeat scroll 0 0 transparent;	
+	width: 22px;
+	height: 18px;
+}
+
+.abcShareBar .share_email {
+	background:url("http://cdn.media.abc.go.com/m/images/global/buttons/btn_email.png") no-repeat scroll 0 0 transparent;	
+	width: 29px;
+	height: 18px;
+}
+
+.error {
+	color: red;
+}
+
+#syndicateOverlay.overlaycontainer .overlaycontents #syndicateOverlayForm #message {
+	height:50px;
+	width:245px;
+}
+
+/** 
+* @filepath: /facebooklike/facebooklike.css
+* @created: Wed, 27 Nov 13 17:23:53 -0800
+*/
+.abcShareBar .abc-facebook-like {
+	float: none;
+	width: auto;
+	height: auto;
+	position: absolute;
+	z-index: 99999;
+}
+
+.abc-facebook-like iframe {
+	width:400px;
+	height: 65px;
+}
+
+.abc-facebook-like .desc {
+	display: none !important;
+	font-weight: bold;
+	font-size: 12px; 
+}
+
+.videoDetailModule .abc-facebook-like .desc,
+.video .abc-facebook-like .desc {
+	display: block !important;	
+}
+
+.abc-facebook-like iframe {
+	overflow:hidden;
+}
+
+.showHeaderRight .abc-facebook-like {
+	margin-left:0;
+	margin-top:27px;
+}
+
+.photoCarouselFooter .abc-facebook-like {
+	float:left;
+}
+
+.showHeaderRight .abc-facebook-likebox {
+	float: left;
+	padding-top:15px;
+	position:relative;
+	width:395px;
+}
+
+/* overriding for Facebook Like pages */
+.showCallout {
+	display:block !important;
+	float:left;
+	font-size:11px;
+	font-weight:700;
+	line-height:11px;
+	margin-top:10px;
+	padding:0 10px;
+	position:static !important;
+}
+
+.abc-facebook-background {
+	background-color:#FFFFFF;
+	color:#000000;
+	font-size:11px;
+	height:57px;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+	position:absolute;
+	top:6px;
+	width:395px;
+	z-index:-1;
+}
+
+.abc-facebook-likebox iframe {
+	border:medium none;
+	height:60px;
+	margin-top:-12px;
+	overflow:hidden;
+	width:395px;
+}
+
+.abc-facebook-header {
+	background-color:#EDEFF4;
+	border-color:#C6CEDD;
+	border-style:solid;
+	border-width:0 0 1px;
+	color:#333333;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	padding:8px 10px 7px;
+	text-align:left;
+	width:280px;
+}
+
+.abc-facebook-header img {
+	float: left; 
+	margin: 2px 5px 0pt 0pt;
+}
+
+.abc-facebook-activity iframe {
+	border: medium none;
+	overflow: hidden;
+	height: 215px;
+	width: 300px;
+}
+
+.abc-facebook-recommendations iframe {
+	border: medium none;
+	overflow: hidden;
+	height: 215px;
+	width: 300px;
+}
+
+body.themeGallery .photoCarouselFooter .abc-facebook-like {
+	margin-top:0;
+}
+
+body.themeGallery .photoCarouselFooter .abc-facebook-like span,
+body .video .abc-facebook-like span {
+	display: block;
+}
+
+body .video .abc-facebook-like {
+	position: relative;
+	top: -10px;
+}

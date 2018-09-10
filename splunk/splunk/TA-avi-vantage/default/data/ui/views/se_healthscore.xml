@@ -1,0 +1,53 @@
+<form hideFilters="true">
+  <label>SE Healthscore</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Clusters</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>avi_controller</fieldForLabel>
+      <fieldForValue>avi_controller</fieldForValue>
+      <search>
+        <query>sourcetype=avimetrics avi_controller | top avi_controller limit=1000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Healthscore</title>
+      <single>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=* metric_type=serviceengine_healthscore AND metric_name=healthscore | stats latest(metric_value) by se_name</query>
+          <earliest>-15m</earliest>
+          <latest>now</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">all</option>
+        <option name="height">1201</option>
+        <option name="rangeColors">["0xf58f39","0xf3ed00","0x65a637"]</option>
+        <option name="rangeValues">[65,80]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.size">small</option>
+        <option name="unitPosition">after</option>
+        <option name="useColors">1</option>
+        <drilldown>
+          <link target="_blank">/app/TA-avi-vantage/service_engine_healthscore_detail?se=$trellis.value$&amp;controller=$controller$</link>
+        </drilldown>
+      </single>
+    </panel>
+  </row>
+</form>

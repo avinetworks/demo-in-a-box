@@ -1,0 +1,4 @@
+---
+- import_playbook: metrics/graphite/graphite-create.yml
+- import_playbook: metrics/avimetrics/avimetrics-create.yml
+- import_playbook: metrics/grafana/grafana-create.yml

@@ -1,0 +1,116 @@
+---
+- name: Build the WAF servers
+  hosts: demo_servers
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/dvwa/"
+          - "{{ playbook_dir }}/dvwa.sql"
+          - "{{ playbook_dir }}/main.sh"
+        dest: "{{ playbook_dir }}/wafserver.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/wafserver.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: wafserver.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the wafserver base image - this can take about 10 minutes
+      docker_image:
+        path: .
+        name: wafserver
+        tag: latest
+        state: present
+
+    - name: start wafserver1
+      docker_container:
+        name: wafserver1
+        hostname: wafserver1
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.127.100"
+        purge_networks: yes
+        volumes: /var/lib/mysql
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: wafserver:latest
+
+    - name: pause while mysql starts on wafserver1
+      pause: seconds=15
+
+    - name: check if DB exists on wafserver1
+      shell: docker exec -i wafserver1 mysql -uroot -pwafdb -e 'SHOW DATABASES;' | grep -c dvwa
+      register: dbstatus
+      failed_when: dbstatus.rc == 2
+
+    - name: create the dvwa database on wafserver1
+      command: docker exec -i wafserver1 mysql -uroot -pwafdb -e "CREATE DATABASE dvwa"
+      when: dbstatus.stdout == "0"
+
+    - name: import the dvwa database on wafserver1
+      shell: docker exec -i wafserver1 mysql -uroot -pwafdb dvwa < dvwa.sql
+      when: dbstatus.stdout == "0"
+
+
+    - name: start wafserver2
+      docker_container:
+        name: wafserver2
+        hostname: wafserver2
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.127.101"
+        purge_networks: yes
+        volumes: /var/lib/mysql
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: wafserver:latest
+
+    - name: pause while mysql starts on wafserver2
+      pause: seconds=15
+
+    - name: check if DB exists on wafserver2
+      shell: docker exec -i wafserver2 mysql -uroot -pwafdb -e 'SHOW DATABASES;' | grep -c dvwa
+      register: dbstatus
+      failed_when: dbstatus.rc == 2
+
+    - name: create the dvwa database on wafserver2
+      command: docker exec -i wafserver2 mysql -uroot -pwafdb -e "CREATE DATABASE dvwa"
+      when: dbstatus.stdout == "0"
+
+    - name: import the dvwa database on wafserver2
+      shell: docker exec -i wafserver2 mysql -uroot -pwafdb dvwa < dvwa.sql
+      when: dbstatus.stdout == "0"
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./wafserver.tgz
+          - ./dockerfile
+          - ./dvwa/
+          - ./dvwa.sql
+          - ./main.sh
+      when: (inventory_hostname != "localhost")

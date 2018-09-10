@@ -1,0 +1,98 @@
+---
+- name: Build the Splunk container
+  hosts: splunk_hosts
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/TA-avi-vantage"
+          - "{{ playbook_dir }}/inputs.conf"
+          - "{{ playbook_dir }}/passwd"
+          - "{{ playbook_dir }}/search-inputs.conf"
+          - "{{ playbook_dir }}/splunk-create.yml"
+          - "{{ playbook_dir }}/splunk.secret"
+          - "{{ playbook_dir }}/ui-tour.conf"
+          - "{{ playbook_dir }}/user-prefs.conf"
+          - "{{ playbook_dir }}/web.conf"
+        dest: "{{ playbook_dir }}/splunk.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/splunk.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: splunk.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the splunk base image
+      docker_image:
+        path: .
+        name: splunk
+        tag: latest
+        state: present
+
+    - name: start splunk
+      docker_container:
+        name: splunk
+        hostname: splunk
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.100.103"
+        purge_networks: yes
+        published_ports: 8000:8000,8088:8088,9997:9997,1514:1514/udp,1515:1515/udp
+        volumes: splunk-var-lib-splunk-db:/opt/splunk/var/lib/splunk/defaultdb
+        env:
+            SPLUNK_START_ARGS: "--accept-license --answer-yes --seed-passwd AviDemo1!"
+            maxTotalDataSizeMB: "500"
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: splunk:latest
+
+
+    - name: pause while splunk starts
+      pause: seconds=15
+
+    - name: change to free license
+      shell: docker exec splunk entrypoint.sh /opt/splunk/bin/splunk edit licenser-groups Free -is_active 1 -auth admin:AviDemo1!
+
+    - name: restart splunk container
+      docker_container:
+        name: splunk
+        hostname: splunk
+        state: started
+        restart: yes
+
+
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./splunk.tgz
+          - ./dockerfile
+          - ./TA-avi-vantage
+          - ./inputs.conf
+          - ./passwd
+          - ./search-inputs.conf
+          - ./splunk-create.yml
+          - ./splunk.secret
+          - ./ui-tour.conf
+          - ./user-prefs.conf
+          - ./web.conf
+      when: (inventory_hostname != "localhost")

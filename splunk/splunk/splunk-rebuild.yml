@@ -1,0 +1,2 @@
+---
+- include: splunk/graphite/graphite-delete.yml

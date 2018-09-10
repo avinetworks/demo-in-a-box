@@ -1,0 +1,53 @@
+{
+
+var google_ads = new Array();
+var google_ad;
+var google_radlinks = new Array();
+var google_radlink;
+var google_info = new Object();
+google_ad = {}; 
+google_ad.n = 1; 
+google_ad.type = "text"; 
+google_ad.bidtype = "CPC"; 
+google_ad.targeting_type = ""; 
+google_ad.url = "http://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C_1JLxqmWUoydNaGMlAKsgoH4CYSu7P4DjOWC44oBpM-beRABIIjz-AEoA1DQ--eIBWDJ5v6GyKOgGaABuJn89gPIAQGoAwGqBGRP0FkXEBWHg9D_UOFOGJ9zyEpv2JUkll7-T3VheFkEFWnuq4miKW-PzlolrXwJZrsMx0wltYaDVqOkm4MvvjoNXjjDVHNpyfzKXEBuFgvxp0RdGidcu2A5wYDpmSK9Yt7Wo0MciAYBgAew5oMJ&amp;num=1&amp;cid=5GjYx8_vALcAW2jehbr6tQl3&amp;sig=AOD64_3cOHDBzxyNNXXnWjOy9qxu6qbZjQ&amp;client=ca-nytimes_section_var&amp;adurl=http://143.xg4ken.com/media/redir.php%3Fprof%3D2905%26camp%3D48470%26affcode%3Dcr1131123%26cid%3D37186605924%7C1133113%7C%26mType%3D%26networkType%3Dcontent%26kdv%3Dc%26url%5B%5D%3Dhttp%253A%252F%252Fwww.sunrun.com%252Flanding-pages%252Flanding-page-spr12%252Ffree-solar-estimate-ca%253F_nw%253Dgoogle%2526_ct%253D37186605924%2526_cn%253Dgdn-remarketing%2526_kw%253D%2526_pt%253Dnone"; 
+google_ad.visible_url = "Sunrun.com"; 
+google_ad.line1 = "Sunrun Home Solar"; 
+google_ad.line2 = "Is Your Utility Bill Over $50?"; 
+google_ad.line3 = "Sunrun Solar Can Help You Save!"; 
+google_ad.regionname = ""; 
+google_ads[0] = google_ad; 
+google_ad = {}; 
+google_ad.n = 2; 
+google_ad.type = "text"; 
+google_ad.bidtype = "CPC"; 
+google_ad.targeting_type = "site"; 
+google_ad.url = "http://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=ChuirxqmWUoydNaGMlAKsgoH4CZKCw6IEooWp21nTgf6ZCRACIIjz-AEoA1CTo9rOAmDJ5v6GyKOgGaABnuWq1gPIAQGoAwGqBGRP0HkKQhWHgND_UOFOGJ9zyEpv2JUkll7-T3VheFkEFWnuq4miKW-PzlolrXwJZrsMx0wltYaDVqOkm4MvvjoNXjjDVHNpyfzKXEduFgWDg2tdGidcu2A5wYDpmSK9Yt7kwgY_iAYBgAfKmtUp&amp;num=2&amp;cid=5GjYx8_vALcAW2jehbr6tQl3&amp;sig=AOD64_1MQZg_BpTK4FVOi9DQdKXqMLN3Bg&amp;client=ca-nytimes_section_var&amp;adurl=http://www.merchantfundsource.com"; 
+google_ad.visible_url = "www.MerchantFundSource.com"; 
+google_ad.line1 = "Small Business Capital"; 
+google_ad.line2 = "Fast Business Cash - Flexible Rates"; 
+google_ad.line3 = "Unsecured, Bad Credit OK, 24 Hrs!"; 
+google_ad.regionname = ""; 
+google_ads[1] = google_ad; 
+google_ad = {}; 
+google_ad.n = 3; 
+google_ad.type = "text"; 
+google_ad.bidtype = "CPC"; 
+google_ad.targeting_type = "site"; 
+google_ad.url = "http://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=Cb31gxqmWUoydNaGMlAKsgoH4CZm7r8oDmcLt8hjZ3o6yBBADIIjz-AEoA1DVu8vJ_f____8BYMnm_obIo6AZoAH7iOr4A8gBAagDAaoEZE_QSVkQFYeB0P9Q4U4Yn3PISm_YlSSWXv5PdWF4WQQVae6riaIpb4_OWiWtfAlmuwzHTCW1hoNWo6Sbgy--Og1eOMNUc2nJ_MpcR24WJqz2XF0aJ1y7YDnBgOmZIr1i3sv4BxOIBgGAB-32lQc&amp;num=3&amp;cid=5GjYx8_vALcAW2jehbr6tQl3&amp;sig=AOD64_0Sx3jZdGz3BDg39bNIYOjP-gIsbA&amp;client=ca-nytimes_section_var&amp;adurl=http://www.lumosity.com/landing%3Frefer%3D827%26a%3DBTG-Free_Text_Text%26Network%3DContent%26kw%3D%26ad%3D6596430761%26SiteTarget%3Dnytimes.com"; 
+google_ad.visible_url = "www.lumosity.com"; 
+google_ad.line1 = "Brain Training Games"; 
+google_ad.line2 = "Improve memory and attention with"; 
+google_ad.line3 = "scientific brain games. Free Trial"; 
+google_ad.regionname = ""; 
+google_ads[2] = google_ad; 
+google_info.feedback_url = "https://www.google.com/url?ct\x3dabg\x26q\x3dhttps://www.google.com/adsense/support/bin/request.py%3Fcontact%3Dabg_afc%26url%3Dhttp://www.nytimes.com/pages/business/%26gl%3DUS%26hl%3Den%26client%3Dca-nytimes_section_var%26hideleadgen%3D1%26ai0%3DC_1JLxqmWUoydNaGMlAKsgoH4CYSu7P4DjOWC44oBpM-beRABIIjz-AEoA1DQ--eIBWDJ5v6GyKOgGaABuJn89gPIAQGoAwGqBGRP0FkXEBWHg9D_UOFOGJ9zyEpv2JUkll7-T3VheFkEFWnuq4miKW-PzlolrXwJZrsMx0wltYaDVqOkm4MvvjoNXjjDVHNpyfzKXEBuFgvxp0RdGidcu2A5wYDpmSK9Yt7Wo0MciAYBgAew5oMJ%26ai1%3DChuirxqmWUoydNaGMlAKsgoH4CZKCw6IEooWp21nTgf6ZCRACIIjz-AEoA1CTo9rOAmDJ5v6GyKOgGaABnuWq1gPIAQGoAwGqBGRP0HkKQhWHgND_UOFOGJ9zyEpv2JUkll7-T3VheFkEFWnuq4miKW-PzlolrXwJZrsMx0wltYaDVqOkm4MvvjoNXjjDVHNpyfzKXEduFgWDg2tdGidcu2A5wYDpmSK9Yt7kwgY_iAYBgAfKmtUp%26ai2%3DCb31gxqmWUoydNaGMlAKsgoH4CZm7r8oDmcLt8hjZ3o6yBBADIIjz-AEoA1DVu8vJ_f____8BYMnm_obIo6AZoAH7iOr4A8gBAagDAaoEZE_QSVkQFYeB0P9Q4U4Yn3PISm_YlSSWXv5PdWF4WQQVae6riaIpb4_OWiWtfAlmuwzHTCW1hoNWo6Sbgy--Og1eOMNUc2nJ_MpcR24WJqz2XF0aJ1y7YDnBgOmZIr1i3sv4BxOIBgGAB-32lQc\x26usg\x3dAFQjCNFjgRuuSJj1Vx7ITzkPUQEG7hU3RQ";
+var google_attribution_text = "AdChoices";
+var google_is_rtl = false;
+if (window.google_ad_request_done) {
+google_ad_request_done(google_ads);
+}
+if (window.google_radlink_request_done) {
+google_radlink_request_done(google_radlinks);
+}
+}

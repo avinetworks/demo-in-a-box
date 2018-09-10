@@ -1,0 +1,69 @@
+---
+- name: Build the RDP Server
+  hosts: demo_servers
+  become: True
+
+  tasks:
+    - name: archive directory to copy
+      archive:
+        path:
+          - "{{ playbook_dir }}/dockerfile"
+          - "{{ playbook_dir }}/docker-entrypoint.sh"
+          - "{{ playbook_dir }}/etc/"
+          - "{{ playbook_dir }}/admin/"
+        dest: "{{ playbook_dir }}/rdpserver.tgz"
+      delegate_to: 127.0.0.1
+      when: (inventory_hostname != "localhost")
+
+    - name: copy files
+      copy:
+        src: "{{ playbook_dir }}/rdpserver.tgz"
+        dest: "./"
+        remote_src: no
+        force: no
+      when: (inventory_hostname != "localhost")
+
+    - name: unarchive files to build container
+      unarchive:
+        src: rdpserver.tgz
+        dest: .
+      when: (inventory_hostname != "localhost")
+
+    - name: build the rdpserver base image
+      docker_image:
+        path: .
+        name: rdpserver
+        tag: latest
+        state: present
+
+    - name: start the rdpserver container
+      docker_container:
+        name: rdpserver
+        hostname: rdpserver
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.63.0"
+        purge_networks: yes
+        etc_hosts:
+            avi-demo-vs: 169.254.10.1
+            avi-scaleout-vs: 169.254.10.2
+            waf-vs: 169.254.10.3
+        detach: yes
+        shm_size: 1g
+        published_ports: 0.0.0.0:3389:3389
+        restart_policy: always
+        state: started
+        image: rdpserver:latest
+
+
+    - name: cleanup remote files
+      file:
+          path: "{{ item }}"
+          state: absent
+      with_items:
+          - ./rdpserver.tgz
+          - ./dockerfile
+          - ./docker-entrypoint.sh
+          - ./etc/
+          - ./admin/
+      when: (inventory_hostname != "localhost")

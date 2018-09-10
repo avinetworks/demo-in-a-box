@@ -1,0 +1,283 @@
+<form hideFilters="true">
+  <label>Login Events</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Cluster</label>
+      <choice value="*">ALL</choice>
+      <initialValue>*</initialValue>
+      <fieldForLabel>controller</fieldForLabel>
+      <fieldForValue>controller</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) Avi-Controller event  | eval temp1=split(_raw," Avi-Controller") | eval temp2=mvindex(temp1,0) | eval temp3=split(temp2, " [") | eval temp4=mvindex(temp3,0) | eval temp5=split(temp4, " ") | eval controller=mvindex(temp5,-1) | stats count by controller</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <delimiter> OR </delimiter>
+      <default>*</default>
+    </input>
+    <input type="multiselect" token="user" searchWhenChanged="true">
+      <label>User</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <delimiter> OR </delimiter>
+      <fieldForLabel>user</fieldForLabel>
+      <fieldForValue>user</fieldForValue>
+      <search>
+        <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval user=mvindex(temp3,0) | top user limit=10000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Login Events</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2,"login (") | eval temp4=mvindex(temp3,1) | eval temp5=split(temp4, ")") | eval result=mvindex(temp5,0) | stats count by result</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">115</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Total Successful Logins</title>
+      <single>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" $user$ | stats count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Total Failed Logins</title>
+      <single>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(failure)" $user$ | stats count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2,"login (") | eval temp4=mvindex(temp3,1) | eval temp5=split(temp4, ")") | eval result=mvindex(temp5,0) | timechart count by result</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Failed Logins By User - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(failure)" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval user=mvindex(temp3,0) | stats count by user | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(failure)" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval user=mvindex(temp3,0) | timechart useother=f count by user limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Failed Logins By IP - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(failure)" $user$ | eval temp1=split(_raw,"from ") | eval temp2=mvindex(temp1,1) | eval source_ip=rtrim(temp2,". ")  | stats count by source_ip | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">245</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(failure)" $user$ | eval temp1=split(_raw,"from ") | eval temp2=mvindex(temp1,1) | eval source_ip=rtrim(temp2,". ") | timechart useother=f count by source_ip limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="height">272</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Successful Logins By User - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval user=mvindex(temp3,0) | stats count by user | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" $user$ | eval temp1=split(_raw,"as User ") | eval temp2=mvindex(temp1,1) | eval temp3=split(temp2," ") | eval user=mvindex(temp3,0) | timechart count by user limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Successful Logins By IP - Top 50</title>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" $user$ | eval temp1=split(_raw,"from ") | eval temp2=mvindex(temp1,1) | eval source_ip=rtrim(temp2,". ")  | stats count by source_ip | sort -count | head 50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">218</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" "(success)" $user$ | eval temp1=split(_raw,"from ") | eval temp2=mvindex(temp1,1) | eval source_ip=rtrim(temp2,". ")  | timechart count by source_ip limit=50</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Recent Events</title>
+      <input type="text" token="filter" searchWhenChanged="true">
+        <label>query filter</label>
+        <default>*</default>
+        <initialValue>*</initialValue>
+      </input>
+      <event>
+        <search>
+          <query>(index=`avi_event_index` AND sourcetype=`avi_event_sourcetype`) $controller$ Avi-Controller "event USER_LOGIN" $filter$ $user$</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>5m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+</form>

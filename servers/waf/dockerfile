@@ -1,0 +1,23 @@
+FROM ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get dist-upgrade -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install debconf-utils
+RUN echo mysql-server-5.5 mysql-server/root_password password wafdb | debconf-set-selections
+RUN echo mysql-server-5.5 mysql-server/root_password_again password wafdb | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 mysql-server php5 php5-mysql php-pear php5-gd
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
+COPY dvwa/php.ini /etc/php5/apache2/php.ini
+COPY dvwa /var/www/html
+COPY dvwa.sql /
+
+
+RUN chown www-data:www-data -R /var/www/html
+RUN rm /var/www/html/index.html
+
+
+COPY main.sh /
+RUN chmod a+x /main.sh
+ENTRYPOINT ["/main.sh"]

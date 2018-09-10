@@ -1,0 +1,202 @@
+<form hideFilters="true">
+  <label>SE Metrics - Top N</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="controller" searchWhenChanged="true">
+      <label>Avi Controller Clusters</label>
+      <choice value="*">ALL</choice>
+      <initialValue>*</initialValue>
+      <fieldForLabel>avi_controller</fieldForLabel>
+      <fieldForValue>avi_controller</fieldForValue>
+      <search>
+        <query>sourcetype=avimetrics avi_controller | top avi_controller limit=1000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="multiselect" token="se">
+      <label>Service Engines</label>
+      <choice value="*">ALL</choice>
+      <delimiter> OR </delimiter>
+      <fieldForLabel>se_name</fieldForLabel>
+      <fieldForValue>se_name</fieldForValue>
+      <search>
+        <query>sourcetype="avimetrics" avi_controller=$controller$  metric_type=serviceengine_metrics | top se_name limit=1000</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="cnt" searchWhenChanged="true">
+      <label>Values to Display</label>
+      <default>10</default>
+      <initialValue>10</initialValue>
+    </input>
+    <input type="time" token="field1" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>CPU %</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=serviceengine_metrics  metric_name="se_stats.avg_cpu_usage" | timechart span=5m latest(metric_value) by se_name limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Bandwidth (Mb/s)</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=serviceengine_metrics  metric_name="se_if.avg_bandwidth" | eval tempbw=('metric_value'/1000000) | timechart span=5m latest(tempbw) by se_name limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Mb/s</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Total Bandwidth (Mb/s)</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=serviceengine_metrics  metric_name="se_if.avg_bandwidth" | eval tempbw=('metric_value'/1000000) | bucket _time span=5m | stats latest(tempbw) as sebw by se_name,_time | timechart span=5m sum(sebw) as total_bw</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Mb/s</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>SE RX PPS</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=serviceengine_metrics  metric_name="se_if.avg_rx_pkts" | timechart span=5m latest(metric_value) by se_name limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>SE TX PPS</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=serviceengine_metrics  metric_name="se_if.avg_tx_pkts" | timechart span=5m latest(metric_value) by se_name limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>VS per SE - SSL TPS</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=virtualservice_metrics_per_serviceengine  metric_name="l7_client.avg_ssl_handshakes_new" | eval combined=se_name." : ".vs_name | timechart span=5m latest(metric_value) by combined limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>VS per SE - Client BW (Mb/s)</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=virtualservice_metrics_per_serviceengine  metric_name="l4_client.avg_bandwidth" | eval combined=se_name." : ".vs_name | eval tempbw=('metric_value'/1000000) | timechart span=5m latest(tempbw) by combined limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Mb/s</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>VS per SE - CPS</title>
+      <chart>
+        <search>
+          <query>sourcetype="avimetrics" avi_controller=$controller$ se_name=$se$ metric_type=virtualservice_metrics_per_serviceengine  metric_name="l4_client.avg_new_established_conns" | eval combined=se_name." : ".vs_name | timechart span=5m latest(metric_value) by combined limit=$cnt$ useother=f</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <refresh>1m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>

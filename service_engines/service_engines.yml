@@ -1,0 +1,25 @@
+---
+- hosts: service_engines
+  become: yes
+  vars_files:
+    - ../vars/avi_details.yaml
+  tasks:
+    - name: Get Avi controller IP if not defined
+      set_fact:
+        controller_ip: "{{ hostvars[inventory_hostname]['groups']['controllers'][0] }}"
+      when: controller_ip is not defined
+    - name: Copy SE systemd files
+      template:
+        src: "{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+      with_items:
+        - avise1.service
+        - avise2.service
+    - name: Start SE service
+      systemd:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - avise1.service
+        - avise2.service

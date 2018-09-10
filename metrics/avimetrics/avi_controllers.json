@@ -1,0 +1,10 @@
+{"controllers":[
+    {
+    "avi_controller":"avicontroller.avinet",
+    "location":"datacenter1",
+    "environment":"demo",
+    "avi_user":"admin",
+    "_comment":"ACCEPTS PLAIN TEXT OR BASE64 ENCODED PASSWORD",
+    "avi_pass":"AviDemo1!"
+    }]
+}

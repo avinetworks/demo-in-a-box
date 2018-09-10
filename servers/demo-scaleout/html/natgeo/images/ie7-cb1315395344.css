@@ -1,0 +1,108 @@
+/* ============================================================
+Global IE7 Specific CSS
+* Created by Jon Long on 2009-04-10.
+* Copyright (c) 2008 National Geographic. All rights reserved.
+
+Notes:
+================
+* -ms-interpolation-mode: bicubic;  -- this is a snippet that ensures images scaled via HTML will be rendered correctly in IE.
+
+In This CSS:
+================
++General Fixes
+
+============================================================ */
+
+/* ------------------------------------------------------------
++General Fixes
+------------------------------------------------------------ */
+/* body { position: relative; overflow: hidden; } */
+/*body { width: expression(document.getElementsByTagName('html')[0].scrollWidth); }*/
+.homepage #ad_1x1_top { margin-top: -20px;}
+
+#gallery img { -ms-interpolation-mode: bicubic; }
+/* Following non-js carousel fixes related to a floating grid layout solution from Mozilla Webdev Blog:
+http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
+.carousel li {height: 150px;}
+.carousel li, .thumbnail_grid li {display: inline; zoom: 1;}
+.fatty-carousel li {height: 180px;}
+.carousel li .jcarousel-item {height: auto;}
+/*#container .general .nav,*/
+#footer_breadcrumb,
+.promo_collection li, #site_promotions ul,
+.homepage .vcalendar > .vevent,
+.homepage #follow_ng .addthis_toolbox,
+.photo_archive #search_results,
+#pod_bar,
+#content_page_specific {height: 100%;}
+.carousel .jcarousel-list li.jcarousel-item {height: auto;}
+#content_page_specific {border-bottom: 1px solid #d5d5d5; width: 100%;}
+#content_mainA .subsection {width: 100%;}
+.homepage .vcalendar tbody {height: auto;}
+.promo_collection h4 a em, .homepage .dl h4 a em, div.sneak_peek h6 a em {font-weight: bold!important;}
+.bullets li {vertical-align: top;}
+.bullets li a {display: inline-block; margin-top: -4px;}
+.promo_collection .thumbnail li.first a:first-child, .promo_collection .list_hybrid li.first a:first-child {float: left;}
+.js .photo_archive #search_results {position: relative;}
+.js .photo_archive #search_results > div {display: inline; position: static!important; z-index: 30!important;}
+.js .photo_archive .photo_info {z-index: 20!important;}
+.js .photo_archive #content_mainA fieldset, .js #photo_submit {display: inline; float: none!important;}
+p.rss {width: 45px;}
+.small li p, .small div.promo p {font-size: .9em;}
+
+/* ------------------------------------------------------------
++Header/Title Fixes
+------------------------------------------------------------ */
+#container .general .nav {width:100%;}
+article div.general {clear:both;float:none;}
+#content {float:left;width:100%;}
+body.oceans #page_head h1, body.oceans #page_head h2 {float: left;}
+#advertisingModule210x50 {max-height: 50px;}
+body.news #header_site h1, body.news #header_site h2 {float:none;}
+body.news #header_site .timestamp {margin-left:467px;}
+div.footer {width: 100%; clear: left;}
+
+/* ------------------------------------------------------------
++Temporary section
+------------------------------------------------------------ */
+/*#page_head {float:left;}*/
+.homepage #content div.magazine {margin-bottom: 20px;}
+div.layout_a h6 {clear:both;}
+#atoz ul {overflow-x: hidden;}
+#atoz li a {display: block; width: auto; padding-top: 10px;}
+#atoz li {display: block; height: auto;}
+#atoz li img {margin-right: 10px;}
+#atoz li:hover {cursor: pointer; position: static;}
+#atoz div {float: left; height: 30px;}
+
+/* ------------------------------------------------------------
++Specific Section Fixes
+------------------------------------------------------------ */
+.ocean #content_page_specific {width: auto;}
+
+.ngm #content_mainA .thumbnail_grid > div {float: left;}
+.ngm #footer_promos {height: 1%;}
+.ngm #content_mainA .thumbnail_grid .promo_collection li {margin-top: 15px;}
+.ngm #content_mainA .thumbnail_grid .promo_collection li p {clear: both;}
+.ngm #content_mainA .thumbnail_grid .promo_collection li h4 {clear: both; margin-top: 10px;}
+.ngm.hub_home #page_head {margin-bottom: -10px;}
+
+/* flayout advertising */
+#flyout_container { position:absolute; }
+
+/* ------------------------------------------------------------
++ Social buttons (Tweet and Facebook like)
+------------------------------------------------------------ */
+.addthis_toolbox p.google_addthis {
+    display: none;
+}
+body.gallery #social_buttons {
+    padding-top: 10px;
+}
+
+/* ------------------------------------------------------------
++ Pluck
+------------------------------------------------------------ */
+#ng_comments .item{height:100%;}
+#ng_comments .pluck-comm-pagination-level2 .pluck-comm-pagination-back-area,
+#ng_comments .pluck-comm-pagination-level2 .pluck-comm-pagination-forward-area{display:inline;}

@@ -1,0 +1,17 @@
+---
+- name: Delete rdpserver
+  hosts: demo_servers
+  become: True
+
+  tasks:
+
+    - name: delete rdpserver
+      docker_container:
+        name: rdpserver
+        state: absent
+
+    - name: delete rdpserver base image
+      docker_image:
+        name: rdpserver
+        tag: latest
+        state: absent

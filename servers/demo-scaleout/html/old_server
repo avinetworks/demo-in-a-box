@@ -1,0 +1,35 @@
+
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+
+http.createServer(function (req, res) {
+  var request = url.parse(req.url, true);
+  var action = request.pathname;
+
+  if (action.indexOf('.jpg') !== -1) {
+     var img = fs.readFileSync('./' + action);
+     res.writeHead(200, {'Content-Type': 'image/jpg' });
+     res.end(img, 'binary');
+  } else { 
+     res.writeHead(200, {'Content-Type': 'text/html' });
+     
+         var files = fs.readdirSync('.')
+	var filtered = files.filter(function(el){ return el.indexOf('.jpg') !== -1;})
+	
+	var random_file = filtered[Math.floor(Math.random() * filtered.length)];
+	
+	 var top = '<!DOCTYPE html><hmtl><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title></title></head>'
+	 var middle = '<body onload="setTimeout(function() { location.reload();}, 500);">';
+	 var img = '<img src="' + random_file + '">';
+	 var bottom = '</body></html>';
+	 var page = top + middle + img + bottom;
+     
+     res.end(page);
+  }
+}).listen(8080);
+
+console.log('Server started');
+
+
+

@@ -1,0 +1,13 @@
+---
+- import_playbook: vm_prep/prep.yml
+- import_playbook: vm_prep/avinet.yml
+- import_playbook: kubernetes/kubernetes-create.yml
+- import_playbook: kubernetes/controller_config-prep.yml
+- import_playbook: kubernetes/controller_deploy_kubernetes.yml
+- import_playbook: kubernetes/controller_service_check.yml
+- import_playbook: kubernetes/aviconfigs/networks-create.yml
+- import_playbook: kubernetes/aviconfigs/ipam_dns-create.yml
+- import_playbook: kubernetes/aviconfigs/cloud-modify.yml
+- import_playbook: kubernetes/aviconfigs/avi-dns.yml
+- import_playbook: kubernetes/manifests/deploy-manifest.yml
+- import_playbook: kubernetes/client/kubeclient-create.yml

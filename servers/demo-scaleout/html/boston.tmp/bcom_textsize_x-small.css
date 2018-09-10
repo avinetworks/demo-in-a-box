@@ -1,0 +1,10 @@
+body div#articleText, div#fullArtTxt, div.blogText, div#articleGraphs {
+	font-size:	12px;
+	line-height:17px;
+	voice-family:	"\"}\"";
+	voice-family:	inherit;
+}
+
+#container div.article #Col1 #headTools #tools .minus a {width:5px;height:5px;padding:0 4px; font:14px arial;color:#fff;font-weight:bold;margin:0 2px 0 5px;background-color:#e5e5e5;cursor:default;}
+#container div.article #Col1 #headTools #tools .minus a:hover {background-color:#e5e5e5;}
+#container div.article #Col1 #headTools #tools .minus a:focus {-moz-outline-style: none;}
