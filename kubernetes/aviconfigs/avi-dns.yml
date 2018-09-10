@@ -54,6 +54,13 @@
             - type: "DNS_RECORD_A"
               fqdn: "avi-dns.ns.avi"
               ttl: 30
+        analytics_policy:
+            full_client_logs:
+                duration: 0
+                enabled: true
+            metrics_realtime_update:
+                duration: 0
+                enabled: true
         pool_ref: ""
 
 
