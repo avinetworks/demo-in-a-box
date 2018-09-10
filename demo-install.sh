@@ -203,6 +203,7 @@ check_for_args() {
 retrieve_avi_versions() {
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "version" ]]; then
+            echo
             echo "=====> Select the Avi version to deploy"
             versions=`curl -s https://hub.docker.com/v2/repositories/avinetworks/controller/tags/ | sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep name | awk '{split($0,a,"\"name\":"); print a[2]}' | sed "s/\"//g" | sed "s/ //g"`
             SAVEIFS=$IFS
@@ -214,7 +215,9 @@ retrieve_avi_versions() {
               [[ -n $choice ]] && break
             done < /dev/tty
             export AVI_VERSION="$choice"
+            echo
             echo "=====> Version $choice selected"
+            echo
         fi
     done
     }
@@ -236,7 +239,7 @@ conclusion() {
         if [[ "$a" == "kubernetes" ]]; then
             echo "==========> Kubernetes Info ==========="
             echo "---------------------------------------"
-            echo "==========>     GUI https://<server_ip>:30000"
+            echo "==========>    GUI http://<server_ip>:30000"
             #echo "==========>     Demo Portal https://<server_ip>:8008"
             echo
             echo

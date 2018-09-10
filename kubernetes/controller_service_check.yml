@@ -30,8 +30,8 @@
       uri: url="https://{{ controller_ip}}/login" return_content=yes validate_certs=False
       method: POST
       validate_certs: no
-      register: srvc_results
-      until: srvc_results.status == 401
+      register: tmp_results
+      until: tmp_results.status == 401
       retries: 20
       delay: 5
       ignore_errors: yes
