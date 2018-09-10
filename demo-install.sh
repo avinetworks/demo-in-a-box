@@ -236,7 +236,7 @@ conclusion() {
             echo "==========> Kubernetes Info ==========="
             echo "---------------------------------------"
             echo "==========>     GUI https://<server_ip>:30000"
-            echo "==========>     Demo Portal https://<server_ip>:8008"
+            #echo "==========>     Demo Portal https://<server_ip>:8008"
             echo
             echo
             echo
