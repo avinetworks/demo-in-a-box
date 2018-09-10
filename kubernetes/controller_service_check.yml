@@ -27,7 +27,7 @@
 
 
     - name: Wait for Avi Controller API
-      uri: url="https://{{ controller_ip}}/login" return_content=yes validate_certs=False
+      uri: url="https://{{ controller_ip}}/login" return_content=yes validate_certs=False method=POST
       method: POST
       validate_certs: no
       register: tmp_results
