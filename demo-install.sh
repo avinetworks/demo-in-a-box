@@ -100,6 +100,7 @@ check_for_ansible_roles() {
     else
         echo "=====> ansible avinetworks.aviconfig role already installed"
     fi
+    ansible-galaxy remove avinetworks.avisdk
 }
 
 
@@ -140,8 +141,8 @@ dependency_check() {
     check_for_ansible_roles
     check_for_unzip
     check_for_curl
-    rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
-    rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
+    #rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
+    #rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
 }
 
 
