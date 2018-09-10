@@ -45,7 +45,7 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
 
 ### Automated Install
 ```
-curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box-master/master/demo-install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash
 ```
 
 
