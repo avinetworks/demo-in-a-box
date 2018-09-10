@@ -88,19 +88,18 @@ check_for_ansible_roles() {
     else
         echo "=====> ansible avinetworks.avicontroller role already installed"
     fi
-    #if ansible-galaxy list avinetworks.avisdk | grep "not found" &> /dev/null; then
-    #    echo "=====> ansible avinetworks.avisdk role not installed"
-    #    ansible-galaxy install avinetworks.avisdk
-    #else
-    #    echo "=====> ansible avinetworks.avisdk role already installed"
-    #fi
+    if ansible-galaxy list avinetworks.avisdk | grep "not found" &> /dev/null; then
+        echo "=====> ansible avinetworks.avisdk role not installed"
+        ansible-galaxy install avinetworks.avisdk
+    else
+        echo "=====> ansible avinetworks.avisdk role already installed"
+    fi
     if ansible-galaxy list avinetworks.aviconfig | grep "not found" &> /dev/null; then
         echo "=====> ansible avinetworks.aviconfig role not installed"
         ansible-galaxy install avinetworks.aviconfig
     else
         echo "=====> ansible avinetworks.aviconfig role already installed"
     fi
-    ansible-galaxy remove avinetworks.avisdk
 }
 
 
@@ -205,6 +204,7 @@ retrieve_avi_versions() {
         if [[ "$a" == "version" ]]; then
             echo
             echo "=====> Select the Avi version to deploy"
+            echo
             versions=`curl -s https://hub.docker.com/v2/repositories/avinetworks/controller/tags/ | sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep name | awk '{split($0,a,"\"name\":"); print a[2]}' | sed "s/\"//g" | sed "s/ //g"`
             SAVEIFS=$IFS
             IFS=$'\n'
