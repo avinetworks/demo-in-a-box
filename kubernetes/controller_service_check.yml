@@ -37,6 +37,10 @@
       ignore_errors: yes
 
 
+    - debug:
+        msg: "{{ tmp_results }}"
+
+
     - avi_api_session:
         api_version: "{{ api_version }}"
         controller: "{{ controller_ip }}"
