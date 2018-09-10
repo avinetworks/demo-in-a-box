@@ -46,10 +46,6 @@
       register: minikube_status
 
 
-    - debug:
-        msg: "{{ minikube_status }}"
-
-
     - name: Start kubernetes
       shell: minikube config set WantReportErrorPrompt false && minikube start --vm-driver=none
       when: minikube_status.stdout != "Running"

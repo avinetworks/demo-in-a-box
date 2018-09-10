@@ -141,6 +141,7 @@ dependency_check() {
     check_for_unzip
     check_for_curl
     rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
+    rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
 }
 
 
