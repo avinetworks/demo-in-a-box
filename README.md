@@ -159,5 +159,5 @@ $ curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box-master/m
 
 #### RDP Server
 Because this demo setup is isolated within the host an RDP server is provided to allow for manual access to the virtual services.  To login to the RDP server, using an RDP client connect to the host IP on port 3389.  Login credentials for the RDP server are:<br>
- -  u: demouser<br>
- -  p: demouser
+ -  u: admin<br>
+ -  p: AviDemo1!
