@@ -70,7 +70,7 @@ check_for_ansible() {
     else
         echo "=====> ansible is missing, installing"
         check_for_pip
-        pip install 'ansible==2.6.3' --upgrade
+        pip install 'ansible==2.6.4' --upgrade
     fi
 }
 
