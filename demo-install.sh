@@ -154,11 +154,11 @@ playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
-            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box/demo_single_host_kubernetes.yml
+            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml
             return 0
         fi
     done
-    ansible-playbook -i demo-in-a-box/hosts demo-in-a-box/demo_single_host.yml
+    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml
 }
 
 
