@@ -236,6 +236,16 @@ conclusion() {
     echo
     echo
     for a in "${cmd_args[@]}"; do
+        if [[ "$a" == "metrics-install" ]]; then
+            echo "==========> Grafana Info ==========="
+            echo "---------------------------------------"
+            echo "==========>    GUI https://<server_ip>:3000"
+            echo "==========>    username:  admin"
+            echo "==========>    password:  AviDemo1!"            
+            echo
+            echo
+            echo            
+        fi
         if [[ "$a" == "kubernetes" ]]; then
             echo "==========> Kubernetes Info ==========="
             echo "---------------------------------------"
