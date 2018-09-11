@@ -49,11 +49,11 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
 curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash
 ```
 
-The default setup will deploy an Avi demo using version 17.2.12.
+The default setup will deploy the Avi Default Demo using version 17.2.12.
 
 
 ### Optional Arguments
-There are some some optional arguments that can be provided.  Each arguments is provided by proceeding it with a <strong>-s</strong>.
+There are optional arguments that may be provided.  Every argument provided is proceeded with a <strong>-s</strong>.
 
 
  <table class="table table table-bordered table-hover">  
