@@ -6,9 +6,9 @@
   tasks:
 
     - name: Check if Gallery app is already deployed
-      shell: "kubectl get namespace demo"
+      shell: "kubectl get namespace"
       register: app_status
 
     - name: Deploy Gallery App
       shell: kubectl create -f gallery-app.yml
-      when: "'NotFound' in app_status.stdout"
+      when: "'demo' not in app_status.stdout"
