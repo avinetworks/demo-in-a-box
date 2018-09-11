@@ -28,7 +28,6 @@
 
     - name: Wait for Avi Controller API
       uri: 
-        #url: "https://{{ controller_ip}}/login" return_content=yes validate_certs=False method=POST
         url: "https://{{ controller_ip }}/login"
         method: POST
         status_code: 401
@@ -57,7 +56,6 @@
           name: "admin"
       register: api_results
       until: api_results|selectattr("results.obj.count", "defined")
-      #until: api_results.results.obj.count is defined
       retries: 20
       delay: 30
       ignore_errors: yes
