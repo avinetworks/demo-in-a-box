@@ -462,7 +462,7 @@
         },
         {
           "refId": "C",
-          "target": "alias(network-script.avi.$location.$environment.$device.virtualservice.$vs.l7_server_avg_application_response_time, 'App Rsponse')",
+          "target": "alias(network-script.avi.$location.$environment.$device.virtualservice.$vs.l7_server_avg_application_response_time, 'App Response')",
           "textEditor": false
         },
         {
