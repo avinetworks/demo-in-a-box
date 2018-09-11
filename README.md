@@ -40,8 +40,8 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
  </tbody>
  </table>
 
-<br>
-<br>
+<br></br>
+
 ## Install Instructions
 
 ### Automated Install
@@ -96,8 +96,7 @@ The command below demonstrates using multiple arguments.  The <b>version</b> arg
 ```
 curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash -s version -s kubernetes -s grafana
 ```
-<br>
-<br>
+<br></br>
  ## Default Demo Setup
 
  Utilizing docker containers, the Default "demo-in-a-box" setup is completely self contained within a single host.  
@@ -210,8 +209,7 @@ Because this demo setup is isolated within the host an RDP server is provided to
  -  p: AviDemo1!
 
 
-<br>
-<br>
+<br></br>
  ## Kubernetes Demo Setup
 
  Utilizing docker containers, the kubernetes "demo-in-a-box" setup is completely self contained within a single host.  
@@ -270,8 +268,7 @@ Because this demo setup is isolated within the host an RDP server is provided to
 To access the Kubernetes GUI point a browser to http://<host_ip>:30000
 
 
-<br>
-<br>
+<br></br>
  ## Grafana Setup
 
 
