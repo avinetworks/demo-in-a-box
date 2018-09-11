@@ -304,3 +304,8 @@ To access the Kubernetes GUI point a browser to http://<host_ip>:30000
  </tr>
   </tbody>
  </table>
+
+ #### Grafana UI
+To access the Grafana GUI point a browser to https://<host_ip>:3000
+  - u: admin<br>
+  - p: AviDemo1!
