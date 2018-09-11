@@ -75,7 +75,7 @@ There are some some optional arguments that can be provided.  Each arguments is 
  </tr>
  <tr>    
  <td><strong>kubernetes</strong></td>
- <td>will deploy a demo of Avi with Kubernetes integration</td>
+ <td>will deploy Avi with Kubernetes integration instead of the Default Demo</td>
  <td>no, optional</td>
  <td>default value is to deploy the Default Demo Setup</td>
  </tr>
