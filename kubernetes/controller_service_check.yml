@@ -1,6 +1,6 @@
 ---
 - hosts: controllers
-  become: yes
+  become: True
   vars_files:
     - ../vars/avi_details.yaml
   roles:
@@ -43,9 +43,9 @@
     - debug:
         msg: "{{ tmp_results }}"
 
+    - pause: seconds=5
 
     - avi_api_session:
-        api_version: "{{ api_version }}"
         controller: "{{ controller_ip }}"
         username: "{{ username }}"
         password: "{{ password }}"
