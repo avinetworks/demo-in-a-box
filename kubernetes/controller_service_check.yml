@@ -27,10 +27,13 @@
 
 
     - name: Wait for Avi Controller API
-      uri: url="https://{{ controller_ip}}/login" return_content=yes validate_certs=False method=POST
-      method: POST
-      status_code: 401
-      validate_certs: no
+      uri: 
+        #url: "https://{{ controller_ip}}/login" return_content=yes validate_certs=False method=POST
+        url: "https://{{ controller_ip }}/login"
+        method: POST
+        status_code: 401
+        validate_certs: no
+        return_content: yes
       register: tmp_results
       until: tmp_results.status == 401
       retries: 20
