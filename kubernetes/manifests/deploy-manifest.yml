@@ -11,4 +11,4 @@
 
     - name: Deploy Gallery App
       shell: kubectl create -f gallery-app.yml
-      when: "NotFound" in app_status.stdout
+      when: "'NotFound' in app_status.stdout"
