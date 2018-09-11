@@ -48,14 +48,52 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
 curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash
 ```
 
+The default setup will deploy an Avi demo using version 17.2.12.
+
+There are some some optional arguments that can be provided.  Arguments are provided with a <strong>-s</strong>.
 
 
+ <table class="table table table-bordered table-hover">  
+ <tbody>       
+ <tr>    
+ <th>
+ </th>
+ <th>**Argument**
+ </th>
+ <th>**Required**
+ </th>
+ <th>**Default**
+ </th>
+ </tr>
+ <tr>    
+ <td><strong>version</strong></td>
+ <td>provides option to select a version</td>
+ <td>no, optional</td>
+  <td>17.2.12</td>
+ </tr>
+ <tr>    
+ <td><strong>kubernetes</strong></td>
+ <td>will deploy a demo of Avi with Kubernetes integration</td>
+ <td>no, optional</td>
+ <td>default value is to deploy the Default Demo Setup</td>
+ </tr>
 
- ## Demo Setup
+ </tbody>
+ </table>
 
- Utilizing docker containers, the "demo-in-a-box" setup is completely self contained within a single host.  
+### Example Setup Using Arguments
 
- A bridged network (<b>avinet : 169.254.0.0/16</b>) has been created for the internal docker networking.
+The following command is using two deployment arguments.  The version argument will present you with a list of Avi versions to select from.  The kubernetes argument will deploy a demo of Avi with Kubernetes deployment instead of the Default Demo Setup.
+
+```
+curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash -s version -s kubernetes
+```
+
+ ## Default Demo Setup
+
+ Utilizing docker containers, the Default "demo-in-a-box" setup is completely self contained within a single host.  
+
+ A bridged network (<b>avinet : 169.254.0.0/17</b>) has been created for the internal docker networking.
 
  The table below lists the containers that will be created and amongst other information the roles they serve for the demo.  
 
@@ -161,3 +199,62 @@ curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/dem
 Because this demo setup is isolated within the host an RDP server is provided to allow for manual access to the virtual services.  To login to the RDP server, using an RDP client connect to the host IP on port 3389.  Login credentials for the RDP server are:<br>
  -  u: admin<br>
  -  p: AviDemo1!
+
+
+
+ ## Kubernetes Demo Setup
+
+ Utilizing docker containers, the kubernetes "demo-in-a-box" setup is completely self contained within a single host.  
+
+ A bridged network (<b>avinet : 169.254.0.0/17</b>) has been created for the internal docker networking to host the Avi Controller and Traffic Client.
+
+ The table below lists the containers that will be created and amongst other information the roles they serve for the demo.  
+
+
+ <table class="table table table-bordered table-hover">  
+ <tbody>       
+ <tr>   
+ <th>CONTAINER NAME
+ </th>
+ <th>CONTAINER ROLE
+ </th>
+ <th>INTERNAL IP
+ </th>
+ <th>EXPOSED PORTS
+ </th>
+ </tr>
+ <tr>    
+ <td><strong>avicontroller</strong></td>
+ <td>Avi Vantage controller</td>
+ <td>169.254.0.100</td>
+ <td>tcp:80, tcp:443(GUI), tcp:5054, tcp:5098(ssh), tcp:8444, udp:161</td>
+ </tr>
+ <tr>    
+ <td><strong>k8_(various)</strong></td>
+ <td>Kubernetes VM</td>
+ <td>various</td>
+ <td>tcp:30000(GUI), tcp:8443</td>
+ </tr>
+ <tr>    
+ <td><strong>kubeclient1</strong></td>
+ <td>Client used for traffic generation</td>
+ <td>169.254.8.8</td>
+ <td>none</td>
+ </tr>
+  </tbody>
+ </table>
+
+
+  ## How to Access
+
+ There are two containers that are exposing services externally on the host; the Avi Controller and the RDP Server
+
+
+#### Avi Controller
+ The Avi Vantage Controller can be accessed through the GUI or SSH.  To access the GUI point a browser to https://<host_ip>.  To access the cli, ssh to the host ip on port 5098.  Login credentials for the Avi controller are:<br>
+  - u: admin<br>
+  - p: AviDemo1!
+
+
+#### Kubernetes UI
+To access the GUI point a browser to http://<host_ip>:30000
