@@ -259,4 +259,4 @@ Because this demo setup is isolated within the host an RDP server is provided to
 
 
 #### Kubernetes UI
-To access the GUI point a browser to http://<host_ip>:30000
+To access the Kubernetes GUI point a browser to http://<host_ip>:30000
