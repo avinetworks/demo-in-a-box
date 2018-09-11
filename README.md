@@ -90,7 +90,7 @@ There are some some optional arguments that can be provided.  Each arguments is 
 
 ### Example Setup Using Arguments
 
-The command below demonstrates using multipled arguments.  The version argument will present you with a list of Avi versions to select from.  The kubernetes argument will deploy a demo of Avi with Kubernetes deployment instead of the Default Demo Setup and the grafana argument will deploy Grafana to display Avi performance metrics.
+The command below demonstrates using multiple arguments.  The <b>version</b> argument will present you with a list of Avi versions to select from.  The <b>kubernetes</b> argument will deploy a demo of Avi with Kubernetes deployment instead of the Default Demo Setup and the <b>grafana</b> argument will deploy Grafana to display Avi performance metrics.
 
 ```
 curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash -s version -s kubernetes -s grafana
