@@ -187,7 +187,7 @@ curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/dem
  </tbody>
  </table>
 
- ## How to Access
+### How to Access
 
  There are two containers that are exposing services externally on the host; the Avi Controller and the RDP Server
 
@@ -247,7 +247,7 @@ Because this demo setup is isolated within the host an RDP server is provided to
  </table>
 
 
-  ## How to Access
+### How to Access
 
  There are two containers that are exposing services externally on the host; the Avi Controller and the RDP Server
 
