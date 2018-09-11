@@ -246,6 +246,8 @@ conclusion() {
             echo
             echo            
         fi
+    done
+    for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
             echo "==========> Kubernetes Info ==========="
             echo "---------------------------------------"
