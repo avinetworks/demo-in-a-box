@@ -185,7 +185,7 @@ playbook_splunk_install() {
 
 check_for_args() {
     for a in "${cmd_args[@]}"; do
-        if [[ "$a" == "grafana-install" ]]; then
+        if [[ "$a" == "grafana" ]]; then
             playbook_metrics_install
         elif [[ "$a" == "grafana-delete" ]]; then
             playbook_metrics_delete
@@ -236,7 +236,7 @@ conclusion() {
     echo
     echo
     for a in "${cmd_args[@]}"; do
-        if [[ "$a" == "grafana-install" ]]; then
+        if [[ "$a" == "grafana" ]]; then
             echo "==========> Grafana Info ==========="
             echo "---------------------------------------"
             echo "==========>    GUI https://<server_ip>:3000"

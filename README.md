@@ -79,7 +79,12 @@ There are some some optional arguments that can be provided.  Each arguments is 
  <td>no, optional</td>
  <td>default value is to deploy the Default Demo Setup</td>
  </tr>
-
+<tr>    
+ <td><strong>grafana</strong></td>
+ <td>will deploy an implementation of grafana displaying Avi Metrics</td>
+ <td>no, optional</td>
+ <td>none</td>
+ </tr>
  </tbody>
  </table>
 
@@ -260,3 +265,41 @@ Because this demo setup is isolated within the host an RDP server is provided to
 
 #### Kubernetes UI
 To access the Kubernetes GUI point a browser to http://<host_ip>:30000
+
+
+
+ ## Grafana Setup
+
+
+ <table class="table table table-bordered table-hover">  
+ <tbody>       
+ <tr>   
+ <th>CONTAINER NAME
+ </th>
+ <th>CONTAINER ROLE
+ </th>
+ <th>INTERNAL IP
+ </th>
+ <th>EXPOSED PORTS
+ </th>
+ </tr>
+ <tr>    
+ <td><strong>avimetrics</strong></td>
+ <td>Pulls metrics from Avi Controller API and pushes into Graphite</td>
+ <td>169.254.100.102</td>
+ <td>none</td>
+ </tr>
+ <tr>    
+ <td><strong>graphite</strong></td>
+ <td>Time series database to store the Avi metrics</td>
+ <td>169.254.100.100</td>
+ <td>none</td>
+ </tr>
+ <tr>    
+ <td><strong>grafana</strong></td>
+ <td>UI for displaying metrics charts</td>
+ <td>169.254.100.101</td>
+ <td>tcp:3000(gui)</td>
+ </tr>
+  </tbody>
+ </table>
