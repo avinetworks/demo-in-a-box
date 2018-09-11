@@ -4,5 +4,11 @@
   become: True
 
   tasks:
+
+    - name: Check if Gallery app is already deployed
+      shell: "kubectl get namespace demo"
+      register: app_status
+
     - name: Deploy Gallery App
       shell: kubectl create -f gallery-app.yml
+      when: "NotFound in {{ app_status }}"
