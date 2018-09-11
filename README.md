@@ -50,7 +50,9 @@ curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/dem
 
 The default setup will deploy an Avi demo using version 17.2.12.
 
-There are some some optional arguments that can be provided.  Arguments are provided with a <strong>-s</strong>.
+
+### Optional Arguments
+There are some some optional arguments that can be provided.  Each arguments is provided by proceeding it with a <strong>-s</strong>.
 
 
  <table class="table table table-bordered table-hover">  
