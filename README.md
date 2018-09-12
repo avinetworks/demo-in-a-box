@@ -53,7 +53,7 @@ The default setup will deploy the Avi Default Demo using version 17.2.12.
 
 
 ### Optional Arguments
-There are optional arguments that may be provided.  Every argument provided is proceeded with a <strong>-s</strong>.
+There are optional arguments that can be provided.  Every argument provided is proceeded with a <strong>-s</strong>.
 
 
  <table class="table table table-bordered table-hover">  
