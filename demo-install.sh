@@ -225,11 +225,13 @@ retrieve_avi_versions() {
 
 
 conclusion() {
+    default_iface=$(awk '$2 == 00000000 { print $1 }' /proc/net/route)
+    default_ip=$(ip addr show dev "$default_iface" | awk '$1 ~ /^inet/ { sub("/.*", "", $2); print $2 }' | grep -v :)
     echo
     echo
     echo "==========> Avi Controller ============"
     echo "---------------------------------------"
-    echo "==========>    https://<server_ip>"
+    echo "==========>    https://$default_ip"
     echo "==========>    username:  admin"
     echo "==========>    password:  AviDemo1!"
     echo
@@ -239,19 +241,19 @@ conclusion() {
         if [[ "$a" == "grafana" ]]; then
             echo "==========> Grafana Info ==========="
             echo "---------------------------------------"
-            echo "==========>    GUI https://<server_ip>:3000"
+            echo "==========>    GUI https://$default_ip:3000"
             echo "==========>    username:  admin"
-            echo "==========>    password:  AviDemo1!"            
+            echo "==========>    password:  AviDemo1!"
             echo
             echo
-            echo            
+            echo
         fi
     done
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
             echo "==========> Kubernetes Info ==========="
             echo "---------------------------------------"
-            echo "==========>    GUI http://<server_ip>:30000"
+            echo "==========>    GUI http://$default_ip:30000"
             #echo "==========>     Demo Portal https://<server_ip>:8008"
             echo
             echo
@@ -261,7 +263,7 @@ conclusion() {
     done
     echo "==========> RDP Server Info ==========="
     echo "---------------------------------------"
-    echo "==========>    <server_ip>:3389"
+    echo "==========>    $default_ip:3389"
     echo "==========>    username:  admin"
     echo "==========>    password:  AviDemo1!"
     echo
