@@ -27,7 +27,7 @@
 
 
     - name: Wait for Avi Controller API
-      uri: 
+      uri:
         url: "https://{{ controller_ip }}/login"
         method: POST
         status_code: 401
@@ -43,7 +43,7 @@
     - debug:
         msg: "{{ tmp_results }}"
 
-    - pause: seconds=5
+    - pause: seconds=15
 
     - avi_api_session:
         controller: "{{ controller_ip }}"
