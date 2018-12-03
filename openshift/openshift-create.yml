@@ -1,0 +1,150 @@
+---
+- name: Install Openshift
+  hosts: openshift
+  become: yes
+
+  tasks:
+    - name: check for Openshift
+      stat:
+          path: /usr/bin/oc
+      register: oc_result
+      become: True
+
+
+    - name: Download openshift
+      shell: curl -sLo openshift.tgz -sSL https://github.com/openshift/origin/releases/download/v3.9.0/openshift-origin-client-tools-v3.9.0-191fece-linux-64bit.tar.gz && tar -xvzf openshift.tgz --wildcards --no-anchored 'oc' --strip-components 1 && chmod +x oc && cp oc /usr/bin/ && rm -f oc
+      args:
+        warn: false
+      when: oc_result.stat.exists == False
+
+
+    - name: Check if Openshift is running
+      shell: "oc cluster status | grep console"
+      register: openshift_status
+      failed_when: openshift_status.rc != 1 and openshift_status.rc != 0
+
+
+    - name: ensure file exists
+      copy:
+        content: '{"insecure-registries": ["172.30.0.0/16"]}'
+        dest: /etc/docker/daemon.json
+        force: no
+      register: daemon_created
+      when: "'Web console URL: https:' not in openshift_status.stdout"
+
+
+    - include_vars:
+        file: /etc/docker/daemon.json
+        name: imported_var
+      when: "'Web console URL: https:' not in openshift_status.stdout and daemon_created.changed != true"
+
+
+    - set_fact:
+        imported_var: '{{ imported_var | default([]) | combine({ "insecure-registries": ["172.30.0.0/16"] }) }}'
+      when: imported_var is defined and "insecure-registries" not in imported_var
+
+
+    - set_fact:
+        subnet_found: true
+      when: 'imported_var is defined and "172.30.0.0/16"==item and "insecure-registries" in imported_var'
+      with_items:
+          - '{{ imported_var["insecure-registries"] }}'
+
+
+    - set_fact:
+        temp_list: '{{ imported_var["insecure-registries"]  + ["172.30.0.0/16"] }}'
+      when: imported_var is defined and "insecure-registries" in imported_var and subnet_found is not defined
+
+
+    - set_fact:
+        imported_var: '{{ imported_var | default([]) | combine({ "insecure-registries": temp_list }) }}'
+      when: imported_var is defined and "insecure-registries" in imported_var and subnet_found is not defined
+
+
+    - copy:
+        content: "{{ imported_var | to_nice_json }}"
+        dest: /etc/docker/daemon.json
+      register: daemon_modified
+      when: imported_var is defined
+
+
+    - name: Restart docker service
+      systemd:
+        name: docker.service
+        state: restarted
+      when: daemon_created.changed == true or daemon_modified.changed == true
+
+
+    - name: Start Openshift - this will take a few minutes
+      shell: oc cluster up --public-hostname={{ ansible_default_ipv4.address }}
+      register: task_result
+      until: task_result.rc == 0
+      retries: 5
+      delay: 1
+      when: "'Web console URL: https:' not in openshift_status.stdout"
+      ignore_errors: yes
+
+
+    - pause: seconds=10
+      when: "'Web console URL: https:' not in openshift_status.stdout"
+
+    - shell: |
+        oc login -u system:admin
+        oc set env dc/router ROUTER_SERVICE_HTTP_PORT=10080 ROUTER_SERVICE_HTTPS_PORT=10443 -n default
+
+    - shell: "cat /var/lib/origin/openshift.local.config/master/master-config.yaml | grep CustomPodDNS=true"
+      register: customdns_status
+      failed_when: customdns_status.rc !=1 and customdns_status.rc !=0
+
+
+    - lineinfile:
+        dest: "/var/lib/origin/openshift.local.config/master/master-config.yaml"
+        line: "{{ item }}"
+        insertafter: "- application/vnd.kubernetes.protobuf"
+      with_items:
+        - '    - CustomPodDNS=true'
+        - '    feature-gates:'
+      when: '"CustomPodDNS=true" not in customdns_status.stdout'
+        
+
+    - lineinfile:
+        dest: "/var/lib/origin/openshift.local.config/master/master-config.yaml"
+        regexp: '^  controllerArguments: null'
+        line:   "  controllerArguments:"
+      when: '"CustomPodDNS=true" not in customdns_status.stdout'
+
+
+    - lineinfile:
+        dest: "/var/lib/origin/openshift.local.config/master/master-config.yaml"
+        line: "{{ item }}"         
+        insertafter:   "controllerArguments:"
+      with_items:
+        - '    - CustomPodDNS=true'
+        - '    feature-gates:'
+      when: '"CustomPodDNS=true" not in customdns_status.stdout'        
+
+
+    - shell: | 
+        oc login -u system:admin
+        oc describe serviceaccount -n default | grep Name:
+      register: srvc_account_status
+
+
+    - shell: |
+        oc login -u system:admin
+        oc create -f sa.json -n default
+        oc create -f clusterrolespod.json
+        oc adm policy add-cluster-role-to-user avirole system:serviceaccount:default:avi
+      when: '"avi" not in srvc_account_status.stdout'
+
+
+    - shell: docker restart origin
+      when: '"CustomPodDNS=true" not in customdns_status.stdout'     
+
+
+    - pause: seconds=60
+      when: '"CustomPodDNS=true" not in customdns_status.stdout' 
+    
+
+
+      

@@ -1,0 +1,18 @@
+---
+- name: Install Kubernetes
+  hosts: openshift
+  become: True
+
+  tasks:
+
+    - name: Check if Gallery app is already deployed
+      shell: "oc get namespace"
+      register: app_status
+
+    - name: Deploy Gallery App
+      shell: oc create -f gallery-app.yml
+      when: "'demo' not in app_status.stdout"
+
+
+    - shell: oc adm policy add-cluster-role-to-user admin admin -n demo
+      when: "'demo' not in app_status.stdout"

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Delete docker network
+      docker_network:
+        name: avinet
+        state: absent

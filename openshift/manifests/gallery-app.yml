@@ -1,0 +1,767 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-accounts
+  name: app-accounts
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-accounts
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-accounts
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-accounts
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-billing
+  name: app-billing
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-billing
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-billing
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-billing
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-catalogue
+  name: app-catalogue
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-catalogue
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-catalogue
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-catalogue
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-inventory
+  name: app-inventory
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-inventory
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-inventory
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-inventory
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-invoices
+  name: app-invoices
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-invoices
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-invoices
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-invoices
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-sales
+  name: app-sales
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-sales
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-sales
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-sales
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-blacklist
+  name: app-blacklist
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-blacklist
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-blacklist
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-blacklist
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-checkout
+  name: app-checkout
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-checkout
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-checkout
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-checkout
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-marketing
+  name: app-marketing
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-marketing
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-marketing
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-marketing
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-photo
+  name: app-photo
+  namespace: demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: app-photo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-photo
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        imagePullPolicy: IfNotPresent
+        name: app-photo
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: app-shoppingcart
+  name: app-shoppingcart
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app-shoppingcart
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: app-shoppingcart
+    spec:
+      containers:
+      - image: paib/relayserver:demoapp
+        env:
+        - name: SUBDOMAIN
+          value: demo.ew.avi
+        imagePullPolicy: IfNotPresent
+        name: app-shoppingcart
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: None
+      dnsConfig:
+          nameservers:
+            - 169.254.190.1
+          options:
+            - name: ndots
+              value: "0"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: blacklist
+  name: blacklist
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-blacklist
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: checkout
+  name: checkout
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-checkout
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: marketing
+  name: marketing
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-marketing
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": false, "auto_allocate_floating_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-Secure-HTTP",
+      "ssl_profile_ref": "/api/sslprofile/?name=System-Standard", "analytics_policy":
+      {"client_insights": "NO_INSIGHTS", "metrics_realtime_update": {"duration":
+      0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled": true}},
+      "services": [{"enable_ssl": true, "port": 443}], "ssl_key_and_certificate_refs":
+      ["/api/sslkeyandcertificate?name=System-Default-Cert-EC"]}}'
+  labels:
+    svc: photo
+  name: photo
+  namespace: demo
+spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-photo
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: shoppingcart
+  name: shoppingcart
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-shoppingcart
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: accounts
+  name: accounts
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-accounts
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: billing
+  name: billing
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-billing
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: catalogue
+  name: catalogue
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-catalogue
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: inventory
+  name: inventory
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-inventory
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: sales
+  name: sales
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-sales
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    avi_proxy: '{"virtualservice": {"east_west_placement": true, "auto_allocate_ip":
+      true, "application_profile_ref": "/api/applicationprofile?name=System-HTTP",
+      "analytics_policy": {"client_insights": "NO_INSIGHTS", "metrics_realtime_update":
+      {"duration": 0, "enabled": true}, "full_client_logs": {"duration": 0, "enabled":
+      true}}}}'
+  labels:
+    svc: invoices
+  name: invoices
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: app-invoices
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

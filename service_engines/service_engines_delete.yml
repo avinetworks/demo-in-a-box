@@ -1,0 +1,41 @@
+---
+- hosts: service_engines
+  become: yes
+  vars_files:
+    - ../vars/avi_details.yaml
+
+  tasks:
+
+    - name: Stop SE services
+      systemd:
+        name: "{{ item }}"
+        enabled: False
+        state: stopped
+      with_items:
+        - avise1.service
+        - avise2.service
+
+
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /opt/avi/se1
+        - /opt/avi/se2
+        - /etc/systemd/system/avise1.service
+        - /etc/systemd/system/avise2.service
+
+
+    - name: Get Service Engine TAG Info
+      shell: "docker images | grep avinetworks/se  | awk '{print $2'}"
+      register: container_tag
+
+
+    - name: delete the serviceengine base images
+      docker_image:
+        name: avinetworks/se
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+
+    - systemd: daemon_reload=yes
+

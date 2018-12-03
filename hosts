@@ -12,3 +12,6 @@ localhost              ansible_connection=local
 
 [kubernetes]
 localhost              ansible_connection=local
+
+[openshift]
+localhost              ansible_connection=local

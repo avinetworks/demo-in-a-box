@@ -1,0 +1,21 @@
+---
+- name: Build the Kube Client
+  hosts: demo_clients
+  become: True
+
+  tasks:
+    - name: delete kubeclient container
+      docker_container:
+        name: kubeclient1
+        state: absent
+
+
+    - name: delete the kubeclient base image
+      docker_image:
+        name: kubeclient
+        tag: latest
+        state: absent
+
+
+
+

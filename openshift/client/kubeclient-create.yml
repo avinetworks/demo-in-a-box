@@ -1,0 +1,30 @@
+---
+- name: Build the Kube Client
+  hosts: demo_clients
+  become: True
+
+  tasks:
+    - name: build the kubeclient base image
+      docker_image:
+        path: .
+        name: kubeclient
+        tag: latest
+        state: present
+
+    - name: start kubeclient
+      docker_container:
+        name: kubeclient1
+        hostname: kubeclient1
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.8.8"
+        purge_networks: yes
+        dns_servers:
+           - "169.254.190.1"    
+        detach: yes
+        log_driver: json-file
+        log_options:
+            max-size: 1m
+        restart_policy: always
+        state: started
+        image: kubeclient:latest

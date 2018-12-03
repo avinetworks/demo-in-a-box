@@ -1,0 +1,29 @@
+---
+- name: Prep Avi Controller Config
+  hosts: openshift
+  become: True
+
+  tasks:
+    - name: Retrieve Service Account Token
+      shell: "oc describe serviceaccount avi -n default | grep Tokens: | awk '{print $2'}"
+      register: srvc_account_token
+
+
+    - debug:
+        msg: "{{ srvc_account_token.stdout }}"
+
+
+    - name: Retrieve Service Account Secret Name
+      shell: "oc describe secret {{ srvc_account_token.stdout }} -n default | grep token: | awk '{print $2'}"
+      register: srvc_account_secret
+
+
+    - debug:
+        msg: "{{ srvc_account_secret.stdout }}"
+
+
+    - name: Prepare Controller config
+      shell: |
+          cp template_setup.json setup.json
+          sed -i "s/REPLACE-TOKEN/{{ srvc_account_secret.stdout }}/g" setup.json
+          sed -i "s/REPLACE-IP/{{ ansible_default_ipv4.address }}/g" setup.json

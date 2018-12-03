@@ -1,0 +1,42 @@
+---
+- hosts: controllers
+  become: yes
+  vars_files:
+    - ../vars/avi_details.yaml
+
+  tasks:
+
+    - name: Stop Avi Controller
+      systemd:
+        name: avicontroller.service
+        enabled: False
+        state: stopped
+
+
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /opt/avi/controller
+        - /etc/systemd/system/avicontroller.service
+
+
+    - systemd: daemon_reload=yes
+
+    - name: Get Controller TAG Info
+      shell: "docker images | grep controller | grep avi | awk '{print $2'}"
+      register: container_tag
+
+
+    - name: delete the container base images
+      docker_image:
+        name: avinetworks/controller
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+
+
+    - docker_image:
+        name: avinetworks/cli
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+

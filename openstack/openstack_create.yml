@@ -1,0 +1,18 @@
+---
+- name: Install Openstack
+  hosts: openstack
+  
+
+  tasks:
+    - name: Download Devstack
+      shell: git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
+
+    - name: create config file
+      template:
+        src: "local.conf"
+        dest: "devstack/local.conf"
+
+    - name: Start Openstack - this will take about 20 minutes
+      shell: devstack/stack.sh
+
+

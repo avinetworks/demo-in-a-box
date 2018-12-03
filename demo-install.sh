@@ -53,7 +53,8 @@ check_for_dockerpy() {
 
 
 check_for_avisdk() {
-    pip install avisdk --upgrade
+    #pip install avisdk --upgrade
+    pip install avisdk==18.1.5b3 --upgrade
     #if python -c "import avi" &> /dev/null; then
     #    echo "=====> avisdk already installed"
     #else
@@ -157,7 +158,10 @@ playbook_install_demo() {
         if [[ "$a" == "kubernetes" ]]; then
             ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml
             return 0
-        fi
+        elif [[ "$a" == "openshift" ]]; then
+            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift.yml
+            return 0            
+        fi    
     done
     ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml
 }
@@ -205,7 +209,7 @@ retrieve_avi_versions() {
             echo
             echo "=====> Select the Avi version to deploy"
             echo
-            versions=`curl -s https://hub.docker.com/v2/repositories/avinetworks/controller/tags/ | sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep name | awk '{split($0,a,"\"name\":"); print a[2]}' | sed "s/\"//g" | sed "s/ //g"`
+            versions=`curl -s https://hub.docker.com/v2/repositories/avinetworks/controller/tags/?page_size=10 | sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep name | awk '{split($0,a,"\"name\":"); print a[2]}' | sed "s/\"//g" | sed "s/ //g" | sed "/latest/d"`
             SAVEIFS=$IFS
             IFS=$'\n'
             versions=($versions)
@@ -259,7 +263,17 @@ conclusion() {
             echo
             echo
             return 0
-        fi
+        elif [[ "$a" == "openshift" ]]; then
+            echo "==========> Openshift Info ==========="
+            echo "---------------------------------------"
+            echo "==========>    GUI https://$default_ip:8443"
+            echo "==========>    username:  admin"
+            echo "==========>    password:  AviDemo1!"
+            echo
+            echo
+            echo
+            return 0
+        fi        
     done
     echo "==========> RDP Server Info ==========="
     echo "---------------------------------------"

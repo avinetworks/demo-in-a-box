@@ -29,4 +29,4 @@
       docker_image:
         name: demoserver
         tag: latest
-        state: present
+        state: absent

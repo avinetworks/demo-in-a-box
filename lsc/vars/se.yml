@@ -1,6 +1,0 @@
-# Default SE size
-se_cpu: 1
-se_mem: 1
-se_disk: 10
-se_dpdk: "NO"
-se_inband: "False"

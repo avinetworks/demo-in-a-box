@@ -1,0 +1,16 @@
+---
+- name: Install Kubernetes
+  hosts: kubernetes
+  become: True
+
+  tasks:
+
+    - name: Check if Kubernetes is running
+      shell: "minikube status | grep minikube: | awk '{print $2'}"
+      register: minikube_status
+
+    - name: Stop kubernetes
+      shell: |
+          minikube start
+          minikube delete
+      when: minikube_status.stdout == "Running"

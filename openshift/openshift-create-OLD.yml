@@ -1,0 +1,129 @@
+---
+- name: Install Openshift
+  hosts: localhost
+
+  tasks:
+    - name: check for minishift
+      stat:
+          path: /usr/bin/minishift
+      register: minishift_result
+      become: True
+
+
+    - name: Download minishift
+      shell: curl -sLo minishift.tgz curl -o minishift.tgz -sSL https://github.com/minishift/minishift/releases/download/v1.24.0/minishift-1.24.0-linux-amd64.tgz && tar -xvzf minishift.tgz --wildcards --no-anchored 'minishift' --strip-components 1 && chmod +x minishift && cp minishift /usr/bin/ && rm -f minishift
+      args:
+        warn: false
+      become: yes
+      when: minishift_result.stat.exists == False
+
+
+    - name: Check if Minishift is running
+      shell: "minishift status"
+      register: minishift_status
+      become: True
+
+
+
+    - name: Create Temp User to install Openshift
+      user:
+          name: minishift_temp
+          home: /home/minishift_temp
+          shell: /bin/bash
+          groups: docker
+          append: yes
+      register: create_user
+      become: yes
+      when: "'OpenShift:  Running' not in minishift_status.stdout"
+
+    - name: check for ssh-keys
+      stat:
+          path: ./sshkey
+      register: sshkey_result
+
+    - name: Create SSH Key of User and set Permissions
+      shell: ssh-keygen -f sshkey -q -N ""         
+      when: sshkey_result.stat.exists == False
+    
+    - shell: |
+          useradd -s /bin/bash -m minishift_temp
+          usermod -L minishift_temp
+          usermod -aG docker minishift_temp
+          mkdir /home/minishift_temp/.ssh
+          cp -f sshkey.pub /home/minishift_temp/.ssh/authorized_keys
+      become: yes
+      when: create_user.changed
+
+
+    - name: Modify temp user perms
+      command: cp -f /etc/sudoers /etc/sudoers.tmp
+      become: yes
+      when: create_user.changed
+      
+
+
+    - command: cp -f /etc/sudoers /etc/sudoers.bak
+      become: yes
+      when: create_user.changed
+
+
+    - lineinfile: 
+          path: /etc/sudoers.tmp 
+          state: present 
+          regexp: '^%minishift_temp'
+          line: '%minishift_temp ALL=(ALL) NOPASSWD:ALL'
+      become: yes
+      when: create_user.changed
+
+
+    - shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+      become: yes
+      when: create_user.changed
+
+
+    - name: Start Minishift - this takes about 10 minutes
+      shell: minishift start --vm-driver=generic --remote-ipaddress={{ ansible_default_ipv4.address }} --remote-ssh-user=minishift_temp --remote-ssh-key=./sshkey
+      register: task_result
+      until: task_result.rc == 0
+      retries: 5
+      delay: 1
+      when: "'OpenShift:  Running' not in minishift_status.stdout"
+      ignore_errors: yes
+
+
+    - name: pause while minishift services start
+      pause: seconds=10
+      when: "'OpenShift:  Running' not in minishift_status.stdout"
+
+
+    - name: Modify temp user perms
+      command: cp -f /etc/sudoers /etc/sudoers.tmp
+      become: yes
+      when: create_user.changed
+     
+
+    - command: cp -f /etc/sudoers /etc/sudoers.bak
+      become: yes
+      when: create_user.changed
+
+
+    - lineinfile: 
+        path: /etc/sudoers.tmp 
+        state: absent
+        regexp: '^%minishift_temp'
+        line: '%minishift_temp ALL=(ALL) NOPASSWD:ALL'
+      become: yes
+      when: create_user.changed
+
+
+    - shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+      become: yes
+      when: create_user.changed
+
+    
+    - shell: cp -f /var/lib/minishift/bin/oc /usr/bin    
+      become: yes
+      when: "'OpenShift:  Running' not in minishift_status.stdout"
+
+
+      

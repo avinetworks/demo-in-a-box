@@ -1,0 +1,155 @@
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    width: 60px;
+    font: bold 12px arial, sans-serif;
+    color: white;
+}
+</style>
+</head>
+<body style="background-color:#262626;color:white">
+    <br>
+    <div style="text-align:center;">
+    <img src="img/logo.svg" alt="AviLogo" align="middle">
+    </div>
+      <li><a href="https://10.130.128.13/ui" target="_blank">K8S Dashboard (private IP access)</a></li>
+    <div align="center">
+    <h2>Kubernetes Demo Control</h2>
+    <br>
+    <form>
+    <table id="tabl">
+      <tr>
+        <th></th>
+        <th width=5%></th>
+        <th></th>
+        <th></th>
+        <th style='border-left: 1px solid #ff6600; padding-left: 30px'><font size=4>Status</font></th>
+      </tr>
+      <tr>
+        <td><font size=6>Setup K8S Cloud</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('confos')" id="b1">Run</button></td>
+        <td></td>
+        <td id="scl" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Configure DNS VS</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('confdns')"  id="b2">Run</button></td>
+        <td></td>
+        <td id="sa" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Start Apps</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('createapps')"  id="b3">Run</button></td>
+        <td></td>
+        <td id="sa" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Traffic</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('starttraffic')"  id="b4">Start</button></td>
+        <td style='padding-right: 30px'><button type="button" onclick="reply_click('stoptraffic')"  id="b5">Stop</button></td>
+        <td id="st" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Create Ingress</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('createingrop')"  id="b4">Local</button></td>
+        <td style='padding-right: 30px'><button type="button" onclick="reply_click('createingraws')"  id="bx">AWS</button></td>
+        <td id="in" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Configure GSLB Cluster</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('cfg_gslb')"  id="b5">Run</button></td>
+        <td></td>
+        <td id="gc" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Update Ingress for GSLB</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('creategs')"  id="b6">Run</button></td>
+        <td></td>
+        <td id="gs" style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+      <tr>
+        <td><font size=6>Cleanup</font></td>
+        <td></td>
+        <td><button type="button" onclick="reply_click('cleanup')"  id="b7">Run</button></td>
+        <td></td>
+        <td style='border-left: 1px solid #ff6600; padding-left: 30px'></th>
+      </tr>
+    </table>
+    </form>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        update_status()
+
+        function trim0(x) {
+            return x.replace(/0$/gm,'');
+        }
+
+        $(document).ready(function (e)
+        {
+            var refresher = setInterval("update_status();", 5000);
+        })
+
+        function update_status_by_id(id, rr, cc)
+        {
+            //document.getElementById('tabl').rows[1].cells[4].innerHTML = 'Loading';
+            $.ajax(
+            {
+                type: 'GET',
+                url: '/portal?env=k8s&id=' + id,
+                dataType: "text",
+                contentType : "application/json",
+                timeout: 10000,
+                cache: false,
+                success : function(data)
+                {
+                    document.getElementById('tabl').rows[rr].cells[cc].innerHTML = trim0(data);
+                    if (rr == 5)
+                    {
+                        document.getElementById('tabl').rows[7].cells[cc].innerHTML = trim0(data);
+                    }
+                }
+            });
+        }
+
+        function update_status()
+        {
+            update_status_by_id("status_cloud", 1, 4);
+            update_status_by_id("status_dns", 2, 4);
+            update_status_by_id("status_apps", 3, 4);
+            update_status_by_id("status_traffic", 4, 4);
+            update_status_by_id("status_ingr", 5, 4);
+            update_status_by_id("status_gslb", 6, 4);
+            //update_status_by_id("status_gs", 7, 4);
+            update_status_by_id("status_cleanup", 9, 4);
+        }
+
+        function reply_click(clicked_id)
+        {
+           $.ajax({
+               type: 'GET',
+               url: '/portal?env=k8s&id=' + clicked_id,
+               contentType : "application/json",
+               timeout: 10000,
+               cache: false,
+           });
+           return false;
+        }
+    </script>
+
+</body>
+</html>

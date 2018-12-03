@@ -1,0 +1,17 @@
+{
+    "apiVersion": "v1",
+    "kind": "ClusterRole",
+    "metadata": {
+      "name": "avirole"
+    },
+    "rules": [
+    {
+        "verbs": ["get","list","watch"],
+        "resources": ["*"]
+    },
+    {
+        "verbs": ["patch","update"],
+        "resources": ["routes/status"]
+    }
+    ]
+  }
