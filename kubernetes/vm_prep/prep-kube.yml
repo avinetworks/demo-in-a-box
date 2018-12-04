@@ -57,12 +57,9 @@
         state: stopped
 
 
-  roles:
-    - when: ansible_os_family == "Debian"
-      role: avinetworks.docker
-      docker_edition: ce
-      docker_live_restore: true
-
+    - name: Install Docker (Ubuntu)
+      when: ansible_os_family == "Debian"
+      action: "{{ ansible_pkg_mgr }} pkg=docker.io state=present"
     
 
 
