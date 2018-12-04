@@ -155,7 +155,6 @@
                     }
                 },
                 "shared_virtualservice_namespace": false,
-                "se_spawn_rate": 25,
                 "disable_auto_se_creation": false
             },
             "prefer_static_routes": false,
