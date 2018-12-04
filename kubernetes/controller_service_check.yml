@@ -43,7 +43,7 @@
     - debug:
         msg: "{{ tmp_results }}"
 
-    - pause: seconds=15
+    - pause: seconds=60
 
     - avi_api_session:
         controller: "{{ controller_ip }}"

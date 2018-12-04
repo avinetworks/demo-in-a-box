@@ -1,0 +1,67 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Install Python
+      when: ansible_os_family == "Debian"
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+      changed_when: False
+
+    - name: Install epel-release
+      when: ansible_os_family == "RedHat"
+      action: yum pkg='epel-release' state=present
+
+    - name: Install pip
+      action: "{{ ansible_pkg_mgr }} pkg=python-pip state=present"
+
+
+    - name: Enable ipv4 forwarding
+      sysctl: name="net.ipv4.ip_forward" value=1 sysctl_set=yes state=present reload=yes
+
+    - name: Install Docker (Redhat)
+      when: ansible_os_family == "RedHat"
+      action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=present"
+      with_items:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+    
+    -  when: ansible_os_family == "RedHat"
+       get_url:
+         url: https://download.docker.com/linux/centos/docker-ce.repo
+         dest: /etc/yum.repos.d/docer-ce.repo
+
+
+    - when: ansible_os_family == "RedHat"
+      ini_file:
+          dest: /etc/yum.repos.d/docer-ce.repo
+          section: "{{ item }}"
+          option: enabled
+          value: 0
+      with_items: ['docker-ce-test', 'docker-ce-edge']
+
+
+    - when: ansible_os_family == "RedHat"
+      action: yum pkg='docker-ce-18.03.1.ce-1.el7.centos' state=present
+
+    - when: ansible_os_family == "RedHat"
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - when: ansible_os_family == "RedHat"
+      systemd:
+        name: firewalld
+        enabled: False
+        state: stopped
+
+
+    - name: Install Docker (Ubuntu)
+      when: ansible_os_family == "Debian"
+      action: "{{ ansible_pkg_mgr }} pkg=docker.io state=present"
+    
+
+
+
+
