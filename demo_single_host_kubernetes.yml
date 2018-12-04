@@ -1,5 +1,5 @@
 ---
-- import_playbook: vm_prep/prep.yml
+- import_playbook: kubernetes/vm_prep/prep-kube.yml
 - import_playbook: vm_prep/avinet.yml
 - import_playbook: kubernetes/kubernetes-create.yml
 - import_playbook: kubernetes/controller_config-prep.yml
