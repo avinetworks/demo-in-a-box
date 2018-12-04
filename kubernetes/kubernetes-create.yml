@@ -28,7 +28,7 @@
 
 
     - name: Download minikube
-      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
+      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/v0.29.0/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
       args:
         warn: false
       when: minikube_result.stat.exists == False
