@@ -8,21 +8,21 @@ apiVersion: 1
 # whats available in the database
 datasources:
   # <string, required> name of the datasource. Required
-- name: graphite
+- name: influxdb
   # <string, required> datasource type. Required
-  type: graphite
+  type: influxdb
   # <string, required> access mode. direct or proxy. Required
   access: proxy
   # <int> org id. will default to orgId 1 if not specified
   orgId: 1
   # <string> url
-  url: http://graphite.avinet:80
+  url: http://172.17.0.1:8086
   # <string> database password, if used
   password:
   # <string> database user, if used
   user:
   # <string> database name, if used
-  database:
+  database: avi
   # <bool> enable/disable basic auth
   basicAuth:
   # <string> basic auth username
@@ -35,7 +35,6 @@ datasources:
   isDefault: true
   # <map> fields that will be converted to json and stored in json_data
   jsonData:
-     graphiteVersion: "1.12"
      tlsAuth: false
      tlsAuthWithCACert: false
   # <string> json object of data that will be encrypted.

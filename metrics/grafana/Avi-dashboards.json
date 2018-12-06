@@ -15,12 +15,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
+  "id": 18,
   "links": [],
   "panels": [
     {
       "folderId": 0,
       "gridPos": {
-        "h": 7,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 0
@@ -76,7 +77,5 @@
     ]
   },
   "timezone": "",
-  "title": "Avi Dashboard",
-  "uid": "pFdjj36zz",
-  "version": 1
+  "title": "Avi Dashboard"
 }

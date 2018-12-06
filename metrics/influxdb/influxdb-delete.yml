@@ -1,0 +1,25 @@
+---
+- name: Delete the Avi Influxdb Container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+
+    - name: delete the influxdb container
+      docker_container:
+        name: influxdb
+        keep_volumes: no
+        state: absent
+
+
+    - name: cleanup the influxdb volume
+      docker_volume:
+        name: influxdb
+        state: absent
+
+
+    - name: delete the influxdb base image
+      docker_image:
+        name: influxdb:latest
+        tag: latest
+        state: absent

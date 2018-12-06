@@ -1,10 +1,10 @@
 ############################################################
 # Dockerfile to build python avi-monitor script container
-# Based on python:2
+# Based on alpine:edge
 ############################################################
 
-# Set the base image to Python:2
-FROM python:2
+# Set the base image to alpine:edge
+FROM alpine:edge
 
 # Set the working directory
 WORKDIR /usr/src/avi
@@ -20,9 +20,9 @@ ENV EN_DOCKER=True
 
 
 # Install python requirements
+RUN apk add --no-cache python python-dev py-pip
 RUN pip install --no-cache-dir requests
-#RUN apt-get update
-#RUN apt-get install -y vim
+
 
 # Copy scripts to directory
 COPY "avimetrics.py" "/usr/src/avi"
@@ -32,6 +32,7 @@ COPY "datadog.json" "/usr/src/avi"
 COPY "graphite_host.json" "/usr/src/avi"
 COPY "splunk_host.json" "/usr/src/avi"
 COPY "appdynamics_http.json" "/usr/src/avi"
+COPY "influxdb.json" "/usr/src/avi"
 
 
 # Execute script
