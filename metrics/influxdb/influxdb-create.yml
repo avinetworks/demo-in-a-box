@@ -4,7 +4,7 @@
   become: True
 
   tasks:
-    - name: start the graphite container
+    - name: start the Influxdb container
       docker_container:
         name: influxdb
         hostname: influxdb
