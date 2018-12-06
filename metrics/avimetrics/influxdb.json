@@ -1,8 +1,8 @@
 {"influxdb":
     {
-        "server": "169.254.0.1",
+        "server": "169.254.100.100",
         "server_port": 8086,
-        "protocol": "https",
+        "protocol": "http",
         "db": "avi",
         "_comment":"Change metric_prefix only if you need to define a prefix",
         "metric_prefix": ""
