@@ -1327,7 +1327,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "none",
           "logBase": 1,
           "max": null,
           "min": null,
