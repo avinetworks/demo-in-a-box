@@ -28,8 +28,8 @@ url2 = "https://"+vs+"/"
 url3 = "http://"+vs+"/imgs/conversion.js"
 url4 = "https://"+vs+"/imgs/header.png"
 url5 = "https://"+vs+"/assets/avi.webm"
-url6 = "https://"+vs+"/cnn.html"
-url7 = "https://"+vs+"/natgeo.html"
+url6 = "https://"+vs+"/avinetworks/index.html"
+url7 = "https://"+vs+"/index.htm"
 
 
 while True:
