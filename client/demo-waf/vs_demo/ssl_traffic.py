@@ -25,9 +25,9 @@ ipad = '"Mozilla/5.0(iPad; U; CPU OS 4_3 like Mac OS X; en-us) AppleWebKit/533.1
 #ipad = "\"Mozilla/5.0(iPad U CPU OS 4_3 like Mac OS X en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8F191 Safari/6533.18.5\""
 
 
-url1 = "http://"+vs+"/imgs/logo.png"
+url1 = "https://"+vs+"/imgs/logo.png"
 url2 = "https://"+vs+"/"
-url3 = "http://"+vs+"/imgs/conversion.js"
+url3 = "https://"+vs+"/imgs/conversion.js"
 url4 = "https://"+vs+"/imgs/header.png"
 url5 = "https://"+vs+"/assets/avi.webm"
 url6 = "https://"+vs+"/cnn.html"
