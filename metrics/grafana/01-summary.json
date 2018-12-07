@@ -1238,7 +1238,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_current_version",
+          "alias": "$tag_version",
           "groupBy": [
             {
               "params": [
@@ -1248,7 +1248,7 @@
             },
             {
               "params": [
-                "current_version"
+                "version"
               ],
               "type": "tag"
             },
