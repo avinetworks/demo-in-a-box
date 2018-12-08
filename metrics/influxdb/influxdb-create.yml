@@ -1,0 +1,26 @@
+---
+- name: Build the Influxdb Container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+    - name: start the Influxdb container
+      docker_container:
+        name: influxdb
+        hostname: influxdb
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.100.100"
+        purge_networks: yes
+        env:
+            INFLUXDB_REPORTING_DISABLED: true
+            INFLUXDB_DB: avi
+        volumes: influxdb:/var/lib/influxdb
+        log_driver: json-file
+        log_options:
+            max-size: 200m
+        detach: yes
+        restart_policy: always
+        state: started
+        image: influxdb:latest
+

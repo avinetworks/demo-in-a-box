@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 
-version = 'v2018-07-03'
+version = 'v2018-11-26'
 
 #########################################################################################
 #                                                                                       #
@@ -49,6 +49,7 @@ required_args = parser.add_argument_group('required named arguments')
 parser.add_argument('--brief', help='Print Exceptions Only', required=False, action='store_true')
 parser.add_argument('--debug', help='Print All Output, this the DEFAULT setting', required=False, action='store_true')
 parser.add_argument('-m', '--metrics', help='Metrics Endpoint for Sending the data', action='append', required=False, default=None)
+parser.add_argument('--norealtime', help='Disable Check for Realtime Stats', required=False, action='store_true')
 args = parser.parse_args()
 
 
@@ -62,17 +63,16 @@ def determine_endpoint_type():
         'appdynamics_machine',
         'splunk',
         'datadog',
-        'prometheus',
-        'dynatrace'
+        'influxdb'
         ]
     if args.metrics == None:
-        print '=====>ERROR:  No metric type defined, acceptable types are: '+str(endpoint_types)
+        print '=====> ERROR:  No metric type defined, acceptable types are: '+str(endpoint_types)
         sys.exit(1)
     else:
         endpoint_list = []
         for a in args.metrics:
             if a.lower() not in endpoint_types:
-                print '=====>ERROR:  Invalid metrics type, acceptable types are: '+str(endpoint_types)
+                print '=====> ERROR:  Invalid metrics type, acceptable types are: '+str(endpoint_types)
                 sys.exit(1)
             elif a.lower() == 'graphite':
                 with open(os.path.join(fdir,'graphite_host.json')) as gr:
@@ -97,15 +97,11 @@ def determine_endpoint_type():
                     endpoint_info = json.load(dd)['datadog']
                     endpoint_info['type'] = 'datadog'
                     endpoint_list.append(endpoint_info)
-            elif a.lower() == 'prometheus':
-                endpoint_info = {}
-                endpoint_info['type'] = 'prometheus'
-                endpoint_list.append(endpoint_info)
-            elif a.lower() == 'dynatrace':
-                with open(os.path.join(fdir,'dynatrace.json')) as dt:
-                    endpoint_info = json.load(dt)['dynatrace']
-                    endpoint_info['type'] = 'dynatrace'
-                    endpoint_list.append(endpoint_info)
+            elif a.lower() == 'influxdb':
+                with open(os.path.join(fdir,'influxdb.json')) as inflx:
+                    endpoint_info = json.load(inflx)['influxdb']
+                    endpoint_info['type'] = 'influxdb'
+                    endpoint_list.append(endpoint_info)                    
         return endpoint_list
 
 
@@ -152,7 +148,7 @@ class avi_metrics():
         self.payload_template['environment'] = self.host_environment
         self.payload_template['avicontroller'] = self.avi_cluster_ip
         #------
-        vs_metric_list  = [
+        self.vs_metric_list  = [
             'l4_server.avg_errored_connections',
             'l4_server.avg_rx_pkts',
             'l4_server.avg_bandwidth',
@@ -225,8 +221,8 @@ class avi_metrics():
             'dns_server.avg_errored_queries',
             'dns_server.avg_tcp_queries',
             'dns_server.avg_udp_queries']
-        self.vs_metric_list = ','.join(vs_metric_list)
-        se_metric_list = [
+        #------        
+        self.se_metric_list = [
             'se_if.avg_bandwidth',
             'se_stats.avg_connection_mem_usage',
             'se_stats.avg_connections',
@@ -234,6 +230,7 @@ class avi_metrics():
             'se_stats.avg_cpu_usage',
             'se_stats.avg_disk1_usage',
             'se_stats.avg_mem_usage',
+            'se_stats.avg_dynamic_mem_usage',
             'se_stats.avg_persistent_table_usage',
             'se_stats.avg_rx_bandwidth',
             'se_if.avg_rx_bytes',
@@ -250,23 +247,13 @@ class avi_metrics():
             'se_stats.avg_packet_buffer_header_usage',
             'se_stats.avg_packet_buffer_large_usage',
             'se_stats.avg_packet_buffer_small_usage']
-        self.se_metric_list = ','.join(se_metric_list)
-        controller_metric_list  = [
+        #------          
+        self.controller_metric_list  = [
             'controller_stats.avg_cpu_usage',
             'controller_stats.avg_disk_usage',
             'controller_stats.avg_mem_usage']
-        self.controller_metric_list = ','.join(controller_metric_list)
-        controller_process_metric_list = [
-            'process_stats.avg_rss',
-            'process_stats.avg_swap',
-            'process_stats.max_cpu_pct',
-            'process_stats.avg_num_threads',
-            'process_stats.avg_fds',
-            'process_stats.avg_pss',
-            'process_stats.avg_vms']
-        self.controller_process_metric_list = ','.join(controller_process_metric_list)
         #----
-        pool_server_metric_list = [
+        self.pool_server_metric_list = [
             'l4_server.avg_rx_pkts',
             'l4_server.avg_tx_pkts',
             'l4_server.avg_rx_bytes',
@@ -278,7 +265,6 @@ class avi_metrics():
             'l4_server.avg_pool_complete_conns',
             'l4_server.avg_open_conns',
             'l4_server.max_open_conns']
-        self.pool_server_metric_list = ','.join(pool_server_metric_list)
 
 
     def avi_login(self):
@@ -330,6 +316,7 @@ class avi_metrics():
             return self.avi_cluster_ip
 
 
+
     #----- Creates inventory dicts to be used by other methods
     def gen_inventory_dict(self):
         try:
@@ -339,23 +326,32 @@ class avi_metrics():
             pool_dict={'tenants':{}}
             seg_dict = {'tenants':{}}
             if self.login.json()['user']['is_superuser'] == True: #----if SU, use wildcard tenant
-                vs_inv = self.avi_request('virtualservice-inventory?page_size=1000','*').json()
-                vs_total_pages = (vs_inv['count']/1000) + (vs_inv['count'] % 1000 > 0)
+                vs_inv = self.avi_request('virtualservice-inventory?page_size=200','*').json()
+                resp = vs_inv
                 page_number = 1
-                while vs_total_pages > page_number:
+                while 'next' in resp:
                     page_number += 1
-                    resp = self.avi_request('virtualservice-inventory?page_size=1000&page='+page_number,'*').json()
-                    vs_inv['results'].append(resp['results'])
+                    resp = self.avi_request('virtualservice-inventory?page_size=200&page='+str(page_number),'*').json()
+                    for v in resp['results']:
+                        vs_inv['results'].append(v)
                 #------------------
-                se_inv = self.avi_request('serviceengine-inventory?page_size=1000','*').json()
-                #------------------
-                pool_inv = self.avi_request('pool-inventory?page_size=1000','*').json()
-                pool_total_pages = (pool_inv['count']/1000) + (pool_inv['count'] % 1000 > 0)
+                se_inv = self.avi_request('serviceengine-inventory?page_size=200','*').json()
+                resp = se_inv
                 page_number = 1
-                while pool_total_pages > page_number:
+                while 'next' in resp:
                     page_number += 1
-                    resp = self.avi_request('pool-inventory?page_size=1000&page='+page_number,'*').json()
-                    pool_inv['results'].append(resp['results'])
+                    resp = self.avi_request('serviceengine-inventory?page_size=200&page='+str(page_number),'*').json()
+                    for s in resp['results']:
+                        se_inv['results'].append(s)
+                #------------------
+                pool_inv = self.avi_request('pool-inventory?page_size=200','*').json()
+                resp = pool_inv
+                page_number = 1
+                while 'next' in resp:
+                    page_number += 1
+                    resp = self.avi_request('pool-inventory?page_size=200&page='+str(page_number),'*').json()
+                    for p in resp['results']:
+                        pool_inv['results'].append(p)
                 #------------------
                 seg_inv = self.avi_request('serviceenginegroup-inventory?page_size=1000','*').json()
                 if vs_inv['count'] > 0:
@@ -408,23 +404,32 @@ class avi_metrics():
                         seg_dict[seg['uuid']] = seg['config']['name']
             else:
                 for t in self.tenants:
-                    vs_inv = self.avi_request('virtualservice-inventory?page_size=1000',t['name']).json()
-                    vs_total_pages = (vs_inv['count']/1000) + (vs_inv['count'] % 1000 > 0)
+                    vs_inv = self.avi_request('virtualservice-inventory?page_size=200',t['name']).json()
+                    resp = vs_inv
                     page_number = 1
-                    while vs_total_pages > page_number:
+                    while 'next' in resp:
                         page_number += 1
-                        resp = self.avi_request('virtualservice-inventory?page_size=1000&page='+page_number,t['name']).json()
-                        vs_inv['results'].append(resp['results'])
+                        resp = self.avi_request('virtualservice-inventory?page_size=200&page='+str(page_number),t['name']).json()
+                        for v in resp['results']:
+                            vs_inv['results'].append(v)
                     #------------------
-                    se_inv = self.avi_request('serviceengine-inventory?page_size=1000',t['name']).json()
-                    #------------------
-                    pool_inv = self.avi_request('pool-inventory?page_size=1000',t['name']).json()
-                    pool_total_pages = (pool_inv['count']/1000) + (pool_inv['count'] % 1000 > 0)
+                    se_inv = self.avi_request('serviceengine-inventory?page_size=200',t['name']).json()
+                    resp = se_inv
                     page_number = 1
-                    while pool_total_pages > page_number:
+                    while 'next' in resp:
                         page_number += 1
-                        resp = self.avi_request('pool-inventory?page_size=1000&page='+page_number,'*').json()
-                        pool_inv['results'].append(resp['results'])
+                        resp = self.avi_request('serviceengine-inventory?page_size=200&page='+str(page_number),t['name']).json()
+                        for s in resp['results']:
+                            se_inv['results'].append(s)
+                    #------------------
+                    pool_inv = self.avi_request('pool-inventory?page_size=200',t['name']).json()
+                    resp = pool_inv
+                    page_number = 1
+                    while 'next' in resp:
+                        page_number += 1
+                        resp = self.avi_request('pool-inventory?page_size=200&page='+str(page_number),t['name']).json()
+                        for p in resp['results']:
+                            pool_inv['results'].append(p)
                     #------------------
                     seg_inv = self.avi_request('serviceenginegroup-inventory?page_size=1000',t['name']).json()
                     if vs_inv['count'] > 0:
@@ -464,38 +469,32 @@ class avi_metrics():
     #----- Remove unavailable metrics for current version
     def remove_version_specific_metrics(self):
         try:
-            temp_start_time = time.time()
-            #----- metrics available after 17.2.12 and 18.1.2
-            v17_2_12__18_1_12_plus = [
-                'l7_client.avg_http_headers_count',
-                'l7_client.avg_http_headers_bytes',
-                'l7_client.pct_get_reqs',
-                'l7_client.pct_post_reqs',
-                'l7_client.avg_http_params_count',
-                'l7_client.avg_uri_length',
-                'l7_client.avg_post_bytes',
-                'l7_client.avg_waf_matched',
-                'l7_client.avg_waf_disabled',
-                'l7_client.pct_waf_disabled']
-            #----- metrics available starting after 17.2
-            v17_2_plus = [
-                'l7_client.avg_waf_rejected',
-                'l7_client.avg_waf_evaluated']
-            major,minor = self.login.json()['version']['Version'].rsplit('.',1)
-            #---- check for v17 versions prior to 17.2
-            if float(major) < 17.2: #----- controller metrics api introduced in 17.2.5
-                for m in v17_2_plus:
-                    self.vs_metric_list = self.vs_metric_list.replace(m+',','')
-            #---- check for v17 prior to 17.2.12
-            if float(major) <= 17.2: #----- controller metrics api introduced in 17.2.5
-                if float(minor) < 12:
-                    for m in v17_2_12__18_1_12_plus:
-                        self.vs_metric_list = self.vs_metric_list.replace(m+',','')
-            #----- check for v18 versions
-            if float(major) <= 18.1 and float(major) > 17.2:
-                if float(minor) < 2:
-                    for m in v17_2_12__18_1_12_plus:
-                        self.vs_metric_list = self.vs_metric_list.replace(m+',','')
+        #----- Generate List of Available Metrics
+            available_metrics = []
+            resp = self.avi_request('analytics/metric_id',self.tenants[0]['name']).json()
+            vs_metrics = []
+            se_metrics = []
+            pool_server_metrics = []
+            controller_metrics = []
+            for m in resp['results']:
+                available_metrics.append(m['name'])
+            for vm in self.vs_metric_list:
+                if vm in available_metrics:
+                    vs_metrics.append(vm)
+            for sm in self.se_metric_list:
+                if sm in available_metrics:
+                    se_metrics.append(sm)
+            for cm in self.controller_metric_list:
+                if cm in available_metrics:
+                    controller_metrics.append(cm)
+            for pm in self.pool_server_metric_list:
+                if pm in available_metrics:
+                    pool_server_metrics.append(pm)
+            vs_metric_list = ','.join(vs_metrics)          
+            se_metric_list = ','.join(se_metrics)
+            controller_metric_list = ','.join(controller_metrics)
+            pool_server_metric_list = ','.join(pool_server_metrics)
+            return vs_metric_list, se_metric_list, controller_metric_list, pool_server_metric_list
         except:
             print(str(datetime.now())+' '+self.avi_cluster_ip+': remove_version_specific_metrics encountered an error')
             exception_text = traceback.format_exc()
@@ -601,21 +600,22 @@ class avi_metrics():
                             }
                             ]}
                     se_stat = self.avi_post('analytics/metrics/collection?pad_missing_data=false', t['name'], payload).json()
-                    payload = {
-                        "metric_requests": [
-                            {
-                                "step": 5,
-                                "limit": 1,
-                                "aggregate_entity": False,
-                                "entity_uuid": "*",
-                                "se_uuid": "*",
-                                "id": "collItemRequest:AllSEs",
-                                "metric_id": self.se_metric_list
-                            }
-                            ]}
-                    realtime_stat = self.avi_post('analytics/metrics/collection?pad_missing_data=false', t['name'], payload).json()
-                    if 'series' in realtime_stat:
-                        se_stat['series']['collItemRequest:AllSEs'].update(realtime_stat['series']['collItemRequest:AllSEs'])
+                    if args.norealtime == False:
+                        payload = {
+                            "metric_requests": [
+                                {
+                                    "step": 5,
+                                    "limit": 1,
+                                    "aggregate_entity": False,
+                                    "entity_uuid": "*",
+                                    "se_uuid": "*",
+                                    "id": "collItemRequest:AllSEs",
+                                    "metric_id": self.se_metric_list
+                                }
+                                ]}
+                        realtime_stat = self.avi_post('analytics/metrics/collection?pad_missing_data=false', t['name'], payload).json()
+                        if 'series' in realtime_stat:
+                            se_stat['series']['collItemRequest:AllSEs'].update(realtime_stat['series']['collItemRequest:AllSEs'])
                     for s in se_stat['series']['collItemRequest:AllSEs']:
                         if s in self.se_dict:
                             se_name = self.se_dict[s]
@@ -626,6 +626,7 @@ class avi_metrics():
                                         temp_payload = self.payload_template.copy()
                                         temp_payload['timestamp']=int(time.time())
                                         temp_payload['se_name'] = se_name
+                                        temp_payload['tenant'] = t['name']
                                         temp_payload['metric_type'] = 'serviceengine_metrics'
                                         temp_payload['metric_name'] = entry['header']['name']
                                         temp_payload['metric_value'] = entry['data'][0]['value']
@@ -668,11 +669,12 @@ class avi_metrics():
                 payload =  {'metric_requests': [{'step' : 300, 'limit': 1, 'id': 'allvs', 'entity_uuid' : '*', 'metric_id': self.vs_metric_list}]}
                 vs_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
                 #----- this pulls 1 min avg stats for vs that have realtime stats enabled
-                payload =  {'metric_requests': [{'step' : 5, 'limit': 1, 'id': 'allvs', 'entity_uuid' : '*', 'metric_id': self.vs_metric_list}]}
-                realtime_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
-                #----- overwrites real time vs' 5 min avg with the 1 min avg
-                if 'series' in realtime_stats:
-                    vs_stats['series']['allvs'].update(realtime_stats['series']['allvs'])
+                if args.norealtime == False:
+                    payload =  {'metric_requests': [{'step' : 5, 'limit': 1, 'id': 'allvs', 'entity_uuid' : '*', 'metric_id': self.vs_metric_list}]}
+                    realtime_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
+                    #----- overwrites real time vs' 5 min avg with the 1 min avg
+                    if 'series' in realtime_stats:
+                        vs_stats['series']['allvs'].update(realtime_stats['series']['allvs'])
                 #----- THIS IS NEW
                 for v in vs_stats['series']['allvs']:
                     if v in self.vs_dict:
@@ -684,6 +686,7 @@ class avi_metrics():
                                 temp_payload = self.payload_template.copy().copy()
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['vs_name'] = vs_name
+                                temp_payload['tenant'] = tenant
                                 temp_payload['metric_type'] = 'virtualservice_metrics'
                                 temp_payload['metric_name'] = metric_name
                                 temp_payload['metric_value'] = m['data'][0]['value']
@@ -737,11 +740,12 @@ class avi_metrics():
             payload =  {'metric_requests': [{'step' : 300, 'limit': 1, 'id': 'vs_metrics_by_se', 'entity_uuid' : '*', 'serviceengine_uuid': '*', 'include_refs': True, 'metric_id': self.vs_metric_list}]}
             vs_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
             #----- this will pull 1 min stats for vs that have realtime stat enabled
-            payload =  {'metric_requests': [{'step' : 5, 'limit': 1, 'id': 'vs_metrics_by_se', 'entity_uuid' : '*', 'serviceengine_uuid': '*', 'include_refs': True, 'metric_id': self.vs_metric_list}]}
-            realtime_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
-            #----- overwrite 5 min avg stats with 1 min avg stats for vs that have realtime stats enabled
-            if 'series' in realtime_stats:
-                vs_stats['series']['vs_metrics_by_se'].update(realtime_stats['series']['vs_metrics_by_se'])
+            if args.norealtime == False:
+                payload =  {'metric_requests': [{'step' : 5, 'limit': 1, 'id': 'vs_metrics_by_se', 'entity_uuid' : '*', 'serviceengine_uuid': '*', 'include_refs': True, 'metric_id': self.vs_metric_list}]}
+                realtime_stats = self.avi_post('analytics/metrics/collection?pad_missing_data=false', tenant, payload).json()
+                #----- overwrite 5 min avg stats with 1 min avg stats for vs that have realtime stats enabled
+                if 'series' in realtime_stats:
+                    vs_stats['series']['vs_metrics_by_se'].update(realtime_stats['series']['vs_metrics_by_se'])
             if len(vs_stats['series']['vs_metrics_by_se']) > 0:
                 for entry in vs_stats['series']['vs_metrics_by_se']:
                     if tenant == 'admin' and entry not in self.vs_dict['admin_vs']:
@@ -756,6 +760,7 @@ class avi_metrics():
                                 temp_payload = self.payload_template.copy()
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['se_name'] = se_name
+                                temp_payload['tenant'] = tenant
                                 temp_payload['vs_name'] = vs_name
                                 temp_payload['metric_type'] = 'virtualservice_metrics_per_serviceengine'
                                 temp_payload['metric_name'] = d['header']['name']
@@ -802,6 +807,7 @@ class avi_metrics():
                                 temp_payload = self.payload_template.copy()
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['vs_name'] = vs_name
+                                temp_payload['tenant'] = t['name']
                                 temp_payload['metric_type'] = 'virtualservice_healthscore'
                                 temp_payload['metric_name'] = h
                                 temp_payload['metric_value'] = temp_dict[h]
@@ -822,6 +828,7 @@ class avi_metrics():
                                 temp1_payload = self.payload_template.copy()
                                 temp1_payload['timestamp']=int(time.time())
                                 temp1_payload['se_name'] = self.se_dict[s['uuid']]
+                                temp1_payload['tenant'] = t['name']
                                 temp1_payload['metric_type'] = 'serviceengine_healthscore'
                                 temp1_payload['metric_name'] = h
                                 temp1_payload['metric_value'] = temp1_dict[h]
@@ -866,6 +873,7 @@ class avi_metrics():
                         temp_payload = self.payload_template.copy()
                         temp_payload['timestamp']=int(time.time())
                         temp_payload['vs_name'] = vs_name
+                        temp_payload['tenant'] = t['name']
                         temp_payload['metric_type'] = 'virtualservice_operstatus'
                         temp_payload['metric_name'] = 'oper_status'
                         temp_payload['metric_value'] = metric_value
@@ -940,6 +948,7 @@ class avi_metrics():
                                     temp_payload = self.payload_template.copy()
                                     temp_payload['timestamp']=int(time.time())
                                     temp_payload['vs_name'] = vs_entry
+                                    temp_payload['tenant'] = t['name']
                                     temp_payload['pool_name'] = pool_name
                                     temp_payload['metric_type'] = 'virtualservice_pool_members'
                                     temp_payload['metric_name'] = 'virtualservice_pool_members_enabled'
@@ -1001,6 +1010,7 @@ class avi_metrics():
                                 temp_payload = self.payload_template.copy()
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['se_name'] = s['config']['name']
+                                temp_payload['tenant'] = t['name']
                                 temp_payload['metric_type'] = 'serviceengine_missed_heartbeats'
                                 temp_payload['metric_name'] = 'missed_heartbeats'
                                 temp_payload['metric_value'] = s['runtime']['hb_status']['num_hb_misses']
@@ -1014,6 +1024,46 @@ class avi_metrics():
             print(str(datetime.now())+' '+self.avi_cluster_ip+': func se_missed_hb encountered an error')
             exception_text = traceback.format_exc()
             print(str(datetime.now())+' '+self.avi_cluster_ip+': '+exception_text)
+
+
+
+
+
+
+    #-----------------------------------
+    #----- SE Connected State
+    def se_connected(self):
+        try:
+            temp_start_time = time.time()
+            endpoint_payload_list = []
+            discovered_se = []
+            for t in self.tenants:
+                if t['name'] in self.se_dict['tenants'] and self.se_dict['tenants'][t['name']]['count'] > 0:
+                    for s in self.se_dict['tenants'][t['name']]['results']:
+                        if s['uuid'] not in discovered_se:
+                            discovered_se.append(s['uuid'])
+                            if 'se_connected' in s['runtime']:
+                                temp_payload = self.payload_template.copy()
+                                temp_payload['timestamp']=int(time.time())
+                                temp_payload['se_name'] = s['config']['name']
+                                temp_payload['tenant'] = t['name']
+                                temp_payload['metric_type'] = 'serviceengine_connected_state'
+                                temp_payload['metric_name'] = 'connected'
+                                if s['runtime']['se_connected'] == True:
+                                    temp_payload['metric_value'] = 1
+                                else:
+                                    temp_payload['metric_value'] = 0
+                                temp_payload['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||serviceengine||%s||%s' %(s['config']['name'], 'connected_state')
+                                endpoint_payload_list.append(temp_payload)
+            if len(endpoint_payload_list) > 0:
+                send_metriclist_to_endpoint(endpoint_list, endpoint_payload_list)
+            temp_total_time = str(time.time()-temp_start_time)
+            print(str(datetime.now())+' '+self.avi_cluster_ip+': func se_connected completed, executed in '+temp_total_time+' seconds')
+        except:
+            print(str(datetime.now())+' '+self.avi_cluster_ip+': func se_connected encountered an error')
+            exception_text = traceback.format_exc()
+            print(str(datetime.now())+' '+self.avi_cluster_ip+': '+exception_text)
+
 
 
 
@@ -1122,6 +1172,7 @@ class avi_metrics():
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['se_name'] = se_name
                                 temp_payload['vs_name'] = vs_name
+                                temp_payload['tenant'] = t['name']
                                 temp_payload['metric_type'] = 'virtualservice_hosted_se'
                                 temp_payload['metric_name'] = 'hosting_se'
                                 temp_payload['metric_value'] = 1
@@ -1136,6 +1187,7 @@ class avi_metrics():
                                 temp_payload['timestamp']=int(time.time())
                                 temp_payload['se_name'] = se_name
                                 temp_payload['vs_name'] = vs_name
+                                temp_payload['tenant'] = t['name']
                                 temp_payload['metric_type'] = 'virtualservice_hosted_se'
                                 temp_payload['metric_name'] = 'hosting_se'
                                 temp_payload['metric_value'] = 1
@@ -1153,6 +1205,46 @@ class avi_metrics():
             exception_text = traceback.format_exc()
             print(str(datetime.now())+' '+self.avi_cluster_ip+': '+exception_text)
 
+
+
+
+    #-----------------------------------
+    def vs_primary_se(self):
+        try:
+            temp_start_time = time.time()
+            discovered_vs = []
+            discovered_se = []
+            endpoint_payload_list = []
+            for t in self.tenants:
+                if t['name'] in self.vs_dict['tenants'] and self.vs_dict['tenants'][t['name']]['count'] > 0:
+                    for v in self.vs_dict['tenants'][t['name']]['results']:
+                        if v['uuid'] not in discovered_vs:
+                            for a in v['runtime']['vip_summary']:
+                                if 'service_engine' in a:
+                                    for s in a['service_engine']:
+                                        if s['primary'] == True:
+                                            discovered_vs.append(v['uuid'])
+                                            se_name = self.se_dict[s['uuid']]
+                                            vs_name = v['config']['name']
+                                            temp_payload = self.payload_template.copy()
+                                            temp_payload['timestamp']=int(time.time())
+                                            temp_payload['vs_name'] = vs_name
+                                            temp_payload['tenant'] = t['name']
+                                            temp_payload['se_name'] = se_name
+                                            temp_payload['metric_type'] = 'virtualservice_primary_se'
+                                            temp_payload['metric_name'] = 'primary_se'
+                                            temp_payload['metric_value'] = 1
+                                            temp_payload['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||virtualservice||%s||primary_se||%s' %(vs_name,se_name)
+                                            endpoint_payload_list.append(temp_payload)
+            if len(endpoint_payload_list) > 0:
+                send_metriclist_to_endpoint(endpoint_list, endpoint_payload_list)
+            temp_total_time = str(time.time()-temp_start_time)
+            if args.debug == True:
+                print(str(datetime.now())+' '+self.avi_cluster_ip+': func virtual_service_primary_se completed, executed in '+temp_total_time+' seconds')
+        except:
+            print(str(datetime.now())+' '+self.avi_cluster_ip+': func virtual_service_primary_se encountered an error')
+            exception_text = traceback.format_exc()
+            print(str(datetime.now())+' '+self.avi_cluster_ip+': '+exception_text)
 
 
 
@@ -1221,12 +1313,13 @@ class avi_metrics():
                         se_name = s['config']['name']
                         if se_name not in se_vs:
                             max_vs = se_group_max_vs[s['config']['se_group_ref'].rsplit('api/serviceenginegroup/')[1]]
-                            se_vs[se_name]={'max_vs': max_vs, 'total_vs':0}
+                            se_vs[se_name]={'max_vs': max_vs, 'total_vs':0, 'tenant':t['name']}
                         if 'virtualservice_refs' in s['config']:
                             for v in s['config']['virtualservice_refs']:
                                 if se_name+v.rsplit('api/virtualservice/')[1] not in discovered_vs:
                                     discovered_vs.append(s['config']['name']+v.rsplit('api/virtualservice/')[1])
                                     se_vs[se_name]['total_vs'] += 1
+                                    se_vs[se_name]['tenant'] = t['name']
             for entry in se_vs:
                 vs_percentage_used = (se_vs[entry]['total_vs']/se_vs[entry]['max_vs'])*100
                 temp_payload = self.payload_template.copy()
@@ -1298,7 +1391,8 @@ class avi_metrics():
             temp_payload = self.payload_template.copy()
             temp_payload['timestamp']=int(time.time())
             temp_payload['metric_type'] = 'version'
-            temp_payload['metric_name'] = current_version
+            temp_payload['metric_name'] = 'current_version'
+            temp_payload['version'] = current_version
             temp_payload['metric_value'] = 1
             temp_payload['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||current_version||%s' %current_version
             endpoint_payload_list.append(temp_payload)
@@ -1316,7 +1410,7 @@ class avi_metrics():
 
     #-----------------------------------
     #----- GET Pool Member specific statistics
-    def pool_server_metrics(self):
+    def pool_server_stats(self):
         try:
             temp_start_time = time.time()
             endpoint_payload_list = []
@@ -1346,19 +1440,30 @@ class avi_metrics():
                                     server_object = p.split(',')[2]
                                     for d in resp.json()['series']['collItemRequest:AllServers'][p]:
                                         if 'data' in d:
-                                            pool_name = d['header']['pool_ref'].rsplit('#',1)[1]
-                                            vs_name = d['header']['entity_ref'].rsplit('#',1)[1]
+                                            pool_name = d['header']['pool_ref'].rsplit('#',1)[1]                                            
                                             metric_name = d['header']['name']
                                             temp_payload = self.payload_template.copy()
                                             temp_payload['timestamp']=int(time.time())
-                                            temp_payload['vs_name'] = vs_name
                                             temp_payload['pool_name'] = pool_name
+                                            temp_payload['tenant'] = t['name']
                                             temp_payload['pool_member'] = server_object
                                             temp_payload['metric_type'] = 'pool_member_metrics'
                                             temp_payload['metric_name'] = metric_name
                                             temp_payload['metric_value'] = d['data'][0]['value']
-                                            temp_payload['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||virtualservice||%s||pool||%s||%s||%s' %(vs_name, pool_name, server_object,metric_name)
-                                            endpoint_payload_list.append(temp_payload)
+                                            if 'entity_ref' in d['header']:
+                                                vs_name = d['header']['entity_ref'].rsplit('#',1)[1]
+                                                temp_payload['vs_name'] = vs_name
+                                                temp_payload['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||virtualservice||%s||pool||%s||%s||%s' %(vs_name, pool_name, server_object,metric_name)
+                                                endpoint_payload_list.append(temp_payload)
+                                            else:
+                                                for x in self.pool_dict['tenants'][t['name']]['results']:
+                                                    if x['config']['name'] == pool_name:
+                                                        for v in x['virtualservices']:
+                                                            vs_name = self.vs_dict[v.split('/api/virtualservice/')[1]]
+                                                            temp_payload1 = temp_payload.copy()
+                                                            temp_payload1['vs_name'] = vs_name
+                                                            temp_payload1['name_space'] = 'avi||'+self.host_location+'||'+self.host_environment+'||'+self.avi_cluster_ip+'||virtualservice||%s||pool||%s||%s||%s' %(vs_name, pool_name, server_object,metric_name)
+                                                            endpoint_payload_list.append(temp_payload1)
             except:
                 print(str(datetime.now())+' '+self.avi_cluster_ip+': func pool_server_metrics encountered an error for tenant '+t['name'])
                 exception_text = traceback.format_exc()
@@ -1440,7 +1545,7 @@ class avi_metrics():
             print '=====> Chose '+self.avi_controller
             self.vs_dict, self.se_dict, self.pool_dict, self.seg_dict = self.gen_inventory_dict()
             #---- remove metrics that are not available in the current version
-            self.remove_version_specific_metrics()
+            self.vs_metric_list, self.se_metric_list, self.controller_metric_list, self.pool_server_metric_list = self.remove_version_specific_metrics()
             #-----------------------------------
             #----- Add Test functions to list for threaded execution
             #-----------------------------------
@@ -1461,8 +1566,10 @@ class avi_metrics():
             test_functions.append(self.service_engine_vs_capacity)
             test_functions.append(self.license_expiration)
             test_functions.append(self.get_avi_version)
-            test_functions.append(self.pool_server_metrics)
+            test_functions.append(self.pool_server_stats)
             test_functions.append(self.controller_cluster_metrics)
+            test_functions.append(self.se_connected)
+            test_functions.append(self.vs_primary_se)
             #-----------------------------------
             #-----------------------------------
             #-----
@@ -1538,6 +1645,8 @@ def main():
 #----- check for docker environment Variable
 #----- if docker environment, runs as while loop
 if 'EN_DOCKER' in os.environ:
+    if 'EN_NOREALTIME' in os.environ:
+        args.norealtime = True
     #----- Metrics db server
     fdir = os.path.abspath(os.path.dirname(__file__))
     args.metrics = (os.environ['EN_METRIC_ENDPOINT'].replace(' ','').lower().split(':'))

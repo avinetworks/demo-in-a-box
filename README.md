@@ -286,12 +286,12 @@ To access the Kubernetes GUI point a browser to http://<host_ip>:30000
  </tr>
  <tr>    
  <td><strong>avimetrics</strong></td>
- <td>Pulls metrics from Avi Controller API and pushes into Graphite</td>
+ <td>Pulls metrics from Avi Controller API and pushes into Influxdb</td>
  <td>169.254.100.102</td>
  <td>none</td>
  </tr>
  <tr>    
- <td><strong>graphite</strong></td>
+ <td><strong>influxdb</strong></td>
  <td>Time series database to store the Avi metrics</td>
  <td>169.254.100.100</td>
  <td>none</td>

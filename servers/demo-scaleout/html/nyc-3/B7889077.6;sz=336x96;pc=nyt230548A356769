@@ -1,6 +1,0 @@
-document.write('<!-- Template Id = 4,228 Template Name = HTML Image Banner + Optional Additional Tracking - [DFA] -->\n<a href=\"http://ad.doubleclick.net/click%3Bh%3Dv8/3ea8/7/116/%2a/n%3B277816118%3B0-0%3B0%3B104972697%3B44229-336/96%3B56503792/56392997/1%3B%3B%7Eokv%3D%3Bpc%3Dnyt230548A356769%3B%3B%7Esscs%3D%3fhttp://www.nytimes.com/adx/bin/adx_click.html?type=goto&opzn&page=www.nytimes.com/pages/business/index.html&pos=Box1&camp=ING_Direct_Share_2013_1906116_TDSPON_25SOV_nyt1&ad=NYTimes_TraderDesk_25SOV&sn2=bd0c20b7/9c66863f&snr=doubleclick&snx=1385605049&sn1=92719bcf/4cfc047f&goto=http://www.sharebuilder.com/affiliates/?PC=sb&SID=880038402098977&MGDURL=web%2Fwelcome%2Fallwt%2Fnewpricing%2Fdisplayfv&cmpid=10102456\" target=\"_blank\">\n<img src=\"http://s0.2mdn.net/3786919/SB_HSL_TradeNowFor_695_100_336x96.gif\" border=\"0\" alt=\"\"/></a>\n');
-
-if(""!=""){document.write('<img src="'+''+'" border="0" alt="" style="display:none"/>');}
-if ("http://amch.questionmarket.com/adscgen/st.php?survey_num=1092641&site=104972697&code=56503792&randnum=6273094"!=""){document.write('<scr'+'ipt type="text/javascript" src="'+'http://amch.questionmarket.com/adscgen/st.php?survey_num=1092641&site=104972697&code=56503792&randnum=6273094'+'"><\/scr'+'ipt>');}
-
-document.write('\n');

@@ -1,1 +1,0 @@
-k1385605420461({"hitPaywall":false,"counted":false,"loggedIn":false,"hash":"BD5B9E973EAF00CFEB19FCEED9F56F40","gateway":true,"meter":true,"isCookieValid":false,"hitRegiwall":false,"regiwall":false});

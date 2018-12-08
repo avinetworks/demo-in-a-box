@@ -1,4 +1,4 @@
 ---
-- import_playbook: graphite/graphite-create.yml
+- import_playbook: influxdb/influxdb-create.yml
 - import_playbook: avimetrics/avimetrics-create.yml
 - import_playbook: grafana/grafana-create.yml

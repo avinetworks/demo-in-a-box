@@ -11,3 +11,4 @@
 - import_playbook: kubernetes/aviconfigs/avi-dns.yml
 - import_playbook: kubernetes/manifests/deploy-manifest.yml
 - import_playbook: kubernetes/client/kubeclient-create.yml
+- import_playbook: kubernetes/aviconfigs/se_enable.yml

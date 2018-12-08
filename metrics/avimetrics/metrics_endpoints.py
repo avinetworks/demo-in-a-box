@@ -120,6 +120,34 @@ def send_value_appdynamics_http(endpoint_info, appd_payload):
 
 
 
+def send_value_influxdb(endpoint_info, influx_payload):
+    try:
+        tag_to_ignore = ['metric_name', 'timestamp', 'metric_value','name_space']
+        metric_prefix = endpoint_info['metric_prefix']
+        message_list = []
+        for entry in influx_payload:
+            tag_list=[]
+            for k in entry:
+                if k not in tag_to_ignore:
+                    tag_list.append((k+'='+entry[k]).replace(' ', '\\'))
+            tag_list = ','.join(tag_list)
+            temp_payload='%s%s,%s value=%f' %(metric_prefix, entry['metric_name'],tag_list,entry['metric_value'])
+            message_list.append(temp_payload)
+            if sys.getsizeof(message_list) > 4915:
+                message = '\n'.join(message_list) + '\n'
+                headers = ({'content-type': 'octet-stream'})
+                resp = requests.post('%s://%s:%s/write?db=%s' %(endpoint_info['protocol'],endpoint_info['server'],endpoint_info['server_port'],endpoint_info['db']),verify=False,headers = headers, data=message)
+                message_list = []
+        message = '\n'.join(message_list) + '\n'
+        headers = ({'content-type': 'octet-stream'})
+        resp = requests.post('%s://%s:%s/write?db=%s' %(endpoint_info['protocol'],endpoint_info['server'],endpoint_info['server_port'],endpoint_info['db']),verify=False,headers = headers, data=message)
+    except:
+        exception_text = traceback.format_exc()
+        print exception_text
+            
+
+
+
 
 
 
@@ -133,28 +161,7 @@ def send_value_opentsdb(payload):
 
 
 def send_value_prometheus(payload):
-    keys_to_remove=["timestamp","metric_value","metric_name","name_space"]
-    prometheus_metrics = []
-    for entry in payload:
-        metric_name = entry['metric_name'].replace('.','_')
-        metric_value = entry['metric_value']
-        temp_tags = ''
-        for e in entry:
-            if e not in keys_to_remove:
-                temp_tags=temp_tags+(str(e+'="'+entry[e]+'",'))
-        temp_tags = '{'+temp_tags.rstrip(',')+'}'
-        metric_payload = metric_name+''+temp_tags+' '+str(metric_value)
-        prometheus_metrics.append(metric_payload)
-    #f = open(scrape_file, 'w')
-    #for m in prometheus_metrics:
-    #    f.write(m+'\n')
-    #f.close()
-    with open('/var/www/html/'+entry['metric_type']+'-metrics','w') as f:
-        for m in prometheus_metrics:
-            f.write(m+'\n')
-
-
-
+    pass
 
 
 
@@ -195,35 +202,6 @@ def send_value_datadog(endpoint_info, datadog_payload):
 
 
 
-def send_value_dynatrace(endpoint_info, dynatrace_payload):
-    try:
-        keys_to_remove=["avicontroller","timestamp","metric_value","metric_name","name_space"]
-        series_list = []
-        dynatrace = {
-             "displayName":"",
-             "dimensions":[],
-             "types":[],
-             }
-        for entry in dynatrace:
-            if 'vs_name' in entry:
-                temp_payload = dynatrace_payload_template.copy()
-                temp_payload['displayName'] = entry['metric_name']
-                temp_payload['types'].append(entry['metric_type'])
-                temp_payload['types'].append('Avi-Metrics')
-                temp_payload['types'].append(entry['vs_name'])
-                series_list.append(temp_payload)
-        payload = {'series': series_list}
-        headers = ({'content-type': 'application/json'})
-        resp = requests.put('https://%s%s/?%s' %(endpoint_info['api_url'],'custom:'+entry['metric_name'],endpoint_info['api_key']), verify=False, headers = headers, data=json.dumps(payload))
-        if resp.status_code != 202:
-            print resp
-    except:
-        exception_text = traceback.format_exc()
-        print exception_text
-
-
-
-
 
 
 def send_value_elastic_stack(payload):
@@ -246,10 +224,8 @@ def send_metriclist_to_endpoint(endpoint_list, payload):
                 send_value_appdynamics_machine(endpoint_info, payload)
             elif endpoint_info['type'] == 'datadog':
                 send_value_datadog(endpoint_info, payload)
-            elif endpoint_info['type'] == 'prometheus':
-                send_value_prometheus(payload)
-            elif endpoint_info['type'] == 'dynatrace':
-                send_value_dynatrace(payload)
+            elif endpoint_info['type'] == 'influxdb':
+                send_value_influxdb(endpoint_info, payload)
     except:
         exception_text = traceback.format_exc()
         print exception_text
