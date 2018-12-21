@@ -4,16 +4,25 @@
   become: yes
 
   tasks:
+    - name: check for Openshift
+      stat:
+          path: /usr/bin/oc
+      register: oc_result
+      become: True
+
     - name: Stop Openshift 
       shell: oc cluster down
       register: task_result
       ignore_errors: yes
+      when: oc_result.stat.exists == True
+
 
 
     - shell: | 
         "mount | grep 'openshift.local.volumes' | awk '{ print $3}' | xargs -l -r sudo umount"
         "docker images --format='/{/{.Repository/}/} /{/{.ID/}/}' | grep openshift | awk '{ print $2}' | xargs -l -r docker rmi"
         "rm -rf /var/lib/origin/openshift.local.*"
+      when: oc_result.stat.exists == True
 
 
       
