@@ -1,0 +1,19 @@
+---
+- name: Delete Openshift
+  hosts: openshift
+  become: yes
+
+  tasks:
+    - name: Stop Openshift 
+      shell: oc cluster down
+      register: task_result
+      ignore_errors: yes
+
+
+    - shell: | 
+        mount | grep "openshift.local.volumes" | awk '{ print $3}' | xargs -l -r sudo umount
+        docker images --format='{{.Repository}} {{.ID}}' | grep openshift | awk '{ print $2}' | xargs -l -r docker rmi
+        rm -rf /var/lib/origin/openshift.local.*
+
+
+      
