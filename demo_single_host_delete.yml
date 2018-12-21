@@ -4,9 +4,14 @@
 - import_playbook: servers/demo-scaleout/demoscaleoutserver-delete.yml
 - import_playbook: servers/rdp/rdpserver-delete.yml
 - import_playbook: servers/waf/dvwaserver-delete.yml
+- import_playbook: kubernetes/kubernetes-delete.yml
+- import_playbook: kubernetes/client/kubeclient-delete.yml
+- import_playbook: openshift/openshift-delete.yml
 - import_playbook: service_engines/service_engines_delete.yml
 - import_playbook: avicontroller/controller_delete.yml
+- import_playbook: metrics/metrics_delete.yml
 - import_playbook: vm_prep/avinet-delete.yml
+
 
 
 

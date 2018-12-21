@@ -16,6 +16,7 @@
         - avise1.service
         - avise2.service
 
+
     - systemd: daemon_reload=yes
     
     - name: Start SE service
@@ -26,3 +27,5 @@
       with_items:
         - avise1.service
         - avise2.service
+      loop_control:
+          pause: 10

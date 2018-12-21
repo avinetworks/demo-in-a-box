@@ -53,8 +53,8 @@ check_for_dockerpy() {
 
 
 check_for_avisdk() {
-    #pip install avisdk --upgrade
-    pip install avisdk==18.1.5b3 --upgrade
+    pip install avisdk --upgrade
+    #pip install avisdk==18.1.5b3 --upgrade
     #if python -c "import avi" &> /dev/null; then
     #    echo "=====> avisdk already installed"
     #else

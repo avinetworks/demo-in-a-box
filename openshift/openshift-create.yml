@@ -85,12 +85,22 @@
       ignore_errors: yes
 
 
-    - pause: seconds=10
+    - pause: seconds=60
       when: "'Web console URL: https:' not in openshift_status.stdout"
 
-    - shell: |
+
+    - shell: | 
+        oc login -u system:admin
+        oc env dc/router --list -n default | grep ROUTER_SERVICE_HTTP
+      register: oc_router_vars
+
+
+    - name: Modify OS Router 
+      shell: |
         oc login -u system:admin
         oc set env dc/router ROUTER_SERVICE_HTTP_PORT=10080 ROUTER_SERVICE_HTTPS_PORT=10443 -n default
+        oc scale dc/router --replicas=0 -n default
+        oc delete all -l router -n default
 
     - shell: "cat /var/lib/origin/openshift.local.config/master/master-config.yaml | grep CustomPodDNS=true"
       register: customdns_status

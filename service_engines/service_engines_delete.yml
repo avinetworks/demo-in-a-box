@@ -6,6 +6,8 @@
 
   tasks:
 
+    - service_facts:
+
     - name: Stop SE services
       systemd:
         name: "{{ item }}"
@@ -14,6 +16,8 @@
       with_items:
         - avise1.service
         - avise2.service
+      when: "item in services"
+
 
 
     - file:

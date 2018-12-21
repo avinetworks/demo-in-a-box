@@ -1,5 +1,5 @@
 ---
-- name: Install Kubernetes
+- name: Delete Kubernetes
   hosts: kubernetes
   become: True
 
@@ -11,6 +11,6 @@
 
     - name: Stop kubernetes
       shell: |
-          minikube start
+          minikube stop
           minikube delete
       when: minikube_status.stdout == "Running"

@@ -6,12 +6,17 @@
 
   tasks:
 
+    - service_facts:
+
+
     - name: Stop Avi Controller
       systemd:
         name: avicontroller.service
         enabled: False
         state: stopped
-
+      with_items:
+        - avicontroller.service
+      when: "item in services"
 
     - file:
         path: "{{ item }}"
