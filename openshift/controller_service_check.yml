@@ -10,8 +10,8 @@
 
     - name: Wait for Avi Controller services to be ready
       wait_for:
-        host: "{{ ansible_default_ipv4.address }}"
         port: 443
+        host: "{{ ansible_default_ipv4.address }}"
         connect_timeout: 3
         delay: 5
         timeout: 600
