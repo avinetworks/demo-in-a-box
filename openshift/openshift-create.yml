@@ -89,7 +89,9 @@
       when: "'Web console URL: https:' not in openshift_status.stdout"
 
 
-    - shell: oc env dc/router --list -n default | grep ROUTER_SERVICE_HTTP
+    - shell: | 
+        oc login -u system:admin
+        oc env dc/router --list -n default | grep ROUTER_SERVICE_HTTP
       register: oc_router_vars
 
 
