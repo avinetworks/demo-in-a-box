@@ -15,6 +15,8 @@
       with_items:
         - avise1.service
         - avise2.service
+      loop_control:
+          pause: 10
 
     - systemd: daemon_reload=yes
     
