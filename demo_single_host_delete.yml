@@ -8,7 +8,9 @@
 - import_playbook: kubernetes/client/kubeclient-delete.yml
 - import_playbook: service_engines/service_engines_delete.yml
 - import_playbook: avicontroller/controller_delete.yml
+- import_playbook: metrics/metrics_delete.yml
 - import_playbook: vm_prep/avinet-delete.yml
+
 
 
 

@@ -35,7 +35,7 @@ avi_config:
       pool_ref: '/api/pool?name=Avi-Scaleout-pool'
       analytics_policy:
         udf_log_throttle: 0
-        enabled: true
+        #enabled: true
         full_client_logs:
           duration: 0
           all_headers: false
