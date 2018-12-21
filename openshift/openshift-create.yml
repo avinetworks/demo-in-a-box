@@ -85,7 +85,7 @@
       ignore_errors: yes
 
 
-    - pause: seconds=10
+    - pause: seconds=60
       when: "'Web console URL: https:' not in openshift_status.stdout"
 
     - shell: |
