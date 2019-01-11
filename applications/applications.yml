@@ -1,4 +1,4 @@
 ---
-- include: demo_avi/app.yml
-- include: scaleout/app.yml
-- include: waf/app.yml
+- import_playbook: demo_avi/app.yml
+- import_playbook: scaleout/app.yml
+- import_playbook: waf/app.yml
