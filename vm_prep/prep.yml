@@ -59,8 +59,8 @@
     - when: ansible_os_family == "RedHat"
       systemd:
         name: firewalld
-        enabled: False
-        state: stopped
+        enabled: yes
+        state: started
 
 
     - name: Install Docker (Ubuntu)
