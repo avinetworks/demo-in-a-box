@@ -74,6 +74,12 @@ There are optional arguments that can be provided.  Every argument provided is p
  <td>no, optional</td>
   <td>17.2.12</td>
  </tr>
+<tr>    
+ <td><strong>avicontroller-memory</strong></td>
+ <td>provides option to override controller memory in GB</td>
+ <td>no, optional</td>
+  <td>24</td>
+ </tr>
  <tr>    
  <td><strong>kubernetes</strong></td>
  <td>will deploy Avi with Kubernetes integration instead of the Default Demo</td>
