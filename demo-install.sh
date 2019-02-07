@@ -186,7 +186,6 @@ playbook_splunk_install() {
     ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/alertconfig/app.yml
 }
 
-
 check_for_args() {
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "grafana" ]]; then
@@ -198,10 +197,6 @@ check_for_args() {
         fi
     done
     }
-
-
-
-
 
 retrieve_avi_versions() {
     for a in "${cmd_args[@]}"; do
@@ -226,7 +221,17 @@ retrieve_avi_versions() {
     done
     }
 
-
+set_controller_sizes() {
+    for a in "${cmd_args[@]}"; do
+        if [[ "$a" == "controller-memory" ]]; then
+            echo
+            export AVI_CONTROLLER_MEMORY="${cmd_args[@]}"
+            echo "=====> Using Controller Memory ${AVI_CONTROLLER_MEMORY}"
+            echo
+            break
+        fi
+    done
+    }
 
 conclusion() {
     default_iface=$(awk '$2 == 00000000 { print $1 }' /proc/net/route)
@@ -251,6 +256,7 @@ conclusion() {
             echo
             echo
             echo
+            break
         fi
     done
     for a in "${cmd_args[@]}"; do
@@ -293,6 +299,7 @@ root_check
 #----- cmd args are passed with -s
 cmd_args=("$@")
 retrieve_avi_versions
+set_controller_sizes
 distro_check
 dependency_check
 download_files

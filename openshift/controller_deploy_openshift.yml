@@ -8,7 +8,7 @@
       con_version: "{{ avi_version }}"
       con_disk_gb: 64
       con_cores: 8
-      con_memory_gb: 24
+      con_memory_gb: "{{ avi_controller_memory }}"
       con_controller_ip: "{{ ansible_default_ipv4.address }}"
       con_sysint_port: 9443
       con_setup_json: "./setup.json"
