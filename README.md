@@ -75,7 +75,7 @@ There are optional arguments that can be provided.  Every argument provided is p
   <td>17.2.12</td>
  </tr>
 <tr>    
- <td><strong>avicontroller-memory</strong></td>
+ <td><strong>controller-memory</strong></td>
  <td>provides option to override controller memory in GB</td>
  <td>no, optional</td>
   <td>24</td>
