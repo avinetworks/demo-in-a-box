@@ -45,6 +45,16 @@
       shell: "minikube status | grep minikube: | awk '{print $2'}"
       register: minikube_status
 
+    - name: update kernel settings
+      become: yes
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 1
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: minikube_status.stdout != "Running"
+
 
     - name: Start kubernetes
       shell: minikube config set WantReportErrorPrompt false && minikube start --vm-driver=none

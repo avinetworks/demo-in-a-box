@@ -14,3 +14,14 @@
           minikube stop
           minikube delete
       when: minikube_status.stdout == "Running"
+
+
+    - name: update kernel settings
+      become: yes
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: minikube_status.stdout != "Running"
