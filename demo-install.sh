@@ -136,6 +136,26 @@ check_for_curl() {
 }
 
 
+check_for_cleanup() {
+    for a in "${cmd_args[@]}"; do
+        if [[ "$a" == "cleanup" ]]; then
+            demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
+            if [ "$demo" == "default" ]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
+                return 0 2> /dev/null || exit 0
+            elif [ "$demo" == "kubernetes" ]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes_delete.yml
+                return 0 2> /dev/null || exit 0
+            elif [ "$demo" == "openshift" ]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift_delete.yml
+                return 0 2> /dev/null || exit 0
+            fi
+        fi
+    done
+    }
+
+
+
 dependency_check() {
     echo "=====> Checking for dependencies"
     check_for_pip
@@ -305,6 +325,7 @@ conclusion() {
 root_check
 #----- cmd args are passed with -s
 cmd_args=("$@")
+check_for_cleanup
 retrieve_avi_versions
 set_controller_sizes
 distro_check

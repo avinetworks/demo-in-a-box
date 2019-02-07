@@ -13,4 +13,4 @@
       con_sysint_port: 8443
       con_portal_http_port: 81
       con_setup_json: "./setup.json"
-      con_docker_run_params: "--name=avicontroller{{ con_ports_list_string }} --net avinet --ip 169.254.0.100 -d --privileged{{ con_env_variables_string }}{{ con_mounts_string }} {{ con_image }}"
+      con_docker_run_params: "--name=avicontroller{{ con_ports_list_string }} --net avinet --label demo=openstack --ip 169.254.0.100 -d --privileged{{ con_env_variables_string }}{{ con_mounts_string }} {{ con_image }}"

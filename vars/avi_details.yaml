@@ -1,6 +1,6 @@
 controller_ip: "{{ ansible_default_ipv4.address }}"
 api_version: 17.2.7
-avi_version: "{{ lookup('env','AVI_VERSION') | default('17.2.12-9128-20180720.020124',true) }}"
+avi_version: "{{ lookup('env','AVI_VERSION') | default('17.2.15-9032-20190127.010923',true) }}"
 username: admin
 password: AviDemo1!
 avi_controller_memory: "{{ lookup('env','AVI_CONTROLLER_MEMORY') | default(24) }}"
