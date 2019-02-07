@@ -222,14 +222,17 @@ retrieve_avi_versions() {
     }
 
 set_controller_sizes() {
+    INDEX=0
     for a in "${cmd_args[@]}"; do
+        echo "processing arg $a ${INDEX}"
         if [[ "$a" == "controller-memory" ]]; then
             echo
-            export AVI_CONTROLLER_MEMORY="${cmd_args[@]}"
-            echo "=====> Using Controller Memory ${AVI_CONTROLLER_MEMORY}"
+            export AVI_CONTROLLER_MEMORY="${cmd_args[INDEX+1]}"
+            echo "=====> Using Controller Memory ${AVI_CONTROLLER_MEMORY} GB"
             echo
             break
         fi
+        let INDEX=${INDEX}+1
     done
     }
 
