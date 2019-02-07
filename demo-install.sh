@@ -54,26 +54,29 @@ check_for_dockerpy() {
 
 check_for_avisdk() {
     pip install avisdk --upgrade
-    #pip install avisdk==18.1.5b3 --upgrade
-    #if python -c "import avi" &> /dev/null; then
-    #    echo "=====> avisdk already installed"
-    #else
-    #    echo "=====> avisdk is missing, installing"
-    #    pip install avisdk --upgrade
-    #fi
 }
+
 
 
 
 check_for_ansible() {
     if command -v ansible &> /dev/null; then
         echo "=====> ansible is already installed"
+        currentver="$(ansible --version | grep -m 1 ansible | awk '{split($0,a,"ansible"); print a[2]}')"
+        requiredver="2.6.4"
+        if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -n | head -n1)" = "$requiredver" ]; then 
+            echo "=====> ansible version greater than 2.6.4"
+        else
+            echo "=====> ansible version less than 2.6.4"
+            pip install 'ansible==2.6.4' --upgrade
+        fi
     else
         echo "=====> ansible is missing, installing"
-        check_for_pip
         pip install 'ansible==2.6.4' --upgrade
     fi
 }
+
+
 
 
 check_for_ansible_roles() {
@@ -135,6 +138,7 @@ check_for_curl() {
 
 dependency_check() {
     echo "=====> Checking for dependencies"
+    check_for_pip
     check_for_ansible
     check_for_dockerpy
     check_for_avisdk
