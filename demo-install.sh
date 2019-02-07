@@ -139,6 +139,7 @@ check_for_curl() {
 check_for_cleanup() {
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "cleanup" ]]; then
+            download_files
             demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
             if [ "$demo" == "default" ]; then
                 ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
