@@ -141,16 +141,18 @@ check_for_cleanup() {
         if [[ "$a" == "cleanup" ]]; then
             download_files
             demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
-            if [ "$demo" == "default" ]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
-                exit 0
-            elif [ "$demo" == "kubernetes" ]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes_delete.yml
-                exit 0
-            elif [ "$demo" == "openshift" ]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift_delete.yml
-                exit 0
-            fi
+            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
+            exit 0
+            #if [ "$demo" == "default" ]; then
+            #    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
+            #    exit 0
+            #elif [ "$demo" == "kubernetes" ]; then
+            #    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes_delete.yml
+            #    exit 0
+            #elif [ "$demo" == "openshift" ]; then
+            #    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift_delete.yml
+            #    exit 0
+            #fi
         fi
     done
     }

@@ -13,7 +13,9 @@
       shell: |
           minikube stop
           minikube delete
+          docker rm -f $(docker ps -aq --filter name=k8s)
       when: minikube_status.stdout == "Running"
+
 
 
     - name: update kernel settings
