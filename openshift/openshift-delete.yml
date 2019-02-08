@@ -20,7 +20,7 @@
 
     - shell: | 
         "mount | grep 'openshift.local.volumes' | awk '{ print $3}' | xargs -l -r sudo umount"
-        "docker images --format='/{/{.Repository/}/} /{/{.ID/}/}' | grep openshift | awk '{ print $2}' | xargs -l -r docker rmi"
+        "docker images  | grep openshift | awk '{ print $3}' | xargs -l -r docker rmi"
         "rm -rf /var/lib/origin/openshift.local.*"
       when: oc_result.stat.exists == True
 
