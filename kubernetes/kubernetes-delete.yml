@@ -13,4 +13,17 @@
       shell: |
           minikube stop
           minikube delete
+          docker rm -f $(docker ps -aq --filter name=k8s)
       when: minikube_status.stdout == "Running"
+
+
+
+    - name: update kernel settings
+      become: yes
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: minikube_status.stdout != "Running"
