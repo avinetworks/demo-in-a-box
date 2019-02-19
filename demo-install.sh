@@ -181,20 +181,16 @@ download_files() {
 
 playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
-    install_successful='false'
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
             ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml
-            install_successful='true' 
             return 0
         elif [[ "$a" == "openshift" ]]; then
             ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift.yml
-            install_successful='true'
             return 0            
         fi    
     done
     ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml
-    install_successful='true'
 }
 
 
@@ -341,6 +337,5 @@ download_files
 playbook_install_demo
 
 check_for_args
-if [[ "$install_successful" == "true" ]]; then
-    conclusion
-fi
+conclusion
+
