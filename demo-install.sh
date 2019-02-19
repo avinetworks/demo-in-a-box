@@ -175,7 +175,7 @@ dependency_check() {
 
 download_files() {
     curl -sSLk https://github.com/avinetworks/demo-in-a-box/archive/master.zip --output avidemo.zip
-    unzip -nq avidemo.zip
+    unzip -q avidemo.zip
 }
 
 
