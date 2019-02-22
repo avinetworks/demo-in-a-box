@@ -18,7 +18,6 @@
 
     - name: Wait for Avi Controller API
       uri: url="https://{{ controller_ip}}/" return_content=yes validate_certs=False
-      validate_certs: no
       register: srvc_results
       until: srvc_results.status == 200
       retries: 20

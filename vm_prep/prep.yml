@@ -35,12 +35,12 @@
     -  when: ansible_os_family == "RedHat"
        get_url:
          url: https://download.docker.com/linux/centos/docker-ce.repo
-         dest: /etc/yum.repos.d/docer-ce.repo
+         dest: /etc/yum.repos.d/docker-ce.repo
 
 
     - when: ansible_os_family == "RedHat"
       ini_file:
-          dest: /etc/yum.repos.d/docer-ce.repo
+          dest: /etc/yum.repos.d/docker-ce.repo
           section: "{{ item }}"
           option: enabled
           value: 0
