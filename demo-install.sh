@@ -6,7 +6,6 @@ root_check() {
 }
 
 
-
 distro_check() {
     if command -v apt-get &> /dev/null; then
         pkg_mgr="apt-get"
@@ -41,7 +40,6 @@ check_for_pip() {
 }
 
 
-
 check_for_dockerpy() {
     if python -c "import docker" &> /dev/null; then
         echo "=====> docker-py already installed"
@@ -55,8 +53,6 @@ check_for_dockerpy() {
 check_for_avisdk() {
     pip install avisdk --upgrade
 }
-
-
 
 
 check_for_ansible() {
@@ -75,8 +71,6 @@ check_for_ansible() {
         pip install 'ansible==2.6.4' --upgrade
     fi
 }
-
-
 
 
 check_for_ansible_roles() {
@@ -107,7 +101,6 @@ check_for_ansible_roles() {
 }
 
 
-
 check_for_unzip() {
     if command -v unzip &> /dev/null; then
         echo "=====> unzip is already installed"
@@ -136,6 +129,20 @@ check_for_curl() {
 }
 
 
+check_for_unbuffer() {
+    if command -v unbuffer &> /dev/null; then
+        echo "=====> unbuffer is already installed"
+    else
+        echo "=====> unbuffer is missing, installing"
+        if [ $pkg_mgr = "yum" ]; then
+            yum install -y expect
+        else
+            apt-get install -y expect-dev
+        fi
+    fi
+}
+
+
 check_for_cleanup() {
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "cleanup" ]]; then
@@ -158,7 +165,6 @@ check_for_cleanup() {
     }
 
 
-
 dependency_check() {
     echo "=====> Checking for dependencies"
     check_for_pip
@@ -168,6 +174,7 @@ dependency_check() {
     check_for_ansible_roles
     check_for_unzip
     check_for_curl
+    check_for_unbuffer
     rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
     rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
 }
@@ -175,7 +182,7 @@ dependency_check() {
 
 download_files() {
     curl -sSLk https://github.com/avinetworks/demo-in-a-box/archive/master.zip --output avidemo.zip
-    unzip -nq avidemo.zip
+    unzip -uq avidemo.zip
 }
 
 
@@ -183,14 +190,30 @@ playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
-            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml
-            return 0
+            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml | tee /dev/tty)
+            if  [[ $result =~ "failed=1" ]]; then
+                echo "=====> ERROR: install script encountered an error"
+                exit 1
+            else
+                return 0
+            fi      
         elif [[ "$a" == "openshift" ]]; then
-            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift.yml
-            return 0            
+            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift.yml | tee /dev/tty)
+            if  [[ $result =~ "failed=1" ]]; then
+                echo "=====> ERROR: install script encountered an error"
+                exit 1
+            else
+                return 0
+            fi         
         fi    
     done
-    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml
+    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml | tee /dev/tty)
+    if  [[ $result =~ "failed=1" ]]; then
+        echo "=====> ERROR: install script encountered an error"
+        exit 1
+    else
+        return 0
+    fi
 }
 
 
@@ -206,12 +229,12 @@ playbook_metrics_delete() {
 }
 
 
-
 playbook_splunk_install() {
     echo "=====> Begin executing ansible playbooks to install splunk"
     ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/splunk/splunk-install.yml
     ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/alertconfig/app.yml
 }
+
 
 check_for_args() {
     for a in "${cmd_args[@]}"; do
@@ -224,6 +247,7 @@ check_for_args() {
         fi
     done
     }
+
 
 retrieve_avi_versions() {
     for a in "${cmd_args[@]}"; do
@@ -248,6 +272,7 @@ retrieve_avi_versions() {
     done
     }
 
+
 set_controller_sizes() {
     INDEX=0
     for a in "${cmd_args[@]}"; do
@@ -262,6 +287,7 @@ set_controller_sizes() {
         let INDEX=${INDEX}+1
     done
     }
+
 
 conclusion() {
     default_iface=$(awk '$2 == 00000000 { print $1 }' /proc/net/route)
