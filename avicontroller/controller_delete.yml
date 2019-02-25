@@ -22,8 +22,17 @@
         path: "{{ item }}"
         state: absent
       with_items:
-        - /opt/avi/controller
         - /etc/systemd/system/avicontroller.service
+
+    - set_fact:
+        disk_path: "{{ ansible_mounts|sort(reverse=True, attribute='size_total')|map(attribute='mount')|first }}"
+
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "{{ disk_path }}/opt/avi/controller"
+
 
 
     - systemd: daemon_reload=yes
