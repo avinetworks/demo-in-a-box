@@ -1,0 +1,16 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../vars/avi_details.yaml
+  roles:
+    - role: avinetworks.avicontroller
+      con_version: "{{ avi_version }}"
+      con_disk_gb: 64
+      con_cores: 8
+      con_memory_gb: "{{ avi_controller_memory }}"
+      con_controller_ip: "{{ ansible_default_ipv4.address }}"
+      con_sysint_port: 9443
+      con_setup_json: "./setup.json"
+      con_disk_path: "/opt/avi/controller/{{ avi_version }}"
+      con_docker_run_params: "--name=avicontroller{{ con_ports_list_string }} --net avinet --label demo=openshift --ip 169.254.0.100 -d --privileged{{ con_env_variables_string }}{{ con_mounts_string }} {{ con_image }}"

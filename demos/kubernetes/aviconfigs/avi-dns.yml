@@ -1,0 +1,88 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+
+  tasks:
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: networkprofile
+        params:
+          name: "System-UDP-Per-Pkt"
+      register: network_profile
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: applicationprofile
+        params:
+          name: "System-DNS"
+      register: application_profile
+
+
+    - name: Avi Virtualservice | Avi-DNS
+      avi_virtualservice:
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: Avi-DNS
+        network_profile_ref: "{{ network_profile.obj.results.0.url }}"
+        vip:
+          - ip_address:
+              addr: "169.254.190.1"
+              type: 'V4'
+            vip_id: '1'
+        application_profile_ref: "{{ application_profile.obj.results.0.url }}"
+        services:
+            - port: "53"
+              port_range_end: "53"
+        dns_info:
+            - type: "DNS_RECORD_A"
+              fqdn: "avi-dns.ns.avi"
+              ttl: 30
+        analytics_policy:
+            full_client_logs:
+                duration: 0
+                enabled: true
+            metrics_realtime_update:
+                duration: 0
+                enabled: true
+        pool_ref: ""
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: virtualservice
+        params:
+          name: "Avi-DNS"
+      register: dns_vs
+
+
+    - avi_systemconfiguration:
+        avi_api_update_method: "patch"
+        avi_api_patch_op: "replace"
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        dns_virtualservice_refs:
+         - "{{ dns_vs.obj.results.0.url }}"

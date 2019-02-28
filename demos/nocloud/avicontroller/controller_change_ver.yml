@@ -1,0 +1,69 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+
+
+
+  pre_tasks:
+    - name: Check for existing configuration for {{ avi_version }}
+      stat:
+        path: /opt/avi/controller/{{ avi_version }}
+      register: version_config
+
+    #- file:
+    #    path: "{{ item }}"
+    #    state: absent
+    #  with_items:
+    #    - "/opt/avi/controller/{{ avi_version }}/root1/etc/ssh/authorized_keys_aviseuser"
+    #  when: version_config.stat.exists and version_config.stat.isdir
+
+    - shell: |
+          echo > /opt/avi/controller/{{ avi_version }}/root1/etc/ssh/authorized_keys_aviseuser
+      when: version_config.stat.exists and version_config.stat.isdir
+
+    
+  roles:
+    - role: avinetworks.avicontroller
+      con_version: "{{ avi_version }}"
+      con_disk_gb: 64
+      con_cores: 8
+      con_memory_gb: "{{ avi_controller_memory }}"
+      con_controller_ip: "{{ ansible_default_ipv4.address }}"
+      con_setup_json: "./setup.json"
+      con_disk_path: "/opt/avi/controller/{{ avi_version }}"
+      con_docker_run_params: "--name=avicontroller{{ con_ports_list_string }} --net avinet --label demo=default --ip 169.254.0.100 -d --privileged{{ con_env_variables_string }}{{ con_mounts_string }} {{ con_image }}"
+      when: "version_config.stat.exists==false"
+
+
+    - role: avinetworks.avicontroller
+      con_version: "{{ avi_version }}"
+      con_disk_gb: 64
+      con_cores: 8
+      con_memory_gb: "{{ avi_controller_memory }}"
+      con_controller_ip: "{{ ansible_default_ipv4.address }}"
+      con_disk_path: "/opt/avi/controller/{{ avi_version }}"
+      con_docker_run_params: "--name=avicontroller{{ con_ports_list_string }} --net avinet --label demo=default --ip 169.254.0.100 -d --privileged{{ con_env_variables_string }}{{ con_mounts_string }} {{ con_image }}"
+      when: version_config.stat.exists and version_config.stat.isdir
+
+
+
+- import_playbook: ./controller_service_check.yml
+  when: "version_config.stat.exists==false"
+
+- import_playbook: ../se_group/se_group.yml
+  when: "version_config.stat.exists==false"
+
+- import_playbook: ../applications/applications.yml
+  when: "version_config.stat.exists==false"
+
+
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+
+
+  tasks:
+   - shell: /usr/bin/docker exec -t avicontroller bash -c "export PGPASSWORD=xxxxxx && psql -At -p 5000 avi django -c 'DELETE FROM api_securechannelmapping;'"

@@ -1,0 +1,58 @@
+---
+- hosts: service_engines
+  become: yes
+  vars_files:
+    - ../../../vars/avi_details.yaml
+
+  tasks:
+
+    - service_facts:
+
+    - name: Stop SE services
+      systemd:
+        name: "{{ item }}"
+        enabled: False
+        state: stopped
+      with_items:
+        - avise1.service
+        - avise2.service
+      when: "item in services"
+
+
+
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/systemd/system/avise1.service
+        - /etc/systemd/system/avise2.service
+
+
+
+    - set_fact:
+        disk_path: "{{ ansible_mounts|sort(reverse=True, attribute='size_total')|map(attribute='mount')|first }}"
+
+
+ 
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "{{ disk_path }}/opt/avi/se1"
+        - "{{ disk_path }}/opt/avi/se2"
+
+
+
+    - name: Get Service Engine TAG Info
+      shell: "docker images | grep avinetworks/se  | awk '{print $2'}"
+      register: container_tag
+
+
+    - name: delete the serviceengine base images
+      docker_image:
+        name: avinetworks/se
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+
+    - systemd: daemon_reload=yes
+

@@ -1,0 +1,17 @@
+---
+- hosts: controllers
+  roles:
+    - role: avinetworks.avisdk
+  vars_files:
+    - ../../../vars/avi_details.yaml
+
+  tasks:
+    - name: Configure tunnel mode in service engine group
+      avi_serviceenginegroup:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        api_version: "{{ api_version }}"
+        name: "Default-Group"
+        se_tunnel_mode: "2"

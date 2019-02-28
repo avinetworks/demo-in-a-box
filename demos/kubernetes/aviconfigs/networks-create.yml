@@ -1,0 +1,58 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+
+  tasks:
+    - avi_api_session:
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: network
+        params:
+          name: "NorthSouth"
+      register: ns_results
+
+
+    - avi_api_session:
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: network
+        params:
+          name: "EastWest"
+      register: ew_results
+
+
+    - name: Avi Network NorthSouth
+      avi_network:
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "NorthSouth"
+        configured_subnets: [{"prefix": {"ip_addr": {"type": "V4","addr": "169.254.128.0"},"mask": 18},"static_ranges": [{"begin": {"type": "V4","addr": "169.254.191.0"},"end": {"type": "V4","addr": "169.254.191.254"}}]}]
+      when: ns_results.obj.count != 1
+
+
+    - name: Avi Network EastWest
+      avi_network:
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "EastWest"
+        configured_subnets: [{"prefix": {"ip_addr": {"type": "V4","addr": "169.254.192.0"},"mask": 18},"static_ranges": [{"begin": {"type": "V4","addr": "169.254.255.0"},"end": {"type": "V4","addr": "169.254.255.254"}}]}]
+      when: ew_results.obj.count != 1
