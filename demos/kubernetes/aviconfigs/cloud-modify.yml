@@ -1,0 +1,73 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+
+  tasks:
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "NorthSouth-DNS"
+      register: ns_dns_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "EastWest-DNS"
+      register: ew_dns_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "NorthSouth-IPAM"
+      register: ns_ipam_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "EastWest-IPAM"
+      register: ew_ipam_results
+
+
+    - name: Modify Kubernetes Cloud
+      avi_cloud:
+        avi_api_update_method: "patch"
+        avi_api_patch_op: "replace"
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "Default-Cloud"
+        vtype: "CLOUD_OSHIFT_K8S"
+        ipam_provider_ref: "{{ ns_ipam_results.obj.results.0.url }}"
+        east_west_ipam_provider_ref: "{{ ew_ipam_results.obj.results.0.url }}"
+        east_west_dns_provider_ref: "{{ ew_dns_results.obj.results.0.url }}"
+        dns_provider_ref: "{{ ns_dns_results.obj.results.0.url }}"

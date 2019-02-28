@@ -148,7 +148,7 @@ check_for_cleanup() {
         if [[ "$a" == "cleanup" ]]; then
             download_files
             demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
-            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
+            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/demo_cleanup.yml
             exit 0
             #if [ "$demo" == "default" ]; then
             #    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
@@ -164,6 +164,29 @@ check_for_cleanup() {
     done
     }
 
+
+check_for_change_version() {
+    for a in "${cmd_args[@]}"; do
+        if [[ "$a" == "change_version" ]]; then
+            export AVI_VERSION_CHANGE="true"
+            demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
+            retrieve_avi_versions
+            download_files
+            if [[ "$demo" == "default" ]]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/nocloud_change_ver.yml
+                exit 0
+            elif [[ "$demo" == "kubernetes" ]]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/kubernetes_controller_change_ver.yml
+                exit 0
+            elif [[ "$demo" == "openshift" ]]; then
+                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/openshift_controller_change_ver.yml
+                exit 0
+            fi
+            
+        fi
+    done
+    }
+    
 
 dependency_check() {
     echo "=====> Checking for dependencies"
@@ -190,7 +213,7 @@ playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_kubernetes.yml | tee /dev/tty)
+            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/demo_kubernetes.yml | tee /dev/tty)
             if  [[ $result =~ "failed=1" ]]; then
                 echo "=====> ERROR: install script encountered an error"
                 exit 1
@@ -198,16 +221,24 @@ playbook_install_demo() {
                 return 0
             fi      
         elif [[ "$a" == "openshift" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_openshift.yml | tee /dev/tty)
+            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/demo_openshift.yml | tee /dev/tty)
             if  [[ $result =~ "failed=1" ]]; then
                 echo "=====> ERROR: install script encountered an error"
                 exit 1
             else
                 return 0
-            fi         
+            fi 
+        elif [[ "$a" == "nocloud" ]]; then
+           result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
+           if  [[ $result =~ "failed=1" ]]; then
+               echo "=====> ERROR: install script encountered an error"
+               exit 1
+            else
+                return 0     
+            fi   
         fi    
     done
-    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host.yml | tee /dev/tty)
+    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
     if  [[ $result =~ "failed=1" ]]; then
         echo "=====> ERROR: install script encountered an error"
         exit 1
@@ -219,13 +250,13 @@ playbook_install_demo() {
 
 playbook_metrics_install() {
     echo "=====> Begin executing ansible playbooks to install metrics"
-    ansible-playbook -i demo-in-a-box-master/metrics/metrics_hosts demo-in-a-box-master/metrics/metrics_install.yml
+    ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_install.yml
 }
 
 
 playbook_metrics_delete() {
     echo "=====> Begin executing ansible playbooks to delete metrics"
-    ansible-playbook -i demo-in-a-box-master/metrics/metrics_hosts demo-in-a-box-master/metrics/metrics_delete.yml
+    ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_delete.yml
 }
 
 
@@ -251,7 +282,7 @@ check_for_args() {
 
 retrieve_avi_versions() {
     for a in "${cmd_args[@]}"; do
-        if [[ "$a" == "version" ]]; then
+        if [[ "$a" == "version" ]] || [[ "$a" == "change_version" ]]; then
             echo
             echo "=====> Select the Avi version to deploy"
             echo
@@ -276,7 +307,7 @@ retrieve_avi_versions() {
 set_controller_sizes() {
     INDEX=0
     for a in "${cmd_args[@]}"; do
-        echo "processing arg $a ${INDEX}"
+        #echo "processing arg $a ${INDEX}"
         if [[ "$a" == "controller-memory" ]]; then
             echo
             export AVI_CONTROLLER_MEMORY="${cmd_args[INDEX+1]}"
@@ -287,6 +318,7 @@ set_controller_sizes() {
         let INDEX=${INDEX}+1
     done
     }
+
 
 
 conclusion() {
@@ -355,6 +387,7 @@ root_check
 #----- cmd args are passed with -s
 cmd_args=("$@")
 check_for_cleanup
+check_for_change_version
 retrieve_avi_versions
 set_controller_sizes
 distro_check

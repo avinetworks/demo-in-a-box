@@ -1,0 +1,60 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+  tasks:
+
+    - name: Wait for Avi Controller services to be ready
+      wait_for:
+        port: 443
+        host: "{{ ansible_default_ipv4.address }}"
+        connect_timeout: 3
+        delay: 5
+        timeout: 600
+
+    - name: Wait for Avi Controller API
+      uri: url="https://{{ controller_ip}}/" return_content=yes validate_certs=False
+      register: srvc_results
+      until: srvc_results.status == 200
+      retries: 20
+      delay: 5
+      ignore_errors: yes
+
+
+    - name: Wait for Avi Controller API
+      uri:
+        url: "https://{{ controller_ip }}/login"
+        method: POST
+        status_code: 401
+        validate_certs: no
+        return_content: yes
+      register: tmp_results
+      until: tmp_results.status == 401
+      retries: 20
+      delay: 5
+      ignore_errors: yes
+
+
+    - debug:
+        msg: "{{ tmp_results }}"
+
+    - pause: seconds=60
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: tenant
+        params:
+          name: "admin"
+      register: api_results
+      until: api_results|selectattr("results.obj.count", "defined")
+      retries: 20
+      delay: 30
+      ignore_errors: yes

@@ -1,0 +1,128 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+
+  tasks:
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "NorthSouth-DNS"
+      register: ns_dns_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "EastWest-DNS"
+      register: ew_dns_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "NorthSouth-IPAM"
+      register: ns_ipam_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: ipamdnsproviderprofile
+        params:
+          name: "EastWest-IPAM"
+      register: ew_ipam_results
+
+
+    - name: Avi DNS NorthSouth
+      avi_ipamdnsproviderprofile:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "NorthSouth-DNS"
+        type: "IPAMDNS_TYPE_INTERNAL_DNS"
+        internal_profile: {"dns_service_domain": [{"num_dns_ip": 1,"domain_name": "ns.avi","pass_through": true}],"ttl": 30}
+      when: ns_dns_results.obj.count != 1
+
+
+    - name: Avi DNS EastWest
+      avi_ipamdnsproviderprofile:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "EastWest-DNS"
+        type: "IPAMDNS_TYPE_INTERNAL_DNS"
+        internal_profile: {"dns_service_domain": [{"num_dns_ip": 1,"domain_name": "ew.avi","pass_through": true}],"ttl": 30}
+      when: ew_dns_results.obj.count != 1
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: network
+        params:
+          name: "NorthSouth"
+      register: ns_results
+
+
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: network
+        params:
+          name: "EastWest"
+      register: ew_results
+
+
+    - name: Avi IPAM NorthSouth
+      avi_ipamdnsproviderprofile:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "NorthSouth-IPAM"
+        type: "IPAMDNS_TYPE_INTERNAL"
+        internal_profile: {"usable_network_refs": ["{{ ns_results.obj.results.0.url }}"],"ttl": 30}
+      when: ns_ipam_results.obj.count != 1
+
+
+    - name: Avi IPAM EastWest
+      avi_ipamdnsproviderprofile:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        name: "EastWest-IPAM"
+        type: "IPAMDNS_TYPE_INTERNAL"
+        internal_profile: {"usable_network_refs": ["{{ ew_results.obj.results.0.url }}"],"ttl": 30}
+      when: ew_ipam_results.obj.count != 1

@@ -1,0 +1,41 @@
+---
+- name: Delete Kubernetes
+  hosts: kubernetes
+  become: True
+
+  tasks:
+
+    - name: Check if Kubernetes is running
+      shell: "minikube status | grep minikube: | awk '{print $2'}"
+      register: minikube_status
+
+    - name: Stop kubernetes
+      shell: |
+          minikube stop
+          minikube delete
+      when: minikube_status.stdout == "Running"
+
+
+    - name: Cleanup kubernetes
+      shell: |
+          docker rm -fv $(docker ps -aq --filter name=k8s)
+          docker images  | grep k8s | awk '{ print $3}' | xargs -l -r docker rmi
+          docker images  | grep paib/relayserver | awk '{ print $3}' | xargs -l -r docker rmi
+          rm -rf ~/.minikube
+          rm -rf ~/.kube
+          rm -rf /etc/kubernetes
+          rm -f /usr/bin/minikube
+          rm -f /usr/bin/kubectl
+      when: minikube_status.stdout == "Running"
+
+
+
+    - name: update kernel settings
+      become: yes
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: minikube_status.stdout == "Running"

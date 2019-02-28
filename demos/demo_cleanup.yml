@@ -1,0 +1,17 @@
+---
+- import_playbook: nocloud/client/demo-waf/democlient-delete.yml
+- import_playbook: nocloud/client/scaleout/scaleoutclient-delete.yml
+- import_playbook: nocloud/servers/demo-scaleout/demoscaleoutserver-delete.yml
+- import_playbook: nocloud/servers/rdp/rdpserver-delete.yml
+- import_playbook: nocloud/servers/waf/dvwaserver-delete.yml
+- import_playbook: kubernetes/kubernetes-delete.yml
+- import_playbook: kubernetes/client/kubeclient-delete.yml
+- import_playbook: openshift/openshift-delete.yml
+- import_playbook: nocloud/service_engines/service_engines_delete.yml
+- import_playbook: nocloud/avicontroller/controller_delete.yml
+- import_playbook: metrics/metrics_delete.yml
+- import_playbook: ../vm_prep/avinet-delete.yml
+
+
+
+

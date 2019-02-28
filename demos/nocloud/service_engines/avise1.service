@@ -1,0 +1,17 @@
+[Unit]
+Description=AVISE1
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f avise1
+ExecStartPre=/usr/bin/docker run --name=avise1 -d -e NTHREADS=1 -e SEMEMMB=1024  -e CONTAINER=DOCKER -e DOCKERNETWORKMODE=BRIDGE -e AVICOOKIE=foo  -e DISKSZ=10240 -e CNTRL_SSH_PORT=5098 -e SYSINT_PORT=8443 -e HTTP_PORT=80 -e HTTPS_PORT=443 -e SE_INBAND_MGMT=true  --net=avinet --ip 169.254.0.101 -v /etc/sysconfig/network-scripts:/etc/sysconfig/network-scripts -v /:/hostroot/ -v /etc/hostname:/etc/host_hostname -v /etc/localtime:/etc/localtime -v /var/run/docker.sock:/var/run/docker.sock  -v {{ disk_path }}/opt/avi/se1/data:/vol/  -e CONTROLLERIP={{ controller_ip }} -e CONTAINER_NAME=avise1 --privileged=true avinetworks/se:{{ avi_version }}
+ExecStart=/usr/bin/docker wait avise1
+{% raw %}ExecStop=-/usr/bin/bash -c "fstrim /proc/$(docker inspect --format='{{ .State.Pid }}' avise1)/root"{% endraw %}
+ExecStop=-/usr/bin/docker stop -t 60 avise1
+ExecStopPost=-/usr/bin/docker rm -f avise1
+
+[Install]
+WantedBy=multi-user.target

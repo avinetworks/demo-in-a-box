@@ -1,0 +1,24 @@
+---
+- name: Delete the Avimetrics container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+    - name: delete avimetrics container
+      docker_container:
+        name: avimetrics
+        state: absent
+
+
+    - name: delete the avimetrics demo image
+      docker_image:
+        name: avimetrics
+        tag: latest
+        state: absent
+
+
+    - name: delete the python base image
+      docker_image:
+        name: avinetworks/avi-metrics
+        tag: latest
+        state: absent

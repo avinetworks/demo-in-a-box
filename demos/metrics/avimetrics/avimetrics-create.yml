@@ -1,0 +1,30 @@
+---
+- name: Build the Avimetrics container
+  hosts: metrics_hosts
+  become: True
+
+  tasks:
+    - name: build the avimetrics base image
+      docker_image:
+        path: .
+        name: avimetrics
+        tag: latest
+        state: present
+
+    - name: start avimetrics
+      docker_container:
+        name: avimetrics
+        hostname: avimetrics
+        networks:
+           - name: avinet
+             ipv4_address: "169.254.100.102"
+        env:
+            EN_METRIC_ENDPOINT: influxdb
+        log_driver: json-file
+        log_options:
+            max-size: 1m       
+        purge_networks: yes
+        detach: yes
+        restart_policy: always
+        state: started
+        image: avimetrics:latest

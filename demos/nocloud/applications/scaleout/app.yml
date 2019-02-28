@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+    - ../../../../vars/avi_details.yaml
+  vars:
+    - api_version: 17.2.7
+    - avi_controller: "{{ controller_ip }}"
+    - avi_username: "{{ username }}"
+    - avi_password: "{{ password }}"
+  roles:
+    - role: avinetworks.avisdk
+  tasks:
+    - name: Avi Application | Setup Avi-Scaleout-VS
+      include_role:
+        name: avinetworks.aviconfig
+      vars:
+        avi_config_file: config.yml

@@ -1,0 +1,59 @@
+---
+- hosts: controllers
+  become: yes
+  vars_files:
+    - ../../../vars/avi_details.yaml
+
+  tasks:
+
+    - service_facts:
+
+
+    - name: Stop Avi Controller
+      systemd:
+        name: avicontroller.service
+        enabled: False
+        state: stopped
+      with_items:
+        - avicontroller.service
+      when: "item in services"
+
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/systemd/system/avicontroller.service
+
+    - set_fact:
+        disk_path: "{{ ansible_mounts|sort(reverse=True, attribute='size_total')|map(attribute='mount')|first }}"
+      when: avi_change_version == "false"
+
+ 
+    - file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "{{ disk_path }}/opt/avi/controller"
+      when: avi_change_version == "false"
+
+
+    - systemd: daemon_reload=yes
+
+    - name: Get Controller TAG Info
+      shell: "docker images | grep controller | grep avi | awk '{print $2'}"
+      register: container_tag
+
+
+    - name: delete the container base images
+      docker_image:
+        name: avinetworks/controller
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+
+
+    - docker_image:
+        name: avinetworks/cli
+        tag: "{{ container_tag.stdout }}"
+        state: absent
+      when: container_tag.stdout !=""
+

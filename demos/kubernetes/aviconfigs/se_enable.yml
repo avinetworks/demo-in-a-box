@@ -1,0 +1,32 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+
+  tasks:
+    - avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: serviceengine
+      register: se_results
+
+
+    - name: Enable SE
+      avi_serviceengine:
+        avi_api_update_method: "patch"
+        avi_api_patch_op: "replace"
+        api_version: "{{ api_version }}"
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        uuid: "{{ se_results.obj.results.0.uuid }}"
+        enable_state: "SE_STATE_ENABLED"
+      when: se_results.obj.results.0.enable_state == "SE_STATE_DISABLED"
