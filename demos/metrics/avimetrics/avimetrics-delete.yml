@@ -19,6 +19,6 @@
 
     - name: delete the python base image
       docker_image:
-        name: avinetworks/avimetrics
+        name: avinetworks/avi-metrics
         tag: latest
         state: absent
