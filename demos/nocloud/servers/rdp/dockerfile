@@ -3,7 +3,7 @@ FROM alpine:edge
 # add packages
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-RUN apk --update --no-cache add xrdp xvfb alpine-desktop xfce4 thunar-volman \
+RUN apk --update --no-cache add xrdp xvfb alpine-desktop xfce4 thunar-volman firefox \
 faenza-icon-theme paper-gtk-theme paper-icon-theme slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard \
 setxkbmap openssh util-linux dbus wireshark ttf-freefont xauth supervisor x11vnc \
 util-linux dbus ttf-freefont xauth xf86-input-keyboard sudo
