@@ -28,14 +28,14 @@
 
 
     - name: Download minikube
-      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/v0.29.0/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
+      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/v0.35.0/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
       args:
         warn: false
       when: minikube_result.stat.exists == False
 
 
     - name: Download kubectl
-      shell: curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/bin/ && rm -f  kubectl
+      shell: curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.13.4/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/bin/ && rm -f  kubectl
       args:
         warn: false
       when: kubectl_result.stat.exists == False
@@ -67,7 +67,19 @@
 
 
     - name: Enable Kubernetes dashboard
-      shell: minikube dashboard
+      shell: | 
+          minikube addons enable dashboard
+      when: minikube_status.stdout != "Running"
+
+
+    - name: pause while kubernetes dashboards starts
+      pause: seconds=60
+      when: minikube_status.stdout != "Running"
+
+
+    - name: Modify Kubernetes dashboard
+      shell: | 
+          kubectl -n kube-system apply -f dashboard.yml 
       when: minikube_status.stdout != "Running"
 
 
