@@ -70,7 +70,7 @@
     - name: Enable Kubernetes dashboard
       shell: | 
           minikube addons enable dashboard
-      when: minikube_status.stdout == "Running"
+      when: minikube_status.stdout != "Running"
 
 
     - name: Wait for Kubernetes dashboard
@@ -82,7 +82,7 @@
       delay: 5
       ignore_errors: yes
       failed_when: "'kubectl: command not found' in tmp_results.stderr"
-      when: minikube_status.stdout == "Running"
+      when: minikube_status.stdout != "Running"
 
 
     - name: pause while kubernetes dashboard starts
