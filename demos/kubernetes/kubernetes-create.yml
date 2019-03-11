@@ -28,21 +28,21 @@
 
 
     - name: Download minikube
-      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/v0.29.0/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
+      shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/v0.35.0/minikube-linux-amd64 && chmod +x minikube && cp minikube /usr/bin/ && rm -f minikube
       args:
         warn: false
       when: minikube_result.stat.exists == False
 
 
     - name: Download kubectl
-      shell: curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/bin/ && rm -f  kubectl
+      shell: curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.13.4/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/bin/ && rm -f  kubectl
       args:
         warn: false
       when: kubectl_result.stat.exists == False
 
 
     - name: Check if Kubernetes is running
-      shell: "minikube status | grep minikube: | awk '{print $2'}"
+      shell: "minikube status | grep apiserver: | awk '{print $2'}"
       register: minikube_status
 
     - name: update kernel settings
@@ -66,9 +66,53 @@
       when: minikube_status.stdout != "Running"
 
 
+
     - name: Enable Kubernetes dashboard
-      shell: minikube dashboard
+      shell: | 
+          minikube addons enable dashboard
       when: minikube_status.stdout != "Running"
+
+
+    - name: Wait for Kubernetes dashboard
+      shell: | 
+          kubectl -n kube-system get service kubernetes-dashboard
+      register: tmp_results
+      until: "'NotFound' not in tmp_results.stderr"
+      retries: 30
+      delay: 5
+      ignore_errors: yes
+      failed_when: "'kubectl: command not found' in tmp_results.stderr"
+      when: minikube_status.stdout != "Running"
+
+
+    - name: pause while kubernetes dashboard starts
+      pause: seconds=10
+      when: tmp_results.changed == true
+
+
+    - name: Modify Kubernetes dashboard
+      shell: | 
+          #kubectl -n kube-system apply -f dashboard.yml 
+          kubectl patch svc kubernetes-dashboard -n kube-system --patch "$(cat dashboard.yml)"
+      when: tmp_results.changed == true
+      register: dash_results
+
+
+    - debug:
+        msg: "{{ dash_results }}"
+      when: dash_results.changed == true
+
+
+    - name: View Kubernetes dashboard
+      shell: |
+          kubectl -n kube-system get service kubernetes-dashboard
+      when: dash_results.changed == true
+      register: dash_status
+
+
+    - debug:
+        msg: "{{ dash_status }}"
+      when: dash_results.changed == true
 
 
     - name: Check for Service Account

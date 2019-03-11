@@ -6,7 +6,7 @@
   tasks:
 
     - name: Check if Kubernetes is running
-      shell: "minikube status | grep minikube: | awk '{print $2'}"
+      shell: "minikube status | grep apiserver: | awk '{print $2'}"
       register: minikube_status
 
     - name: Stop kubernetes
