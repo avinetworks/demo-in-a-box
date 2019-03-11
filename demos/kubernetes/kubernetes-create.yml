@@ -78,7 +78,7 @@
           kubectl -n kube-system get service kubernetes-dashboard
       register: tmp_results
       until: "'NotFound' not in tmp_results.stderr"
-      retries: 60
+      retries: 30
       delay: 5
       ignore_errors: yes
       failed_when: "'kubectl: command not found' in tmp_results.stderr"
@@ -92,7 +92,8 @@
 
     - name: Modify Kubernetes dashboard
       shell: | 
-          kubectl -n kube-system apply -f dashboard.yml 
+          #kubectl -n kube-system apply -f dashboard.yml 
+          kubectl patch svc kubernetes-dashboard -n kube-system --patch "$(cat dashboard.yml)"
       when: tmp_results.changed == true
       register: dash_results
 
@@ -105,17 +106,12 @@
     - name: View Kubernetes dashboard
       shell: |
           kubectl -n kube-system get service kubernetes-dashboard
-      register: tmp_results1
-      until: "'NotFound' not in tmp_results1.stderr"
-      retries: 60
-      delay: 5
-      ignore_errors: yes
-      failed_when: "'kubectl: command not found' in tmp_results1.stderr"
       when: dash_results.changed == true
+      register: dash_status
 
 
     - debug:
-        msg: "{{ tmp_results1 }}"
+        msg: "{{ dash_status }}"
       when: dash_results.changed == true
 
 
