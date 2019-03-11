@@ -72,15 +72,30 @@
       when: minikube_status.stdout != "Running"
 
 
-    - name: pause while kubernetes dashboards starts
-      pause: seconds=60
-      when: minikube_status.stdout != "Running"
+    - name: Wait for Kubernetes dashboard
+      shell: | 
+          kubectl -n kube-system get service kubernetes-dashboard
+      register: tmp_results
+      until: "'NotFound' not in tmp_results.stderr"
+      retries: 60
+      delay: 5
+      ignore_errors: yes
+      failed_when: "'kubectl: command not found' in tmp_results.stderr"
+
+
+    #- name: pause while kubernetes dashboard starts
+    #  pause: seconds=15
+    #  when: minikube_status.stdout != "Running"
 
 
     - name: Modify Kubernetes dashboard
       shell: | 
           kubectl -n kube-system apply -f dashboard.yml 
       when: minikube_status.stdout != "Running"
+      register: dash_results
+
+    - debug:
+        msg: "{{ dash_results }}"
 
 
     - name: Check for Service Account
