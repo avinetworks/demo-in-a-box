@@ -1,0 +1,61 @@
+---
+- name: Install Kubernetes
+  hosts: kubernetes
+  become: True
+
+  tasks:
+    - name: Check if Kubernetes is running
+      shell: "minikube status | grep apiserver: | awk '{print $2'}"
+      register: minikube_status
+
+
+    - name: Enable Kubernetes dashboard
+      shell: | 
+          minikube addons enable dashboard
+      when: minikube_status.stdout != "Running"
+
+
+    - name: Wait for Kubernetes dashboard
+      shell: | 
+          kubectl -n kube-system get service kubernetes-dashboard
+      register: tmp_results
+      until: "'NotFound' not in tmp_results.stderr"
+      retries: 60
+      delay: 5
+      ignore_errors: yes
+      failed_when: "'kubectl: command not found' in tmp_results.stderr"
+      when: minikube_status.stdout != "Running"
+
+
+    - name: pause while kubernetes dashboard starts
+      pause: seconds=10
+      when: tmp_results.changed == true
+
+
+    - name: Modify Kubernetes dashboard
+      shell: | 
+          kubectl -n kube-system apply -f dashboard.yml 
+      when: tmp_results.changed == true
+      register: dash_results
+
+
+    - debug:
+        msg: "{{ dash_results }}"
+      when: dash_results.changed == true
+
+
+    - name: View Kubernetes dashboard
+      shell: |
+          kubectl -n kube-system get service kubernetes-dashboard
+      register: tmp_results1
+      until: "'NotFound' not in tmp_results1.stderr"
+      retries: 60
+      delay: 5
+      ignore_errors: yes
+      failed_when: "'kubectl: command not found' in tmp_results1.stderr"
+      when: dash_results.changed == true
+
+
+    - debug:
+        msg: "{{ tmp_results1 }}"
+      when: dash_results.changed == true
