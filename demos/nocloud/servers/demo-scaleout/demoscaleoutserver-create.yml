@@ -70,7 +70,7 @@
         image: demoserver:latest
 
     - name: remove file from demoserver2 for 404 tests
-      command: docker exec -i demoserver2 rm -rf /usr/share/nginx/html/imgs/logo.png
+      command: docker exec -i demoserver2 rm -rf /usr/local/apache2/htdocs/imgs/logo.png
 
 
     - name: start the demoserver3 container
