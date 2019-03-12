@@ -29,9 +29,9 @@
 
     
     - shell: | 
-        /usr/bin/mount | grep 'openshift.local.volumes' | awk '{ print $3}' | xargs -l -r /usr/bin/umount
+        mount | grep 'openshift.local.volumes' | awk '{ print $3}' | xargs -l -r umount
         docker images  | grep openshift | awk '{ print $3}' | xargs -l -r docker rmi
-        rm -rf /var/lib/origin/openshift.local.*
+        rm -rf /var/lib/origin/*
         rm -rf ~/.kube
         rm -rf .kube
       when: oc_result.stat.exists == True

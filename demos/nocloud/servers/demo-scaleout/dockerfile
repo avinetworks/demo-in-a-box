@@ -1,3 +1,4 @@
-FROM nginx:alpine
+FROM httpd:alpine
 
-COPY html /usr/share/nginx/html
+RUN rm /usr/local/apache2/htdocs/index.html
+COPY html /usr/local/apache2/htdocs
