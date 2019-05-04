@@ -29,7 +29,7 @@
         dest: .
       when: (inventory_hostname != "localhost")
 
-    - name: build the wafserver base image - this can take about 10 minutes
+    - name: build the wafserver base image - this will take a few minutes
       docker_image:
         path: .
         name: wafserver

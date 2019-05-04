@@ -91,7 +91,7 @@
 
     - shell: | 
         oc login -u system:admin
-        oc env dc/router --list -n default | grep ROUTER_SERVICE_HTTP
+        oc set env dc/router --list -n default | grep ROUTER_SERVICE_HTTP
       register: oc_router_vars
 
 
