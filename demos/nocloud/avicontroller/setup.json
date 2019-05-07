@@ -23,8 +23,8 @@
                 "search_domain": "",
                 "server_list": [
                     {
-                        "type": "V4",
-                        "addr": "8.8.8.8"
+                        "type": "",
+                        "addr": ""
                     }
                 ]
             },
