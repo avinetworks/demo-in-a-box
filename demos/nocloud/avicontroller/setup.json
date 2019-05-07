@@ -20,13 +20,7 @@
                 "tenant_vrf": false
             },
             "dns_configuration": {
-                "search_domain": "",
-                "server_list": [
-                    {
-                        "type": "",
-                        "addr": ""
-                    }
-                ]
+                "search_domain": ""
             },
             "portal_configuration": {
                 "use_uuid_from_input": false,
