@@ -157,7 +157,7 @@ curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/dem
  <tr>    
  <td><strong>scaleoutclient1</strong></td>
  <td>Client running scripted traffic against <strong> avi-scaleout-vs </strong> virtual service</td>
- <td>169.254.63.3</td>
+ <td>169.254.63.10</td>
  <td>none</td>
  </tr>
  <tr>    

@@ -19,14 +19,9 @@
                 "tenant_access_to_provider_se": true,
                 "tenant_vrf": false
             },
+            "welcome_workflow_complete": true, 
             "dns_configuration": {
-                "search_domain": "",
-                "server_list": [
-                    {
-                        "type": "V4",
-                        "addr": "8.8.8.8"
-                    }
-                ]
+                "search_domain": ""
             },
             "portal_configuration": {
                 "use_uuid_from_input": false,
