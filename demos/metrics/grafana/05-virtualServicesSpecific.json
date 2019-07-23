@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 12,
-  "iteration": 1542160074263,
+  "id": 1,
+  "iteration": 1554761232870,
   "links": [],
   "panels": [
     {
@@ -756,6 +756,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -897,7 +898,7 @@
               "condition": "AND",
               "key": "metric_type",
               "operator": "=",
-              "value": "virtualservice_metrics"
+              "value": "pool_member_metrics"
             }
           ],
           "target": "alias(network-script.avi.$location.$environment.$device.virtualservice.$vs.l4_server_avg_total_rtt, 'Server RTT')",
@@ -966,7 +967,7 @@
               "condition": "AND",
               "key": "metric_type",
               "operator": "=",
-              "value": "virtualservice_metrics"
+              "value": "pool_member_metrics"
             }
           ],
           "target": "alias(network-script.avi.$location.$environment.$device.virtualservice.$vs.l7_server_avg_application_response_time, 'App Rsponse')",
@@ -1044,6 +1045,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "End to End Timing",
       "tooltip": {
@@ -1112,6 +1114,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1199,6 +1202,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "VS Bandwidth",
       "tooltip": {
@@ -1266,6 +1270,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1353,6 +1358,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Connections Per Second",
       "tooltip": {
@@ -1420,6 +1426,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1507,6 +1514,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Concurrent Connections",
       "tooltip": {
@@ -1574,6 +1582,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1661,6 +1670,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "VS Oper Status : 1 == UP",
       "tooltip": {
@@ -1728,6 +1738,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1806,7 +1817,7 @@
               "condition": "AND",
               "key": "metric_type",
               "operator": "=",
-              "value": "virtualservice_metrics"
+              "value": "pool_member_metrics"
             }
           ],
           "target": "aliasByMetric(network-script.avi.$location.$environment.$device.virtualservice.$vs.l7_server_avg_resp_latency)",
@@ -1815,6 +1826,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Avg Server Side Latency (ms)",
       "tooltip": {
@@ -1882,6 +1894,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2119,6 +2132,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Pool Members",
       "tooltip": {
@@ -2186,6 +2200,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2273,6 +2288,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "RX Packets Per Second",
       "tooltip": {
@@ -2340,6 +2356,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2427,6 +2444,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "TX Packets Per Second",
       "tooltip": {
@@ -2494,6 +2512,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2581,6 +2600,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "VS Healthscore",
       "tooltip": {
@@ -2648,6 +2668,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2735,6 +2756,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hosted on Service Engines",
       "tooltip": {
@@ -2743,7 +2765,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -2803,6 +2824,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2890,6 +2912,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Average Client Lossy Connections",
       "tooltip": {
@@ -2957,6 +2980,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -3107,6 +3131,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "SSL Statistics /sec",
       "tooltip": {
@@ -3174,6 +3199,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -3462,6 +3488,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "4xx 5xx Status Codes",
       "tooltip": {
@@ -3528,6 +3555,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -3615,6 +3643,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Client Side Open Connections",
       "tooltip": {
@@ -3683,6 +3712,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -3824,7 +3854,7 @@
               "condition": "AND",
               "key": "metric_type",
               "operator": "=",
-              "value": "virtualservice_metrics"
+              "value": "pool_member_metrics"
             }
           ],
           "target": "aliasByMetric(network-script.avi.$location.$environment.$device.virtualservice.$vs.l4_client_apdexc)",
@@ -3962,7 +3992,7 @@
               "condition": "AND",
               "key": "metric_type",
               "operator": "=",
-              "value": "virtualservice_metrics"
+              "value": "pool_member_metrics"
             }
           ],
           "target": "aliasByMetric(network-script.avi.$location.$environment.$device.virtualservice.$vs.l4_client_apdexc)",
@@ -3971,6 +4001,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Service ApDex  Values",
       "tooltip": {
@@ -4036,6 +4067,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -4129,6 +4161,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Pool Member - Avg Bandwidth",
       "tooltip": {
@@ -4195,6 +4228,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -4288,6 +4322,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Pool Member - Open Conns",
       "tooltip": {
@@ -4964,7 +4999,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [
     "network",
@@ -4976,6 +5011,7 @@
         "allFormat": "glob",
         "allValue": null,
         "datasource": "influxdb",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -4998,6 +5034,7 @@
         "allFormat": "glob",
         "allValue": null,
         "datasource": "influxdb",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -5020,6 +5057,7 @@
         "allFormat": "glob",
         "allValue": null,
         "datasource": "influxdb",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -5042,14 +5080,15 @@
         "allFormat": "glob",
         "allValue": null,
         "datasource": "influxdb",
+        "definition": "select DISTINCT(\"vs_name\") from (select \"vs_name\",\"value\" from \"oper_status\" WHERE $timeFilter AND location =~ /$location/ AND environment =~ /$environment/ AND avicontroller =~ /$device/)",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
         "name": "vs",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"vs_name\" WHERE location =~ /$location/ AND environment =~ /$environment/ AND avicontroller =~ /$device/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"vs_name\") from (select \"vs_name\",\"value\" from \"oper_status\" WHERE $timeFilter AND location =~ /$location/ AND environment =~ /$environment/ AND avicontroller =~ /$device/)",
+        "refresh": 2,
         "refresh_on_load": false,
         "regex": "",
         "skipUrlSync": false,
