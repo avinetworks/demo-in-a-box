@@ -11,3 +11,4 @@
 - import_playbook: aviconfigs/avi-dns.yml
 - import_playbook: manifests/deploy-manifest.yml
 - import_playbook: client/kubeclient-create.yml
+- import_playbook: controller_post_check.yml

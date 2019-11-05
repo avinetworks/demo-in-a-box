@@ -10,6 +10,7 @@
 - import_playbook: se_group/se_group.yml
 - import_playbook: service_engines/service_engines.yml
 - import_playbook: applications/applications.yml
+- import_playbook: avicontroller/controller_post_check.yml
 
 
 

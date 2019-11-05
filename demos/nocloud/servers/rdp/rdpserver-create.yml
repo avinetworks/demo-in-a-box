@@ -4,37 +4,37 @@
   become: True
 
   tasks:
-    - name: archive directory to copy
-      archive:
-        path:
-          - "{{ playbook_dir }}/dockerfile"
-          - "{{ playbook_dir }}/docker-entrypoint.sh"
-          - "{{ playbook_dir }}/etc/"
-          - "{{ playbook_dir }}/admin/"
-        dest: "{{ playbook_dir }}/rdpserver.tgz"
-      delegate_to: 127.0.0.1
-      when: (inventory_hostname != "localhost")
+    #- name: archive directory to copy
+    #  archive:
+    #    path:
+    #      - "{{ playbook_dir }}/dockerfile"
+    #      - "{{ playbook_dir }}/docker-entrypoint.sh"
+    #      - "{{ playbook_dir }}/etc/"
+    #      - "{{ playbook_dir }}/admin/"
+    #    dest: "{{ playbook_dir }}/rdpserver.tgz"
+    #  delegate_to: 127.0.0.1
+    #  when: (inventory_hostname != "localhost")
 
-    - name: copy files
-      copy:
-        src: "{{ playbook_dir }}/rdpserver.tgz"
-        dest: "./"
-        remote_src: no
-        force: no
-      when: (inventory_hostname != "localhost")
+    #- name: copy files
+    #  copy:
+    #    src: "{{ playbook_dir }}/rdpserver.tgz"
+    #    dest: "./"
+    #    remote_src: no
+    #    force: no
+    #  when: (inventory_hostname != "localhost")
 
-    - name: unarchive files to build container
-      unarchive:
-        src: rdpserver.tgz
-        dest: .
-      when: (inventory_hostname != "localhost")
+    #- name: unarchive files to build container
+    #  unarchive:
+    #    src: rdpserver.tgz
+    #    dest: .
+    #  when: (inventory_hostname != "localhost")
 
-    - name: build the rdpserver base image
-      docker_image:
-        path: .
-        name: rdpserver
-        tag: latest
-        state: present
+    #- name: build the rdpserver base image
+    #  docker_image:
+    #    path: .
+    #    name: rdpserver
+    #    tag: latest
+    #    state: present
 
     - name: start the rdpserver container
       docker_container:
@@ -53,17 +53,18 @@
         published_ports: 0.0.0.0:3389:3389
         restart_policy: always
         state: started
-        image: rdpserver:latest
+        #image: rdpserver:latest
+        image: mkarnowski/diab:rdpserver
 
 
-    - name: cleanup remote files
-      file:
-          path: "{{ item }}"
-          state: absent
-      with_items:
-          - ./rdpserver.tgz
-          - ./dockerfile
-          - ./docker-entrypoint.sh
-          - ./etc/
-          - ./admin/
-      when: (inventory_hostname != "localhost")
+    #- name: cleanup remote files
+    #  file:
+    #      path: "{{ item }}"
+    #      state: absent
+    #  with_items:
+    #      - ./rdpserver.tgz
+    #      - ./dockerfile
+    #      - ./docker-entrypoint.sh
+    #      - ./etc/
+    #      - ./admin/
+    #  when: (inventory_hostname != "localhost")
