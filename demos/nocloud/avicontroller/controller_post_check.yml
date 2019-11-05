@@ -7,7 +7,8 @@
     - avinetworks.avisdk
 
   tasks:
-    - avi_api_session:
+    - name:  Pull controller systemconfiguration
+      avi_api_session:
         controller: "{{ controller_ip }}"
         username: "{{ username }}"
         password: "{{ password }}"
@@ -18,8 +19,8 @@
       ignore_errors: True
       register: api_results
 
-
-    - avi_systemconfiguration:
+    - name: Modify welcome_workflow_complete
+      avi_systemconfiguration:
         avi_api_update_method: patch
         avi_api_patch_op: replace
         controller: "{{ controller_ip }}"
@@ -28,7 +29,5 @@
         tenant: "{{ tenant | default('admin') }}"
         api_version: 18.2.5
         welcome_workflow_complete: True
-      when: api_results.obj.welcome_workflow_complete == false
-
-
-        
+      when: api_results is changed and api_results.obj.welcome_workflow_complete == false
+      
