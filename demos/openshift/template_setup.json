@@ -15,7 +15,6 @@
                 "tenant_access_to_provider_se": true, 
                 "tenant_vrf": false
             }, 
-            "welcome_workflow_complete": true, 
             "dns_configuration": {
                 "search_domain": ""
             },
