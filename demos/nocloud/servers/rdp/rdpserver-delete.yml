@@ -12,6 +12,8 @@
 
     - name: delete rdpserver base image
       docker_image:
-        name: rdpserver
-        tag: latest
+        #name: rdpserver
+        name: mkarnowski/diab
+        #tag: latest
+        tag: rdpserver
         state: absent

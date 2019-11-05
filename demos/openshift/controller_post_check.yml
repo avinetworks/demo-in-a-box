@@ -1,0 +1,33 @@
+---
+- hosts: controllers
+  become: True
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  roles:
+    - avinetworks.avisdk
+
+  tasks:
+    - name:  Pull controller systemconfiguration
+      avi_api_session:
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        api_version: 18.2.5
+        tenant: "{{ tenant | default('admin',true) }}"
+        http_method: get
+        path: systemconfiguration
+      ignore_errors: True
+      register: api_results
+
+    - name: Modify welcome_workflow_complete
+      avi_systemconfiguration:
+        avi_api_update_method: patch
+        avi_api_patch_op: replace
+        controller: "{{ controller_ip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        tenant: "{{ tenant | default('admin') }}"
+        api_version: 18.2.5
+        welcome_workflow_complete: True
+      when: api_results is changed and api_results.obj.welcome_workflow_complete == false
+      
