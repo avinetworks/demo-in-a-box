@@ -21,80 +21,80 @@ distro_check() {
 
 check_for_pip() {
     if command -v pip &> /dev/null; then
-        echo "=====> python-pip is already installed "
+        echo "=====> python3-pip is already installed "
     else
-        echo "=====> python-pip is missing, installing "
+        echo "=====> python3-pip is missing, installing "
         if [ $pkg_mgr = "yum" ]; then
             if  ! yum repolist | grep epel; then
-                echo "=====> epel repo is required for python-pip install, installing epel "
+                echo "=====> epel repo is required for python3-pip install, installing epel "
                 yum install -y epel-release
             fi
-            echo "=====> installing python-pip "
-            yum install -y python-pip
+            echo "=====> installing python3-pip "
+            yum install -y python3-pip
         elif [ $pkg_mgr = "apt-get" ]; then
-            apt-get install -y python-pip
+            apt-get install -y python3-pip
         elif [ $pkg_mgr = "mac" ]; then
-            easy_install pip
+            easy_install pip3
         fi
     fi
 }
 
 
 check_for_dockerpy() {
-    if python -c "import docker" &> /dev/null; then
+    if python3 -c "import docker" &> /dev/null; then
         echo "=====> docker-py already installed"
     else
         echo "=====> docker-py is missing, installing"
-        pip install docker-py --upgrade
+        pip3 install docker-py --upgrade
     fi
 }
 
 
 check_for_avisdk() {
-    pip install avisdk --upgrade
+    pip3 install avisdk --upgrade
 }
 
 
 check_for_ansible() {
-    if command -v ansible &> /dev/null; then
+    if command -v /usr/local/bin/ansible &> /dev/null; then
         echo "=====> ansible is already installed"
-        currentver="$(ansible --version | grep -m 1 ansible | awk '{split($0,a,"ansible"); print a[2]}')"
+        currentver="$(/usr/local/bin/ansible --version | grep -m 1 ansible | awk '{split($0,a,"ansible"); print a[2]}')"
         requiredver="2.6.4"
         if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -n | head -n1)" = "$requiredver" ]; then 
             echo "=====> ansible version greater than 2.6.4"
         else
             echo "=====> ansible version less than 2.6.4"
-            pip install 'ansible==2.6.4' --upgrade
+            pip3 install 'ansible==2.6.4' --upgrade
         fi
     else
         echo "=====> ansible is missing, installing"
-        pip install 'ansible==2.6.4' --upgrade
+        pip3 install 'ansible==2.6.4' --upgrade
     fi
 }
 
 
 check_for_ansible_roles() {
-    if ansible-galaxy list avinetworks.docker | grep "not found" &> /dev/null; then
+    if /usr/local/bin/ansible-galaxy list avinetworks.docker | grep "not found" &> /dev/null; then
         echo "=====> ansible avinetworks.docker role not installed"
-        ansible-galaxy install avinetworks.docker
+        /usr/local/bin/ansible-galaxy install avinetworks.docker
     else
         echo "=====> ansible avinetworks.docker role already installed"
     fi
-    if ansible-galaxy list avinetworks.avicontroller | grep "not found" &> /dev/null; then
+    if /usr/local/bin/ansible-galaxy list avinetworks.avicontroller | grep "not found" &> /dev/null; then
         echo "=====> ansible avinetworks.avicontroller role not installed"
-        ansible-galaxy install avinetworks.avicontroller
+        /usr/local/bin/ansible-galaxy install avinetworks.avicontroller
     else
         echo "=====> ansible avinetworks.avicontroller role already installed"
     fi
-    if ansible-galaxy list avinetworks.avisdk | grep "not found" &> /dev/null; then
+    if /usr/local/bin/ansible-galaxy list avinetworks.avisdk | grep "not found" &> /dev/null; then
         echo "=====> ansible avinetworks.avisdk role not installed"
-        ansible-galaxy install avinetworks.avisdk
+        /usr/local/bin/ansible-galaxy install avinetworks.avisdk
     else
         echo "=====> ansible avinetworks.avisdk role already installed"
     fi
-    if ansible-galaxy list avinetworks.aviconfig | grep "not found" &> /dev/null; then
+    if /usr/local/bin/ansible-galaxy list avinetworks.aviconfig | grep "not found" &> /dev/null; then
         echo "=====> ansible avinetworks.aviconfig role not installed"
-        ansible-galaxy install avinetworks.aviconfig
+        /usr/local/bin/ansible-galaxy install avinetworks.aviconfig
     else
         echo "=====> ansible avinetworks.aviconfig role already installed"
     fi
@@ -148,7 +148,7 @@ check_for_cleanup() {
         if [[ "$a" == "cleanup" ]]; then
             download_files
             demo=$(docker inspect --format '{{ index .Config.Labels "demo"}}' avicontroller)
-            ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/demo_cleanup.yml
+            /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/demo_cleanup.yml
             exit 0
             #if [ "$demo" == "default" ]; then
             #    ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demo_single_host_delete.yml
@@ -173,13 +173,13 @@ check_for_change_version() {
             retrieve_avi_versions
             download_files
             if [[ "$demo" == "default" ]]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/nocloud_change_ver.yml
+                /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/nocloud_change_ver.yml
                 exit 0
             elif [[ "$demo" == "kubernetes" ]]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/kubernetes_controller_change_ver.yml
+                /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/kubernetes_controller_change_ver.yml
                 exit 0
             elif [[ "$demo" == "openshift" ]]; then
-                ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/openshift_controller_change_ver.yml
+                /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/openshift_controller_change_ver.yml
                 exit 0
             fi
             
@@ -198,8 +198,8 @@ dependency_check() {
     check_for_unzip
     check_for_curl
     check_for_unbuffer
-    rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
-    rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
+    #rm -rf /usr/local/lib/python2.7/dist-packages/ansible/modules/network/avi
+    #rm -rf /usr/lib/python2.7/site-packages/ansible/modules/network/avi
 }
 
 
@@ -213,7 +213,7 @@ playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
     for a in "${cmd_args[@]}"; do
         if [[ "$a" == "kubernetes" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/demo_kubernetes.yml | tee /dev/tty)
+            result=$(unbuffer /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/demo_kubernetes.yml | tee /dev/tty)
             if  [[ $result =~ "failed=1" ]]; then
                 echo "=====> ERROR: install script encountered an error"
                 exit 1
@@ -221,7 +221,7 @@ playbook_install_demo() {
                 return 0
             fi      
         elif [[ "$a" == "openshift" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/demo_openshift.yml | tee /dev/tty)
+            result=$(unbuffer /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/demo_openshift.yml | tee /dev/tty)
             if  [[ $result =~ "failed=1" ]]; then
                 echo "=====> ERROR: install script encountered an error"
                 exit 1
@@ -229,7 +229,7 @@ playbook_install_demo() {
                 return 0
             fi 
         elif [[ "$a" == "nocloud" ]]; then
-           result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
+           result=$(unbuffer /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
            if  [[ $result =~ "failed=1" ]]; then
                echo "=====> ERROR: install script encountered an error"
                exit 1
@@ -238,7 +238,7 @@ playbook_install_demo() {
             fi   
         fi    
     done
-    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
+    result=$(unbuffer /usr/local/bin/ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
     if  [[ $result =~ "failed=1" ]]; then
         echo "=====> ERROR: install script encountered an error"
         exit 1
@@ -250,20 +250,20 @@ playbook_install_demo() {
 
 playbook_metrics_install() {
     echo "=====> Begin executing ansible playbooks to install metrics"
-    ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_install.yml
+    /usr/local/bin/ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_install.yml
 }
 
 
 playbook_metrics_delete() {
     echo "=====> Begin executing ansible playbooks to delete metrics"
-    ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_delete.yml
+    /usr/local/bin/ansible-playbook -i demo-in-a-box-master/demos/metrics/metrics_hosts demo-in-a-box-master/demos/metrics/metrics_delete.yml
 }
 
 
 playbook_splunk_install() {
     echo "=====> Begin executing ansible playbooks to install splunk"
-    ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/splunk/splunk-install.yml
-    ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/alertconfig/app.yml
+    /usr/local/bin/ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/splunk/splunk-install.yml
+    /usr/local/bin/ansible-playbook -i demo-in-a-box-master/splunk/splunk_hosts demo-in-a-box-master/splunk/alertconfig/app.yml
 }
 
 
