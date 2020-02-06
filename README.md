@@ -49,7 +49,7 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
 curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash
 ```
 
-The default setup will deploy the Avi Default Demo using version 18.2.6.
+The default setup will deploy the Avi Default Demo using version 18.2.7.
 
 
 ### Optional Arguments
@@ -72,7 +72,7 @@ There are optional arguments that can be provided.  Every argument provided is p
  <td><strong>version</strong></td>
  <td>provides option to select a version</td>
  <td>no, optional</td>
-  <td>18.2.6</td>
+  <td>18.2.7</td>
  </tr>
 <tr>    
  <td><strong>controller-memory</strong></td>
