@@ -4,6 +4,11 @@
     - role: avinetworks.avisdk
   vars_files:
     - ../../../vars/avi_details.yaml
+  vars:
+    ansible_python_interpreter: python3      
+  
+  
+  
 
   tasks:
     - name: Configure tunnel mode in service engine group

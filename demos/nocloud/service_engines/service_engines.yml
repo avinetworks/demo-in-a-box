@@ -3,6 +3,10 @@
   become: yes
   vars_files:
     - ../../../vars/avi_details.yaml
+  vars:
+    ansible_python_interpreter: python3      
+   
+
   tasks:
     - name: Get Avi controller IP if not defined
       set_fact:

@@ -2,6 +2,10 @@
 - name: Delete the WAF servers
   hosts: demo_servers
   become: True
+  vars:
+    ansible_python_interpreter: python3      
+
+
 
   tasks:
     - name: delete wafserver1

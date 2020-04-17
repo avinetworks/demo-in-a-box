@@ -2,6 +2,11 @@
 - name: Delete the Avi Demo Clients
   hosts: demo_clients
   become: True
+  vars:
+    ansible_python_interpreter: python3      
+
+
+
 
   tasks:
 

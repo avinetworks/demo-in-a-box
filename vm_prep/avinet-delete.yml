@@ -1,6 +1,9 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    ansible_python_interpreter: python3      
+
   tasks:
     - name: Delete docker network
       docker_network:
