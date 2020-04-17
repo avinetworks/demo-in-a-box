@@ -64,16 +64,16 @@ check_for_ansible() {
     if command -v /usr/local/bin/ansible &> /dev/null; then
         echo "=====> ansible is already installed"
         currentver="$(/usr/local/bin/ansible --version | grep -m 1 ansible | awk '{split($0,a,"ansible"); print a[2]}')"
-        requiredver="2.6.4"
+        requiredver="2.8.11"
         if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -n | head -n1)" = "$requiredver" ]; then 
-            echo "=====> ansible version greater than 2.6.4"
+            echo "=====> ansible version greater than 2.8.11"
         else
-            echo "=====> ansible version less than 2.6.4"
-            pip3 install 'ansible==2.6.4' --upgrade
+            echo "=====> ansible version less than 2.8.11"
+            pip3 install 'ansible==2.8.11' --upgrade
         fi
     else
         echo "=====> ansible is missing, installing"
-        pip3 install 'ansible==2.6.4' --upgrade
+        pip3 install 'ansible==2.8.11' --upgrade
     fi
 }
 
