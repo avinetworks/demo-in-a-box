@@ -146,7 +146,7 @@ check_for_unbuffer() {
         if [ $pkg_mgr = "yum" ]; then
             yum install -y expect
         elif [ $pkg_mgr = "dnf" ]; then            
-            dns install -y expect            
+            dnf install -y expect            
         else
             apt-get install -y expect-dev
         fi
