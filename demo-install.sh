@@ -10,6 +10,9 @@ distro_check() {
     if command -v apt-get &> /dev/null; then
         pkg_mgr="apt-get"
         apt-get update
+    elif command -v dnf &> /dev/null; then
+        pkg_mgr="dnf"
+        dnf install -y firewalld        
     elif command -v yum &> /dev/null; then
         pkg_mgr="yum"
         yum install -y firewalld
@@ -31,6 +34,8 @@ check_for_pip() {
             fi
             echo "=====> installing python3-pip "
             yum install -y python3-pip
+        elif [ $pkg_mgr = "dnf" ]; then
+            dnf install -y python3-pip            
         elif [ $pkg_mgr = "apt-get" ]; then
             apt-get install -y python3-pip
         elif [ $pkg_mgr = "mac" ]; then
@@ -59,16 +64,16 @@ check_for_ansible() {
     if command -v /usr/local/bin/ansible &> /dev/null; then
         echo "=====> ansible is already installed"
         currentver="$(/usr/local/bin/ansible --version | grep -m 1 ansible | awk '{split($0,a,"ansible"); print a[2]}')"
-        requiredver="2.6.4"
+        requiredver="2.9.7"
         if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -n | head -n1)" = "$requiredver" ]; then 
-            echo "=====> ansible version greater than 2.6.4"
+            echo "=====> ansible version greater than 2.9.7"
         else
-            echo "=====> ansible version less than 2.6.4"
-            pip3 install 'ansible==2.6.4' --upgrade
+            echo "=====> ansible version less than 2.9.7"
+            pip3 install 'ansible==2.9.7' --upgrade
         fi
     else
         echo "=====> ansible is missing, installing"
-        pip3 install 'ansible==2.6.4' --upgrade
+        pip3 install 'ansible==2.9.7' --upgrade
     fi
 }
 
@@ -108,6 +113,8 @@ check_for_unzip() {
         echo "=====> unzip is missing, installing"
         if [ $pkg_mgr = "yum" ]; then
             yum install -y unzip
+        elif [ $pkg_mgr = "dnf" ]; then            
+            dns install -y unzip
         elif [ $pkg_mgr = "apt-get" ]; then
             apt-get install -y unzip
         fi
@@ -122,6 +129,8 @@ check_for_curl() {
         echo "=====> curl is missing, installing"
         if [ $pkg_mgr = "yum" ]; then
             yum install -y curl
+        elif [ $pkg_mgr = "dnf" ]; then            
+            dns install -y curl            
         else
             apt-get install -y curl
         fi
@@ -136,6 +145,8 @@ check_for_unbuffer() {
         echo "=====> unbuffer is missing, installing"
         if [ $pkg_mgr = "yum" ]; then
             yum install -y expect
+        elif [ $pkg_mgr = "dnf" ]; then            
+            dns install -y expect            
         else
             apt-get install -y expect-dev
         fi

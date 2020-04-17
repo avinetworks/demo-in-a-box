@@ -10,7 +10,8 @@
       docker_network:
         name: avinet
         driver: bridge
-        ipam_options:
-          subnet: '169.254.0.0/17'
-          gateway: '169.254.0.1'
+        ipam_config:
+          - subnet: 169.254.0.0/17
+            gateway: 169.254.0.1
+            iprange: 169.254.0.0/17
         appends: yes

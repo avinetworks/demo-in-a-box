@@ -2,17 +2,19 @@
 - hosts: all
   become: yes
   pre_tasks:
-    - name: Install Python3
-      when: ansible_os_family == "Debian"
-      raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
-      changed_when: False
-
-    - name: Install epel-release
-      when: ansible_os_family == "RedHat"
-      action: yum pkg='epel-release' state=present
-
-    - name: Install pip3
-      action: "{{ ansible_pkg_mgr }} pkg=python3-pip state=present"
+    #- name: Install Python3
+    #  when: ansible_os_family == "Debian"
+    #  raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
+    #  changed_when: False
+    #- name: Install epel-release
+    #  when: ansible_os_family == "RedHat"
+    #  action: yum pkg='epel-release' state=present
+    #- name: Install pip3
+    #  action: "{{ ansible_pkg_mgr }} pkg=python3-pip state=present"
+    #- name: Install Python3
+    #  package:
+    #    name: python3-pip
+    #    state: present
 
 
     - name: Enable ipv4 forwarding
@@ -48,7 +50,7 @@
 
 
     - when: ansible_os_family == "RedHat"
-      action: yum pkg='docker-ce-18.03.1.ce-1.el7.centos' state=present
+      action: yum pkg='docker-ce-3:19.03.8-3.el7' state=present
 
     - when: ansible_os_family == "RedHat"
       systemd:
