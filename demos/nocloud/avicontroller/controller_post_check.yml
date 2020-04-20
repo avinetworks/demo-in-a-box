@@ -34,6 +34,6 @@
         password: "{{ password }}"
         tenant: "{{ tenant | default('admin') }}"
         api_version: 18.2.5
-        welcome_workflow_complete: True
+        welcome_workflow_complete: yes
       when: api_results.obj.welcome_workflow_complete is defined and api_results.obj.welcome_workflow_complete == false
       
