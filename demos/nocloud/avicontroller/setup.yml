@@ -31,8 +31,8 @@
       
       - name: Controller properties
         avi_controllerproperties:
-          avi_api_update_method: patch
-          avi_api_patch_op: replace
+          #avi_api_update_method: patch
+          #avi_api_patch_op: replace
           api_version: "{{ api_version }}"
           controller: "{{ controller_ip }}"
           username: "{{ username }}"
