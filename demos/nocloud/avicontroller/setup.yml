@@ -21,9 +21,6 @@
       until: ver_results.status == 200
       retries: 300
       delay: 10
-  
-    - debug:
-       msg:  "{{ ver_results }}"
 
     - set_fact:
         ctl_version: "{{ ver_results.json.version.Version.split('(')[0] }}"
@@ -32,7 +29,7 @@
       - name: Set Avi Controller password
         command: docker exec -i avicontroller bash -c 'sudo /opt/avi/scripts/initialize_admin_user.py --password {{ password }}' 
       
-      - name: Avi Virtualservice | {{ application_name }}
+      - name: Controller properties
         avi_controllerproperties:
           avi_api_update_method: patch
           avi_api_patch_op: replace
