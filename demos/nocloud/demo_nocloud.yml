@@ -7,6 +7,7 @@
 - import_playbook: servers/waf/dvwaserver-create.yml
 - import_playbook: client/demo-waf/democlient-create.yml
 - import_playbook: client/scaleout/scaleoutclient-create.yml
+- import_playbook: avicontroller/setup.yml
 - import_playbook: se_group/se_group.yml
 - import_playbook: service_engines/service_engines.yml
 - import_playbook: applications/applications.yml

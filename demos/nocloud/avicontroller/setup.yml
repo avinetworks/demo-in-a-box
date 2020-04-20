@@ -1,0 +1,49 @@
+---
+- hosts: controllers
+  roles:
+    - role: avinetworks.avisdk
+  vars_files:
+    - ../../../vars/avi_details.yaml
+  vars:
+    ansible_python_interpreter: python3      
+  
+  
+  
+
+  tasks:
+
+    - name: Wait for the portal to become active
+      uri:
+        url: "https://{{ controller_ip }}/api/initial-data"
+        validate_certs: no
+        status_code: 200
+      register: ver_results
+      until: ver_results.status == 200
+      retries: 300
+      delay: 10
+  
+    - debug:
+       msg:  "{{ ver_results }}"
+
+    - set_fact:
+        ctl_version: "{{ ver_results.json.version.Version.split('(')[0] }}"
+
+    - block: 
+      - name: Set Avi Controller password
+        command: docker exec -i avicontroller bash -c 'sudo /opt/avi/scripts/initialize_admin_user.py --password {{ password }}' 
+      
+      - name: Avi Virtualservice | {{ application_name }}
+        avi_controllerproperties:
+          avi_api_update_method: patch
+          avi_api_patch_op: replace
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin
+          allow_unauthenticated_nodes: true
+            
+      when: ctl_version > "18.2.0" 
+ 
+   
+
