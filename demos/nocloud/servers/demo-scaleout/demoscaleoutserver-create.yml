@@ -34,7 +34,8 @@
 
     - name: build the demoserver base image
       docker_image:
-        path: .
+        build:
+          path: .
         name: demoserver
         tag: latest
         state: present

@@ -30,11 +30,12 @@
 
     - name: Install Docker (Redhat)
       when: ansible_os_family == "RedHat"
-      action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=present"
-      with_items:
-        - yum-utils
-        - device-mapper-persistent-data
-        - lvm2
+      #action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=present"
+      action: "{{ ansible_pkg_mgr }} pkg=['yum-utils', 'device-mapper-persistent-data', 'lvm2'] state=present"
+      #with_items:
+      #  - yum-utils
+      #  - device-mapper-persistent-data
+      #  - lvm2
     
     -  when: ansible_os_family == "RedHat"
        get_url:
