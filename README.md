@@ -5,8 +5,8 @@ This project results in creating a "demo-in-a-box" of the Avi Vantage platform. 
 ### Prerequisites
  * Linux Server
    - RHEL
-   - Centos
-   - Ubuntu
+   - Centos 7
+   - Ubuntu 18.04
 
 
 
@@ -81,10 +81,10 @@ There are optional arguments that can be provided.  Every argument provided is p
   <td>24</td>
  </tr>
  <tr>    
- <td><strong>kubernetes</strong></td>
- <td>will deploy Avi with Kubernetes integration instead of the Default Demo</td>
+ <td><strong>cleanup</strong></td>
+ <td>will attempt to remove demo components</td>
  <td>no, optional</td>
- <td>default value is to deploy the Default Demo Setup</td>
+ <td>none</td>
  </tr>
 <tr>    
  <td><strong>grafana</strong></td>
@@ -97,10 +97,10 @@ There are optional arguments that can be provided.  Every argument provided is p
 
 ### Example Setup Using Arguments
 
-The command below demonstrates using multiple arguments.  The <b>version</b> argument will present you with a list of Avi versions to select from.  The <b>kubernetes</b> argument will deploy a demo of Avi with Kubernetes deployment instead of the Default Demo Setup and the <b>grafana</b> argument will deploy Grafana to display Avi performance metrics.
+The command below demonstrates using multiple arguments.  The <b>version</b> argument will present you with a list of Avi versions to select from and the <b>grafana</b> argument will deploy Grafana to display Avi performance metrics.
 
 ```
-curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash -s version -s kubernetes -s grafana
+curl -sSL https://raw.githubusercontent.com/avinetworks/demo-in-a-box/master/demo-install.sh | sudo bash -s version -s grafana
 ```
 <br></br>
  ## Default Demo Setup
@@ -216,63 +216,7 @@ Because this demo setup is isolated within the host an RDP server is provided to
 
 
 <br></br>
- ## Kubernetes Demo Setup
-
- Utilizing docker containers, the kubernetes "demo-in-a-box" setup is completely self contained within a single host.  
-
- A bridged network (<b>avinet : 169.254.0.0/17</b>) has been created for the internal docker networking to host the Avi Controller and Traffic Client.
-
- The table below lists the containers that will be created and amongst other information the roles they serve for the demo.  
-
-
- <table class="table table table-bordered table-hover">  
- <tbody>       
- <tr>   
- <th>CONTAINER NAME
- </th>
- <th>CONTAINER ROLE
- </th>
- <th>INTERNAL IP
- </th>
- <th>EXPOSED PORTS
- </th>
- </tr>
- <tr>    
- <td><strong>avicontroller</strong></td>
- <td>Avi Vantage controller</td>
- <td>169.254.0.100</td>
- <td>tcp:80, tcp:443(GUI), tcp:5054, tcp:5098(ssh), tcp:8444, udp:161</td>
- </tr>
- <tr>    
- <td><strong>k8_(various)</strong></td>
- <td>Kubernetes VM</td>
- <td>various</td>
- <td>tcp:30000(GUI), tcp:8443</td>
- </tr>
- <tr>    
- <td><strong>kubeclient1</strong></td>
- <td>Client used for traffic generation</td>
- <td>169.254.8.8</td>
- <td>none</td>
- </tr>
-  </tbody>
- </table>
-
-
-### How to Access
-
- There are two containers that are exposing services externally on the host; the Avi Controller and the RDP Server
-
-
-#### Avi Controller
- The Avi Vantage Controller can be accessed through the GUI or SSH.  To access the GUI point a browser to https://<host_ip>.  To access the cli, ssh to the host ip on port 5098.  Login credentials for the Avi controller are:<br>
-  - u: admin<br>
-  - p: AviDemo1!
-
-
-#### Kubernetes UI
-To access the Kubernetes GUI point a browser to http://<host_ip>:30000
-
+ 
 
 <br></br>
  ## Grafana Setup

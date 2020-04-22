@@ -21,8 +21,8 @@
 
     - name: Modify welcome_workflow_complete
       avi_systemconfiguration:
-        avi_api_update_method: patch
-        avi_api_patch_op: replace
+        #avi_api_update_method: patch
+        #avi_api_patch_op: replace
         controller: "{{ controller_ip }}"
         username: "{{ username }}"
         password: "{{ password }}"

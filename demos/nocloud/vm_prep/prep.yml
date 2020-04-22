@@ -62,6 +62,12 @@
         enabled: False
         state: stopped
 
+    - when: ansible_os_family == "RedHat"
+      systemd:
+        name: docker
+        enabled: yes
+        state: restarted
+
 
     - name: Install Docker (Ubuntu)
       when: ansible_os_family == "Debian"

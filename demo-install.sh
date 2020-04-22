@@ -212,23 +212,24 @@ download_files() {
 playbook_install_demo() {
     echo "=====> Begin executing ansible playbooks to install demo"
     for a in "${cmd_args[@]}"; do
-        if [[ "$a" == "kubernetes" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/demo_kubernetes.yml | tee /dev/tty)
-            if  [[ $result =~ "failed=1" ]]; then
-                echo "=====> ERROR: install script encountered an error"
-                exit 1
-            else
-                return 0
-            fi      
-        elif [[ "$a" == "openshift" ]]; then
-            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/demo_openshift.yml | tee /dev/tty)
-            if  [[ $result =~ "failed=1" ]]; then
-                echo "=====> ERROR: install script encountered an error"
-                exit 1
-            else
-                return 0
-            fi 
-        elif [[ "$a" == "nocloud" ]]; then
+        #if [[ "$a" == "kubernetes" ]]; then
+        #    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/kubernetes/demo_kubernetes.yml | tee /dev/tty)
+        #    if  [[ $result =~ "failed=1" ]]; then
+        #        echo "=====> ERROR: install script encountered an error"
+        #        exit 1
+        #    else
+        #        return 0
+        #    fi      
+        #elif [[ "$a" == "openshift" ]]; then
+        #    result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/openshift/demo_openshift.yml | tee /dev/tty)
+        #    if  [[ $result =~ "failed=1" ]]; then
+        #        echo "=====> ERROR: install script encountered an error"
+        #        exit 1
+        #    else
+        #        return 0
+        #    fi 
+        #elif [[ "$a" == "nocloud" ]]; then
+        if [[ "$a" == "nocloud" ]]; then
            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
            if  [[ $result =~ "failed=1" ]]; then
                echo "=====> ERROR: install script encountered an error"
