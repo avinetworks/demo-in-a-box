@@ -229,7 +229,6 @@ playbook_install_demo() {
                 return 0
             fi 
         elif [[ "$a" == "nocloud" ]]; then
-        if [[ "$a" == "nocloud" ]]; then
            result=$(unbuffer ansible-playbook -i demo-in-a-box-master/hosts demo-in-a-box-master/demos/nocloud/demo_nocloud.yml | tee /dev/tty)
            if  [[ $result =~ "failed=1" ]]; then
                echo "=====> ERROR: install script encountered an error"
