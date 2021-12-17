@@ -43,6 +43,8 @@
               ip:
                  addr: "169.254.127.203"
                  type: 'V4'
+          analytics_policy:
+              enable_realtime_metrics: true                 
     
     - name: Avi Application | Setup Downloads-pool
       community.network.avi_pool:   
@@ -59,6 +61,8 @@
             - ip:
                  addr: "169.254.127.200"
                  type: 'V4'
+          analytics_policy:
+              enable_realtime_metrics: true                 
 
     - name: Avi Application | Setup ContactUs-pool
       community.network.avi_pool:  
@@ -75,6 +79,8 @@
             - ip:
                  addr: "169.254.127.200"
                  type: 'V4'
+          analytics_policy:
+              enable_realtime_metrics: true
 
     - community.network.avi_httppolicyset:
           api_version: "{{ api_version }}"
@@ -152,10 +158,12 @@
             udf_log_throttle: 0
             full_client_logs:
               duration: 0
+              enabled: true
               throttle: 0
             metrics_realtime_update:
               duration: 0
               enabled: true
+            all_headers: true
             significant_log_throttle: 0
             client_insights: PASSIVE
 

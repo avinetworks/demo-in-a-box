@@ -29,6 +29,8 @@
               ip:
                  addr: "169.254.127.201"
                  type: 'V4'
+          analytics_policy:
+              enable_realtime_metrics: true                   
 
     - community.network.avi_vsvip:
           api_version: "{{ api_version }}"
@@ -67,8 +69,11 @@
             full_client_logs:
               duration: 0
               throttle: 0
+              enabled: true
             metrics_realtime_update:
               duration: 0
               enabled: true
             significant_log_throttle: 0
+            all_headers: true
             client_insights: NO_INSIGHTS
+            
