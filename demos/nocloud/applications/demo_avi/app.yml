@@ -148,7 +148,7 @@
           ssl_key_and_certificate_refs:
             - "/api/sslkeyandcertificate?name=System-Default-Cert"
             - "/api/sslkeyandcertificate?name=System-Default-Cert-EC"
-    
+          ssl_profile_ref: '/api/sslprofile?name=System-Standard'
           pool_ref: '/api/pool?name=Avi-Demo-pool'
           vsvip_ref: '/api/vsvip?name=Avi-Demo-VS-vsvip'
           http_policies:
