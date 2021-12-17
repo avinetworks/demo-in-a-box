@@ -27,13 +27,14 @@
         - avise2.service
 
 
-    - systemd: daemon_reload=yes
+    - ansible.builtin.systemd: daemon_reload=yes
     
     - name: Start SE service
-      systemd:
+      ansible.builtin.systemd:
         name: "{{ item }}"
         enabled: yes
         state: started
+        daemon_reload: yes
       with_items:
         - avise1.service
         - avise2.service
