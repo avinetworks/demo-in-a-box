@@ -30,9 +30,11 @@
 
     - name: build the scaleoutclient base image
       docker_image:
-        path: .
+        build:
+          path: .
         name: scaleoutclient
         tag: latest
+        source: build
         state: present
 
     - name: start scaleoutclient1

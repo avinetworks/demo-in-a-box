@@ -1,7 +1,5 @@
 ---
 - hosts: controllers
-  roles:
-    - role: avinetworks.avisdk
   vars_files:
     - ../../../vars/avi_details.yaml
   vars:
@@ -22,17 +20,13 @@
       retries: 300
       delay: 10
 
-    - set_fact:
-        ctl_version: "{{ ver_results.json.version.Version.split('(')[0] }}"
-
-    - block: 
-      - name: Set Avi Controller password
-        command: docker exec -i avicontroller bash -c 'sudo /opt/avi/scripts/initialize_admin_user.py --password {{ password }}' 
+    - name: Set Avi Controller password
+      command: docker exec -i avicontroller bash -c 'sudo /opt/avi/scripts/initialize_admin_user.py --password {{ password }}' 
       
-      - name: Controller properties
-        avi_controllerproperties:
-          #avi_api_update_method: patch
-          #avi_api_patch_op: replace
+    - name: Controller properties
+      community.network.avi_controllerproperties:
+          avi_api_update_method: patch
+          avi_api_patch_op: replace
           api_version: "{{ api_version }}"
           controller: "{{ controller_ip }}"
           username: "{{ username }}"
@@ -40,7 +34,7 @@
           tenant: admin
           allow_unauthenticated_nodes: true
             
-      when: ctl_version > "18.2.0" 
+
  
    
 

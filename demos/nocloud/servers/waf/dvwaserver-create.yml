@@ -36,9 +36,11 @@
 
     - name: build the wafserver base image - this will take a few minutes
       docker_image:
-        path: .
+        build:
+          path: .
         name: wafserver
         tag: latest
+        source: build
         state: present
 
     - name: start wafserver1

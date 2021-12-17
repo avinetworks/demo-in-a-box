@@ -38,6 +38,7 @@
           path: .
         name: demoserver
         tag: latest
+        source: build
         state: present
 
     - name: start the demoserver1 container

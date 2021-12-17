@@ -38,9 +38,11 @@
 
     - name: build the democlient base image
       docker_image:
-        path: .
+        build:
+          path: .
         name: democlient
         tag: latest
+        source: build
         state: present
 
     - name: start democlient1 container

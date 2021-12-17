@@ -5,11 +5,7 @@
     - ../../../vars/avi_details.yaml
   vars:
     ansible_python_interpreter: python3      
-   
- 
-  roles:
-    - avinetworks.avisdk
-
+  
   tasks:
 
     - name: Wait for Avi Controller services to be ready
@@ -48,7 +44,7 @@
 
     - pause: seconds=60
 
-    - avi_api_session:
+    - community.network.avi_api_session:
         controller: "{{ controller_ip }}"
         username: "{{ username }}"
         password: "{{ password }}"
