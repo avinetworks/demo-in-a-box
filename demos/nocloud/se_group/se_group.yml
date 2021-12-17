@@ -18,3 +18,6 @@
         api_version: "{{ api_version }}"
         name: "Default-Group"
         se_tunnel_mode: "2"
+        realtime_se_metrics:
+            enabled: true
+            duration: 0
