@@ -27,7 +27,8 @@
         - avise2.service
 
 
-    #- ansible.builtin.systemd: daemon_reload=yes
+    - ansible.builtin.systemd: daemon_reload=yes
+
     
     - name: Start SE service
       ansible.builtin.systemd:
