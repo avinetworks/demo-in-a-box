@@ -79,7 +79,7 @@ check_for_ansible() {
 
 
 check_for_ansible_roles() {
-    if /usr/local/bin/ansible-galaxy collection list community.network | grep "not found" &> /dev/null; then
+    if /usr/local/bin/ansible-galaxy collection list community.network | grep "ERROR!" &> /dev/null; then
         echo "=====> ansible avinetworks.docker role not installed"
         /usr/local/bin/ansible-galaxy collection install community.network
     else
@@ -91,12 +91,12 @@ check_for_ansible_roles() {
     #else
     #    echo "=====> ansible avinetworks.docker role already installed"
     #fi
-    #if /usr/local/bin/ansible-galaxy list avinetworks.avicontroller | grep "not found" &> /dev/null; then
-    #    echo "=====> ansible avinetworks.avicontroller role not installed"
-    #    /usr/local/bin/ansible-galaxy install avinetworks.avicontroller
-    #else
-    #    echo "=====> ansible avinetworks.avicontroller role already installed"
-    #fi
+    if /usr/local/bin/ansible-galaxy list avinetworks.avicontroller | grep "ERROR!" &> /dev/null; then
+        echo "=====> ansible avinetworks.avicontroller role not installed"
+        /usr/local/bin/ansible-galaxy install avinetworks.avicontroller
+    else
+        echo "=====> ansible avinetworks.avicontroller role already installed"
+    fi
     #if /usr/local/bin/ansible-galaxy list avinetworks.avisdk | grep "not found" &> /dev/null; then
     #    echo "=====> ansible avinetworks.avisdk role not installed"
     #    /usr/local/bin/ansible-galaxy install avinetworks.avisdk

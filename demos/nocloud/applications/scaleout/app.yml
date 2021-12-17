@@ -3,8 +3,6 @@
   connection: local
   vars_files:
     - ../../../../vars/avi_details.yaml
-  roles:
-    - role: avinetworks.avisdk
   tasks:
 
     - name: Avi Application | Setup Scaleout-pool
