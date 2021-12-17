@@ -4,15 +4,158 @@
   vars_files:
     - ../../../../vars/avi_details.yaml
   vars:
-    - api_version: 17.2.7
+    - api_version: "{{ api_version }}"
     - avi_controller: "{{ controller_ip }}"
     - avi_username: "{{ username }}"
     - avi_password: "{{ password }}"
-  roles:
-    - role: avinetworks.avisdk
+
   tasks:
-    - name: Avi Application | Setup Avi-Demo-VS
-      include_role:
-        name: avinetworks.aviconfig
-      vars:
-        avi_config_file: config.yml
+
+    - name: Avi Application | Setup Avi-Demo-pool
+      community.network.avi_pool:
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin      
+          name: Avi-Demo-pool
+          lb_algorithm: LB_ALGORITHM_ROUND_ROBIN
+          health_monitor_refs:
+            - "/api/healthmonitor?name=System-HTTP"
+          servers:
+            - hostname: "demoserver1.avinet"
+              #resolve_server_by_dns: true
+              ip:
+                 addr: "169.254.127.200"
+                 type: 'V4'
+            - hostname: "demoserver1.avinet"
+              #resolve_server_by_dns: true
+              ip:
+                 addr: "169.254.127.201"
+                 type: 'V4'
+            - hostname: "demoserver3.avinet"
+              #resolve_server_by_dns: true
+              ip:
+                 addr: "169.254.127.202"
+                 type: 'V4'
+            - hostname: "demoserver4.avinet"
+              #resolve_server_by_dns: true
+              ip:
+                 addr: "169.254.127.203"
+                 type: 'V4'
+    
+    - name: Avi Application | Setup Downloads-pool
+      community.network.avi_pool:   
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin              
+          name: Downloads-pool
+          lb_algorithm: LB_ALGORITHM_ROUND_ROBIN
+          health_monitor_refs:
+            - "/api/healthmonitor?name=System-HTTP"
+          servers:
+            - ip:
+                 addr: "169.254.127.200"
+                 type: 'V4'
+
+    - name: Avi Application | Setup ContactUs-pool
+      community.network.avi_pool:  
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin                            
+          name: ContactUs-pool
+          lb_algorithm: LB_ALGORITHM_ROUND_ROBIN
+          health_monitor_refs:
+            - "/api/healthmonitor?name=System-HTTP"
+          servers:
+            - ip:
+                 addr: "169.254.127.200"
+                 type: 'V4'
+
+    - community.network.avi_httppolicyset:
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin    
+          name: "Avi-Demo-httppolicy"
+          http_request_policy:
+            rules:
+              - index: 1
+                enable: true
+                name: "Downloads rule"
+                match:
+                  path:
+                    match_case: INSENSITIVE
+                    match_str:
+                      - /downloads
+                    match_criteria: EQUALS
+                switching_action:
+                  action: HTTP_SWITCHING_SELECT_POOL
+                  status_code: HTTP_LOCAL_RESPONSE_STATUS_CODE_200
+                  pool_ref: "/api/pool?name=Downloads-pool"
+              - index: 2
+                enable: true
+                name: "Contact us rule"
+                match:
+                  path:
+                    match_case: INSENSITIVE
+                    match_str:
+                      - /contactus
+                    match_criteria: CONTAINS
+                switching_action:
+                  action: HTTP_SWITCHING_SELECT_POOL
+                  status_code: HTTP_LOCAL_RESPONSE_STATUS_CODE_200
+                  pool_ref: "/api/pool?name=ContactUs-pool"
+          is_internal_policy: false
+
+
+    - community.network.avi_vsvip:
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin    
+          name: Avi-Demo-VS-vsvip
+          vip:
+          - ip_address:
+              addr: "169.254.10.1"
+              type: 'V4'
+            vip_id: '1'
+
+    - community.network.avi_virtualservice:
+          api_version: "{{ api_version }}"
+          controller: "{{ controller_ip }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          tenant: admin    
+          name: Avi-Demo-VS
+          services:
+            - port: 80
+            - port: 443
+              enable_ssl: true
+          application_profile_ref: '/api/applicationprofile?name=System-Secure-HTTP'
+          ssl_key_and_certificate_refs:
+            - "/api/sslkeyandcertificate?name=System-Default-Cert"
+            - "/api/sslkeyandcertificate?name=System-Default-Cert-EC"
+    
+          pool_ref: '/api/pool?name=Avi-Demo-pool'
+          vsvip_ref: '/api/vsvip?name=Avi-Demo-VS-vsvip'
+          http_policies:
+            - index: 11
+              http_policy_set_ref: '/api/httppolicyset?name=Avi-Demo-httppolicy'
+          analytics_policy:
+            udf_log_throttle: 0
+            full_client_logs:
+              duration: 0
+              throttle: 0
+            metrics_realtime_update:
+              duration: 0
+              enabled: true
+            significant_log_throttle: 0
+            client_insights: PASSIVE
+
