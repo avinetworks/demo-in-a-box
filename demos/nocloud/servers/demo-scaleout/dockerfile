@@ -1,4 +1,6 @@
-FROM httpd:alpine
+FROM node:alpine
 
-RUN rm /usr/local/apache2/htdocs/index.html
-COPY html /usr/local/apache2/htdocs
+COPY aviserver /
+COPY customizer.sh /
+
+CMD sh customizer.sh && node webserver.js
